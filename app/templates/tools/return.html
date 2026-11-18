@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ t("归还工具") }}{% endblock %}
+{% block content %}
+<h1>{{ t("归还工具") }}</h1>
+<div class="card">
+  <p><strong>{{ t("实验室：") }}</strong>{{ loan.lab.name }}</p>
+  <p><strong>{{ t("工具：") }}</strong>{{ loan.items_label }}</p>
+  <p><strong>{{ t("借用时间：") }}</strong>{{ loan.borrow_at.strftime('%Y-%m-%d %H:%M') }}</p>
+  <p><strong>{{ t("预计归还：") }}</strong>{{ loan.expected_return_at.strftime('%Y-%m-%d %H:%M') }}</p>
+  <p>
+    {{ t("借用照片：") }}
+    <a href="{{ url_for('tools.media', filename=loan.borrow_photo) }}" target="_blank">
+      <img class="thumb" src="{{ url_for('tools.media', filename=loan.borrow_photo) }}" alt="{{ t('借用照片') }}" width="64" height="64" decoding="async">
+    </a>
+  </p>
+  <form method="post" enctype="multipart/form-data" data-busy="{{ t('正在提交…') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    {% if current_user.is_superadmin %}
+    <p class="hint">{{ t("总管理员确认归还无需上传照片。") }}</p>
+    {% else %}
+    <div class="field">
+      <label for="return_photo">{{ t("归还时照片（必填，jpg/png/webp，不超过 5MB）") }}</label>
+      <input id="return_photo" name="return_photo" type="file" accept="image/jpeg,image/png,image/webp" capture="environment" required data-preview="return-photo-preview">
+      <div class="photo-preview" id="return-photo-preview" hidden></div>
+    </div>
+    {% endif %}
+    <div class="actions">
+      <button type="submit">{{ t("确认归还") }}</button>
+      <a class="btn secondary" href="{{ url_for('records.index', tab='tools') if current_user.is_regular_user else url_for('tools.admin_loans') }}">{{ t("返回") }}</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

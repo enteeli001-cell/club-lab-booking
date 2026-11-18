@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}{{ t("工具借用登记") }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{{ t("向实验室借工具使用登记") }}</h1>
+    <p class="muted">{{ t("借用和归还时均需拍照留存；数量不能超过剩余库存。") }}</p>
+  </div>
+  <a class="btn secondary small" href="{{ url_for('records.index', tab='tools') }}">{{ t("借用记录") }}</a>
+</div>
+<div class="card form-card">
+  {% if not labs %}
+  <p class="muted">{{ t("当前没有可用实验室，请联系管理员。") }}</p>
+  {% else %}
+  <form method="post" enctype="multipart/form-data" id="tool-form" data-busy="{{ t('正在提交…') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field">
+      <label for="lab_id">{{ t("实验室") }}</label>
+      <select id="lab_id" name="lab_id" required>
+        {% if labs|length != 1 %}
+        <option value="">{{ t("请选择") }}</option>
+        {% endif %}
+        {% for lab in labs %}
+        <option value="{{ lab.id }}" {% if form.lab_id|string == lab.id|string %}selected{% endif %}>{{ lab.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="borrow_at">{{ t("借用时间") }} <span class="tz-badge">{{ t(tz_label) }}</span></label>
+        <input id="borrow_at" name="borrow_at" type="datetime-local" required value="{{ form.borrow_at }}">
+      </div>
+      <div class="field">
+        <label for="expected_return_at">{{ t("预计归还时间") }}</label>
+        <input id="expected_return_at" name="expected_return_at" type="datetime-local" required value="{{ form.expected_return_at }}">
+      </div>
+    </div>
+    <div class="chip-row" role="group" aria-label="{{ t('快速设置预计归还时间') }}">
+      <span class="chip-label">{{ t("预计归还") }}</span>
+      <button type="button" class="chip" data-return-after="1">{{ t("借用后 1 小时") }}</button>
+      <button type="button" class="chip" data-return-after="2">{{ t("2 小时") }}</button>
+      <button type="button" class="chip" data-return-after="4">{{ t("4 小时") }}</button>
+    </div>
+    <div class="field">
+      <label for="contact">{{ t("本人联系方式（手机号）") }}</label>
+      <input id="contact" name="contact" type="tel" required inputmode="numeric" pattern="1[3-9][0-9]{9}" maxlength="11" autocomplete="tel" placeholder="{{ t('11 位手机号') }}" value="{{ form.contact }}">
+    </div>
+    <fieldset class="companions">
+      <legend>{{ t("借用工具") }}</legend>
+      <p class="muted">{{ t("请从清单中选择工具。「其他」需手填名称，且不计入库存统计。数量不能超过该工具剩余可借件数。") }}</p>
+      <div id="tool-rows">
+        {% for item in form.tool_items %}
+        <div class="field-row tool-row">
+          <div class="field">
+            <label>{{ t("工具") }}</label>
+            <select name="tool_catalog_id" class="js-tool-choice">
+              <option value="">{{ t("请选择") }}</option>
+              {% for tool in catalog %}
+              <option value="{{ tool.id }}" {% if item.catalog_id|string == tool.id|string %}selected{% endif %}>{{ tool.name }}{{ t("（剩余") }} {{ tool.remaining }}）</option>
+              {% endfor %}
+              <option value="other" {% if item.is_other %}selected{% endif %}>{{ t("其他") }}</option>
+            </select>
+          </div>
+          <div class="field js-other-wrap" {% if not item.is_other %}hidden{% endif %}>
+            <label>{{ t("其他工具名称") }}</label>
+            <input name="tool_name" type="text" value="{{ item.name if item.is_other else '' }}" placeholder="{{ t('请填写工具名称') }}">
+          </div>
+          <div class="field field-qty"><label>{{ t("数量") }}</label><input name="tool_quantity" type="number" inputmode="numeric" min="1" value="{{ item.quantity }}" required></div>
+          <button type="button" class="row-remove js-remove-row" aria-label="{{ t('删除这件工具') }}">{{ t("删除") }}</button>
+        </div>
+        {% endfor %}
+      </div>
+      <template id="tool-row-template">
+        <div class="field-row tool-row">
+          <div class="field">
+            <label>{{ t("工具") }}</label>
+            <select name="tool_catalog_id" class="js-tool-choice">
+              <option value="">{{ t("请选择") }}</option>
+              {% for tool in catalog %}<option value="{{ tool.id }}">{{ tool.name }}{{ t("（剩余") }} {{ tool.remaining }}）</option>{% endfor %}
+              <option value="other">{{ t("其他") }}</option>
+            </select>
+          </div>
+          <div class="field js-other-wrap" hidden>
+            <label>{{ t("其他工具名称") }}</label>
+            <input name="tool_name" type="text" placeholder="{{ t('请填写工具名称') }}">
+          </div>
+          <div class="field field-qty"><label>{{ t("数量") }}</label><input name="tool_quantity" type="number" inputmode="numeric" min="1" value="1" required></div>
+          <button type="button" class="row-remove js-remove-row" aria-label="{{ t('删除这件工具') }}">{{ t("删除") }}</button>
+        </div>
+      </template>
+      <button type="button" class="btn secondary small" id="add-tool">{{ t("＋ 添加一件工具") }}</button>
+    </fieldset>
+    <div class="field">
+      <label for="borrow_photo">{{ t("借用时照片（必填，jpg/png/webp，不超过 5MB）") }}</label>
+      <input id="borrow_photo" name="borrow_photo" type="file" accept="image/jpeg,image/png,image/webp" capture="environment" required data-preview="borrow-photo-preview">
+      <div class="photo-preview" id="borrow-photo-preview" hidden></div>
+    </div>
+    <div class="actions form-actions">
+      <button type="submit" class="btn-lg">{{ t("提交借用登记") }}</button>
+      <a class="btn secondary" href="{{ url_for('tools.my_loans') }}">{{ t("我的借用记录") }}</a>
+    </div>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}{{ t("主要工具清单") }}{% endblock %}
+{% block content %}
+<h1>{{ t("主要工具清单") }}</h1>
+<p class="muted">{{ t("由总管理员维护。队长借用时从该清单下拉选择；「其他」可手填但不计入库存。库存占用按借用中（含逾期）记录自动统计。") }}</p>
+<div class="card">
+  <form method="post" action="{{ url_for('tools.catalog_create') }}" class="catalog-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field-row">
+      <div class="field">
+        <label for="name">{{ t("工具名称") }}</label>
+        <input id="name" name="name" required maxlength="80" placeholder="{{ t('例如：扳手') }}">
+      </div>
+      <div class="field">
+        <label for="total_quantity">{{ t("总数量") }}</label>
+        <input id="total_quantity" name="total_quantity" type="number" min="0" required value="1">
+      </div>
+      <div class="field">
+        <label class="check-item"><input type="checkbox" name="is_major" value="1" checked> {{ t("主要工具（计入库存卡片）") }}</label>
+      </div>
+    </div>
+    <button type="submit">{{ t("添加工具") }}</button>
+  </form>
+</div>
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>{{ t("名称") }}</th>
+        <th>{{ t("总数量") }}</th>
+        <th>{{ t("当前被借") }}</th>
+        <th>{{ t("剩余可借") }}</th>
+        <th>{{ t("主要工具") }}</th>
+        <th>{{ t("操作") }}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>
+          <form method="post" action="{{ url_for('tools.catalog_update', item_id=item.id) }}" class="inline">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="name" value="{{ item.name }}">
+            <input name="total_quantity" type="number" min="0" value="{{ item.total }}" style="width:6em">
+            <label class="check-item"><input type="checkbox" name="is_major" value="1" {% if item.is_major %}checked{% endif %}> {{ t("主要") }}</label>
+            <button type="submit" class="btn small">{{ t("保存") }}</button>
+          </form>
+        </td>
+        <td>{{ item.borrowed }}</td>
+        <td>{{ item.remaining }}</td>
+        <td>{% if item.is_major %}{{ t("是") }}{% else %}{{ t("否") }}{% endif %}</td>
+        <td>
+          <form method="post" action="{{ url_for('tools.catalog_delete', item_id=item.id) }}" class="inline" data-confirm="{{ t('确定删除该工具？') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="btn small danger">{{ t("删除") }}</button>
+          </form>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="6" class="muted">{{ t("尚未添加工具。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+<p><a class="btn secondary" href="{{ url_for('tools.admin_loans') }}">{{ t("返回工具借用记录") }}</a></p>
+{% endblock %}

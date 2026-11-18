@@ -1,0 +1,54 @@
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>{{ t("借用队长") }}</th>
+        <th>{{ t("联系方式") }}</th>
+        <th>{{ t("队伍 / 组员") }}</th>
+        <th>{{ t("工具") }}</th>
+        <th>{{ t("借用 / 预计归还 / 实际归还") }}</th>
+        <th>{{ t("照片") }}</th>
+        <th>{{ t("状态") }}</th>
+        <th>{{ t("操作") }}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for loan in loans %}
+      <tr>
+        <td>{{ loan.user.name }}<div class="hint">{{ loan.user.student_id }}</div></td>
+        <td>{{ loan.contact }}</td>
+        <td>
+          {{ loan.team_name or '—' }}
+          <div class="hint">{{ loan.user.teammates_label }}</div>
+        </td>
+        <td>{{ loan.items_label }}</td>
+        <td>
+          {{ t("借：") }}{{ loan.borrow_at.strftime('%Y-%m-%d %H:%M') }}
+          <div class="hint">{{ t("预计还：") }}{{ loan.expected_return_at.strftime('%Y-%m-%d %H:%M') }}</div>
+          {% if loan.actual_return_at %}<div class="hint">{{ t("实还：") }}{{ loan.actual_return_at.strftime('%Y-%m-%d %H:%M') }}</div>{% else %}<div class="hint">{{ t("实还：—") }}</div>{% endif %}
+        </td>
+        <td>
+          <a href="{{ url_for('tools.media', filename=loan.borrow_photo) }}" target="_blank" rel="noopener">
+            <img class="thumb" src="{{ url_for('tools.media', filename=loan.borrow_photo) }}" alt="{{ t('借用照片') }}" width="64" height="64" loading="lazy" decoding="async">
+          </a>
+          {% if loan.return_photo %}
+          <a href="{{ url_for('tools.media', filename=loan.return_photo) }}" target="_blank" rel="noopener">
+            <img class="thumb" src="{{ url_for('tools.media', filename=loan.return_photo) }}" alt="{{ t('归还照片') }}" width="64" height="64" loading="lazy" decoding="async">
+          </a>
+          {% endif %}
+        </td>
+        <td><span class="badge {{ loan.display_status }}">{{ t(loan.display_status_label) }}</span></td>
+        <td>
+          {% if loan.status == 'borrowing' and (admin_view or loan.user_id == current_user.id) %}
+          <a class="btn small" href="{{ url_for('tools.return_loan', loan_id=loan.id) }}">{{ t("归还") }}</a>
+          {% else %}
+          <span class="muted">—</span>
+          {% endif %}
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="8" class="muted">{{ t("暂无借用记录。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>

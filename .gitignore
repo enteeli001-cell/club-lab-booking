@@ -48,6 +48,6 @@ tunnel_hosts
 .deploy/
 
 # Binaries
-tools/
+/tools/
 
 .DS_Store

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{ t("我的工具借用") }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{{ t("我的工具借用") }}</h1>
+    <p class="muted">{{ t("借用中的记录可点击“归还”并上传归还照片。") }}</p>
+  </div>
+  <a class="btn" href="{{ url_for('tools.create_loan') }}">{{ t("＋ 新建借用登记") }}</a>
+</div>
+{% include "tools/_table.html" %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{{ t("工具借用记录") }}{% endblock %}
+{% block content %}
+<h1>{{ t("工具借用记录") }}</h1>
+<div class="card inventory-card">
+  <div class="inventory-head">
+    <h2>{{ t("主要工具库存") }}</h2>
+    {% if current_user.can_manage_accounts %}
+    <a class="btn secondary small" href="{{ url_for('tools.catalog') }}">{{ t("维护清单") }}</a>
+    {% endif %}
+  </div>
+  {% if inventory %}
+  <div class="inventory-grid">
+    {% for item in inventory %}
+    <div class="stock-item">
+      <div class="stock-name">{{ item.name }}</div>
+      <div class="stock-nums">
+        <span>{{ t("总数") }} {{ item.total }}</span>
+        <span>{{ t("已借") }} {{ item.borrowed }}</span>
+        <span class="stock-remain">{{ t("剩余可借") }} {{ item.remaining }}</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="muted">{{ t("尚未配置主要工具。") }}{% if current_user.can_manage_accounts %}{{ t("请先在清单中添加。") }}{% else %}{{ t("请联系总管理员维护清单。") }}{% endif %}</p>
+  {% endif %}
+</div>
+<div class="tabs">
+  <a href="{{ url_for('tools.admin_loans', status='all') }}" class="{{ 'active' if status == 'all' }}">{{ t("全部") }}</a>
+  <a href="{{ url_for('tools.admin_loans', status='borrowing') }}" class="{{ 'active' if status == 'borrowing' }}">{{ t("借用中") }}</a>
+  <a href="{{ url_for('tools.admin_loans', status='overdue') }}" class="{{ 'active' if status == 'overdue' }}">{{ t("逾期") }}</a>
+  <a href="{{ url_for('tools.admin_loans', status='returned') }}" class="{{ 'active' if status == 'returned' }}">{{ t("已归还") }}</a>
+  <a class="btn secondary small" href="{{ url_for('tools.export_loans') }}">{{ t("导出 Excel") }}</a>
+</div>
+{% include "tools/_table.html" %}
+{% endblock %}
