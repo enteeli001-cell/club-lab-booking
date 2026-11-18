@@ -18,18 +18,27 @@ from app.notices import REMINDER_RULES
 
 
 def reminder_body(booking, window_minutes: int) -> str:
+    from app.i18n import t
+
     opens = datetime.combine(booking.date, booking.start_time) - timedelta(minutes=window_minutes)
-    return (
-        f"{booking.user.name}，你好：\n\n"
-        f"你预约的实验室测试即将开始：\n"
-        f"实验室：{booking.lab.name}\n"
-        f"日期时段：{booking.date} {booking.time_range_label}\n\n"
-        f"签到方式：到达实验室后，请用手机扫描实验室门口的二维码，登录后点击“确认签到”。"
-        f"只有扫码才能完成签到，不能在网页上直接签到。\n"
-        f"签到窗口：{opens.strftime('%H:%M')}（开始前 {window_minutes} 分钟）至 {booking.end_time.strftime('%H:%M')}（结束时间）。\n\n"
-        f"实验室规则提醒：{REMINDER_RULES}\n\n"
-        f"如果无法到场，请提前在“申请记录”中取消预约。\n"
-        f"（此邮件由系统自动发送）\n"
+    return t(
+        "{name}，你好：\n\n"
+        "你预约的实验室测试即将开始：\n"
+        "实验室：{lab}\n"
+        "日期时段：{when}\n\n"
+        "签到方式：到达实验室后，请用手机扫描实验室门口的二维码，登录后点击“确认签到”。"
+        "只有扫码才能完成签到，不能在网页上直接签到。\n"
+        "签到窗口：{opens}（开始前 {window} 分钟）至 {end}（结束时间）。\n\n"
+        "实验室规则提醒：{rules}\n\n"
+        "如果无法到场，请提前在“申请记录”中取消预约。\n"
+        "（此邮件由系统自动发送）\n",
+        name=booking.user.name,
+        lab=booking.lab.name,
+        when=f"{booking.date} {booking.time_range_label}",
+        opens=opens.strftime("%H:%M"),
+        window=window_minutes,
+        end=booking.end_time.strftime("%H:%M"),
+        rules=t(REMINDER_RULES),
     )
 
 
@@ -74,9 +83,11 @@ def send_start_reminders(now: datetime | None = None) -> dict:
         db.session.expire_all()
         booking = db.session.get(Booking, booking_id)
         try:
+            from app.i18n import t
+
             log = send_mail(
                 recipient,
-                "【社团实验室预约管理系统】预约即将开始，请扫码签到",
+                t("【社团实验室预约管理系统】预约即将开始，请扫码签到"),
                 reminder_body(booking, early_minutes()),
                 booking_id=booking_id,
             )

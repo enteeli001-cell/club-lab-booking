@@ -236,22 +236,31 @@ MAIL_LABELS = {
 # ------------------------------------------------------------------- mail scan
 
 def mail_subject(announcement) -> str:
-    prefix = "【更新】" if announcement.mail_revision > 1 else ""
-    return f"【社团实验室预约管理系统】{prefix}重要公告：{announcement.title}"[:190]
+    from app.i18n import t
+
+    prefix = t("【更新】") if announcement.mail_revision > 1 else ""
+    return (t("【社团实验室预约管理系统】") + prefix + t("重要公告：") + announcement.title)[:190]
 
 
 def mail_body(announcement, user) -> str:
+    from app.i18n import t
+
     who = announcement.publisher_display
     stamp = (announcement.updated_at or announcement.created_at).strftime("%Y-%m-%d %H:%M")
-    return (
-        f"{user.name}，你好：\n\n"
-        f"系统发布了一条三级（最高级）公告：\n\n"
-        f"标题：{announcement.title}\n"
-        f"发布人：{who}\n"
-        f"时间：{stamp}\n\n"
-        f"{announcement.body}\n\n"
-        f"请登录系统，在“公告”页查看，并在弹窗中点击“我已知晓”。\n"
-        f"（此邮件由系统自动发送）\n"
+    return t(
+        "{name}，你好：\n\n"
+        "系统发布了一条三级（最高级）公告：\n\n"
+        "标题：{title}\n"
+        "发布人：{who}\n"
+        "时间：{stamp}\n\n"
+        "{body}\n\n"
+        "请登录系统，在“公告”页查看，并在弹窗中点击“我已知晓”。\n"
+        "（此邮件由系统自动发送）\n",
+        name=user.name,
+        title=announcement.title,
+        who=who,
+        stamp=stamp,
+        body=announcement.body,
     )
 
 

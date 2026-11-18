@@ -42,6 +42,25 @@ def client(app):
     return app.test_client()
 
 
+@pytest.fixture(autouse=True)
+def _functional_tests_use_simplified_chinese(monkeypatch):
+    """Keep existing behavior tests on Simplified Chinese.
+
+    English is the visitor default. Language tests delete this cookie and cover that path.
+    Mail sent with no request still uses English. This must not request the app fixture,
+    or tests that own their temp directory would see it already populated.
+    """
+    from flask.testing import FlaskClient
+
+    original = FlaskClient.__init__
+
+    def wrapped(self, *args, **kwargs):
+        original(self, *args, **kwargs)
+        self.set_cookie("lang", "zh-Hans")
+
+    monkeypatch.setattr(FlaskClient, "__init__", wrapped)
+
+
 def create_user(student_id, name, role, password="password123"):
     user = User(student_id=student_id, name=name, role=role)
     user.set_password(password)

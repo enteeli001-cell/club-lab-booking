@@ -735,7 +735,7 @@ def test_level_three_email_uses_publisher_name(app, world):
     with app.app_context():
         scan_announcement_mail()
         body = MailLog.query.first().body
-        assert "发布人：某某协会" in body and "总管理员（总管理员）" not in body
+        assert "Publisher: 某某协会" in body and "Super administrator（Super administrator）" not in body
 
 
 def test_legacy_announcement_without_publisher_name_falls_back_to_author(app, world):

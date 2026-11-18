@@ -1,0 +1,233 @@
+{
+  "^登录失败次数过多，请 (\\d+) 秒后再试。$": {
+    "ja": "失敗したログインが多すぎます。{0} 秒後に再試行してください。",
+    "ko": "로그인 실패 횟수가 너무 많습니다. {0}초 후에 다시 시도해 주세요.",
+    "es": "Demasiados inicios de sesión fallidos. Vuelva a intentarlo en {0} segundos.",
+    "fr": "Trop de connexions ont échoué. Veuillez réessayer dans {0} secondes.",
+    "de": "Zu viele fehlgeschlagene Anmeldungen. Bitte versuchen Sie es in {0} Sekunden erneut."
+  },
+  "^(.+) 同学，您好$": {
+    "ja": "こんにちは、{0}",
+    "ko": "안녕하세요, {0}님",
+    "es": "Hola, {0}",
+    "fr": "Bonjour, {0}",
+    "de": "Hallo, {0}"
+  },
+  "^使用人数不能超过实验室容量（(\\d+) 人）。$": {
+    "ja": "人数はラボのキャパシティ ({0}) を超えてはなりません。",
+    "ko": "인원 수는 연구실 수용 인원({0})을 초과할 수 없습니다.",
+    "es": "El número de personas no debe exceder la capacidad del laboratorio ({0}).",
+    "fr": "Le nombre de personnes ne doit pas dépasser la capacité du laboratoire ({0}).",
+    "de": "Die Anzahl der Personen darf die Laborkapazität ({0}) nicht überschreiten."
+  },
+  "^预约时间须在实验室开放时间内（(.+)）。$": {
+    "ja": "予約はラボの営業時間内 ({0}) 内に行う必要があります。",
+    "ko": "예약은 연구실 운영 시간({0}) 이내에 이루어져야 합니다.",
+    "es": "Las reservas deben realizarse dentro del horario de apertura del laboratorio ({0}).",
+    "fr": "Les réservations doivent être effectuées pendant les heures d'ouverture du laboratoire ({0}).",
+    "de": "Buchungen müssen innerhalb der Laboröffnungszeiten ({0}) erfolgen."
+  },
+  "^该时段值班管理员：(.+)$": {
+    "ja": "このスロットの職務管理者: {0}",
+    "ko": "이 슬롯의 업무 관리자: {0}",
+    "es": "Administrador de turno para este espacio: {0}",
+    "fr": "Administrateur de service pour cet emplacement : {0}",
+    "de": "Dienstverwalter für diesen Slot: {0}"
+  },
+  "^“(.+)”剩余可借 (\\d+) 件，申请数量 (\\d+) 超出库存，请调整后再提交。$": {
+    "ja": "{0}: {1} が利用可能です。 {2} をリクエストしました。量を減らして再度お試しください。",
+    "ko": "{0}: {1} 사용 가능; {2}를 요청했습니다. 수량을 줄이고 다시 시도해 보세요.",
+    "es": "{0}: {1} disponible; solicitado {2}. Reduzca la cantidad y vuelva a intentarlo.",
+    "fr": "{0} : {1} disponible ; demandé {2}. Réduisez la quantité et réessayez.",
+    "de": "{0}: {1} verfügbar; angefordert {2}. Reduzieren Sie die Menge und versuchen Sie es erneut."
+  },
+  "^已通过 (.+) 的预约（(.+)）。$": {
+    "ja": "{0} の予約 ({1}) を承認しました。",
+    "ko": "{0}님의 예약({1})을 승인했습니다.",
+    "es": "Se aprobó la reserva de {0} ({1}).",
+    "fr": "A approuvé la réservation de {0} ({1}).",
+    "de": "Genehmigte die Buchung von {0} ({1})."
+  },
+  "^已拒绝 (.+) 的预约。$": {
+    "ja": "{0} の予約を拒否しました。",
+    "ko": "{0}님의 예약을 거부했습니다.",
+    "es": "Rechazada la reserva de {0}.",
+    "fr": "Réservation de {0} rejetée.",
+    "de": "Die Buchung von {0} wurde abgelehnt."
+  },
+  "^该特批账号已超过有效期。$": {
+    "ja": "この承認されたアカウントは有効期限が切れています。",
+    "ko": "승인된 계정이 만료되었습니다.",
+    "es": "Esta cuenta aprobada ha caducado.",
+    "fr": "Ce compte approuvé a expiré.",
+    "de": "Dieses genehmigte Konto ist abgelaufen."
+  },
+  "^未到签到时间（(.+) 起可签到）$": {
+    "ja": "出席チェックインは {0} で開始されます",
+    "ko": "출석체크는 {0}에서 시작됩니다.",
+    "es": "El registro de asistencia se abre en {0}",
+    "fr": "L'enregistrement des présences ouvre à {0}",
+    "de": "Der Anwesenheits-Check-in beginnt um {0}"
+  },
+  "^你在 (.+) 已经完成本次预约的签到，无需重复操作。$": {
+    "ja": "{0} にチェックインしました。それ以上のアクションは必要ありません。",
+    "ko": "{0}에 체크인하셨습니다. 추가 조치가 필요하지 않습니다.",
+    "es": "Te registraste en {0}. No se necesita ninguna otra acción.",
+    "fr": "Vous vous êtes enregistré à {0}. Aucune autre action n’est nécessaire.",
+    "de": "Sie haben am {0} eingecheckt. Es sind keine weiteren Maßnahmen erforderlich."
+  },
+  "^你今天在本实验室的预约是 (.+)，请在 (.+) 之后再扫码签到。$": {
+    "ja": "ここでの予約は {0} です。 {1}の後にスキャンしてください。",
+    "ko": "귀하의 예약은 {0}입니다. {1} 이후에 스캔하세요.",
+    "es": "Tu reserva aquí es {0}. Escanee después de {1}.",
+    "fr": "Votre réservation ici est le {0}. Veuillez numériser après {1}.",
+    "de": "Ihre Buchung hier ist {0}. Bitte scannen Sie nach {1}."
+  },
+  "^你今天 (.+) 的预约签到时间已结束，不能再补签。如有疑问请联系实验室管理员。$": {
+    "ja": "本日の {0} のご予約に対する出席チェックインは終了しました。必要に応じて、ラボ管理者に連絡してください。",
+    "ko": "오늘 {0} 예약에 대한 출석체크가 마감되었습니다. 필요한 경우 랩 관리자에게 문의하세요.",
+    "es": "El control de asistencia para su reserva {0} de hoy se ha cerrado. Póngase en contacto con el administrador del laboratorio si es necesario.",
+    "fr": "L'enregistrement des présences pour votre réservation {0} d'aujourd'hui est terminé. Contactez l'administrateur du laboratoire si nécessaire.",
+    "de": "Der Anwesenheits-Check-in für Ihre {0}-Buchung ist heute geschlossen. Wenden Sie sich bei Bedarf an den Laboradministrator."
+  },
+  "^你今天在「(.+)」没有已通过的预约。请先在系统中预约并等待管理员审核通过。$": {
+    "ja": "今日 {0} では承認された予約がありません。予約を送信し、まず承認を待ちます。",
+    "ko": "오늘 {0}에 승인된 예약이 없습니다. 예약을 제출하고 먼저 승인을 기다립니다.",
+    "es": "No tienes ninguna reserva aprobada en {0} hoy. Envíe una reserva y espere la aprobación primero.",
+    "fr": "Vous n'avez aucune réservation approuvée à {0} aujourd'hui. Soumettez une réservation et attendez d’abord l’approbation.",
+    "de": "Sie haben heute keine genehmigte Buchung für {0}. Reichen Sie eine Buchung ein und warten Sie zunächst auf die Genehmigung."
+  },
+  "^已签到 (.+)$": {
+    "ja": "{0}にチェックインしました",
+    "ko": "{0}에 체크인했습니다.",
+    "es": "Registrado en {0}",
+    "fr": "Enregistré à {0}",
+    "de": "Eingecheckt um {0}"
+  },
+  "^你的位置距离实验室约 (\\d+) 米，超出签到范围（(\\d+) 米）。请到实验室现场签到。$": {
+    "ja": "あなたは研究室から約 {0} m、出席チェックイン半径 {1} m の外側にいます。現地でチェックインします。",
+    "ko": "귀하는 연구실에서 약 {0}m 떨어져 있으며 출석 체크인 반경 {1}m 밖에 있습니다. 현장에서 체크인하세요.",
+    "es": "Estás a unos {0} m del laboratorio, fuera del radio de control de asistencia de {1} m. Regístrese en el sitio.",
+    "fr": "Vous vous trouvez à environ {0} m du laboratoire, en dehors du rayon d'enregistrement de {1} m. Enregistrez-vous sur place.",
+    "de": "Sie befinden sich etwa {0} m vom Labor entfernt, außerhalb des Anwesenheits-Check-in-Radius von {1} m. Checken Sie vor Ort ein."
+  },
+  "^提示文案不能超过 (\\d+) 个字。$": {
+    "ja": "メッセージは {0} 文字を超えてはなりません。",
+    "ko": "메시지는 {0}자를 초과할 수 없습니다.",
+    "es": "El mensaje no debe exceder los {0} caracteres.",
+    "fr": "Le message ne doit pas dépasser {0} caractères.",
+    "de": "Die Nachricht darf nicht länger als {0} Zeichen sein."
+  },
+  "^「(.+)」库存不足（剩余 ([0-9]+(?:/[0-9]+)?)(.*)，每队 ([0-9]+(?:/[0-9]+)?)(.*)）。$": {
+    "ja": "{0}: 在庫が不足しています ({1} {2} が残り、チームごとに {3} {4})。",
+    "ko": "{0}: 재고가 부족합니다({1} {2} 남음, 팀당 {3} {4}).",
+    "es": "{0}: no hay suficiente stock ({1} {2} restante, {3} {4} por equipo).",
+    "fr": "{0} : pas assez de stock ({1} {2} restant, {3} {4} par équipe).",
+    "de": "{0}: nicht genügend Lagerbestand ({1} {2} übrig, {3} {4} pro Team)."
+  },
+  "^「(.+)」库存不足，暂时不能领取，请联系管理员。$": {
+    "ja": "{0}は在庫切れのため、現在お受け取りできません。管理者にお問い合わせください。",
+    "ko": "{0} 품절되어 지금은 구매하실 수 없습니다. 관리자에게 문의하세요.",
+    "es": "{0} está agotado, por lo que no puedes retirarlo ahora. Por favor contacte a un administrador.",
+    "fr": "{0} est en rupture de stock, vous ne pouvez donc pas le récupérer maintenant. Veuillez contacter un administrateur.",
+    "de": "{0} ist nicht vorrätig, Sie können es also jetzt nicht abholen. Bitte wenden Sie sich an einen Administrator."
+  },
+  "^「(.+)」的数量须为非负整数。$": {
+    "ja": "{0} の数量は 0 以上の整数でなければなりません。",
+    "ko": "{0}의 수량은 0 이상의 정수여야 합니다.",
+    "es": "La cantidad de {0} debe ser un número entero de 0 o más.",
+    "fr": "La quantité de {0} doit être un nombre entier supérieur ou égal à 0.",
+    "de": "Die Menge von {0} muss eine ganze Zahl von 0 oder mehr sein."
+  },
+  "^「(.+)」已售罄，不能选择。$": {
+    "ja": "{0}は完売のためお選びいただくことができません。",
+    "ko": "{0} 품절되어 선택하실 수 없습니다.",
+    "es": "{0} está agotado y no se puede elegir.",
+    "fr": "{0} est épuisé et ne peut pas être choisi.",
+    "de": "{0} ist ausverkauft und kann nicht ausgewählt werden."
+  },
+  "^「(.+)」库存仅剩 ([0-9]+(?:/[0-9]+)?)(.*)，购买数量不能超过库存。$": {
+    "ja": "Only {1} {2} of {0} left; you cannot buy more than the stock.",
+    "ko": "Only {1} {2} of {0} left; you cannot buy more than the stock.",
+    "es": "Sólo queda {1} {2} de {0}; No se puede comprar más que las acciones.",
+    "fr": "Il ne reste que {1} {2} sur {0} ; vous ne pouvez pas acheter plus que le stock.",
+    "de": "Nur noch {1} {2} von {0} übrig; Sie können nicht mehr als die Aktie kaufen."
+  },
+  "^「(.+)」每次最多购买 ([0-9]+(?:/[0-9]+)?)(.*)。$": {
+    "ja": "1 回の購入で最大 {1} {2} 個、{0} 個まで購入できます。",
+    "ko": "구매당 최대 {1} {2}/{0}개를 구매할 수 있습니다.",
+    "es": "Puedes comprar como máximo {1} {2} de {0} por compra.",
+    "fr": "Vous pouvez acheter au maximum {1} {2} sur {0} par achat.",
+    "de": "Sie können höchstens {1} {2} von {0} pro Einkauf kaufen."
+  },
+  "^「(.+)」已下架，请重新选择。$": {
+    "ja": "{0} は利用できなくなりました。もう一度選択してください。",
+    "ko": "{0}은(는) 더 이상 사용할 수 없습니다. 다시 선택해 주세요.",
+    "es": "{0} ya no está disponible. Por favor elige de nuevo.",
+    "fr": "{0} n'est plus disponible. Veuillez choisir à nouveau.",
+    "de": "{0} ist nicht mehr verfügbar. Bitte wählen Sie erneut."
+  },
+  "^「(.+)」的单价已调整为 (.+) 元，请重新提交。$": {
+    "ja": "{0} の価格が {1} 元に変更されました。再度提出してください。",
+    "ko": "{0}의 가격이 {1}위안으로 변경되었습니다. 다시 제출해 주세요.",
+    "es": "El precio de {0} ha cambiado a {1} yuanes. Por favor envíelo nuevamente.",
+    "fr": "Le prix de {0} est devenu {1} yuans. Veuillez soumettre à nouveau.",
+    "de": "Der Preis von {0} wurde in {1} Yuan geändert. Bitte erneut einreichen."
+  },
+  "^「(.+)」库存不足（剩余 ([0-9]+(?:/[0-9]+)?)(.*)），请重新选择。$": {
+    "ja": "{0} の在庫が足りません ({1} {2} が残っています)。もう一度選択してください。",
+    "ko": "{0} 재고가 충분하지 않습니다({1} {2} 남음). 다시 선택해 주세요.",
+    "es": "No hay suficiente {0} en stock (queda {1} {2}). Por favor elige de nuevo.",
+    "fr": "Pas assez de {0} en stock ({1} {2} restant). Veuillez choisir à nouveau.",
+    "de": "Nicht genügend {0} auf Lager ({1} {2} übrig). Bitte wählen Sie erneut."
+  },
+  "^「(.+)」库存不足，不能增加 ([0-9]+(?:/[0-9]+)?)(.*)。$": {
+    "ja": "Not enough {0} in stock to add {1} {2}.",
+    "ko": "Not enough {0} in stock to add {1} {2}.",
+    "es": "No hay suficiente {0} en stock para agregar {1} {2}.",
+    "fr": "Pas assez de {0} en stock pour ajouter {1} {2}.",
+    "de": "Nicht genügend {0} auf Lager, um {1} {2} hinzuzufügen."
+  },
+  "^验证码已发送到 (.+)，5 分钟内有效。$": {
+    "ja": "コードが {0} に送信されました。有効時間は5分間です。",
+    "ko": "{0}(으)로 코드가 전송되었습니다. 5분간 유효합니다.",
+    "es": "Se envió un código a {0}. Es válido por 5 minutos.",
+    "fr": "Un code a été envoyé à {0}. Il est valable 5 minutes.",
+    "de": "Ein Code wurde an {0} gesendet. Es ist 5 Minuten gültig."
+  },
+  "^新的验证码已发送到 (.+)，旧验证码作废。$": {
+    "ja": "新しいコードが {0} に送信されました。古いコードはもう機能しません。",
+    "ko": "새 코드가 {0}(으)로 전송되었습니다. 이전 코드는 더 이상 작동하지 않습니다.",
+    "es": "Se envió un nuevo código a {0}; el código antiguo ya no funciona.",
+    "fr": "Un nouveau code a été envoyé à {0} ; l'ancien code ne fonctionne plus.",
+    "de": "Ein neuer Code wurde an {0} gesendet; Der alte Code funktioniert nicht mehr."
+  },
+  "^验证码错误，还可以再试 ([0-9]+(?:/[0-9]+)?) 次。$": {
+    "ja": "コードが間違っています。残りの試行回数は {0} です。",
+    "ko": "코드가 잘못되었습니다. {0}이(가) 왼쪽으로 시도합니다.",
+    "es": "Código incorrecto. {0} intentos restantes.",
+    "fr": "Mauvais code. {0} tentatives restantes.",
+    "de": "Falscher Code. {0} Versuche übrig."
+  },
+  "^请 ([0-9]+(?:/[0-9]+)?) 秒后再重新发送。$": {
+    "ja": "再送信する前に {0} 秒待ってください。",
+    "ko": "다시 보내기 전에 {0}초 정도 기다리십시오.",
+    "es": "Espere {0} segundos antes de volver a enviar.",
+    "fr": "Veuillez attendre {0} secondes avant de renvoyer.",
+    "de": "Bitte warten Sie {0} Sekunden, bevor Sie es erneut senden."
+  },
+  "^购买成功！合计 (.+) 元，比赛后统一结算。$": {
+    "ja": "購入確定しました！合計 {0} 元、競争後に精算されました。",
+    "ko": "구매 확정! 총 {0}위안, 대회 종료 후 정산됩니다.",
+    "es": "Compra confirmada! Total de {0} yuanes, liquidado después de la competencia.",
+    "fr": "Achat confirmé ! Total de {0} yuans, réglé après la compétition.",
+    "de": "Kauf bestätigt! Insgesamt {0} Yuan, abgerechnet nach dem Wettbewerb."
+  },
+  "^已将 (.+) 的 ([0-9]+(?:/[0-9]+)?) 笔购买（(.+) 元）标记为已结算。$": {
+    "ja": "{1} の購入を {0} ({2} 元) で決済済みとしてマークしました。",
+    "ko": "Marked {1} purchases by {0} ({2} yuan) as settled.",
+    "es": "Compras de {1} marcadas por {0} ({2} yuanes) como liquidadas.",
+    "fr": "Marqué les achats de {1} par {0} ({2} yuans) comme réglés.",
+    "de": "{1} Käufe von {0} ({2} Yuan) als abgewickelt markiert."
+  }
+}

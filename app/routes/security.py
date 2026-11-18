@@ -360,5 +360,7 @@ def wipe_run():
     wipe.vacuum()
     summary = "已清除个人信息：" + "，".join(f"{k}={v}" for k, v in counts.items()) + f"；备份 {backup.name}。"
     record_audit("wipe.done", summary=summary[:400], payload={"counts": counts, "backup": backup.name}, reversible=False, undo_blocked_reason="清除不可撤销。")
-    flash("个人信息已全部清除。队长账号已停用并匿名化；清除前的数据库备份：" + backup.name, "success")
+    from app.i18n import t
+
+    flash(t("个人信息已全部清除。队长账号已停用并匿名化；清除前的数据库备份：") + backup.name, "success")
     return render_template("security/wipe.html", **_wipe_context(done=counts, backup=backup.name))

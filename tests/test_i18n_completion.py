@@ -87,7 +87,8 @@ def test_all_generated_message_templates_keep_translations_and_fields(app):
     from string import Formatter
     for source,_pattern,translations in i18n._FORMAT_MESSAGES:
         required={field for _literal,field,_spec,_conv in Formatter().parse(source) if field is not None}
-        for translated in translations:
+        translated_values = translations.values() if isinstance(translations, dict) else translations
+        for translated in translated_values:
             actual={field for _literal,field,_spec,_conv in Formatter().parse(translated) if field is not None}
             assert actual==required,source
     with app.test_request_context('/?lang=en'):

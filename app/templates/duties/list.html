@@ -15,7 +15,7 @@
     {% for s in shifts %}
       <tr>
         <td>{{ s.lab.name }}</td>
-        <td>{% if s.specific_date %}{{ s.specific_date }}{% elif s.weekday is not none %}{{ t('每周') }}{{ ' ' if current_lang == 'en' else '' }}{{ t(weekday_labels[s.weekday]) }}{% endif %} {{ s.start_time.strftime('%H:%M') }}–{{ s.end_time.strftime('%H:%M') }}</td>
+        <td>{% if s.specific_date %}{{ s.specific_date }}{% elif s.weekday is not none %}{{ t('每周') }}{% if current_lang not in ('zh-Hans', 'zh-Hant') %} {% endif %}{{ t(weekday_labels[s.weekday]) }}{% endif %} {{ s.start_time.strftime('%H:%M') }}–{{ s.end_time.strftime('%H:%M') }}</td>
         <td>{{ s.admin.name }}（{{ s.admin.student_id }}）</td>
         <td>{{ s.admin.contact_phone or '—' }}</td>
         <td>

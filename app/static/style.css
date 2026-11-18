@@ -645,7 +645,7 @@ td.empty-cell.muted,td.muted[colspan]{text-align:center;padding:30px 12px;color:
 
 /* Site-wide language choice stays reachable alongside the mobile menu. */
 .header-language { flex: 0 0 auto; order: 2; }
-.header-language .lang-switch { margin: 0; padding: 3px; background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.2); }
+.header-language .lang-switch { margin: 0; padding: 3px; background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.2); flex-wrap: wrap; max-width: 100%; }
 .header-language .lang-switch a { color: #dce8fa; white-space: nowrap; }
 .header-language .lang-switch a.active { background: #fff; color: #173d78; }
 .maint-language { padding: 16px; display: flex; justify-content: center; }
