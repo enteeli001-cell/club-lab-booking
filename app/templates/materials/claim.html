@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}{{ t("材料领取") }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{{ t("比赛材料领取") }}</h1>
+    <p class="muted">{{ t("比赛前统一分发材料。请当面核对材料种类和数量，拍照后点击“确认领取”。每队只能领取一次。") }}</p>
+  </div>
+  {% if feature_on('material_purchase') %}<a class="btn secondary small" href="{{ url_for('materials.buy') }}">{{ t("材料购买") }}</a>{% endif %}
+</div>
+
+{% if existing %}
+<div class="card mat-done">
+  <h2>{{ t("本队已领取") }} <span class="badge approved">{{ t("已领取") }}</span></h2>
+  <p class="hint">{{ t("领取时间：") }}{{ existing.created_at.strftime('%Y-%m-%d %H:%M') }}{% if existing.team_name %} · {{ existing.team_name }}{% endif %}</p>
+  <ul class="mat-lines">
+    {% for line in existing.items %}<li><span>{{ line.label }}</span><b>× {{ line.quantity }} {{ line.unit }}</b></li>{% endfor %}
+  </ul>
+  {% if existing.photo %}
+  <p><a href="{{ url_for('materials.media', filename=existing.photo) }}" target="_blank" rel="noopener"><img class="thumb mat-photo" src="{{ url_for('materials.media', filename=existing.photo) }}" alt="{{ t('领取照片') }}" width="120" height="120" decoding="async"></a></p>
+  {% endif %}
+  {% if existing.note %}<p class="hint">{{ t("备注：") }}{{ existing.note }}</p>{% endif %}
+</div>
+{% elif not items %}
+<div class="card"><p class="muted">{{ t("目前没有可领取的材料，请等待总管理员设置。") }}</p></div>
+{% else %}
+<div class="card form-card">
+  <h2>{{ t("本队应领材料") }}</h2>
+  <ul class="mat-lines">
+    {% for item in items %}
+    <li class="{{ 'is-short' if item.stock < item.per_team_qty }}"><span>{{ item.label }}</span><b>× {{ item.per_team_qty }} {{ item.unit }}</b>{% if item.stock < item.per_team_qty %}<em class="bad-hint">{{ t("库存不足") }}</em>{% endif %}</li>
+    {% endfor %}
+  </ul>
+  {% if shortages %}
+  <ul class="flash"><li class="error" role="alert">{% for msg in shortages %}<div>{{ t(msg) }}</div>{% endfor %}<div>{{ t("库存不足时不能领取，请联系管理员。") }}</div></li></ul>
+  {% else %}
+  <form method="post" enctype="multipart/form-data" data-busy="{{ t('正在提交…') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field">
+      <label for="photo">{{ t("领取材料照片（必填，jpg/png/webp，不超过 5MB）") }}</label>
+      <input id="photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" capture="environment" required data-preview="claim-photo-preview">
+      <div class="photo-preview" id="claim-photo-preview" hidden></div>
+      <p class="hint">{{ t("请把领到的全部材料摆在一起拍一张清晰的照片。") }}</p>
+    </div>
+    <label class="check-item"><input type="checkbox" name="confirm" value="1" required> {{ t("已核对材料种类和数量，与上方清单一致") }}</label>
+    <div class="actions form-actions">
+      <button type="submit" class="btn-lg">{{ t("确认领取") }}</button>
+    </div>
+  </form>
+  {% endif %}
+</div>
+{% endif %}
+{% endblock %}

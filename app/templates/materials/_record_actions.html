@@ -1,0 +1,25 @@
+{# expects c (claim or purchase) and tab ('claims' | 'purchases') #}
+{% set kind = 'claims' if tab == 'claims' else 'purchases' %}
+<div class="row-actions">
+  <a class="btn small secondary" href="{{ url_for('materials.claim_edit', claim_id=c.id) if kind == 'claims' else url_for('materials.purchase_edit', purchase_id=c.id) }}">{{ t("修改") }}</a>
+  {% if kind == 'purchases' and c.status == 'confirmed' %}
+  <form method="post" action="{{ url_for('materials.purchase_settle', purchase_id=c.id) }}" class="inline">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="next" value="{{ request.full_path.rstrip('?') }}">
+    <input type="hidden" name="settled" value="{{ '0' if c.settled else '1' }}">
+    <button type="submit" class="btn small">{{ t("改回未结算") if c.settled else t("标记已结算") }}</button>
+  </form>
+  {% endif %}
+  {% if c.status in ('active', 'confirmed', 'pending') %}
+  <form method="post" action="{{ url_for('materials.record_void', kind=kind, record_id=c.id) }}" class="inline" data-confirm="{{ t('确定作废该记录吗？库存会自动退回。') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="next" value="{{ request.full_path.rstrip('?') }}">
+    <button type="submit" class="btn small secondary">{{ t("作废") }}</button>
+  </form>
+  {% endif %}
+  <form method="post" action="{{ url_for('materials.record_delete', kind=kind, record_id=c.id) }}" class="inline" data-confirm="{{ t('确定永久删除该记录吗？有效记录的库存会退回，此操作不能撤销。') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="next" value="{{ request.full_path.rstrip('?') }}">
+    <button type="submit" class="btn small danger">{{ t("删除") }}</button>
+  </form>
+</div>

@@ -1,0 +1,11 @@
+{% macro pager(pagination, endpoint, args) -%}
+<nav class="pager" aria-label="{{ t('分页') }}">
+  <span class="pager-info">{{ t("共") }} <strong>{{ pagination.total }}</strong> {{ t("条") }}{% if pagination.total %}{{ t("，第") }} {{ pagination.page }} / {{ pagination.pages }} {{ t("页（每页") }} {{ pagination.per_page }} {{ t("条）") }}{% endif %}</span>
+  {% if pagination.pages > 1 %}
+  <span class="pager-links">
+    {% if pagination.has_prev %}<a class="btn small secondary" rel="prev" href="{{ url_for(endpoint, page=pagination.prev_num, **args) }}">{{ t("上一页") }}</a>{% else %}<span class="btn small secondary disabled" aria-disabled="true">{{ t("上一页") }}</span>{% endif %}
+    {% if pagination.has_next %}<a class="btn small secondary" rel="next" href="{{ url_for(endpoint, page=pagination.next_num, **args) }}">{{ t("下一页") }}</a>{% else %}<span class="btn small secondary disabled" aria-disabled="true">{{ t("下一页") }}</span>{% endif %}
+  </span>
+  {% endif %}
+</nav>
+{%- endmacro %}

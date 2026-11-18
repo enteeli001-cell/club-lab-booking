@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}{{ t("完善个人信息") }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{% if current_user.profile_complete %}{{ t("个人信息") }}{% else %}{{ t("完善个人信息") }}{% endif %}</h1>
+    <p class="muted">{% if current_user.profile_complete %}{{ t("可以随时修改姓名、手机号和邮箱。更换邮箱需要重新验证，完成验证后才能继续使用系统。") }}{% else %}{{ t("首次使用前请填写姓名、手机号和邮箱。邮箱需要通过 6 位数字验证码验证，之后预约通知和材料购买验证码都会发到这个邮箱。") }}{% endif %}</p>
+  </div>
+</div>
+<div class="card form-card">
+  {% if current_user.email_verified %}
+  <p class="hint">{{ t("已验证邮箱：") }}<b>{{ current_user.verified_email }}</b> <span class="badge approved">{{ t("已验证") }}</span></p>
+  {% endif %}
+  {% if pending %}
+  <ul class="flash"><li class="info" role="status">{{ t("有一个待验证的邮箱：") }}{{ pending.email }} · <a href="{{ url_for('profile.verify', next=next_url) if next_url else url_for('profile.verify') }}">{{ t("去输入验证码 →") }}</a></li></ul>
+  {% endif %}
+  <form method="post" data-busy="{{ t('正在提交…') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    {% if next_url %}<input type="hidden" name="next" value="{{ next_url }}">{% endif %}
+    <div class="field">
+      <label for="name">{{ t("姓名") }} <span class="req">*</span></label>
+      <input id="name" name="name" required maxlength="64" autocomplete="name" value="{{ form.name }}">
+    </div>
+    <div class="field">
+      <label for="phone">{{ t("手机号") }} <span class="req">*</span></label>
+      <input id="phone" name="phone" type="tel" required inputmode="numeric" pattern="1[3-9][0-9]{9}" maxlength="11" autocomplete="tel" placeholder="{{ t('11 位手机号') }}" value="{{ form.phone }}">
+    </div>
+    <div class="field">
+      <label for="email">{{ t("邮箱") }} <span class="req">*</span></label>
+      <input id="email" name="email" type="email" required maxlength="120" autocomplete="email" inputmode="email" placeholder="name@example.com" value="{{ form.email }}">
+      <p class="hint">{{ t("填写常用邮箱，保存后会收到 6 位数字验证码（5 分钟内有效）。") }}</p>
+    </div>
+    <div class="actions form-actions">
+      <button type="submit" class="btn-lg">{% if current_user.email_verified %}{{ t("保存") }}{% else %}{{ t("保存并发送验证码") }}{% endif %}</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

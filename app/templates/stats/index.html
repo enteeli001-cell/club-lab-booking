@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}{{ t("使用统计") }}{% endblock %}
+{% block content %}
+<h1>{{ t("使用统计") }}</h1>
+<div class="card">
+  <form class="filters" method="get">
+    <div class="field">
+      <label for="start_date">{{ t("开始日期") }}</label>
+      <input id="start_date" name="start_date" type="date" value="{{ start.isoformat() }}">
+    </div>
+    <div class="field">
+      <label for="end_date">{{ t("结束日期") }}</label>
+      <input id="end_date" name="end_date" type="date" value="{{ end.isoformat() }}">
+    </div>
+    <div class="field">
+      <label for="lab_id">{{ t("实验室") }}</label>
+      <select id="lab_id" name="lab_id">
+        <option value="">{{ t("全部") }}</option>
+        {% for lab in labs %}
+        <option value="{{ lab.id }}" {% if lab_id == lab.id %}selected{% endif %}>{{ lab.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="field">
+      <label for="user_id">{{ t("成员") }}</label>
+      <select id="user_id" name="user_id">
+        <option value="">{{ t("全部") }}</option>
+        {% for u in users %}
+        <option value="{{ u.id }}" {% if user_id == u.id %}selected{% endif %}>{{ u.name }}（{{ u.student_id }}）</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="field">
+      <label for="checkin">{{ t("签到") }}</label>
+      <select id="checkin" name="checkin">
+        <option value="">{{ t("全部") }}</option>
+        <option value="missing" {% if checkin == 'missing' %}selected{% endif %}>{{ t("只看未签到") }}</option>
+        <option value="done" {% if checkin == 'done' %}selected{% endif %}>{{ t("只看已签到") }}</option>
+      </select>
+    </div>
+    <button type="submit">{{ t("查询") }}</button>
+    <a class="btn secondary" href="{{ url_for('stats.export_excel', start_date=start.isoformat(), end_date=end.isoformat(), lab_id=lab_id, user_id=user_id, checkin=checkin or None) }}">{{ t("导出 Excel") }}</a>
+  </form>
+  <p class="hint">{{ t("统计范围为已通过的预约。合计：") }}{{ totals.count }} {{ t("次，") }}{{ duration_label(totals.minutes) }}{{ t("。") }}</p>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h2>{{ t("按实验室") }}</h2>
+    <table>
+      <thead><tr><th>{{ t("实验室") }}</th><th>{{ t("次数") }}</th><th>{{ t("时长") }}</th></tr></thead>
+      <tbody>
+      {% for row in lab_rows %}
+        <tr><td>{{ row.name }}</td><td>{{ row.count }}</td><td>{{ duration_label(row.minutes) }}</td></tr>
+      {% else %}
+        <tr><td colspan="3" class="muted">{{ t("该范围内暂无已通过预约。") }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h2>{{ t("按成员") }}</h2>
+    <table>
+      <thead><tr><th>{{ t("成员") }}</th><th>{{ t("次数") }}</th><th>{{ t("时长") }}</th></tr></thead>
+      <tbody>
+      {% for row in user_rows %}
+        <tr><td>{{ row.name }}（{{ row.student_id }}）</td><td>{{ row.count }}</td><td>{{ duration_label(row.minutes) }}</td></tr>
+      {% else %}
+        <tr><td colspan="3" class="muted">{{ t("该范围内暂无已通过预约。") }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>{{ t("明细") }}</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>{{ t("日期") }}</th><th>{{ t("实验室") }}</th><th>{{ t("成员") }}</th><th>{{ t("时段") }}</th><th>{{ t("人数") }}</th><th>{{ t("用途") }}</th>
+        <th>{{ t("联系方式") }}</th><th>{{ t("同行人员") }}</th><th>{{ t("签到") }}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for b in bookings %}
+      <tr>
+        <td>{{ b.date }}</td>
+        <td>{{ b.lab.name }}</td>
+        <td>{{ b.user.name }}（{{ b.user.student_id }}）</td>
+        <td>{{ b.time_range_label }}</td>
+        <td>{{ b.people_count }}</td>
+        <td>{{ b.purpose }}</td>
+        <td>{{ b.captain_phone or '—' }}</td>
+        <td>{{ b.companions_label }}</td>
+        <td>{% set ci = b.checkin %}{% if ci %}<span class="badge {{ ci.badge }}">{{ t(ci.label) }}</span>{% else %}—{% endif %}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="9" class="muted">{{ t("该范围内暂无已通过预约。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

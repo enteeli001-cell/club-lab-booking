@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ t("值班安排") }}{% endblock %}
+{% block content %}
+<h1>{{ t("值班安排") }}</h1>
+<p class="muted">{{ t("由总管理员维护。队长在距测试开始不足 30 分钟需要取消时，将优先显示与该预约时段重叠的值班管理员。") }}</p>
+<div class="actions" style="margin-bottom:16px">
+  <a class="btn" href="{{ url_for('duties.create_duty') }}">{{ t("新增值班") }}</a>
+</div>
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>{{ t("实验室") }}</th><th>{{ t("值班时间") }}</th><th>{{ t("管理员") }}</th><th>{{ t("联系方式") }}</th><th>{{ t("操作") }}</th></tr>
+    </thead>
+    <tbody>
+    {% for s in shifts %}
+      <tr>
+        <td>{{ s.lab.name }}</td>
+        <td>{% if s.specific_date %}{{ s.specific_date }}{% elif s.weekday is not none %}{{ t('每周') }}{{ ' ' if current_lang == 'en' else '' }}{{ t(weekday_labels[s.weekday]) }}{% endif %} {{ s.start_time.strftime('%H:%M') }}–{{ s.end_time.strftime('%H:%M') }}</td>
+        <td>{{ s.admin.name }}（{{ s.admin.student_id }}）</td>
+        <td>{{ s.admin.contact_phone or '—' }}</td>
+        <td>
+          <a class="btn small secondary" href="{{ url_for('duties.edit_duty', shift_id=s.id) }}">{{ t("编辑") }}</a>
+          <form class="inline" method="post" action="{{ url_for('duties.delete_duty', shift_id=s.id) }}" data-confirm="{{ t('确定删除该值班安排？') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn small danger" type="submit">{{ t("删除") }}</button>
+          </form>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="5" class="muted">{{ t("暂无值班安排。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

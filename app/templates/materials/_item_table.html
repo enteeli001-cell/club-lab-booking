@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="table-scroll">
+  <table class="responsive-table mat-item-table">
+    <thead><tr><th>{{ t("材料") }}</th><th>{{ t("设置") }}</th><th>{{ t("操作") }}</th></tr></thead>
+    <tbody>
+    {% for item in items %}
+      {% set locked = kind == 'free' and free_locked %}
+      <tr class="{{ 'is-off' if not item.enabled }}">
+        <td data-label="{{ t('材料') }}"><b>{{ item.label }}</b>{% if not item.enabled %} <span class="badge off">{{ t("已停用") }}</span>{% endif %}
+          <div class="hint">{% if kind == 'free' %}{{ t("每队") }} {{ item.per_team_qty }}{{ item.unit }}{% else %}¥{{ item.unit_price_label }}/{{ item.unit }}{% endif %} · {{ t("库存") }} {{ item.stock }}{{ item.unit }}</div></td>
+        <td data-label="{{ t('设置') }}">
+          <form method="post" action="{{ url_for('materials.item_update', item_id=item.id) }}" class="mat-item-form" id="item-form-{{ item.id }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <label>{{ t("名称") }}<input name="name" required maxlength="80" value="{{ item.name }}" {% if locked %}readonly{% endif %}></label>
+            <label>{{ t("型号") }}<input name="spec" maxlength="80" value="{{ item.spec or '' }}" {% if locked %}readonly{% endif %}></label>
+            <label>{{ t("单位") }}<input name="unit" maxlength="16" value="{{ item.unit }}" class="w-xs" {% if locked %}readonly{% endif %}></label>
+            {% if kind == 'free' %}
+            <label>{{ t("每队份数") }}<input name="per_team_qty" type="text" data-max="100000" inputmode="text" data-exact-current="1" maxlength="64" title="{{ t(quantity_help()) }}" required value="{{ item.per_team_qty }}" class="quantity-input w-sm" {% if locked %}readonly{% endif %}></label>
+            {% else %}
+            <label>{{ t("单价（元）") }}<input name="unit_price" type="number" min="0" step="0.01" required value="{{ item.unit_price_label }}" class="w-sm"></label>
+            <label>{{ t("限购") }}<input name="max_per_purchase" type="text" data-max="100000" inputmode="text" data-exact-current="1" maxlength="64" title="{{ t(quantity_help()) }}" value="{{ item.max_per_purchase or '' }}" placeholder="{{ t('不限') }}" class="quantity-input w-sm"></label>
+            {% endif %}
+            <label>{{ t("库存") }}<input name="stock" type="text" data-allow-zero="1" inputmode="text" data-exact-current="1" maxlength="64" title="{{ t(quantity_help()) }}" required value="{{ item.stock }}" class="quantity-input w-sm"></label>
+            <label>{{ t("排序") }}<input name="sort_order" type="number" min="0" value="{{ item.sort_order }}" class="w-xs"></label>
+            {% if locked and item.enabled %}<input type="hidden" name="enabled" value="1">{% endif %}
+            <label class="check-item"><input type="checkbox" name="enabled" value="1" {% if item.enabled %}checked{% endif %} {% if locked %}disabled{% endif %}> {{ t("启用") }}</label>
+            <button type="submit" class="btn small">{{ t("保存") }}</button>
+          </form>
+        </td>
+        <td data-label="{{ t('操作') }}">
+          <form method="post" action="{{ url_for('materials.item_delete', item_id=item.id) }}" class="inline" data-confirm="{{ t('确定删除该材料吗？已有记录会保留名称和价格。') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="btn small danger" {% if locked %}disabled{% endif %}>{{ t("删除") }}</button>
+          </form>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="3" class="empty-cell muted">{{ t("尚未添加材料。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>

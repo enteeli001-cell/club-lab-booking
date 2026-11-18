@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}{{ t("测试预约平台") }}{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-text">
+    <p class="eyebrow">{{ t('{role}工作台', role=t(current_user.role_label)) }}{% if current_user.team_name %} · {{ current_user.team_name }}{% endif %}</p>
+    <h1>{{ t('{name}，欢迎你进入测试预约平台', name=current_user.name) }}</h1>
+    {% if current_user.team_name %}
+    <p class="muted">{{ t("所属队伍：") }}{{ current_user.team_name }}</p>
+    {% endif %}
+  </div>
+  <div class="hero-actions">
+    {% if feature_on('booking_create') %}<a class="btn btn-lg" href="{{ url_for('bookings.create_booking') }}">{{ t("＋ 新建测试预约") }}</a>{% else %}<span class="btn btn-lg feature-off" aria-disabled="true">{{ t("新建测试预约（该功能已被管理员暂时关闭）") }}</span>{% endif %}
+  </div>
+</section>
+
+{% if feature_on('checkin') %}{% include "checkin/_cards.html" %}{% else %}<p class="feature-off-note">{{ t("二维码签到：该功能已被管理员暂时关闭。") }}</p>{% endif %}
+
+<div class="summary-row" aria-label="{{ t('我的申请概况') }}">
+  <a class="summary-tile tone-warn" href="{{ url_for('records.index', tab='bookings') }}">
+    <span class="summary-num">{{ summary.pending }}</span><span class="summary-lbl">{{ t("待审核的测试申请") }}</span>
+  </a>
+  <a class="summary-tile tone-ok" href="{{ url_for('records.index', tab='bookings') }}">
+    <span class="summary-num">{{ summary.approved }}</span><span class="summary-lbl">{{ t("已通过、待进行") }}</span>
+  </a>
+  {% if current_user.can_borrow_tools %}
+  <a class="summary-tile {{ 'tone-err' if summary.loans.overdue else 'tone-info' }}" href="{{ url_for('records.index', tab='tools') }}">
+    <span class="summary-num">{{ summary.loans.borrowing + summary.loans.overdue }}</span>
+    <span class="summary-lbl">{{ t("借用中的工具登记") }}{% if summary.loans.overdue %}<b class="summary-alert">{{ t("其中") }} {{ summary.loans.overdue }} {{ t("条已逾期") }}</b>{% endif %}</span>
+  </a>
+  {% endif %}
+  <div class="summary-tile summary-next">
+    {% set nb = summary.next_booking %}
+    {% if nb %}
+    <span class="summary-lbl">{{ t("下一场测试") }}</span>
+    <strong>{{ nb.lab.name }}</strong>
+    <span>{{ nb.date }} {{ nb.time_range_label }} <span class="badge {{ nb.status }}">{{ t(nb.status_label) }}</span></span>
+    {% else %}
+    <span class="summary-lbl">{{ t("下一场测试") }}</span>
+    <strong>{{ t("暂无安排") }}</strong>
+    <a href="{{ url_for('bookings.schedule') }}">{{ t("先看看实验室占用情况 →") }}</a>
+    {% endif %}
+  </div>
+</div>
+
+<div class="entry-grid">
+  <a class="entry-card{% if not feature_on('booking_create') %} feature-off{% endif %}" href="{{ url_for('bookings.create_booking') }}"{% if not feature_on('booking_create') %} aria-disabled="true" title="{{ t('该功能已被管理员暂时关闭') }}"{% endif %}>
+    <div class="entry-kicker">{{ t("预约实验室时段") }}</div>
+    <h2>{{ t("测试预约") }}</h2>
+    <p>{{ t("选择实验室、日期和当天时段，填写同行人员后提交，等待管理员审核。") }}</p>
+    <span class="entry-go" aria-hidden="true">{{ t("去预约 →") }}</span>
+  </a>
+  {% if current_user.can_borrow_tools %}
+  <a class="entry-card entry-card-alt{% if not feature_on('tool_borrow') %} feature-off{% endif %}" href="{{ url_for('tools.create_loan') }}"{% if not feature_on('tool_borrow') %} aria-disabled="true" title="{{ t('该功能已被管理员暂时关闭') }}"{% endif %}>
+    <div class="entry-kicker">{{ t("实验室工具") }}</div>
+    <h2>{{ t("向实验室借工具使用登记") }}</h2>
+    <p>{{ t("登记借用的工具、时间和联系方式，借用与归还时均需拍照。") }}</p>
+    <span class="entry-go" aria-hidden="true">{{ t("去登记 →") }}</span>
+  </a>
+  {% endif %}
+  {% if current_user.can_borrow_tools %}
+  <a class="entry-card entry-card-alt{% if not feature_on('material_claim') %} feature-off{% endif %}" href="{{ url_for('materials.claim') }}"{% if not feature_on('material_claim') %} aria-disabled="true" title="{{ t('该功能已被管理员暂时关闭') }}"{% endif %}>
+    <div class="entry-kicker">{{ t("比赛材料") }}</div>
+    <h2>{{ t("材料领取") }}</h2>
+    <p>{{ t("比赛前领取本队的免费材料，拍照核对后点击领取，每队一次。") }}</p>
+    <span class="entry-go" aria-hidden="true">{{ t("去领取 →") }}</span>
+  </a>
+  <a class="entry-card{% if not feature_on('material_purchase') %} feature-off{% endif %}" href="{{ url_for('materials.buy') }}"{% if not feature_on('material_purchase') %} aria-disabled="true" title="{{ t('该功能已被管理员暂时关闭') }}"{% endif %}>
+    <div class="entry-kicker">{{ t("比赛材料") }}</div>
+    <h2>{{ t("材料购买") }}</h2>
+    <p>{{ t("选择材料和数量自动算价，拍照后用邮箱验证码确认，比赛后统一结算。") }}</p>
+    <span class="entry-go" aria-hidden="true">{{ t("去购买 →") }}</span>
+  </a>
+  {% endif %}
+  <a class="entry-card entry-card-plain{% if not feature_on('records') %} feature-off{% endif %}" href="{{ url_for('records.index') }}"{% if not feature_on('records') %} aria-disabled="true" title="{{ t('该功能已被管理员暂时关闭') }}"{% endif %}>
+    <div class="entry-kicker">{{ t("我的申请") }}</div>
+    <h2>{{ t("申请记录") }}</h2>
+    <p>{{ t("查看测试申请和工具借用记录，在允许的时间内修改或取消，或办理归还。") }}</p>
+    <span class="entry-go" aria-hidden="true">{{ t("查看记录 →") }}</span>
+  </a>
+</div>
+
+<section class="howto" aria-label="{{ t('使用流程') }}">
+  <h2>{{ t("测试流程") }}</h2>
+  <ol class="howto-steps">
+    <li><b>1</b><span><strong>{{ t("提交预约") }}</strong>{{ t("单次不超过 1 小时，填写同行人员和联系方式。") }}</span></li>
+    <li><b>2</b><span><strong>{{ t("等待审核") }}</strong>{{ t("结果可在“申请记录”查看，未通过会发送邮件说明理由。") }}</span></li>
+    <li><b>3</b><span><strong>{{ t("到场扫码签到") }}</strong>{{ t("开始前") }} {{ config.get("CHECKIN_EARLY_MINUTES", 15) }} {{ t("分钟起，在“预约签到”卡片点“二维码签到”，确认安全承诺后扫描实验室门口二维码。") }}</span></li>
+    <li><b>4</b><span><strong>{{ t("按时离场") }}</strong>{{ t("距开始不足 30 分钟无法自行修改或取消，请联系值班管理员。") }}</span></li>
+  </ol>
+</section>
+{% endblock %}

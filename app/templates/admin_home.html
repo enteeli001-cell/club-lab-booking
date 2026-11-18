@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}{{ t("管理后台") }}{% endblock %}
+{% macro tile(endpoint, ico, title, desc, tone='', badge=None) -%}
+  <a class="dash-tile{% if tone %} dash-{{ tone }}{% endif %}" href="{{ url_for(endpoint) }}">
+    <div class="dash-ico">{{ icon(ico) }}</div>
+    <div class="dash-body">
+      <h2>{{ t(title) }}{% if badge %}<span class="alert-dot">{{ badge }}</span>{% endif %}</h2>
+      <p>{{ t(desc) }}</p>
+    </div>
+    <span class="dash-arrow" aria-hidden="true">→</span>
+  </a>
+{%- endmacro %}
+{% block content %}
+<section class="hero dash-hero">
+  <div class="hero-text">
+    <p class="eyebrow">{{ t('{role}工作台', role=t(current_user.role_label)) }} · {{ app_today }}</p>
+    <h1>{{ t('{name}，欢迎你', name=current_user.name) }}</h1>
+    <p class="muted">{{ t("请从下方入口进入") }}{% if current_user.can_manage_accounts %}{{ t("人员与审计、") }}{% endif %}{{ t("审核、工具记录或其他管理功能。") }}</p>
+  </div>
+  {% if current_user.can_review and pending_count %}
+  <div class="hero-actions"><a class="btn btn-lg" href="{{ url_for('review.list_reviews') }}">{{ t("处理") }} {{ pending_count }} {{ t("条待审核申请") }}</a></div>
+  {% endif %}
+</section>
+
+<div class="summary-row dash-stats" aria-label="{{ t('今日概况') }}">
+  {% if pending_count is not none %}
+  <a class="summary-tile {{ 'tone-warn' if pending_count else 'tone-ok' }}" href="{{ url_for('review.list_reviews') }}">
+    <span class="summary-num">{{ pending_count }}</span><span class="summary-lbl">{{ t("待审核的测试申请") }}</span>
+  </a>
+  {% endif %}
+  <a class="summary-tile tone-info" href="{{ url_for('bookings.schedule') }}">
+    <span class="summary-num">{{ today_count }}</span><span class="summary-lbl">{{ t("今天已通过的测试") }}</span>
+  </a>
+  <a class="summary-tile {{ 'tone-err' if loan_overdue else 'tone-info' }}" href="{{ url_for('tools.admin_loans') }}">
+    <span class="summary-num">{{ loan_count }}</span>
+    <span class="summary-lbl">{{ t("借用中的工具登记") }}{% if loan_overdue %}<b class="summary-alert">{{ t("其中") }} {{ loan_overdue }} {{ t("条已逾期") }}</b>{% endif %}</span>
+  </a>
+  {% if current_user.can_manage_accounts %}
+  <a class="summary-tile {{ 'tone-err' if unread_high_alerts else 'tone-ok' }}" href="{{ url_for('security.dashboard') }}">
+    <span class="summary-num">{{ unread_high_alerts }}</span><span class="summary-lbl">{{ t("未读高危安全告警") }}</span>
+  </a>
+  {% else %}
+  <a class="summary-tile tone-ok" href="{{ url_for('labs.list_labs') }}">
+    <span class="summary-num">{{ lab_count }}</span><span class="summary-lbl">{{ t("开放中的实验室") }}</span>
+  </a>
+  {% endif %}
+</div>
+
+{% if current_user.can_manage_accounts %}
+<section class="dash-section" aria-labelledby="dash-people">
+  <h2 id="dash-people">{{ t("人员、审计与安全") }} <small>{{ t("总管理员") }}</small></h2>
+  <div class="dash-grid">
+    {{ tile('people.index', 'people', t('人员信息管理'), t('Excel 导入参赛队伍，在线编辑资料与密码，特批账号开通登录。')) }}
+    {{ tile('managers.index', 'badge', t('管理员管理'), t('新增管理员并生成高强度密码，停用或删除账号。'), tone='teal') }}
+    {{ tile('activity.users', 'activity', t('普通登录人员操作详情'), t('队长与特批账号的登录 IP、设备、时间和操作。')) }}
+    {{ tile('activity.admins', 'log', t('管理员操作信息'), t('管理员的登录和操作日志，可撤销可回退的操作。'), tone='violet') }}
+    {{ tile('security.dashboard', 'shield', t('安全防护中心'), t('暴力破解、扫描、爬取和蜜罐等被动检测记录，按需拉黑或导出。'), tone='red', badge=unread_high_alerts) }}
+    {{ tile('toggles.features', 'switch', t('功能开关'), t('逐项开启或关闭队长端功能，管理员不受影响。'), tone='teal') }}
+    {{ tile('toggles.maintenance', 'wrench', t('维护模式'), t('网站升级时一键开启，仅总管理员可访问。'), tone='amber', badge=(t('开') if maintenance_on else None)) }}
+  </div>
+</section>
+{% endif %}
+
+<section class="dash-section" aria-labelledby="dash-daily">
+  <h2 id="dash-daily">{{ t("日常工作") }}</h2>
+  <div class="dash-grid">
+    {{ tile('review.list_reviews', 'review', t('申请审核列表'), t('查看全部测试申请，按状态筛选，通过或拒绝预约。'), badge=pending_count) }}
+    {{ tile('tools.admin_loans', 'tools', t('工具借用记录'), t('查看全部借用记录、主要工具库存，筛选借用中与逾期。'), tone='teal') }}
+    {{ tile('materials.admin_records', 'cart', t('材料领取与购买'), t('查看各队材料领取情况、购买记录与应付合计，导出 Excel。'), tone='amber') }}
+    {{ tile('bookings.schedule', 'calendar', t('占用视图'), t('按日或按周查看各实验室的时段占用。')) }}
+    {{ tile('announcements.manage', 'megaphone', t('公告管理'), t('发布、置顶或修改公告，查看阅读情况。'), tone='violet') }}
+    {{ tile('checkin.admin_codes', 'qr', t('签到二维码'), t('查看并打印各实验室门口的签到二维码。'), tone='teal') }}
+    {{ tile('noshow.overview', 'clock', t('未签到统计'), t('查看预约后未到场签到的记录与累计次数。'), tone='amber') }}
+  </div>
+</section>
+
+<section class="dash-section" aria-labelledby="dash-data">
+  <h2 id="dash-data">{{ t("实验室与数据") }}</h2>
+  <div class="dash-grid">
+    {{ tile('labs.list_labs', 'lab', t('实验室管理'), t('维护实验室开放时间、容量和联系方式。共') ~ ' ' ~ lab_count ~ t('间开放。')) }}
+    {{ tile('stats.index', 'chart', t('使用统计'), t('查看预约统计并导出 Excel。'), tone='teal') }}
+    {{ tile('mail.list_logs', 'mail', t('邮件发送记录'), t('查看通知邮件的收件人、主题、时间与发送状态。')) }}
+    {{ tile('audit.password_resets', 'key', t('密码重置日志'), t('查看队长自助重置密码的尝试记录。'), tone='amber') }}
+  </div>
+</section>
+
+{% if current_user.can_manage_accounts %}
+<section class="dash-section" aria-labelledby="dash-config">
+  <h2 id="dash-config">{{ t("账号与配置") }} <small>{{ t("总管理员") }}</small></h2>
+  <div class="dash-grid">
+    {{ tile('users.list_users', 'idcard', t('账号管理'), t('查看全部账号（共') ~ ' ' ~ user_count ~ t('个），新建、编辑或重置密码。')) }}
+    {{ tile('simulation.index', 'chart', t('线上模拟测试'), t('静力分析、轻量有限元与规则评价，仅总管理员可见。'), tone='violet') }}
+    {{ tile('duties.list_duties', 'duty', t('值班安排'), t('按实验室和日期安排值班管理员。'), tone='violet') }}
+    {{ tile('tools.catalog', 'box', t('主要工具清单'), t('维护工具名称、总数量和是否计入主要库存。'), tone='teal') }}
+    {{ tile('materials.settings', 'cart', t('材料设置'), t('设置免费领取材料的每队份数，以及可购买材料的单价和库存。'), tone='amber') }}
+  </div>
+</section>
+{% endif %}
+{% endblock %}

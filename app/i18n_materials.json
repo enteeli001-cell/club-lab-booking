@@ -1,0 +1,926 @@
+{
+  "6 位数字验证码": [
+    "6 位數字驗證碼",
+    "6-digit code"
+  ],
+  "不限": [
+    "不限",
+    "No limit"
+  ],
+  "仅参赛队长可使用材料购买。": [
+    "僅參賽隊長可使用材料購買。",
+    "Only team captains can buy materials."
+  ],
+  "仅参赛队长可使用材料领取。": [
+    "僅參賽隊長可使用材料領取。",
+    "Only team captains can use material pickup."
+  ],
+  "作废": [
+    "作廢",
+    "Void"
+  ],
+  "你有一笔待验证的购买（合计": [
+    "你有一筆待驗證的購買（合計",
+    "You have a purchase awaiting verification (total "
+  ],
+  "你的账号还没有绑定邮箱，无法接收购买验证码。请联系管理员在“人员信息管理”中补充邮箱后再购买。": [
+    "你的帳號還沒有綁定郵箱，無法接收購買驗證碼。請聯繫管理員在“人員信息管理”中補充郵箱後再購買。",
+    "Your account has no e-mail address, so it cannot receive a purchase code. Ask an administrator to add your e-mail under “People and teams”, then try again."
+  ],
+  "你的队伍已经领取过本次分发的材料，每队只能领取一次。": [
+    "你的隊伍已經領取過本次分發的材料，每隊只能領取一次。",
+    "Your team has already collected its materials. Each team can collect only once."
+  ],
+  "例如：1250×430×0.35mm": [
+    "例如：1250×430×0.35mm",
+    "e.g. 1250×430×0.35mm"
+  ],
+  "例如：2×2×900mm": [
+    "例如：2×2×900mm",
+    "e.g. 2×2×900mm"
+  ],
+  "例如：竹条": [
+    "例如：竹條",
+    "e.g. bamboo strip"
+  ],
+  "例如：竹皮": [
+    "例如：竹皮",
+    "e.g. bamboo sheet"
+  ],
+  "修改数量时库存会按差额自动增减；数量改为 0 表示删除该项。": [
+    "修改數量時庫存會按差額自動增減；數量改爲 0 表示刪除該項。",
+    "Changing a quantity adjusts the stock by the difference; set it to 0 to remove the item."
+  ],
+  "修改材料记录": [
+    "修改材料記錄",
+    "Edit material record"
+  ],
+  "修改购买记录": [
+    "修改購買記錄",
+    "Edit purchase record"
+  ],
+  "修改领取记录": [
+    "修改領取記錄",
+    "Edit pickup record"
+  ],
+  "元）。": [
+    "元）。",
+    " yuan)."
+  ],
+  "免费领取": [
+    "免費領取",
+    "Free pickup"
+  ],
+  "免费领取材料": [
+    "免費領取材料",
+    "Free materials"
+  ],
+  "全部标记已结算": [
+    "全部標記已結算",
+    "Mark all settled"
+  ],
+  "减少": [
+    "減少",
+    "Decrease"
+  ],
+  "剩余有效时间：": [
+    "剩餘有效時間：",
+    "Time left: "
+  ],
+  "单价须为不小于 0 的金额，最多两位小数（不超过 10000 元）。": [
+    "單價須爲不小於 0 的金額，最多兩位小數（不超過 10000 元）。",
+    "The unit price must be 0 or more, with at most two decimals (up to 10,000 yuan)."
+  ],
+  "单价（元）": [
+    "單價（元）",
+    "Unit price (CNY)"
+  ],
+  "单位不能超过 16 字。": [
+    "單位不能超過 16 字。",
+    "The unit must be at most 16 characters."
+  ],
+  "去设置 →": [
+    "去設置 →",
+    "Set up →"
+  ],
+  "去购买 →": [
+    "去購買 →",
+    "Buy →"
+  ],
+  "去输入验证码 →": [
+    "去輸入驗證碼 →",
+    "Enter the code →"
+  ],
+  "去领取 →": [
+    "去領取 →",
+    "Collect →"
+  ],
+  "取消购买": [
+    "取消購買",
+    "Cancel purchase"
+  ],
+  "只有已确认的购买可以标记结算。": [
+    "只有已確認的購買可以標記結算。",
+    "Only confirmed purchases can be marked as settled."
+  ],
+  "只有有效记录可以修改数量；已作废或已取消的记录只能修改备注。": [
+    "只有有效記錄可以修改數量；已作廢或已取消的記錄只能修改備註。",
+    "Only valid records can have quantities changed; voided or cancelled records can only have their note changed."
+  ],
+  "可购买材料": [
+    "可購買材料",
+    "Materials for sale"
+  ],
+  "合计(元)": [
+    "合計(元)",
+    "Total (CNY)"
+  ],
+  "售出数量": [
+    "售出數量",
+    "Quantity sold"
+  ],
+  "型号": [
+    "型號",
+    "Model"
+  ],
+  "型号 / 规格": [
+    "型號 / 規格",
+    "Model / size"
+  ],
+  "型号/规格不能超过 80 字。": [
+    "型號/規格不能超過 80 字。",
+    "Model/size must be at most 80 characters."
+  ],
+  "增加": [
+    "增加",
+    "Increase"
+  ],
+  "备注（更正原因）": [
+    "備註（更正原因）",
+    "Note (reason for correction)"
+  ],
+  "备注：": [
+    "備註：",
+    "Note: "
+  ],
+  "尚未添加材料。": [
+    "尚未添加材料。",
+    "No materials added yet."
+  ],
+  "尚未设置材料。": [
+    "尚未設置材料。",
+    "No materials have been set up."
+  ],
+  "已作废": [
+    "已作廢",
+    "Voided"
+  ],
+  "已作废的领取记录": [
+    "已作廢的領取記錄",
+    "Voided pickup records"
+  ],
+  "已作废该记录，库存已退回。": [
+    "已作廢該記錄，庫存已退回。",
+    "Record voided; the stock has been returned."
+  ],
+  "已作废该记录，库存已退回。该队可以重新领取。": [
+    "已作廢該記錄，庫存已退回。該隊可以重新領取。",
+    "Record voided; the stock has been returned. The team can collect again."
+  ],
+  "已保存材料信息。": [
+    "已保存材料信息。",
+    "Material saved."
+  ],
+  "已保存购买记录。": [
+    "已保存購買記錄。",
+    "Purchase record saved."
+  ],
+  "已保存领取记录。": [
+    "已保存領取記錄。",
+    "Pickup record saved."
+  ],
+  "已删除材料，历史记录中的名称和价格保持不变。": [
+    "已刪除材料，歷史記錄中的名稱和價格保持不變。",
+    "Material deleted. Names and prices in past records are unchanged."
+  ],
+  "已删除该记录。": [
+    "已刪除該記錄。",
+    "Record deleted."
+  ],
+  "已删除该记录。库存已退回。": [
+    "已刪除該記錄。庫存已退回。",
+    "Record deleted. The stock has been returned."
+  ],
+  "已发放合计": [
+    "已發放合計",
+    "Total handed out"
+  ],
+  "已取消本次购买，没有扣减库存。": [
+    "已取消本次購買，沒有扣減庫存。",
+    "Purchase cancelled; no stock was deducted."
+  ],
+  "已售罄": [
+    "已售罄",
+    "Sold out"
+  ],
+  "已存在同名同规格的材料。": [
+    "已存在同名同規格的材料。",
+    "A material with the same name and size already exists."
+  ],
+  "已改回未结算。": [
+    "已改回未結算。",
+    "Marked as unsettled again."
+  ],
+  "已标记为已结算。": [
+    "已標記爲已結算。",
+    "Marked as settled."
+  ],
+  "已核对材料种类和数量，与上方清单一致": [
+    "已覈對材料種類和數量，與上方清單一致",
+    "I have checked the items and quantities; they match the list above"
+  ],
+  "已添加材料。": [
+    "已添加材料。",
+    "Material added."
+  ],
+  "已确认": [
+    "已確認",
+    "Confirmed"
+  ],
+  "已确认合计": [
+    "已確認合計",
+    "Confirmed total"
+  ],
+  "已结清": [
+    "已結清",
+    "Paid up"
+  ],
+  "已结算": [
+    "已結算",
+    "Settled"
+  ],
+  "已领取": [
+    "已領取",
+    "Collected"
+  ],
+  "已领取队伍": [
+    "已領取隊伍",
+    "Teams collected"
+  ],
+  "库存": [
+    "庫存",
+    "Stock"
+  ],
+  "库存不足": [
+    "庫存不足",
+    "Out of stock"
+  ],
+  "库存不足时不能领取，请联系管理员。": [
+    "庫存不足時不能領取，請聯繫管理員。",
+    "You cannot collect while stock is short. Please contact an administrator."
+  ],
+  "库存须为 0 到 1000000 之间的整数。": [
+    "庫存須爲 0 到 1000000 之間的整數。",
+    "Stock must be a whole number from 0 to 1,000,000."
+  ],
+  "应付合计(元)": [
+    "應付合計(元)",
+    "Due (CNY)"
+  ],
+  "应付合计（未结算）": [
+    "應付合計（未結算）",
+    "Total due (unsettled)"
+  ],
+  "应付（未结算）": [
+    "應付（未結算）",
+    "Due (unsettled)"
+  ],
+  "张": [
+    "張",
+    "sheet"
+  ],
+  "当前合计": [
+    "當前合計",
+    "Current total"
+  ],
+  "当前库存": [
+    "當前庫存",
+    "Current stock"
+  ],
+  "待验证": [
+    "待驗證",
+    "Awaiting code"
+  ],
+  "我已确认购买明细和金额，费用比赛后统一结算": [
+    "我已確認購買明細和金額，費用比賽後統一結算",
+    "I confirm the items and amount; payment is settled after the competition"
+  ],
+  "我的购买记录": [
+    "我的購買記錄",
+    "My purchases"
+  ],
+  "按材料汇总": [
+    "按材料彙總",
+    "By material"
+  ],
+  "排序": [
+    "排序",
+    "Order"
+  ],
+  "改回未结算": [
+    "改回未結算",
+    "Mark unsettled"
+  ],
+  "时间：": [
+    "時間：",
+    "Time: "
+  ],
+  "暂无已确认的购买。": [
+    "暫無已確認的購買。",
+    "No confirmed purchases yet."
+  ],
+  "暂无购买记录。": [
+    "暫無購買記錄。",
+    "No purchases yet."
+  ],
+  "未结算": [
+    "未結算",
+    "Unsettled"
+  ],
+  "未领取": [
+    "未領取",
+    "Not collected"
+  ],
+  "未领取队伍": [
+    "未領取隊伍",
+    "Teams not collected"
+  ],
+  "本次购买未成功，没有扣减库存，请重新选择后提交。": [
+    "本次購買未成功，沒有扣減庫存，請重新選擇後提交。",
+    "The purchase did not go through and no stock was deducted. Please choose again and resubmit."
+  ],
+  "本次购买的验证码发送次数已用完，请取消后重新提交。": [
+    "本次購買的驗證碼發送次數已用完，請取消後重新提交。",
+    "No more codes can be sent for this purchase. Cancel it and submit again."
+  ],
+  "本队已领取": [
+    "本隊已領取",
+    "Your team has collected"
+  ],
+  "本队应领材料": [
+    "本隊應領材料",
+    "Your team's allotment"
+  ],
+  "材料": [
+    "材料",
+    "Material"
+  ],
+  "材料不存在。": [
+    "材料不存在。",
+    "Material not found."
+  ],
+  "材料名称": [
+    "材料名稱",
+    "Material name"
+  ],
+  "材料名称不能超过 80 字。": [
+    "材料名稱不能超過 80 字。",
+    "The material name must be at most 80 characters."
+  ],
+  "材料明细": [
+    "材料明細",
+    "Items"
+  ],
+  "材料记录": [
+    "材料記錄",
+    "Material records"
+  ],
+  "材料设置": [
+    "材料設置",
+    "Material settings"
+  ],
+  "材料购买": [
+    "材料購買",
+    "Buy materials"
+  ],
+  "材料领取": [
+    "材料領取",
+    "Material pickup"
+  ],
+  "材料领取与购买": [
+    "材料領取與購買",
+    "Material pickup & purchases"
+  ],
+  "材料领取与购买记录": [
+    "材料領取與購買記錄",
+    "Material pickup & purchase records"
+  ],
+  "查看各队材料领取情况、购买记录与应付合计，导出 Excel。": [
+    "查看各隊材料領取情況、購買記錄與應付合計，導出 Excel。",
+    "See each team's material pickup, purchases and amounts due; export to Excel."
+  ],
+  "标记已结算": [
+    "標記已結算",
+    "Mark settled"
+  ],
+  "根": [
+    "根",
+    "piece"
+  ],
+  "正在保存…": [
+    "正在保存…",
+    "Saving…"
+  ],
+  "每次限购": [
+    "每次限購",
+    "Limit per purchase"
+  ],
+  "每次限购须为正整数，不限购请留空。": [
+    "每次限購須爲正整數，不限購請留空。",
+    "The limit must be a positive whole number; leave it empty for no limit."
+  ],
+  "每次限购（可留空）": [
+    "每次限購（可留空）",
+    "Limit per purchase (optional)"
+  ],
+  "每队": [
+    "每隊",
+    "Per team"
+  ],
+  "每队份数": [
+    "每隊份數",
+    "Quantity per team"
+  ],
+  "每队份数须为正整数。": [
+    "每隊份數須爲正整數。",
+    "Quantity per team must be a positive whole number."
+  ],
+  "比赛前分发，每队一次": [
+    "比賽前分發，每隊一次",
+    "Handed out before the competition, once per team"
+  ],
+  "比赛前统一分发材料。请当面核对材料种类和数量，拍照后点击“确认领取”。每队只能领取一次。": [
+    "比賽前統一分發材料。請當面覈對材料種類和數量，拍照後點擊“確認領取”。每隊只能領取一次。",
+    "Materials are handed out before the competition. Check the items and quantities, take a photo, then tap “Confirm pickup”. Each team can collect only once."
+  ],
+  "比赛前队长拍照领取本队的免费材料。": [
+    "比賽前隊長拍照領取本隊的免費材料。",
+    "Before the competition, captains photograph and collect their team's free materials."
+  ],
+  "比赛前领取本队的免费材料，拍照核对后点击领取，每队一次。": [
+    "比賽前領取本隊的免費材料，拍照覈對後點擊領取，每隊一次。",
+    "Collect your team's free materials before the competition: check, take a photo and tap Collect. Once per team."
+  ],
+  "比赛后统一结算": [
+    "比賽後統一結算",
+    "Settled after the competition"
+  ],
+  "比赛材料": [
+    "比賽材料",
+    "Competition materials"
+  ],
+  "比赛材料领取": [
+    "比賽材料領取",
+    "Competition material pickup"
+  ],
+  "添加免费材料": [
+    "添加免費材料",
+    "Add free material"
+  ],
+  "添加可购买材料": [
+    "添加可購買材料",
+    "Add material for sale"
+  ],
+  "状态：": [
+    "狀態：",
+    "Status: "
+  ],
+  "由总管理员维护：免费领取材料（每队份数相同）和可购买材料（单价、库存、限购）。库存会在队长领取或购买确认时自动扣减；这里填写的是当前剩余库存。修改价格不影响已有记录。": [
+    "由總管理員維護：免費領取材料（每隊份數相同）和可購買材料（單價、庫存、限購）。庫存會在隊長領取或購買確認時自動扣減；這裏填寫的是當前剩餘庫存。修改價格不影響已有記錄。",
+    "Maintained by the super admin: free materials (the same quantity for every team) and materials for sale (price, stock, limit). Stock is deducted automatically when a captain collects or confirms a purchase; enter the stock currently left. Changing a price does not affect existing records."
+  ],
+  "目前没有可购买的材料。": [
+    "目前沒有可購買的材料。",
+    "There are no materials for sale right now."
+  ],
+  "目前没有可领取的材料，请等待总管理员设置。": [
+    "目前沒有可領取的材料，請等待總管理員設置。",
+    "There are no materials to collect yet. Please wait for the super admin to set them up."
+  ],
+  "确定作废该记录吗？库存会自动退回。": [
+    "確定作廢該記錄嗎？庫存會自動退回。",
+    "Void this record? The stock will be returned automatically."
+  ],
+  "确定删除该材料吗？已有记录会保留名称和价格。": [
+    "確定刪除該材料嗎？已有記錄會保留名稱和價格。",
+    "Delete this material? Existing records keep its name and price."
+  ],
+  "确定取消本次购买吗？": [
+    "確定取消本次購買嗎？",
+    "Cancel this purchase?"
+  ],
+  "确定将该队全部未结算购买标记为已结算吗？": [
+    "確定將該隊全部未結算購買標記爲已結算嗎？",
+    "Mark all of this team's unsettled purchases as settled?"
+  ],
+  "确定永久删除该记录吗？有效记录的库存会退回，此操作不能撤销。": [
+    "確定永久刪除該記錄嗎？有效記錄的庫存會退回，此操作不能撤銷。",
+    "Delete this record permanently? Stock from a valid record is returned. This cannot be undone."
+  ],
+  "确认并发送验证码": [
+    "確認並發送驗證碼",
+    "Confirm and send code"
+  ],
+  "确认购买": [
+    "確認購買",
+    "Confirm purchase"
+  ],
+  "确认购买：输入验证码": [
+    "確認購買：輸入驗證碼",
+    "Confirm purchase: enter the code"
+  ],
+  "确认领取": [
+    "確認領取",
+    "Confirm pickup"
+  ],
+  "结算汇总": [
+    "結算彙總",
+    "Settlement"
+  ],
+  "至少保留一项材料；如需取消整条领取记录，请使用“作废”。": [
+    "至少保留一項材料；如需取消整條領取記錄，請使用“作廢”。",
+    "Keep at least one item. To cancel the whole pickup record, use “Void”."
+  ],
+  "至少保留一项材料；如需取消整笔购买，请使用“作废”。": [
+    "至少保留一項材料；如需取消整筆購買，請使用“作廢”。",
+    "Keep at least one item. To cancel the whole purchase, use “Void”."
+  ],
+  "订单数": [
+    "訂單數",
+    "Orders"
+  ],
+  "记录不存在。": [
+    "記錄不存在。",
+    "Record not found."
+  ],
+  "记录由系统自动生成。总管理员可以修改、作废或删除记录，所有改动都会写入管理员操作日志。": [
+    "記錄由系統自動生成。總管理員可以修改、作廢或刪除記錄，所有改動都會寫入管理員操作日誌。",
+    "Records are created automatically. The super admin can edit, void or delete them; every change is written to the admin activity log."
+  ],
+  "记录由系统自动生成，管理员只能查看，不能修改。如需更正请联系总管理员。": [
+    "記錄由系統自動生成，管理員只能查看，不能修改。如需更正請聯繫總管理員。",
+    "Records are created automatically. Administrators can view but not change them; contact the super admin for corrections."
+  ],
+  "设置免费领取材料的每队份数，以及可购买材料的单价和库存。": [
+    "設置免費領取材料的每隊份數，以及可購買材料的單價和庫存。",
+    "Set the per-team quantity of free materials and the price and stock of materials for sale."
+  ],
+  "该记录不存在或已失效。": [
+    "該記錄不存在或已失效。",
+    "This record does not exist or is no longer valid."
+  ],
+  "该记录已失效，只能修改备注。": [
+    "該記錄已失效，只能修改備註。",
+    "This record is no longer valid; only the note can be changed."
+  ],
+  "该购买已确认，无需重复验证。": [
+    "該購買已確認，無需重複驗證。",
+    "This purchase is already confirmed."
+  ],
+  "该购买申请已失效，请重新提交。": [
+    "該購買申請已失效，請重新提交。",
+    "This purchase request is no longer valid. Please submit again."
+  ],
+  "该队没有未结算的购买记录。": [
+    "該隊沒有未結算的購買記錄。",
+    "This team has no unsettled purchases."
+  ],
+  "请勾选“已核对材料种类和数量”。": [
+    "請勾選“已覈對材料種類和數量”。",
+    "Please tick “I have checked the items and quantities”."
+  ],
+  "请勾选确认购买明细和金额。": [
+    "請勾選確認購買明細和金額。",
+    "Please tick to confirm the items and amount."
+  ],
+  "请填写材料名称。": [
+    "請填寫材料名稱。",
+    "Enter the material name."
+  ],
+  "请把领到的全部材料摆在一起拍一张清晰的照片。": [
+    "請把領到的全部材料擺在一起拍一張清晰的照片。",
+    "Lay out all the materials you received and take one clear photo."
+  ],
+  "请至少选择一种材料并填写数量。": [
+    "請至少選擇一種材料並填寫數量。",
+    "Choose at least one material and enter a quantity."
+  ],
+  "请输入邮件中的 6 位数字验证码。": [
+    "請輸入郵件中的 6 位數字驗證碼。",
+    "Enter the 6-digit code from the e-mail."
+  ],
+  "账号已停用": [
+    "帳號已停用",
+    "Account disabled"
+  ],
+  "购买": [
+    "購買",
+    "Purchase"
+  ],
+  "购买合计(元)": [
+    "購買合計(元)",
+    "Purchased (CNY)"
+  ],
+  "购买总额": [
+    "購買總額",
+    "Total purchases"
+  ],
+  "购买材料照片（必填，jpg/png/webp，不超过 5MB）": [
+    "購買材料照片（必填，jpg/png/webp，不超過 5MB）",
+    "Photo of the materials (required, jpg/png/webp, max 5 MB)"
+  ],
+  "购买照片": [
+    "購買照片",
+    "Purchase photo"
+  ],
+  "购买记录": [
+    "購買記錄",
+    "Purchases"
+  ],
+  "购买记录不存在。": [
+    "購買記錄不存在。",
+    "Purchase record not found."
+  ],
+  "输入验证码": [
+    "輸入驗證碼",
+    "Enter code"
+  ],
+  "还可以尝试": [
+    "還可以嘗試",
+    "Attempts left:"
+  ],
+  "还没有参赛队长账号。": [
+    "還沒有參賽隊長帳號。",
+    "There are no captain accounts yet."
+  ],
+  "选择材料和数量后自动计算金额。确认并拍照提交后，系统会向你绑定的邮箱发送 6 位数字验证码（5 分钟内有效），输入验证码后购买才生效。费用在比赛后统一结算。": [
+    "選擇材料和數量後自動計算金額。確認並拍照提交後，系統會向你綁定的郵箱發送 6 位數字驗證碼（5 分鐘內有效），輸入驗證碼後購買才生效。費用在比賽後統一結算。",
+    "The amount is calculated as you choose materials and quantities. After you confirm and submit a photo, a 6-digit code is sent to your registered e-mail (valid for 5 minutes); the purchase only takes effect once you enter it. Payment is settled after the competition."
+  ],
+  "选择材料和数量自动算价，拍照后用邮箱验证码确认，比赛后统一结算。": [
+    "選擇材料和數量自動算價，拍照後用郵箱驗證碼確認，比賽後統一結算。",
+    "Pick materials and quantities to see the price, take a photo and confirm with an e-mailed code. Paid after the competition."
+  ],
+  "重新发送验证码": [
+    "重新發送驗證碼",
+    "Resend code"
+  ],
+  "金额(元)": [
+    "金額(元)",
+    "Amount (CNY)"
+  ],
+  "队伍 / 队长": [
+    "隊伍 / 隊長",
+    "Team / captain"
+  ],
+  "队伍：": [
+    "隊伍：",
+    "Team: "
+  ],
+  "队长选购材料，拍照并通过邮箱验证码确认（含重新发送验证码）。": [
+    "隊長選購材料，拍照並通過郵箱驗證碼確認（含重新發送驗證碼）。",
+    "Captains choose materials, take a photo and confirm with an e-mailed code (including resending the code)."
+  ],
+  "限购": [
+    "限購",
+    "Limit"
+  ],
+  "领取成功，已记录本队领取的材料和照片。": [
+    "領取成功，已記錄本隊領取的材料和照片。",
+    "Collected. Your team's materials and photo have been recorded."
+  ],
+  "领取时间": [
+    "領取時間",
+    "Collected at"
+  ],
+  "领取时间 / IP": [
+    "領取時間 / IP",
+    "Collected at / IP"
+  ],
+  "领取时间：": [
+    "領取時間：",
+    "Collected at: "
+  ],
+  "领取材料": [
+    "領取材料",
+    "Materials collected"
+  ],
+  "领取材料照片（必填，jpg/png/webp，不超过 5MB）": [
+    "領取材料照片（必填，jpg/png/webp，不超過 5MB）",
+    "Photo of the materials received (required, jpg/png/webp, max 5 MB)"
+  ],
+  "领取照片": [
+    "領取照片",
+    "Pickup photo"
+  ],
+  "领取统计": [
+    "領取統計",
+    "Pickup status"
+  ],
+  "领取记录不存在。": [
+    "領取記錄不存在。",
+    "Pickup record not found."
+  ],
+  "验证码发送过于频繁，请稍后再试。": [
+    "驗證碼發送過於頻繁，請稍後再試。",
+    "Codes are being sent too often. Please try again later."
+  ],
+  "验证码将发送到：": [
+    "驗證碼將發送到：",
+    "The code will be sent to: "
+  ],
+  "验证码已发送到": [
+    "驗證碼已發送到",
+    "The code was sent to"
+  ],
+  "验证码已过期（有效期 5 分钟），请点“重新发送验证码”。": [
+    "驗證碼已過期（有效期 5 分鐘），請點“重新發送驗證碼”。",
+    "The code has expired (valid for 5 minutes). Tap “Resend code”."
+  ],
+  "验证码已过期，请重新发送。": [
+    "驗證碼已過期，請重新發送。",
+    "The code has expired. Please resend it."
+  ],
+  "验证码邮件发送失败，请稍后点“重新发送验证码”，或联系管理员。": [
+    "驗證碼郵件發送失敗，請稍後點“重新發送驗證碼”，或聯繫管理員。",
+    "The code e-mail could not be sent. Tap “Resend code” later or contact an administrator."
+  ],
+  "验证码邮件发送失败，请稍后重试，或联系管理员。": [
+    "驗證碼郵件發送失敗，請稍後重試，或聯繫管理員。",
+    "The code e-mail could not be sent. Try again later or contact an administrator."
+  ],
+  "验证码错误次数过多，该验证码已失效，请点“重新发送验证码”。": [
+    "驗證碼錯誤次數過多，該驗證碼已失效，請點“重新發送驗證碼”。",
+    "Too many wrong codes; this code is no longer valid. Tap “Resend code”."
+  ],
+  "验证码错误次数过多，请点“重新发送验证码”。": [
+    "驗證碼錯誤次數過多，請點“重新發送驗證碼”。",
+    "Too many wrong codes. Tap “Resend code”."
+  ],
+  "，5 分钟内有效。没收到请检查垃圾邮件。": [
+    "，5 分鐘內有效。沒收到請檢查垃圾郵件。",
+    ". It is valid for 5 minutes. Check your spam folder if you can't find it."
+  ],
+  "人员联系方式": [
+    "人員聯絡方式",
+    "People and contact details"
+  ],
+  "验证状态": [
+    "驗證狀態",
+    "Verification status"
+  ],
+  "邮箱已验证": [
+    "郵箱已驗證",
+    "Email verified"
+  ],
+  "邮箱未验证": [
+    "郵箱未驗證",
+    "Email not verified"
+  ],
+  "完善个人信息": [
+    "完善個人資料",
+    "Complete your profile"
+  ],
+  "个人信息": [
+    "個人資料",
+    "Personal information"
+  ],
+  "可以随时修改姓名、手机号和邮箱。更换邮箱需要重新验证，完成验证后才能继续使用系统。": [
+    "可以隨時修改姓名、手機號和郵箱。更換郵箱需要重新驗證，完成驗證後才能繼續使用系統。",
+    "You can change your name, mobile number and email anytime. A new email must be verified before you can continue using the system."
+  ],
+  "首次使用前请填写姓名、手机号和邮箱。邮箱需要通过 6 位数字验证码验证，之后预约通知和材料购买验证码都会发到这个邮箱。": [
+    "首次使用前請填寫姓名、手機號和郵箱。郵箱需要透過 6 位數字驗證碼驗證，之後預約通知和材料購買驗證碼都會發到這個郵箱。",
+    "Before using the system, enter your name, mainland China mobile number and email. Verify your email with a 6-digit code; booking notifications and purchase codes will be sent to this address."
+  ],
+  "已验证邮箱：": [
+    "已驗證郵箱：",
+    "Verified email: "
+  ],
+  "已验证": [
+    "已驗證",
+    "Verified"
+  ],
+  "有一个待验证的邮箱：": [
+    "有一個待驗證的郵箱：",
+    "An email is awaiting verification: "
+  ],
+  "填写常用邮箱，保存后会收到 6 位数字验证码（5 分钟内有效）。": [
+    "填寫常用郵箱，儲存後會收到 6 位數字驗證碼（5 分鐘內有效）。",
+    "Enter an email you use regularly. After saving, you will receive a 6-digit code valid for 5 minutes."
+  ],
+  "保存并发送验证码": [
+    "儲存並發送驗證碼",
+    "Save and send code"
+  ],
+  "验证邮箱": [
+    "驗證郵箱",
+    "Verify email"
+  ],
+  "验证": [
+    "驗證",
+    "Verify"
+  ],
+  "修改邮箱": [
+    "修改郵箱",
+    "Change email"
+  ],
+  "邮箱验证码": [
+    "郵箱驗證碼",
+    "Email verification code"
+  ],
+  "请先完善个人信息并验证邮箱后再使用系统。": [
+    "請先完善個人資料並驗證郵箱後再使用系統。",
+    "Complete your profile and verify your email before using the system."
+  ],
+  "个人信息已完善，邮箱验证成功。": [
+    "個人資料已完善，郵箱驗證成功。",
+    "Your profile is complete and your email has been verified."
+  ],
+  "请先填写邮箱并获取验证码。": [
+    "請先填寫郵箱並取得驗證碼。",
+    "Enter your email and request a code first."
+  ],
+  "请填写正确的 11 位手机号（1 开头的大陆手机号）。": [
+    "請填寫正確的 11 位手機號（1 開頭的大陸手機號）。",
+    "Enter a valid 11-digit mainland China mobile number starting with 1."
+  ],
+  "请填写正确的邮箱地址。": [
+    "請填寫正確的郵箱地址。",
+    "Enter a valid email address."
+  ],
+  "个人信息已保存。": [
+    "個人資料已儲存。",
+    "Your profile has been saved."
+  ],
+  "验证码已发送，请查收邮件后输入。": [
+    "驗證碼已發送，請查收郵件後輸入。",
+    "A code has already been sent. Check your email and enter it."
+  ],
+  "验证码邮件发送失败，请检查邮箱地址后重试，或联系管理员。": [
+    "驗證碼郵件發送失敗，請檢查郵箱地址後重試，或聯絡管理員。",
+    "The code email could not be sent. Check your email address and retry, or contact an administrator."
+  ],
+  "验证码发送次数已用完，请返回修改邮箱后重新获取。": [
+    "驗證碼發送次數已用完，請返回修改郵箱後重新取得。",
+    "The code send limit has been reached. Return to the profile form to request a new verification."
+  ],
+  "姓名不能超过 64 字。": [
+    "姓名不能超過 64 字。",
+    "Your name must be at most 64 characters."
+  ],
+  "邮箱已变更，请重新提交购买。": [
+    "郵箱已變更，請重新提交購買。",
+    "Your email has changed. Submit the purchase again."
+  ],
+  "已有队伍领取材料，免费清单已锁定，只能调整库存。": [
+    "已有隊伍領取材料，免費清單已鎖定，只能調整庫存。",
+    "A team has already collected materials. The free allotment is locked; only stock can be adjusted."
+  ],
+  "该账号仍有材料记录，不能删除。可先停用。": [
+    "該帳號仍有材料記錄，不能刪除。可先停用。",
+    "This account has material records and cannot be deleted. You can disable it."
+  ],
+  "队长材料领取": [
+    "隊長材料領取",
+    "Captain material pickup"
+  ],
+  "数量支持小数、分数或带分数，如 0.5、1/3、1 1/2；小数最多 9 位，分母不超过 1000000000。": [
+    "數量支援小數、分數或帶分數，如 0.5、1/3、1 1/2；小數最多 9 位，分母不超過 1000000000。",
+    "Enter a decimal, fraction or mixed number, e.g. 0.5, 1/3 or 1 1/2. Up to 9 decimal places; denominator up to 1,000,000,000."
+  ],
+  "数量格式无效，请填写大于 0 的小数或分数，如 0.5、1/3、1 1/2。": [
+    "數量格式無效，請填寫大於 0 的小數或分數，如 0.5、1/3、1 1/2。",
+    "Invalid quantity. Enter a positive decimal or fraction, e.g. 0.5, 1/3 or 1 1/2."
+  ],
+  "数量超过允许上限。": [
+    "數量超過允許上限。",
+    "The quantity exceeds the allowed limit."
+  ],
+  "数量可填 0.5、1/3 或 1 1/2，单价按 1 个单位计。金额按每项四舍五入到分。": [
+    "數量可填 0.5、1/3 或 1 1/2，單價按 1 個單位計。金額按每項四捨五入到分。",
+    "Enter quantities such as 0.5, 1/3 or 1 1/2. Prices are per unit. Each line amount is rounded half up to the nearest cent."
+  ],
+  "库存须为 0 到 1000000 之间的数量，支持小数或分数。": [
+    "庫存須為 0 到 1000000 之間的數量，支援小數或分數。",
+    "Stock must be from 0 to 1,000,000; decimals and fractions are supported."
+  ],
+  "每队份数须大于 0 且不超过 100000，支持小数或分数。": [
+    "每隊份數須大於 0 且不超過 100000，支援小數或分數。",
+    "Per-team quantity must be greater than 0 and at most 100,000; decimals and fractions are supported."
+  ],
+  "每次限购须大于 0 且不超过 100000，支持小数或分数；不限购请留空。": [
+    "每次限購須大於 0 且不超過 100000，支援小數或分數；不限購請留空。",
+    "Purchase limit must be greater than 0 and at most 100,000; decimals and fractions are supported. Leave blank for no limit."
+  ]
+}

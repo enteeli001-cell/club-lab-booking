@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}{{ t("管理员操作信息") }}{% endblock %}
+{% block content %}
+<h1>{{ t("管理员操作信息") }}</h1>
+<p class="muted">{{ t("查看管理员和总管理员的登录与操作日志。可撤销的操作提供「撤销」；不可撤销的会显示原因。撤销审核拒绝时，已发出的邮件无法撤回。撤销本身也会记入日志。") }}</p>
+
+<form class="card field-row" method="get">
+  <div class="field"><label>{{ t("账号") }}</label><input name="q" value="{{ q }}" placeholder="{{ t('学号或关键词') }}"></div>
+  <div class="field"><label>{{ t("IP") }}</label><input name="ip" value="{{ ip }}"></div>
+  <div class="field"><label>{{ t("开始日期") }}</label><input name="start" type="date" value="{{ start }}"></div>
+  <div class="field"><label>{{ t("结束日期") }}</label><input name="end" type="date" value="{{ end }}"></div>
+  <button type="submit">{{ t("筛选") }}</button>
+</form>
+
+<h2>{{ t("登录记录") }}</h2>
+<div class="card">
+  <table>
+    <thead><tr><th>{{ t("时间") }}</th><th>{{ t("账号") }}</th><th>{{ t("角色") }}</th><th>{{ t("IP") }}</th><th>{{ t("设备 / 浏览器 / 系统") }}</th><th>{{ t("结果") }}</th></tr></thead>
+    <tbody>
+    {% for log in logins %}
+      <tr>
+        <td>{{ log.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        <td>{{ log.student_id or '—' }}</td>
+        <td>{{ log.role|role_label }}</td>
+        <td>{{ log.ip or '—' }}</td>
+        <td>{{ log.device_id or '—' }}<div class="hint">{{ log.browser or '—' }} / {{ log.os_name or '—' }}</div></td>
+        <td>{% if log.success %}<span class="badge approved">{{ t("成功") }}</span>{% else %}<span class="badge rejected">{{ t("失败") }}</span>{% endif %}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="6" class="muted">{{ t("暂无登录记录。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<h2>{{ t("操作日志") }}</h2>
+<div class="card">
+  <table>
+    <thead><tr><th>{{ t("时间") }}</th><th>{{ t("操作人") }}</th><th>{{ t("IP") }}</th><th>{{ t("操作") }}</th><th>{{ t("详情") }}</th><th>{{ t("撤销") }}</th></tr></thead>
+    <tbody>
+    {% for log in logs %}
+      <tr>
+        <td>{{ log.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        <td>{{ log.actor_student_id or '—' }}<div class="hint">{{ log.actor_role|role_label }}</div></td>
+        <td>{{ log.ip or '—' }}</td>
+        <td>{{ log.action }}</td>
+        <td>{{ log.summary }}</td>
+        <td>
+          {% if log.undone_at %}
+          <span class="muted">{{ t("已于") }} {{ log.undone_at.strftime('%Y-%m-%d %H:%M') }} {{ t("撤销") }}</span>
+          {% elif log.reversible %}
+          <form method="post" action="{{ url_for('activity.undo', log_id=log.id) }}" class="inline" data-confirm="{{ t('确定撤销该操作？') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn small" type="submit">{{ t("撤销") }}</button>
+          </form>
+          {% else %}
+          <span class="hint">{{ log.undo_blocked_reason or t('不可撤销') }}</span>
+          {% endif %}
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="6" class="muted">{{ t("暂无操作日志。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

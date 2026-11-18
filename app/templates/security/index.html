@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% block title %}{{ t("安全防护中心") }}{% endblock %}
+{% block content %}
+<h1>{{ t("安全防护中心") }}</h1>
+<p class="muted">{{ t("只做被动检测与记录，不会对外扫描或主动连接来源地址。地理位置仅来自 Cloudflare 请求头；如需查看更详细的 IP 资料，请自行打开 ipinfo.io 外链。") }}</p>
+
+<p><a class="btn danger small" href="{{ url_for('security.wipe_page') }}">{{ t("一键清除个人信息…") }}</a></p>
+
+<div class="stats-row">
+  <div class="stat"><div class="num">{{ today_total }}</div><div class="lbl">{{ t("今日事件") }}</div></div>
+  <div class="stat"><div class="num">{{ week_total }}</div><div class="lbl">{{ t("近 7 天事件") }}</div></div>
+  <div class="stat"><div class="num">{{ latest_high|length }}</div><div class="lbl">{{ t("最新高危（列表内）") }}</div></div>
+  <div class="stat"><div class="num">{{ active_blocks|length }}</div><div class="lbl">{{ t("生效中的拉黑") }}</div></div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h2>{{ t("今日分类") }}</h2>
+    {% if today_counts %}
+    <ul class="security-counts">
+      {% for typ, n in today_counts.items() %}
+      <li>{{ event_labels.get(typ, typ) }}：{{ n }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="muted">{{ t("今日暂无安全事件。") }}</p>
+    {% endif %}
+  </div>
+  <div class="card">
+    <h2>{{ t("近 7 天 Top IP") }}</h2>
+    {% if top_ips %}
+    <ul class="security-counts">
+      {% for ip, n in top_ips %}
+      <li><code>{{ ip or '—' }}</code>　{{ n }} {{ t("次") }}
+        {% if ip and ip not in ('127.0.0.1', '::1', 'localhost') %}
+        <a class="ext" href="https://ipinfo.io/{{ ip }}" target="_blank" rel="noopener noreferrer">{{ t("在 ipinfo.io 查看") }}</a>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="muted">{{ t("近 7 天暂无记录。") }}</p>
+    {% endif %}
+  </div>
+</div>
+
+<div class="card">
+  <h2>{{ t("最新高危事件") }}</h2>
+  {% if latest_high %}
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th>{{ t("时间") }}</th><th>{{ t("级别") }}</th><th>{{ t("类型") }}</th><th>{{ t("IP / 国家") }}</th><th>{{ t("路径") }}</th><th>{{ t("说明") }}</th></tr></thead>
+    <tbody>
+    {% for ev in latest_high %}
+      <tr class="sev-{{ ev.severity }}">
+        <td>{{ ev.created_at|fmt_dt }}</td>
+        <td>{{ severity_labels.get(ev.severity, ev.severity) }}</td>
+        <td>{{ event_labels.get(ev.event_type, ev.event_type) }}</td>
+        <td>{{ ev.ip or '—' }}{% if ev.country %} / {{ ev.country }}{% endif %}</td>
+        <td class="path-cell">{{ ev.method }} {{ ev.path }}</td>
+        <td>{{ ev.detail or '—' }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% else %}
+  <p class="muted">{{ t("暂无高危事件。") }}</p>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h2>{{ t("筛选与取证") }}</h2>
+  <form class="filters" method="get">
+    <div class="field">
+      <label>{{ t("类型") }}</label>
+      <select name="type">
+        <option value="">{{ t("全部") }}</option>
+        {% for key, label in event_labels.items() %}
+        <option value="{{ key }}" {% if typ==key %}selected{% endif %}>{{ t(label) }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="field">
+      <label>{{ t("级别") }}</label>
+      <select name="severity">
+        <option value="">{{ t("全部") }}</option>
+        {% for key, label in severity_labels.items() %}
+        <option value="{{ key }}" {% if sev==key %}selected{% endif %}>{{ t(label) }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="field"><label>{{ t("IP") }}</label><input name="ip" value="{{ ip }}" placeholder="{{ t('支持部分匹配') }}"></div>
+    <div class="field"><label>{{ t("开始日期") }}</label><input type="date" name="start" value="{{ start }}"></div>
+    <div class="field"><label>{{ t("结束日期") }}</label><input type="date" name="end" value="{{ end }}"></div>
+    <button type="submit">{{ t("筛选") }}</button>
+    <a class="btn secondary" href="{{ url_for('security.export_xlsx', type=typ, severity=sev, ip=ip, start=start, end=end) }}">{{ t("导出 Excel") }}</a>
+  </form>
+</div>
+
+<div class="card">
+  <h2>{{ t("事件记录") }}</h2>
+  <div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>{{ t("时间") }}</th><th>{{ t("级别") }}</th><th>{{ t("类型") }}</th><th>{{ t("IP / 国家 / 设备") }}</th>
+        <th>{{ t("账号") }}</th><th>{{ t("请求") }}</th><th>{{ t("累计") }}</th><th>{{ t("操作") }}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for ev in events %}
+      <tr class="sev-{{ ev.severity }}">
+        <td>{{ ev.created_at|fmt_dt }}</td>
+        <td>{{ severity_labels.get(ev.severity, ev.severity) }}</td>
+        <td>{{ event_labels.get(ev.event_type, ev.event_type) }}{% if ev.auto_blocked %}<div class="hint">{{ t("已自动拉黑") }}</div>{% endif %}</td>
+        <td>
+          {{ ev.ip or '—' }}{% if ev.country %} / {{ ev.country }}{% endif %}
+          <div class="hint">{{ ev.device_id or t('无设备 ID') }}</div>
+          {% if ev.cf_headers %}<div class="hint">{{ ev.cf_headers }}</div>{% endif %}
+          {% if ev.ip and ev.ip not in ('127.0.0.1', '::1', 'localhost') %}
+          <a class="ext" href="https://ipinfo.io/{{ ev.ip }}" target="_blank" rel="noopener noreferrer">{{ t("在 ipinfo.io 查看") }}</a>
+          {% endif %}
+        </td>
+        <td>{{ ev.student_id or '—' }}</td>
+        <td class="path-cell">{{ ev.method }} {{ ev.path }}
+          {% if ev.query_summary %}<div class="hint">{{ ev.query_summary }}</div>{% endif %}
+          {% if ev.detail %}<div class="hint">{{ ev.detail }}</div>{% endif %}
+          {% if ev.user_agent %}<div class="hint">UA：{{ ev.user_agent }}</div>{% endif %}
+          {% if ev.referer %}<div class="hint">Referer：{{ ev.referer }}</div>{% endif %}
+        </td>
+        <td>{{ ev.count }}</td>
+        <td>
+          {% if ev.ip %}
+          <form method="post" action="{{ url_for('security.block_event', event_id=ev.id) }}" class="inline" data-confirm="{{ t('确定拉黑该 IP？不会自动查询该地址，仅写入本系统黑名单。') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="kind" value="ip">
+            <input type="hidden" name="hours" value="24">
+            <button class="btn small danger" type="submit">{{ t("拉黑 IP 24 小时") }}</button>
+          </form>
+          {% endif %}
+          {% if ev.device_id %}
+          <form method="post" action="{{ url_for('security.block_event', event_id=ev.id) }}" class="inline" data-confirm="{{ t('确定拉黑该设备？') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="kind" value="device">
+            <input type="hidden" name="hours" value="24">
+            <button class="btn small secondary" type="submit">{{ t("拉黑设备") }}</button>
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="8" class="muted">{{ t("暂无安全事件。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h2>{{ t("生效中的拉黑") }}</h2>
+    {% if active_blocks %}
+    <ul class="security-counts">
+      {% for b in active_blocks %}
+      <li>{{ t('IP') if b.kind=='ip' else t('设备') }} <code>{{ b.value }}</code>
+        {{ b.reason or '' }}
+        {% if b.expires_at %}{{ t("（至") }} {{ b.expires_at|fmt_dt }}）{% else %}{{ t("（永久）") }}{% endif %}
+        <form method="post" action="{{ url_for('security.lift_block', block_id=b.id) }}" class="inline">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button class="btn small secondary" type="submit">{{ t("解除") }}</button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="muted">{{ t("当前没有生效的拉黑。") }}</p>
+    {% endif %}
+  </div>
+  <div class="card">
+    <h2>{{ t("白名单") }}</h2>
+    <p class="hint">{{ t("127.0.0.1 / ::1 本机直连默认在白名单中，不会被自动拉黑。总管理员当前会话的 IP 和设备也不会被自动拉黑。") }}</p>
+    <form method="post" action="{{ url_for('security.add_whitelist') }}" class="filters">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="field">
+        <label>{{ t("类型") }}</label>
+        <select name="kind"><option value="ip">{{ t("IP") }}</option><option value="device">{{ t("设备") }}</option></select>
+      </div>
+      <div class="field"><label>{{ t("值") }}</label><input name="value" required></div>
+      <div class="field"><label>{{ t("原因") }}</label><input name="reason" placeholder="{{ t('可选') }}"></div>
+      <button type="submit">{{ t("加入白名单") }}</button>
+    </form>
+    {% if whitelist %}
+    <ul class="security-counts">
+      {% for w in whitelist %}
+      <li>{{ t('IP') if w.kind=='ip' else t('设备') }} <code>{{ w.value }}</code> {{ w.reason or '' }}
+        <form method="post" action="{{ url_for('security.delete_whitelist', item_id=w.id) }}" class="inline">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button class="btn small secondary" type="submit">{{ t("移除") }}</button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

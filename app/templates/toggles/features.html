@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}{{ t("功能开关") }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{{ t("功能开关") }}</h1>
+    <p class="muted">{{ t("逐项开启或关闭队长端（队长 / 特批账号）的功能。关闭后队长会看到“该功能已被管理员暂时关闭”，页面和接口在服务器端同时拦截；管理员和总管理员不受影响。每次切换都会记入管理员操作日志。") }}</p>
+  </div>
+  <a class="btn secondary" href="{{ url_for('toggles.maintenance') }}">{{ t("维护模式 →") }}</a>
+</div>
+
+<div class="card">
+  <p class="maint-state"><span class="badge {{ 'off' if off_count else 'on' }}">{% if off_count %}{{ t("已关闭") }} {{ off_count }} {{ t("项") }}{% else %}{{ t("全部开启") }}{% endif %}</span><span class="muted">{{ t("共") }} {{ rows|length }} {{ t("项队长功能") }}</span></p>
+  <ul class="switch-list">
+    {% for row in rows %}
+    <li class="switch-row{% if not row.enabled %} is-off{% endif %}" data-feature="{{ row.key }}">
+      <div class="switch-info">
+        <h3>{{ t(row.label) }} {% if row.enabled %}<span class="badge on">{{ t("已开启") }}</span>{% else %}<span class="badge rejected">{{ t("已关闭") }}</span>{% endif %}</h3>
+        <p>{{ t(row.desc) }}</p>
+      </div>
+      <form method="post" action="{{ url_for('toggles.set_feature', key=row.key) }}"{% if row.enabled %} data-confirm="{{ t('确定关闭「{label}」吗？队长将立即无法使用该功能。', label=t(row.label)) }}"{% endif %}>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="enabled" value="{{ '0' if row.enabled else '1' }}">
+        {% if row.enabled %}
+        <button class="btn small danger" type="submit">{{ t("关闭") }}</button>
+        {% else %}
+        <button class="btn small" type="submit">{{ t("开启") }}</button>
+        {% endif %}
+      </form>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

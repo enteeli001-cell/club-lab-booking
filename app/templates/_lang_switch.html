@@ -1,0 +1,6 @@
+{% if language_switch_as_group|default(false) %}<div class="lang-switch" role="group" aria-label="{{ t('语言') }} / Language">{% else %}<nav class="lang-switch" aria-label="{{ t('语言') }} / Language">{% endif %}
+  <span class="lang-switch-icon" aria-hidden="true">🌐</span>
+  {% for code, label in languages %}
+  <a href="{{ language_url(code) }}" lang="{{ code }}" hreflang="{{ code }}"{% if code == current_lang %} class="active" aria-current="true"{% endif %}>{{ label }}</a>
+  {% endfor %}
+{% if language_switch_as_group|default(false) %}</div>{% else %}</nav>{% endif %}

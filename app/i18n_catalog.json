@@ -1,0 +1,5442 @@
+{
+  "菜单": [
+    "菜單",
+    "Menu"
+  ],
+  "关闭菜单": [
+    "關閉菜單",
+    "Close menu"
+  ],
+  "主要导航": [
+    "主要導航",
+    "Main navigation"
+  ],
+  "管理工作台": [
+    "管理工作台",
+    "Admin dashboard"
+  ],
+  "工作台": [
+    "工作台",
+    "Dashboard"
+  ],
+  "公告": [
+    "公告",
+    "Announcements"
+  ],
+  "测试预约": [
+    "測試預約",
+    "Test booking"
+  ],
+  "我的预约": [
+    "我的預約",
+    "My bookings"
+  ],
+  "工具借用": [
+    "工具借用",
+    "Tool loans"
+  ],
+  "工具借用记录": [
+    "工具借用記錄",
+    "Tool loan records"
+  ],
+  "申请记录": [
+    "申請記錄",
+    "Applications"
+  ],
+  "占用视图": [
+    "佔用視圖",
+    "Schedule"
+  ],
+  "申请审核列表": [
+    "申請審核列表",
+    "Review applications"
+  ],
+  "邮件记录": [
+    "郵件記錄",
+    "Email log"
+  ],
+  "使用统计": [
+    "使用統計",
+    "Usage statistics"
+  ],
+  "未签到统计": [
+    "未簽到統計",
+    "Missed check-ins"
+  ],
+  "密码重置日志": [
+    "密碼重置日誌",
+    "Password reset log"
+  ],
+  "实验室管理": [
+    "實驗室管理",
+    "Labs"
+  ],
+  "签到二维码": [
+    "簽到二維碼",
+    "Check-in QR codes"
+  ],
+  "安全防护中心": [
+    "安全防護中心",
+    "Security center"
+  ],
+  "人员信息管理": [
+    "人員信息管理",
+    "People and teams"
+  ],
+  "管理员管理": [
+    "管理員管理",
+    "Administrators"
+  ],
+  "功能开关": [
+    "功能開關",
+    "Feature switches"
+  ],
+  "维护模式": [
+    "維護模式",
+    "Maintenance mode"
+  ],
+  "普通登录人员操作详情": [
+    "普通登錄人員操作詳情",
+    "User activity"
+  ],
+  "管理员操作信息": [
+    "管理員操作信息",
+    "Admin activity"
+  ],
+  "账号管理": [
+    "帳號管理",
+    "Accounts"
+  ],
+  "值班安排": [
+    "值班安排",
+    "Duty roster"
+  ],
+  "工具清单": [
+    "工具清單",
+    "Tool catalog"
+  ],
+  "修改密码": [
+    "修改密碼",
+    "Change password"
+  ],
+  "修改初始密码": [
+    "修改初始密碼",
+    "Change initial password"
+  ],
+  "退出": [
+    "退出",
+    "Log out"
+  ],
+  "参赛队长": [
+    "參賽隊長",
+    "Team captain"
+  ],
+  "管理员": [
+    "管理員",
+    "Administrator"
+  ],
+  "总管理员": [
+    "總管理員",
+    "Super administrator"
+  ],
+  "特批队员": [
+    "特批隊員",
+    "Approved team member"
+  ],
+  "特批非参赛": [
+    "特批非參賽",
+    "Approved guest"
+  ],
+  "网站升级中": [
+    "網站升級中",
+    "Site maintenance"
+  ],
+  "网站正在升级，请稍后再访问": [
+    "網站正在升級，請稍後再訪問",
+    "The site is being upgraded. Please visit again later."
+  ],
+  "该功能已被管理员暂时关闭": [
+    "該功能已被管理員暫時關閉",
+    "This feature has been temporarily disabled by the administrator"
+  ],
+  "该功能已被管理员暂时关闭。": [
+    "該功能已被管理員暫時關閉。",
+    "This feature has been temporarily disabled by the administrator."
+  ],
+  "维护模式已开启": [
+    "維護模式已開啓",
+    "Maintenance mode enabled"
+  ],
+  "除总管理员外，所有访问者目前只能看到“网站升级中”的提示（HTTP 503）。": [
+    "除總管理員外，所有訪問者目前只能看到“網站升級中”的提示（HTTP 503）。",
+    "All visitors except super administrators currently see the maintenance notice (HTTP 503)."
+  ],
+  "去关闭 →": [
+    "去關閉 →",
+    "Turn off →"
+  ],
+  "未签到提醒": [
+    "未簽到提醒",
+    "Missed check-in reminder"
+  ],
+  "你已累计": [
+    "你已累計",
+    "You have accumulated"
+  ],
+  "次预约后未扫码签到。": [
+    "次預約後未掃碼簽到。",
+    "missed booking check-ins."
+  ],
+  "最近的未签到记录：": [
+    "最近的未簽到記錄：",
+    "Recent missed check-ins:"
+  ],
+  "我已知晓": [
+    "我已知曉",
+    "I understand"
+  ],
+  "系统公告": [
+    "系統公告",
+    "System announcements"
+  ],
+  "（共": [
+    "（共",
+    "(Total:"
+  ],
+  "条）": [
+    "條）",
+    "items)"
+  ],
+  "（已修改）": [
+    "（已修改）",
+    "(edited)"
+  ],
+  "测试预约平台": [
+    "測試預約平台",
+    "Test booking platform"
+  ],
+  "{name}，欢迎你进入测试预约平台": [
+    "{name}，歡迎你進入測試預約平台",
+    "{name}, welcome to the test booking platform"
+  ],
+  "{name}，欢迎你": [
+    "{name}，歡迎你",
+    "Welcome, {name}"
+  ],
+  "所属队伍：": [
+    "所屬隊伍：",
+    "Team:"
+  ],
+  "＋ 新建测试预约": [
+    "＋ 新建測試預約",
+    "＋ New test booking"
+  ],
+  "新建测试预约（该功能已被管理员暂时关闭）": [
+    "新建測試預約（該功能已被管理員暫時關閉）",
+    "New test booking (temporarily disabled)"
+  ],
+  "二维码签到：该功能已被管理员暂时关闭。": [
+    "二維碼簽到：該功能已被管理員暫時關閉。",
+    "QR check-in: temporarily disabled by the administrator."
+  ],
+  "我的申请概况": [
+    "我的申請概況",
+    "My applications at a glance"
+  ],
+  "待审核的测试申请": [
+    "待審核的測試申請",
+    "Test applications awaiting review"
+  ],
+  "已通过、待进行": [
+    "已通過、待進行",
+    "Approved and upcoming"
+  ],
+  "借用中的工具登记": [
+    "借用中的工具登記",
+    "Active tool loans"
+  ],
+  "其中": [
+    "其中",
+    "Including"
+  ],
+  "条已逾期": [
+    "條已逾期",
+    "overdue loans"
+  ],
+  "下一场测试": [
+    "下一場測試",
+    "Next test"
+  ],
+  "暂无安排": [
+    "暫無安排",
+    "Nothing scheduled"
+  ],
+  "先看看实验室占用情况 →": [
+    "先看看實驗室佔用情況 →",
+    "View lab availability →"
+  ],
+  "预约实验室时段": [
+    "預約實驗室時段",
+    "Book a lab time slot"
+  ],
+  "选择实验室、日期和当天时段，填写同行人员后提交，等待管理员审核。": [
+    "選擇實驗室、日期和當天時段，填寫同行人員後提交，等待管理員審核。",
+    "Choose a lab, date and time, add companions, and submit for review."
+  ],
+  "去预约 →": [
+    "去預約 →",
+    "Book now →"
+  ],
+  "实验室工具": [
+    "實驗室工具",
+    "Lab tools"
+  ],
+  "向实验室借工具使用登记": [
+    "向實驗室借工具使用登記",
+    "Register a tool loan"
+  ],
+  "登记借用的工具、时间和联系方式，借用与归还时均需拍照。": [
+    "登記借用的工具、時間和聯繫方式，借用與歸還時均需拍照。",
+    "Register tools, times and contact details. Captains must upload photos when borrowing and returning tools."
+  ],
+  "去登记 →": [
+    "去登記 →",
+    "Register →"
+  ],
+  "我的申请": [
+    "我的申請",
+    "My applications"
+  ],
+  "查看测试申请和工具借用记录，在允许的时间内修改或取消，或办理归还。": [
+    "查看測試申請和工具借用記錄，在允許的時間內修改或取消，或辦理歸還。",
+    "Track bookings and tool loans, edit or cancel eligible bookings, and return tools."
+  ],
+  "查看记录 →": [
+    "查看記錄 →",
+    "View records →"
+  ],
+  "使用流程": [
+    "使用流程",
+    "How it works"
+  ],
+  "测试流程": [
+    "測試流程",
+    "Test workflow"
+  ],
+  "提交预约": [
+    "提交預約",
+    "Submit booking"
+  ],
+  "单次不超过 1 小时，填写同行人员和联系方式。": [
+    "單次不超過 1 小時，填寫同行人員和聯繫方式。",
+    "Book up to one hour and provide companion and contact details."
+  ],
+  "等待审核": [
+    "等待審核",
+    "Wait for review"
+  ],
+  "结果可在“申请记录”查看，未通过会发送邮件说明理由。": [
+    "結果可在“申請記錄”查看，未通過會發送郵件說明理由。",
+    "See the decision under Applications. Rejections include an email explaining the reason."
+  ],
+  "开始前": [
+    "開始前",
+    "From"
+  ],
+  "分钟起，在“预约签到”卡片点“二维码签到”，确认安全承诺后扫描实验室门口二维码。": [
+    "分鐘起，在“預約簽到”卡片點“二維碼簽到”，確認安全承諾後掃描實驗室門口二維碼。",
+    "minutes before the start, tap QR check-in on the booking card, accept the safety pledge and scan the lab entrance code."
+  ],
+  "按时离场": [
+    "按時離場",
+    "Leave on time"
+  ],
+  "距开始不足 30 分钟无法自行修改或取消，请联系值班管理员。": [
+    "距開始不足 30 分鐘無法自行修改或取消，請聯繫值班管理員。",
+    "Within 30 minutes of the start, contact the duty administrator to change or cancel a booking."
+  ],
+  "管理后台": [
+    "管理後台",
+    "Admin console"
+  ],
+  "请从下方入口进入": [
+    "請從下方入口進入",
+    "Use the shortcuts below for"
+  ],
+  "人员与审计、": [
+    "人員與審計、",
+    "people, audits,"
+  ],
+  "审核、工具记录或其他管理功能。": [
+    "審核、工具記錄或其他管理功能。",
+    "application review, tool records and other management tasks."
+  ],
+  "处理": [
+    "處理",
+    "Review"
+  ],
+  "条待审核申请": [
+    "條待審核申請",
+    "pending applications"
+  ],
+  "今日概况": [
+    "今日概況",
+    "Today at a glance"
+  ],
+  "今天已通过的测试": [
+    "今天已通過的測試",
+    "Approved tests today"
+  ],
+  "未读高危安全告警": [
+    "未讀高危安全告警",
+    "Unread high-risk alerts"
+  ],
+  "开放中的实验室": [
+    "開放中的實驗室",
+    "Open labs"
+  ],
+  "人员、审计与安全": [
+    "人員、審計與安全",
+    "People, audit and security"
+  ],
+  "Excel 导入参赛队伍，在线编辑资料与密码，特批账号开通登录。": [
+    "Excel 導入參賽隊伍，在線編輯資料與密碼，特批帳號開通登錄。",
+    "Import teams from Excel, edit profiles and passwords, and grant approved accounts access."
+  ],
+  "新增管理员并生成高强度密码，停用或删除账号。": [
+    "新增管理員並生成高強度密碼，停用或刪除帳號。",
+    "Create administrators with strong generated passwords, or disable and delete accounts."
+  ],
+  "队长与特批账号的登录 IP、设备、时间和操作。": [
+    "隊長與特批帳號的登錄 IP、設備、時間和操作。",
+    "Login IPs, devices, times and actions for captains and approved accounts."
+  ],
+  "管理员的登录和操作日志，可撤销可回退的操作。": [
+    "管理員的登錄和操作日誌，可撤銷可回退的操作。",
+    "Review administrator logins and actions, and undo supported changes."
+  ],
+  "暴力破解、扫描、爬取和蜜罐等被动检测记录，按需拉黑或导出。": [
+    "暴力破解、掃描、爬取和蜜罐等被動檢測記錄，按需拉黑或導出。",
+    "Review passive detection of brute force, scans, crawlers and honeypots; block sources or export evidence."
+  ],
+  "逐项开启或关闭队长端功能，管理员不受影响。": [
+    "逐項開啓或關閉隊長端功能，管理員不受影響。",
+    "Enable or disable individual captain features without affecting administrators."
+  ],
+  "网站升级时一键开启，仅总管理员可访问。": [
+    "網站升級時一鍵開啓，僅總管理員可訪問。",
+    "Enable during upgrades to restrict access to super administrators."
+  ],
+  "开": [
+    "開",
+    "On"
+  ],
+  "日常工作": [
+    "日常工作",
+    "Daily work"
+  ],
+  "查看全部测试申请，按状态筛选，通过或拒绝预约。": [
+    "查看全部測試申請，按狀態篩選，通過或拒絕預約。",
+    "Filter all test applications by status and approve or reject them."
+  ],
+  "查看全部借用记录、主要工具库存，筛选借用中与逾期。": [
+    "查看全部借用記錄、主要工具庫存，篩選借用中與逾期。",
+    "View loans and major tool inventory, including active and overdue loans."
+  ],
+  "按日或按周查看各实验室的时段占用。": [
+    "按日或按周查看各實驗室的時段佔用。",
+    "View lab occupancy by day or week."
+  ],
+  "公告管理": [
+    "公告管理",
+    "Manage announcements"
+  ],
+  "发布、置顶或修改公告，查看阅读情况。": [
+    "發佈、置頂或修改公告，查看閱讀情況。",
+    "Publish, pin and edit announcements, and view read receipts."
+  ],
+  "查看并打印各实验室门口的签到二维码。": [
+    "查看並打印各實驗室門口的簽到二維碼。",
+    "View and print entrance check-in codes for each lab."
+  ],
+  "查看预约后未到场签到的记录与累计次数。": [
+    "查看預約後未到場簽到的記錄與累計次數。",
+    "Review missed booking check-ins and totals."
+  ],
+  "实验室与数据": [
+    "實驗室與數據",
+    "Labs and data"
+  ],
+  "维护实验室开放时间、容量和联系方式。共": [
+    "維護實驗室開放時間、容量和聯繫方式。共",
+    "Manage opening hours, capacity and contacts. Open labs:"
+  ],
+  "间开放。": [
+    "間開放。",
+    "."
+  ],
+  "查看预约统计并导出 Excel。": [
+    "查看預約統計並導出 Excel。",
+    "Review booking statistics and export to Excel."
+  ],
+  "邮件发送记录": [
+    "郵件發送記錄",
+    "Email delivery log"
+  ],
+  "查看通知邮件的收件人、主题、时间与发送状态。": [
+    "查看通知郵件的收件人、主題、時間與發送狀態。",
+    "View recipients, subjects, times and delivery status of notification emails."
+  ],
+  "查看队长自助重置密码的尝试记录。": [
+    "查看隊長自助重置密碼的嘗試記錄。",
+    "Review captain self-service password reset attempts."
+  ],
+  "账号与配置": [
+    "帳號與配置",
+    "Accounts and settings"
+  ],
+  "查看全部账号（共": [
+    "查看全部帳號（共",
+    "View all accounts (total:"
+  ],
+  "个），新建、编辑或重置密码。": [
+    "個），新建、編輯或重置密碼。",
+    "), create and edit accounts, or reset passwords."
+  ],
+  "按实验室和日期安排值班管理员。": [
+    "按實驗室和日期安排值班管理員。",
+    "Schedule duty administrators by lab and date."
+  ],
+  "主要工具清单": [
+    "主要工具清單",
+    "Major tool catalog"
+  ],
+  "维护工具名称、总数量和是否计入主要库存。": [
+    "維護工具名稱、總數量和是否計入主要庫存。",
+    "Manage tool names, total quantities and inclusion in major inventory."
+  ],
+  "修改测试预约": [
+    "修改測試預約",
+    "Edit test booking"
+  ],
+  "修改后将重新进入待审核状态。": [
+    "修改後將重新進入待審核狀態。",
+    "Edited bookings must be reviewed again."
+  ],
+  "填写时段与同行人员，提交后等待管理员审核。": [
+    "填寫時段與同行人員，提交後等待管理員審核。",
+    "Enter a time slot and companions, then submit for administrator review."
+  ],
+  "当前没有可用实验室，请联系管理员。": [
+    "當前沒有可用實驗室，請聯繫管理員。",
+    "No labs are available. Please contact an administrator."
+  ],
+  "正在保存…": [
+    "正在保存…",
+    "Saving…"
+  ],
+  "正在提交…": [
+    "正在提交…",
+    "Submitting…"
+  ],
+  "时段": [
+    "時段",
+    "Time slot"
+  ],
+  "实验室": [
+    "實驗室",
+    "Lab"
+  ],
+  "请选择": [
+    "請選擇",
+    "Please select"
+  ],
+  "（容量": [
+    "（容量",
+    "(Capacity:"
+  ],
+  "人，开放": [
+    "人，開放",
+    "people; open:"
+  ],
+  "人": [
+    "人",
+    "people"
+  ],
+  "日期": [
+    "日期",
+    "Date"
+  ],
+  "当天开始时间": [
+    "當天開始時間",
+    "Start time"
+  ],
+  "当天结束时间": [
+    "當天結束時間",
+    "End time"
+  ],
+  "快速设置时长": [
+    "快速設置時長",
+    "Quick duration"
+  ],
+  "30 分钟": [
+    "30 分鐘",
+    "30 minutes"
+  ],
+  "45 分钟": [
+    "45 分鐘",
+    "45 minutes"
+  ],
+  "1 小时": [
+    "1 小時",
+    "1 hour"
+  ],
+  "2 小时": [
+    "2 小時",
+    "2 hours"
+  ],
+  "4 小时": [
+    "4 小時",
+    "4 hours"
+  ],
+  "查看当天占用 ↗": [
+    "查看當天佔用 ↗",
+    "View availability for this day ↗"
+  ],
+  "单次时长不得超过 1 小时，且须在实验室开放时间内。不可预约已经过去的时间。与他人已通过预约重叠不超过 30 分钟不算冲突。": [
+    "單次時長不得超過 1 小時，且須在實驗室開放時間內。不可預約已經過去的時間。與他人已通過預約重疊不超過 30 分鐘不算衝突。",
+    "Bookings must be at most one hour, within opening hours and in the future. Overlaps up to 30 minutes with approved bookings are allowed."
+  ],
+  "联系方式与用途": [
+    "聯繫方式與用途",
+    "Contact details and purpose"
+  ],
+  "队长本人联系方式（手机号）": [
+    "隊長本人聯繫方式（手機號）",
+    "Captain's mobile number"
+  ],
+  "队长邮箱": [
+    "隊長郵箱",
+    "Captain's email"
+  ],
+  "11 位手机号": [
+    "11 位手機號",
+    "11-digit mobile number"
+  ],
+  "用于接收审核结果": [
+    "用於接收審核結果",
+    "For review notifications"
+  ],
+  "用途": [
+    "用途",
+    "Purpose"
+  ],
+  "测试同行人员": [
+    "測試同行人員",
+    "Test companions"
+  ],
+  "可多选本队队员。若有名单外人员，请勾选“其他”并填写其姓名、学号和联系方式（手机号或邮箱）。": [
+    "可多選本隊隊員。若有名單外人員，請勾選“其他”並填寫其姓名、學號和聯繫方式（手機號或郵箱）。",
+    "Select team members. For anyone else, select Other and enter their name, student ID and mobile number or email."
+  ],
+  "当前队伍暂无队员名单，如需其他人同行请勾选“其他”。": [
+    "當前隊伍暫無隊員名單，如需其他人同行請勾選“其他”。",
+    "No team roster is available. Select Other to add companions."
+  ],
+  "其他": [
+    "其他",
+    "Other"
+  ],
+  "请填写其他人员信息，可添加多行，每项均必填。": [
+    "請填寫其他人員信息，可添加多行，每項均必填。",
+    "Add other companions below. Every field is required; more rows can be added."
+  ],
+  "姓名": [
+    "姓名",
+    "Name"
+  ],
+  "联系方式（手机号或邮箱）": [
+    "聯繫方式（手機號或郵箱）",
+    "Contact (mobile or email)"
+  ],
+  "删除这一行": [
+    "刪除這一行",
+    "Remove this row"
+  ],
+  "删除": [
+    "刪除",
+    "Delete"
+  ],
+  "＋ 添加其他人员": [
+    "＋ 添加其他人員",
+    "＋ Add another companion"
+  ],
+  "保存并重新提交审核": [
+    "保存並重新提交審核",
+    "Save and resubmit for review"
+  ],
+  "返回申请记录": [
+    "返回申請記錄",
+    "Back to applications"
+  ],
+  "查看我的预约": [
+    "查看我的預約",
+    "View my bookings"
+  ],
+  "预约已提交": [
+    "預約已提交",
+    "Booking submitted"
+  ],
+  "提交成功": [
+    "提交成功",
+    "Submitted successfully"
+  ],
+  "已提交测试申请，等待管理员审核。请遵守实验室规则，听从管理员安排；不得私自拿走或损坏实验室仪器、工具和材料；使用结束后请整理场地并按时离开。": [
+    "已提交測試申請，等待管理員審核。請遵守實驗室規則，聽從管理員安排；不得私自拿走或損壞實驗室儀器、工具和材料；使用結束後請整理場地並按時離開。",
+    "Your test application has been submitted for review. Follow lab rules and administrator instructions. Do not remove or damage instruments, tools or materials. Clean the area and leave on time."
+  ],
+  "同行人员": [
+    "同行人員",
+    "Companions"
+  ],
+  "联系方式": [
+    "聯繫方式",
+    "Contact details"
+  ],
+  "状态": [
+    "狀態",
+    "Status"
+  ],
+  "审核通过后，请在开始前": [
+    "審核通過後，請在開始前",
+    "Once approved, arrive from"
+  ],
+  "分钟至结束前到场，扫描实验室门口的二维码签到。": [
+    "分鐘至結束前到場，掃描實驗室門口的二維碼簽到。",
+    "minutes before the start and before the end, and scan the lab entrance code to check in."
+  ],
+  "查看申请记录": [
+    "查看申請記錄",
+    "View applications"
+  ],
+  "再预约一个时段": [
+    "再預約一個時段",
+    "Book another time slot"
+  ],
+  "返回工作台": [
+    "返回工作台",
+    "Back to dashboard"
+  ],
+  "距开始超过 30 分钟可自行修改或取消；借用中的工具可在此办理归还。": [
+    "距開始超過 30 分鐘可自行修改或取消；借用中的工具可在此辦理歸還。",
+    "Edit or cancel bookings more than 30 minutes before the start. Return borrowed tools here."
+  ],
+  "＋ 测试预约": [
+    "＋ 測試預約",
+    "＋ Test booking"
+  ],
+  "＋ 工具借用": [
+    "＋ 工具借用",
+    "＋ Tool loan"
+  ],
+  "测试申请记录": [
+    "測試申請記錄",
+    "Test applications"
+  ],
+  "工具借用申请记录": [
+    "工具借用申請記錄",
+    "Tool loan applications"
+  ],
+  "签到": [
+    "簽到",
+    "Check-in"
+  ],
+  "操作": [
+    "操作",
+    "Actions"
+  ],
+  "修改": [
+    "修改",
+    "Edit"
+  ],
+  "取消": [
+    "取消",
+    "Cancel"
+  ],
+  "取消中…": [
+    "取消中…",
+    "Cancelling…"
+  ],
+  "确定取消该预约？": [
+    "確定取消該預約？",
+    "Cancel this booking?"
+  ],
+  "暂无测试申请记录。": [
+    "暫無測試申請記錄。",
+    "No test applications yet."
+  ],
+  "借用中的记录可在此办理归还；逾期亦视为借用中，需上传归还照片。": [
+    "借用中的記錄可在此辦理歸還；逾期亦視為借用中，需上傳歸還照片。",
+    "Return active or overdue loans here. A return photo is required for captains and regular administrators."
+  ],
+  "无法自行更改": [
+    "無法自行更改",
+    "Cannot change this booking yourself"
+  ],
+  "我知道了": [
+    "我知道了",
+    "Understood"
+  ],
+  "距测试开始不足30分钟，无法自行更改。如需取消请联系管理员": [
+    "距測試開始不足30分鐘，無法自行更改。如需取消請聯繫管理員",
+    "You cannot change a booking within 30 minutes of its start. Contact an administrator to cancel"
+  ],
+  "待审核": [
+    "待審核",
+    "Pending review"
+  ],
+  "已通过": [
+    "已通過",
+    "Approved"
+  ],
+  "已驳回": [
+    "已駁回",
+    "Rejected"
+  ],
+  "已拒绝": [
+    "已拒絕",
+    "Rejected"
+  ],
+  "已取消": [
+    "已取消",
+    "Cancelled"
+  ],
+  "借用中": [
+    "借用中",
+    "Borrowed"
+  ],
+  "已归还": [
+    "已歸還",
+    "Returned"
+  ],
+  "逾期": [
+    "逾期",
+    "Overdue"
+  ],
+  "归还工具": [
+    "歸還工具",
+    "Return tools"
+  ],
+  "实验室：": [
+    "實驗室：",
+    "Lab:"
+  ],
+  "工具：": [
+    "工具：",
+    "Tools:"
+  ],
+  "借用时间：": [
+    "借用時間：",
+    "Borrowed at:"
+  ],
+  "预计归还：": [
+    "預計歸還：",
+    "Expected return:"
+  ],
+  "借用照片：": [
+    "借用照片：",
+    "Borrowing photo:"
+  ],
+  "借用照片": [
+    "借用照片",
+    "Borrowing photo"
+  ],
+  "归还照片": [
+    "歸還照片",
+    "Return photo"
+  ],
+  "归还时照片（必填，jpg/png/webp，不超过 5MB）": [
+    "歸還時照片（必填，jpg/png/webp，不超過 5MB）",
+    "Return photo (required; JPG/PNG/WebP, max 5 MB)"
+  ],
+  "总管理员确认归还无需上传照片。": [
+    "總管理員確認歸還無需上傳照片。",
+    "Super administrators can confirm returns without uploading a photo."
+  ],
+  "确认归还": [
+    "確認歸還",
+    "Confirm return"
+  ],
+  "返回": [
+    "返回",
+    "Back"
+  ],
+  "我的工具借用": [
+    "我的工具借用",
+    "My tool loans"
+  ],
+  "借用中的记录可点击“归还”并上传归还照片。": [
+    "借用中的記錄可點擊“歸還”並上傳歸還照片。",
+    "Select Return for an active loan and upload a return photo."
+  ],
+  "＋ 新建借用登记": [
+    "＋ 新建借用登記",
+    "＋ New tool loan"
+  ],
+  "借用队长": [
+    "借用隊長",
+    "Borrowing captain"
+  ],
+  "队伍 / 组员": [
+    "隊伍 / 組員",
+    "Team / members"
+  ],
+  "工具": [
+    "工具",
+    "Tools"
+  ],
+  "借用 / 预计归还 / 实际归还": [
+    "借用 / 預計歸還 / 實際歸還",
+    "Borrowed / expected / actual return"
+  ],
+  "照片": [
+    "照片",
+    "Photos"
+  ],
+  "借：": [
+    "借：",
+    "Borrowed:"
+  ],
+  "预计还：": [
+    "預計還：",
+    "Due:"
+  ],
+  "实还：": [
+    "實還：",
+    "Returned:"
+  ],
+  "实还：—": [
+    "實還：—",
+    "Returned: —"
+  ],
+  "归还": [
+    "歸還",
+    "Return"
+  ],
+  "暂无借用记录。": [
+    "暫無借用記錄。",
+    "No tool loan records."
+  ],
+  "工具借用登记": [
+    "工具借用登記",
+    "Register tool loan"
+  ],
+  "借用和归还时均需拍照留存；数量不能超过剩余库存。": [
+    "借用和歸還時均需拍照留存；數量不能超過剩餘庫存。",
+    "Captains must provide borrowing and return photos. Quantities must not exceed available stock."
+  ],
+  "借用后 1 小时": [
+    "借用後 1 小時",
+    "1 hour after borrowing"
+  ],
+  "借用时间": [
+    "借用時間",
+    "Borrowed at"
+  ],
+  "预计归还时间": [
+    "預計歸還時間",
+    "Expected return time"
+  ],
+  "本人联系方式（手机号）": [
+    "本人聯繫方式（手機號）",
+    "Your mobile number"
+  ],
+  "借用工具": [
+    "借用工具",
+    "Tools to borrow"
+  ],
+  "请从清单中选择工具。「其他」需手填名称，且不计入库存统计。数量不能超过该工具剩余可借件数。": [
+    "請從清單中選擇工具。「其他」需手填名稱，且不計入庫存統計。數量不能超過該工具剩餘可借件數。",
+    "Choose from the catalog. For Other, enter a name; uncatalogued tools are excluded from inventory. Do not exceed available stock."
+  ],
+  "（剩余": [
+    "（剩餘",
+    "(Available:"
+  ],
+  "其他工具名称": [
+    "其他工具名稱",
+    "Other tool name"
+  ],
+  "请填写工具名称": [
+    "請填寫工具名稱",
+    "Enter the tool name"
+  ],
+  "数量": [
+    "數量",
+    "Quantity"
+  ],
+  "＋ 添加一件工具": [
+    "＋ 添加一件工具",
+    "＋ Add a tool"
+  ],
+  "借用时照片（必填，jpg/png/webp，不超过 5MB）": [
+    "借用時照片（必填，jpg/png/webp，不超過 5MB）",
+    "Borrowing photo (required; JPG/PNG/WebP, max 5 MB)"
+  ],
+  "提交借用登记": [
+    "提交借用登記",
+    "Submit tool loan"
+  ],
+  "我的借用记录": [
+    "我的借用記錄",
+    "My loan records"
+  ],
+  "主要工具库存": [
+    "主要工具庫存",
+    "Major tool inventory"
+  ],
+  "维护清单": [
+    "維護清單",
+    "Edit catalog"
+  ],
+  "总数": [
+    "總數",
+    "Total"
+  ],
+  "已借": [
+    "已借",
+    "Borrowed"
+  ],
+  "剩余可借": [
+    "剩餘可借",
+    "Available"
+  ],
+  "尚未配置主要工具。": [
+    "尚未配置主要工具。",
+    "No major tools configured."
+  ],
+  "请先在清单中添加。": [
+    "請先在清單中添加。",
+    "Add tools to the catalog first."
+  ],
+  "请联系总管理员维护清单。": [
+    "請聯繫總管理員維護清單。",
+    "Ask the super administrator to update the catalog."
+  ],
+  "全部": [
+    "全部",
+    "All"
+  ],
+  "导出 Excel": [
+    "導出 Excel",
+    "Export Excel"
+  ],
+  "实验室占用视图": [
+    "實驗室佔用視圖",
+    "Lab schedule"
+  ],
+  "还没有实验室。": [
+    "還沒有實驗室。",
+    "No labs yet."
+  ],
+  "视图": [
+    "視圖",
+    "View"
+  ],
+  "按日": [
+    "按日",
+    "Day"
+  ],
+  "按周": [
+    "按周",
+    "Week"
+  ],
+  "查看": [
+    "查看",
+    "View"
+  ],
+  "· 开放": [
+    "· 開放",
+    "· Open"
+  ],
+  "上一": [
+    "上一",
+    "Previous"
+  ],
+  "下一": [
+    "下一",
+    "Next"
+  ],
+  "周": [
+    "周",
+    "week"
+  ],
+  "天": [
+    "天",
+    "day"
+  ],
+  "时间": [
+    "時間",
+    "Time"
+  ],
+  "暂无预约，可在开放时间内提交测试申请。": [
+    "暫無預約，可在開放時間內提交測試申請。",
+    "No bookings. You may apply for a time within opening hours."
+  ],
+  "该实验室开放时间无效，无法展示时段。": [
+    "該實驗室開放時間無效，無法展示時段。",
+    "Opening hours are invalid; time slots cannot be displayed."
+  ],
+  "密码规则": [
+    "密碼規則",
+    "Password requirements"
+  ],
+  "首次登录步骤": [
+    "首次登錄步驟",
+    "First login steps"
+  ],
+  "登录成功": [
+    "登錄成功",
+    "Logged in"
+  ],
+  "进入工作台": [
+    "進入工作台",
+    "Go to dashboard"
+  ],
+  "请先修改初始密码": [
+    "請先修改初始密碼",
+    "Change your initial password first"
+  ],
+  "你正在使用初始密码（学号）。为保障账号安全，请先按下列规则设置新密码后再预约或使用其他功能。": [
+    "你正在使用初始密碼（學號）。為保障帳號安全，請先按下列規則設置新密碼後再預約或使用其他功能。",
+    "You are using your initial password (student ID). Set a new password below before booking or using other features."
+  ],
+  "保存后会自动回到刚才扫码的签到页面。": [
+    "保存後會自動回到剛才掃碼的簽到頁面。",
+    "After saving, you will return to the check-in page you scanned."
+  ],
+  "当前密码": [
+    "當前密碼",
+    "Current password"
+  ],
+  "初始密码即学号": [
+    "初始密碼即學號",
+    "Your initial password is your student ID"
+  ],
+  "新密码": [
+    "新密碼",
+    "New password"
+  ],
+  "确认新密码": [
+    "確認新密碼",
+    "Confirm new password"
+  ],
+  "总管理员改密建议使用高强度密码（下方规则供参考），但不强制。仍须填写当前密码、两次输入一致，且不能与旧密码或其他管理员密码相同。": [
+    "總管理員改密建議使用高強度密碼（下方規則供參考），但不強制。仍須填寫當前密碼、兩次輸入一致，且不能與舊密碼或其他管理員密碼相同。",
+    "A strong password is recommended for super administrators. Enter the current password and matching new passwords, different from your old password and other administrators' passwords."
+  ],
+  "输入时会实时勾选已满足的规则，全部满足后方可保存。服务器端会再次校验。": [
+    "輸入時會實時勾選已滿足的規則，全部滿足後方可保存。服務器端會再次校驗。",
+    "Requirements update as you type. Meet all requirements to save; the server validates again."
+  ],
+  "新密码还须与其他管理员的密码不同，保存时由系统校验。": [
+    "新密碼還須與其他管理員的密碼不同，保存時由系統校驗。",
+    "The server also checks that the password differs from other administrators' passwords."
+  ],
+  "保存并继续": [
+    "保存並繼續",
+    "Save and continue"
+  ],
+  "保存": [
+    "保存",
+    "Save"
+  ],
+  "长度不少于 6 位": [
+    "長度不少於 6 位",
+    "At least 6 characters"
+  ],
+  "长度不少于 12 位": [
+    "長度不少於 12 位",
+    "At least 12 characters"
+  ],
+  "包含大写字母": [
+    "包含大寫字母",
+    "Contains an uppercase letter"
+  ],
+  "包含小写字母": [
+    "包含小寫字母",
+    "Contains a lowercase letter"
+  ],
+  "包含至少一个特殊符号（非字母数字字符）": [
+    "包含至少一個特殊符號（非字母數字字符）",
+    "Contains a special character (not a letter or digit)"
+  ],
+  "不能与学号相同": [
+    "不能與學號相同",
+    "Different from your student ID"
+  ],
+  "不能与当前密码相同": [
+    "不能與當前密碼相同",
+    "Different from the current password"
+  ],
+  "两次输入的新密码一致": [
+    "兩次輸入的新密碼一致",
+    "New passwords match"
+  ],
+  "一名队友的姓名": [
+    "一名隊友的姓名",
+    "A teammate's name"
+  ],
+  "队友学号": [
+    "隊友學號",
+    "Teammate's student ID"
+  ],
+  "本人姓名": [
+    "本人姓名",
+    "Your name"
+  ],
+  "本人学号": [
+    "本人學號",
+    "Your student ID"
+  ],
+  "验证身份并重置密码": [
+    "驗證身份並重置密碼",
+    "Verify identity and reset password"
+  ],
+  "重置密码": [
+    "重置密碼",
+    "Reset password"
+  ],
+  "提示": [
+    "提示",
+    "Notice"
+  ],
+  "无法继续": [
+    "無法繼續",
+    "Unable to continue"
+  ],
+  "返回首页": [
+    "返回首頁",
+    "Back to home"
+  ],
+  "访问已被禁止": [
+    "訪問已被禁止",
+    "Access blocked"
+  ],
+  "当前 IP 或设备已被限制访问登录和业务页面。": [
+    "當前 IP 或設備已被限制訪問登錄和業務頁面。",
+    "This IP address or device is blocked from login and application pages."
+  ],
+  "原因：": [
+    "原因：",
+    "Reason:"
+  ],
+  "到期时间：": [
+    "到期時間：",
+    "Expires:"
+  ],
+  "该限制为永久，除非管理员解除。": [
+    "該限制為永久，除非管理員解除。",
+    "This restriction is permanent unless lifted by an administrator."
+  ],
+  "如有疑问，请联系总管理员。": [
+    "如有疑問，請聯繫總管理員。",
+    "Contact a super administrator if you have questions."
+  ],
+  "预约签到": [
+    "預約簽到",
+    "Booking check-in"
+  ],
+  "待签到预约": [
+    "待簽到預約",
+    "Bookings awaiting check-in"
+  ],
+  "到场后点“二维码签到”": [
+    "到場後點“二維碼簽到”",
+    "Tap QR check-in when you arrive"
+  ],
+  "到达实验室后，点下面的“二维码签到”：先确认安全承诺，再用手机相机扫描实验室门口的二维码即可签到（也可以直接用手机自带相机扫码，打开签到页面后确认）。签到窗口：开始前": [
+    "到達實驗室後，點下面的“二維碼簽到”：先確認安全承諾，再用手機相機掃描實驗室門口的二維碼即可簽到（也可以直接用手機自帶相機掃碼，打開簽到頁面後確認）。簽到窗口：開始前",
+    "After arrival, tap QR check-in, accept the safety pledge and scan the entrance code. You can also scan with your phone camera and confirm on the page. Check-in opens"
+  ],
+  "分钟至结束时间。": [
+    "分鐘至結束時間。",
+    "minutes before the start and closes at the end."
+  ],
+  "签到开放后可用": [
+    "簽到開放後可用",
+    "Available when check-in opens"
+  ],
+  "二维码签到 ·": [
+    "二維碼簽到 ·",
+    "QR check-in ·"
+  ],
+  "开放": [
+    "開放",
+    "opens"
+  ],
+  "签到实验室：": [
+    "簽到實驗室：",
+    "Check-in lab:"
+  ],
+  "开始扫码": [
+    "開始掃碼",
+    "Start scanning"
+  ],
+  "扫描签到二维码": [
+    "掃描簽到二維碼",
+    "Scan check-in QR code"
+  ],
+  "拍照 / 选择二维码图片": [
+    "拍照 / 選擇二維碼圖片",
+    "Take photo / choose QR image"
+  ],
+  "重新扫码": [
+    "重新掃碼",
+    "Scan again"
+  ],
+  "完成": [
+    "完成",
+    "Done"
+  ],
+  "关闭": [
+    "關閉",
+    "Close"
+  ],
+  "签到前安全确认": [
+    "簽到前安全確認",
+    "Safety pledge before check-in"
+  ],
+  "我已阅读并承诺遵守以上要求": [
+    "我已閱讀並承諾遵守以上要求",
+    "I have read and agree to all requirements above"
+  ],
+  "本时段预约申请表上的所有人员均已到场，无冒名或替签。": [
+    "本時段預約申請表上的所有人員均已到場，無冒名或替簽。",
+    "Everyone listed on this booking is present. No impersonation or proxy check-in."
+  ],
+  "全体人员服从现场管理员的安排和指挥。": [
+    "全體人員服從現場管理員的安排和指揮。",
+    "Everyone must follow instructions from the administrator on site."
+  ],
+  "爱护实验室设备，不得损坏、私自拆卸或带走任何仪器和工具。": [
+    "愛護實驗室設備，不得損壞、私自拆卸或帶走任何儀器和工具。",
+    "Protect lab equipment. Do not damage, dismantle or remove instruments or tools without permission."
+  ],
+  "进行加载、切割、钻孔等操作时必须佩戴护目镜和手套，长发束起。": [
+    "進行加載、切割、鑽孔等操作時必須佩戴護目鏡和手套，長髮束起。",
+    "Wear goggles and gloves for loading, cutting and drilling. Tie back long hair."
+  ],
+  "电动工具、热熔胶枪用完立即断电，不得无人看管。": [
+    "電動工具、熱熔膠槍用完立即斷電，不得無人看管。",
+    "Unplug power tools and glue guns immediately after use. Never leave them unattended."
+  ],
+  "实验室内禁止饮食、吸烟，保持消防通道畅通。": [
+    "實驗室內禁止飲食、吸煙，保持消防通道暢通。",
+    "Do not eat, drink or smoke in the lab. Keep fire exits clear."
+  ],
+  "发生受伤、设备异常或火情时立即停止操作并报告现场管理员。": [
+    "發生受傷、設備異常或火情時立即停止操作並報告現場管理員。",
+    "Stop immediately and alert the administrator if anyone is injured, equipment malfunctions or fire occurs."
+  ],
+  "离开前清理台面，工具按原位归还。": [
+    "離開前清理台面，工具按原位歸還。",
+    "Clean work surfaces and return tools to their original places before leaving."
+  ],
+  "继续不签到，可能会被限制预约资格。如果无法到场，请提前在“申请记录”中取消预约。": [
+    "繼續不簽到，可能會被限制預約資格。如果無法到場，請提前在“申請記錄”中取消預約。",
+    "Repeated missed check-ins may lead to booking restrictions. If you cannot attend, cancel in Applications in advance."
+  ],
+  "置顶": [
+    "置頂",
+    "Pinned"
+  ],
+  "未读": [
+    "未讀",
+    "Unread"
+  ],
+  "发布人：": [
+    "發佈人：",
+    "Published by:"
+  ],
+  "最近修改：": [
+    "最近修改：",
+    "Last edited:"
+  ],
+  "查看详情": [
+    "查看詳情",
+    "View details"
+  ],
+  "暂无公告。": [
+    "暫無公告。",
+    "No announcements."
+  ],
+  "置顶的公告在前，其余按发布时间从新到旧排列。": [
+    "置頂的公告在前，其餘按發佈時間從新到舊排列。",
+    "Pinned announcements appear first; others are ordered newest first."
+  ],
+  "发布公告": [
+    "發佈公告",
+    "Publish announcement"
+  ],
+  "我的公告": [
+    "我的公告",
+    "My announcements"
+  ],
+  "← 返回公告列表": [
+    "← 返回公告列表",
+    "← Back to announcements"
+  ],
+  "实际账号：": [
+    "實際帳號：",
+    "Actual account:"
+  ],
+  "· 发布时间：": [
+    "· 發佈時間：",
+    "· Published:"
+  ],
+  "阅读情况": [
+    "閱讀情況",
+    "Read receipts"
+  ],
+  "编辑": [
+    "編輯",
+    "Edit"
+  ],
+  "确定删除这条公告？阅读记录也会一并删除。": [
+    "確定刪除這條公告？閱讀記錄也會一並刪除。",
+    "Delete this announcement and its read receipts?"
+  ],
+  "普通": [
+    "普通",
+    "Normal"
+  ],
+  "重要": [
+    "重要",
+    "Important"
+  ],
+  "紧急": [
+    "緊急",
+    "Urgent"
+  ],
+  "低": [
+    "低",
+    "Low"
+  ],
+  "中": [
+    "中",
+    "Medium"
+  ],
+  "高危": [
+    "高危",
+    "High risk"
+  ],
+  "严重": [
+    "嚴重",
+    "Critical"
+  ],
+  "队长": [
+    "隊長",
+    "Captain"
+  ],
+  "队伍": [
+    "隊伍",
+    "Team"
+  ],
+  "与其他待审核预约重叠超过 30 分钟": [
+    "與其他待審核預約重疊超過 30 分鐘",
+    "Overlaps other pending bookings by more than 30 minutes"
+  ],
+  "理由：": [
+    "理由：",
+    "Reason:"
+  ],
+  "通过": [
+    "通過",
+    "Approve"
+  ],
+  "拒绝": [
+    "拒絕",
+    "Reject"
+  ],
+  "拒绝申请": [
+    "拒絕申請",
+    "Reject application"
+  ],
+  "拒绝理由（必填）": [
+    "拒絕理由（必填）",
+    "Reason for rejection (required)"
+  ],
+  "请认真、文明填写拒绝理由": [
+    "請認真、文明填寫拒絕理由",
+    "Enter a clear, respectful explanation"
+  ],
+  "确认拒绝": [
+    "確認拒絕",
+    "Confirm rejection"
+  ],
+  "暂无申请。": [
+    "暫無申請。",
+    "No applications."
+  ],
+  "注意：拒绝理由将自动发送到队长邮箱，请认真、文明填写。": [
+    "注意：拒絕理由將自動發送到隊長郵箱，請認真、文明填寫。",
+    "The rejection reason will be emailed to the captain. Please write clearly and respectfully."
+  ],
+  "（未填邮箱）": [
+    "（未填郵箱）",
+    "(no email)"
+  ],
+  "未签到": [
+    "未簽到",
+    "Not checked in"
+  ],
+  "已签到": [
+    "已簽到",
+    "Checked in"
+  ],
+  "未到签到时间": [
+    "未到簽到時間",
+    "Check-in not open"
+  ],
+  "签到时间已过": [
+    "簽到時間已過",
+    "Check-in closed"
+  ],
+  "已签到过": [
+    "已簽到過",
+    "Already checked in"
+  ],
+  "确认签到": [
+    "確認簽到",
+    "Confirm check-in"
+  ],
+  "签到未完成": [
+    "簽到未完成",
+    "Check-in incomplete"
+  ],
+  "请先登录": [
+    "請先登錄",
+    "Please log in first"
+  ],
+  "请求无效。": [
+    "請求無效。",
+    "Invalid request."
+  ],
+  "表单已过期，请刷新后重试。": [
+    "表單已過期，請刷新後重試。",
+    "This form has expired. Refresh the page and try again."
+  ],
+  "页面不存在。": [
+    "頁面不存在。",
+    "Page not found."
+  ],
+  "服务器繁忙，请稍后重试。": [
+    "服務器繁忙，請稍後重試。",
+    "The server is busy. Please try again later."
+  ],
+  "上传文件过大。": [
+    "上傳文件過大。",
+    "The uploaded file is too large."
+  ],
+  "没有权限执行该操作。": [
+    "沒有權限執行該操作。",
+    "You do not have permission for this action."
+  ],
+  "请上传照片。": [
+    "請上傳照片。",
+    "Please upload a photo."
+  ],
+  "照片不能超过 5MB。": [
+    "照片不能超過 5MB。",
+    "Photos must not exceed 5 MB."
+  ],
+  "照片仅支持 jpg、png、webp 格式。": [
+    "照片僅支持 jpg、png、webp 格式。",
+    "Photos must be JPG, PNG or WebP."
+  ],
+  "已登记归还。": [
+    "已登記歸還。",
+    "Tool return recorded."
+  ],
+  "该记录已归还。": [
+    "該記錄已歸還。",
+    "This loan has already been returned."
+  ],
+  "只能归还自己的借用记录。": [
+    "只能歸還自己的借用記錄。",
+    "You may only return your own loans."
+  ],
+  "工具借用已登记。": [
+    "工具借用已登記。",
+    "Tool loan registered."
+  ],
+  "仅参赛队长可登记工具借用。": [
+    "僅參賽隊長可登記工具借用。",
+    "Only captains may register tool loans."
+  ],
+  "当前账号无权提交测试预约。": [
+    "當前帳號無權提交測試預約。",
+    "This account cannot create test bookings."
+  ],
+  "请选择实验室。": [
+    "請選擇實驗室。",
+    "Please select a lab."
+  ],
+  "请填写用途。": [
+    "請填寫用途。",
+    "Please enter a purpose."
+  ],
+  "用途不能超过 200 字。": [
+    "用途不能超過 200 字。",
+    "The purpose must not exceed 200 characters."
+  ],
+  "请填写有效的队长本人手机号。": [
+    "請填寫有效的隊長本人手機號。",
+    "Please enter the captain's valid mobile number."
+  ],
+  "请填写有效的队长邮箱。": [
+    "請填寫有效的隊長郵箱。",
+    "Please enter a valid captain email address."
+  ],
+  "结束时间必须晚于开始时间。": [
+    "結束時間必須晚於開始時間。",
+    "The end time must be after the start time."
+  ],
+  "单次预约时长不得超过 1 小时。": [
+    "單次預約時長不得超過 1 小時。",
+    "A booking must not exceed one hour."
+  ],
+  "不能预约已经过去的时间。": [
+    "不能預約已經過去的時間。",
+    "You cannot book a time in the past."
+  ],
+  "使用人数至少为 1。": [
+    "使用人數至少為 1。",
+    "At least one person is required."
+  ],
+  "该实验室已停用，无法预约。": [
+    "該實驗室已停用，無法預約。",
+    "This lab is disabled and cannot be booked."
+  ],
+  "实验室不存在。": [
+    "實驗室不存在。",
+    "Lab not found."
+  ],
+  "预约已取消。": [
+    "預約已取消。",
+    "Booking cancelled."
+  ],
+  "预约已修改并重新提交审核。": [
+    "預約已修改並重新提交審核。",
+    "Booking updated and resubmitted for review."
+  ],
+  "只能查看自己的预约。": [
+    "只能查看自己的預約。",
+    "You may only view your own bookings."
+  ],
+  "只能修改自己的预约。": [
+    "只能修改自己的預約。",
+    "You may only edit your own bookings."
+  ],
+  "只能取消自己的预约。": [
+    "只能取消自己的預約。",
+    "You may only cancel your own bookings."
+  ],
+  "该预约当前状态不可修改。": [
+    "該預約當前狀態不可修改。",
+    "This booking cannot be edited in its current state."
+  ],
+  "该预约当前状态不可取消。": [
+    "該預約當前狀態不可取消。",
+    "This booking cannot be cancelled in its current state."
+  ],
+  "当前密码不正确。": [
+    "當前密碼不正確。",
+    "The current password is incorrect."
+  ],
+  "新密码长度不能少于 6 位。": [
+    "新密碼長度不能少於 6 位。",
+    "The new password must contain at least 6 characters."
+  ],
+  "新密码必须包含大写字母。": [
+    "新密碼必須包含大寫字母。",
+    "The new password must contain an uppercase letter."
+  ],
+  "新密码必须包含小写字母。": [
+    "新密碼必須包含小寫字母。",
+    "The new password must contain a lowercase letter."
+  ],
+  "新密码必须包含至少一个特殊符号。": [
+    "新密碼必須包含至少一個特殊符號。",
+    "The new password must contain a special character."
+  ],
+  "新密码不能与学号相同。": [
+    "新密碼不能與學號相同。",
+    "The new password must differ from your student ID."
+  ],
+  "新密码不能与旧密码相同。": [
+    "新密碼不能與舊密碼相同。",
+    "The new password must differ from the old password."
+  ],
+  "两次输入的新密码不一致。": [
+    "兩次輸入的新密碼不一致。",
+    "The new passwords do not match."
+  ],
+  "新密码不能与其他管理员的密码相同。": [
+    "新密碼不能與其他管理員的密碼相同。",
+    "The new password must differ from other administrators' passwords."
+  ],
+  "密码已修改。": [
+    "密碼已修改。",
+    "Password changed."
+  ],
+  "密码已修改，已返回签到页面，请确认签到。": [
+    "密碼已修改，已返回簽到頁面，請確認簽到。",
+    "Password changed. You are back on the check-in page; please confirm your check-in."
+  ],
+  "密码已重置，请使用新密码登录。": [
+    "密碼已重置，請使用新密碼登錄。",
+    "Password reset. Please log in with your new password."
+  ],
+  "信息不匹配": [
+    "信息不匹配",
+    "The information does not match"
+  ],
+  "首次登录请先修改初始密码后再使用系统。": [
+    "首次登錄請先修改初始密碼後再使用系統。",
+    "Change your initial password before using the system."
+  ],
+  "首次使用初始密码登录，请先修改密码后再使用系统。请按页面规则设置新密码。": [
+    "首次使用初始密碼登錄，請先修改密碼後再使用系統。請按頁面規則設置新密碼。",
+    "Change your initial password before continuing. Follow the password requirements on this page."
+  ],
+  "首次使用下发密码登录，请先按规则修改密码后再使用系统。": [
+    "首次使用下發密碼登錄，請先按規則修改密碼後再使用系統。",
+    "Change your issued password before continuing."
+  ],
+  "该账号已被停用。": [
+    "該帳號已被停用。",
+    "This account is disabled."
+  ],
+  "该特批账号已超过有效期。": [
+    "該特批帳號已超過有效期。",
+    "This approved account has expired."
+  ],
+  "管理员不能自行修改密码，如需更换请联系总管理员。": [
+    "管理員不能自行修改密碼，如需更換請聯繫總管理員。",
+    "Administrators must contact a super administrator to change their password."
+  ],
+  "重试": [
+    "重試",
+    "Try again"
+  ],
+  "启用": [
+    "啓用",
+    "Enabled"
+  ],
+  "停用": [
+    "停用",
+    "Disabled"
+  ],
+  "筛选": [
+    "篩選",
+    "Filter"
+  ],
+  "开始日期": [
+    "開始日期",
+    "Start date"
+  ],
+  "结束日期": [
+    "結束日期",
+    "End date"
+  ],
+  "手机号": [
+    "手機號",
+    "Mobile number"
+  ],
+  "邮箱": [
+    "郵箱",
+    "Email"
+  ],
+  "使用人 / 学号": [
+    "使用人 / 學號",
+    "User / student ID"
+  ],
+  "使用人姓名": [
+    "使用人姓名",
+    "User name"
+  ],
+  "资料": [
+    "資料",
+    "Profile"
+  ],
+  "重新生成密码": [
+    "重新生成密碼",
+    "Regenerate password"
+  ],
+  "查看密码": [
+    "查看密碼",
+    "View password"
+  ],
+  "新增管理员": [
+    "新增管理員",
+    "Add administrator"
+  ],
+  "保存资料": [
+    "保存資料",
+    "Save profile"
+  ],
+  "保存文案": [
+    "保存文案",
+    "Save message"
+  ],
+  "未知的功能开关。": [
+    "未知的功能開關。",
+    "Unknown feature switch."
+  ],
+  "提示文案不能为空。": [
+    "提示文案不能為空。",
+    "The message cannot be empty."
+  ],
+  "提示文案没有变化。": [
+    "提示文案沒有變化。",
+    "The message is unchanged."
+  ],
+  "提示文案已保存。": [
+    "提示文案已保存。",
+    "Message saved."
+  ],
+  "开启维护模式需要二次确认：请勾选确认项后再提交。": [
+    "開啓維護模式需要二次確認：請勾選確認項後再提交。",
+    "Confirm the checkbox before enabling maintenance mode."
+  ],
+  "维护模式已开启：除总管理员外，所有访问者只会看到升级提示。": [
+    "維護模式已開啓：除總管理員外，所有訪問者只會看到升級提示。",
+    "Maintenance mode enabled. Only super administrators can access the site."
+  ],
+  "维护模式已关闭，网站恢复正常访问。": [
+    "維護模式已關閉，網站恢復正常訪問。",
+    "Maintenance mode disabled. Normal access has resumed."
+  ],
+  "设置": [
+    "設置",
+    "Settings"
+  ],
+  "名称": [
+    "名稱",
+    "Name"
+  ],
+  "总数量": [
+    "總數量",
+    "Total quantity"
+  ],
+  "主要": [
+    "主要",
+    "Major"
+  ],
+  "添加工具": [
+    "添加工具",
+    "Add tool"
+  ],
+  "新增实验室": [
+    "新增實驗室",
+    "Add lab"
+  ],
+  "开放时间": [
+    "開放時間",
+    "Opening hours"
+  ],
+  "容量": [
+    "容量",
+    "Capacity"
+  ],
+  "联系人": [
+    "聯繫人",
+    "Contact person"
+  ],
+  "联系电话": [
+    "聯繫電話",
+    "Contact number"
+  ],
+  "默认联系人": [
+    "默認聯繫人",
+    "Default contact"
+  ],
+  "备注": [
+    "備注",
+    "Notes"
+  ],
+  "说明": [
+    "說明",
+    "Description"
+  ],
+  "账号": [
+    "帳號",
+    "Account"
+  ],
+  "角色": [
+    "角色",
+    "Role"
+  ],
+  "IP": [
+    "IP",
+    "IP"
+  ],
+  "设备": [
+    "設備",
+    "Device"
+  ],
+  "结果": [
+    "結果",
+    "Result"
+  ],
+  "成功": [
+    "成功",
+    "Success"
+  ],
+  "失败": [
+    "失敗",
+    "Failed"
+  ],
+  "上一页": [
+    "上一頁",
+    "Previous page"
+  ],
+  "下一页": [
+    "下一頁",
+    "Next page"
+  ],
+  "首页": [
+    "首頁",
+    "First page"
+  ],
+  "末页": [
+    "末頁",
+    "Last page"
+  ],
+  "搜索": [
+    "搜索",
+    "Search"
+  ],
+  "清空": [
+    "清空",
+    "Clear"
+  ],
+  "统计": [
+    "統計",
+    "Statistics"
+  ],
+  "明细": [
+    "明細",
+    "Details"
+  ],
+  "合计": [
+    "合計",
+    "Total"
+  ],
+  "暂无记录。": [
+    "暫無記錄。",
+    "No records."
+  ],
+  "{role}工作台": [
+    "{role}工作台",
+    "{role} dashboard"
+  ],
+  "借用记录": [
+    "借用記錄",
+    "Loan records"
+  ],
+  "预计归还": [
+    "預計歸還",
+    "Expected return"
+  ],
+  "请填写本人姓名、学号，以及任意一名队友的姓名和学号。全部匹配后可设置符合规则的新密码。验证失败只提示“信息不匹配”。系统不提供管理员密码自助找回。": [
+    "請填寫本人姓名、學號，以及任意一名隊友的姓名和學號。全部匹配後可設置符合規則的新密碼。驗證失敗只提示“信息不匹配”。系統不提供管理員密碼自助找回。",
+    "Enter your name and student ID plus a teammate's name and student ID. If all details match, you can set a new password. Failed verification only reports a mismatch. Administrator passwords have no self-service recovery."
+  ],
+  "该队友的学号": [
+    "該隊友的學號",
+    "That teammate's student ID"
+  ],
+  "新密码（至少 6 位，须含大小写字母和特殊符号，且不能等于学号）": [
+    "新密碼（至少 6 位，須含大小寫字母和特殊符號，且不能等於學號）",
+    "New password (at least 6 characters, uppercase, lowercase and a symbol; different from student ID)"
+  ],
+  "验证并重置密码": [
+    "驗證並重置密碼",
+    "Verify and reset password"
+  ],
+  "返回登录": [
+    "返回登錄",
+    "Back to login"
+  ],
+  "姓名查询暂时不可用，请稍后重试。": [
+    "姓名查詢暫時不可用，請稍後重試。",
+    "Name lookup is temporarily unavailable. Please try again later."
+  ],
+  "提交中…": [
+    "提交中…",
+    "Submitting…"
+  ],
+  "此项": [
+    "此項",
+    "this field"
+  ],
+  "请选择 ": [
+    "請選擇 ",
+    "Please select "
+  ],
+  "请填写 ": [
+    "請填寫 ",
+    "Please enter "
+  ],
+  "超出允许范围，请检查": [
+    "超出允許範圍，請檢查",
+    " is outside the allowed range; please check"
+  ],
+  "长度不符合要求": [
+    "長度不符合要求",
+    " has an invalid length"
+  ],
+  "请填写正确的 ": [
+    "請填寫正確的 ",
+    "Please enter a valid "
+  ],
+  "还有规则未满足，请按上方提示调整后再保存。": [
+    "還有規則未滿足，請按上方提示調整後再保存。",
+    "Some requirements are not met. Update the password before saving."
+  ],
+  "（超过 5MB，请重新拍摄或压缩）": [
+    "（超過 5MB，請重新拍攝或壓縮）",
+    "(over 5 MB; retake or compress the photo)"
+  ],
+  "照片预览": [
+    "照片預覽",
+    "Photo preview"
+  ],
+  "请联系：": [
+    "請聯繫：",
+    "Please contact: "
+  ],
+  "当前浏览器不支持定位，无法在需要位置验证的实验室签到。": [
+    "當前瀏覽器不支持定位，無法在需要位置驗證的實驗室簽到。",
+    "This browser does not support location, so it cannot check in at a lab that requires location verification."
+  ],
+  "正在获取你的位置…": [
+    "正在獲取你的位置…",
+    "Getting your location…"
+  ],
+  "位置权限被拒绝。本实验室要求位置验证，请在浏览器设置里允许获取位置后重试。": [
+    "位置權限被拒絕。本實驗室要求位置驗證，請在瀏覽器設置里允許獲取位置後重試。",
+    "Location permission denied. This lab requires location verification; allow it in browser settings and retry."
+  ],
+  "获取位置超时，请到窗边或门口重试。": [
+    "獲取位置超時，請到窗邊或門口重試。",
+    "Location request timed out. Try near a window or entrance."
+  ],
+  "无法获取位置，请确认已开启手机定位后重试。": [
+    "無法獲取位置，請確認已開啓手機定位後重試。",
+    "Unable to get your location. Enable location services and retry."
+  ],
+  "当前浏览器无法打开相机（需要 HTTPS 或本机地址）。请点下方按钮拍摄二维码照片，或用手机自带相机扫码。": [
+    "當前瀏覽器無法打開相機（需要 HTTPS 或本機地址）。請點下方按鈕拍攝二維碼照片，或用手機自帶相機掃碼。",
+    "This browser cannot open the camera (HTTPS or localhost is required). Upload a QR photo below or scan using your phone's camera."
+  ],
+  "正在打开相机…": [
+    "正在打開相機…",
+    "Opening camera…"
+  ],
+  "请把镜头对准实验室门口的签到二维码。": [
+    "請把鏡頭對準實驗室門口的簽到二維碼。",
+    "Point the camera at the check-in QR code at the lab entrance."
+  ],
+  "相机无法使用或权限被拒绝。请允许相机权限，或点下方按钮拍摄二维码照片；也可以用手机自带相机扫码。": [
+    "相機無法使用或權限被拒絕。請允許相機權限，或點下方按鈕拍攝二維碼照片；也可以用手機自帶相機掃碼。",
+    "The camera is unavailable or permission was denied. Allow camera access, upload a QR photo, or scan with your phone's camera."
+  ],
+  "这不是实验室签到二维码，请对准门口张贴的签到二维码。": [
+    "這不是實驗室簽到二維碼，請對準門口張貼的簽到二維碼。",
+    "This is not a lab check-in code. Scan the code posted at the entrance."
+  ],
+  "已识别二维码，正在签到…": [
+    "已識別二維碼，正在簽到…",
+    "QR code recognized. Checking in…"
+  ],
+  "签到失败，请重试。": [
+    "簽到失敗，請重試。",
+    "Check-in failed. Please retry."
+  ],
+  "签到失败。": [
+    "簽到失敗。",
+    "Check-in failed."
+  ],
+  "二维码识别组件未能加载，请刷新页面。": [
+    "二維碼識別組件未能加載，請刷新頁面。",
+    "The QR scanner could not load. Refresh the page."
+  ],
+  "正在识别照片中的二维码…": [
+    "正在識別照片中的二維碼…",
+    "Reading the QR code in the photo…"
+  ],
+  "没有在照片里识别到二维码，请靠近一些、保持清晰后重拍。": [
+    "沒有在照片里識別到二維碼，請靠近一些、保持清晰後重拍。",
+    "No QR code was found. Move closer and retake a clear photo."
+  ],
+  "这张图片无法读取，请重新拍摄。": [
+    "這張圖片無法讀取，請重新拍攝。",
+    "This image cannot be read. Please take another photo."
+  ],
+  "还有 {missing} 项未填写，另有 {invalid} 项格式不正确": [
+    "還有 {missing} 項未填寫，另有 {invalid} 項格式不正確",
+    "{missing} fields are missing and {invalid} fields have invalid values."
+  ],
+  "还有 {count} 项未填写": [
+    "還有 {count} 項未填寫",
+    "{count} required fields are missing."
+  ],
+  "有 {count} 项格式不正确，请检查后再提交": [
+    "有 {count} 項格式不正確，請檢查後再提交",
+    "{count} fields have invalid values. Check them before submitting."
+  ],
+  "已满足 {done} / {total} 项": [
+    "已滿足 {done} / {total} 項",
+    "{done} / {total} requirements met"
+  ],
+  "单次时长不得超过 1 小时（当前 {minutes} 分钟）。": [
+    "單次時長不得超過 1 小時（當前 {minutes} 分鐘）。",
+    "Bookings cannot exceed one hour (currently {minutes} minutes)."
+  ],
+  "所选时段超出该实验室开放时间（{start}–{end}）。": [
+    "所選時段超出該實驗室開放時間（{start}–{end}）。",
+    "The selected time is outside lab opening hours ({start}–{end})."
+  ],
+  "单次时长 {minutes} 分钟，不得超过 1 小时，且须在实验室开放时间内。与他人已通过预约重叠不超过 30 分钟不算冲突。": [
+    "單次時長 {minutes} 分鐘，不得超過 1 小時，且須在實驗室開放時間內。與他人已通過預約重疊不超過 30 分鐘不算衝突。",
+    "Duration: {minutes} minutes. Bookings must be within opening hours and at most one hour. Overlaps up to 30 minutes with approved bookings are allowed."
+  ],
+  "共 {count} 人（含队长）": [
+    "共 {count} 人（含隊長）",
+    "{count} people including the captain"
+  ],
+  "已获取位置（误差约 {meters} 米）。": [
+    "已獲取位置（誤差約 {meters} 米）。",
+    "Location acquired (accuracy about {meters} m)."
+  ],
+  "服务器返回了无法识别的结果（{status}）。": [
+    "服務器返回了無法識別的結果（{status}）。",
+    "The server returned an unrecognized response ({status})."
+  ],
+  "未到签到时间（{time} 起可签到）": [
+    "未到簽到時間（{time} 起可簽到）",
+    "Check-in opens at {time}"
+  ],
+  "当前浏览器不支持定位，无法在本实验室签到。": [
+    "當前瀏覽器不支持定位，無法在本實驗室簽到。",
+    "This browser cannot provide location required for check-in at this lab."
+  ],
+  "正在获取位置…": [
+    "正在獲取位置…",
+    "Getting location…"
+  ],
+  "位置权限被拒绝，本实验室要求位置验证。请在浏览器设置里允许位置后重试。": [
+    "位置權限被拒絕，本實驗室要求位置驗證。請在瀏覽器設置里允許位置後重試。",
+    "Location permission denied. This lab requires verification; allow location in browser settings and retry."
+  ],
+  "无法获取位置（可到窗边或门口重试）。": [
+    "無法獲取位置（可到窗邊或門口重試）。",
+    "Unable to get location. Try near a window or entrance."
+  ],
+  "长度不少于 16 位": [
+    "長度不少於 16 位",
+    "At least 16 characters"
+  ],
+  "拒绝时必须填写理由。": [
+    "拒絕時必須填寫理由。",
+    "A rejection reason is required."
+  ],
+  "保留默认": [
+    "保留默認",
+    "Keep default"
+  ],
+  "已启用": [
+    "已啓用",
+    "Enabled"
+  ],
+  "已停用": [
+    "已停用",
+    "Disabled"
+  ],
+  "开启": [
+    "開啓",
+    "On"
+  ],
+  "已关闭": [
+    "已關閉",
+    "Off"
+  ],
+  "已读": [
+    "已讀",
+    "Read"
+  ],
+  "无": [
+    "無",
+    "None"
+  ],
+  "暂无": [
+    "暫無",
+    "None yet"
+  ],
+  "男": [
+    "男",
+    "Male"
+  ],
+  "女": [
+    "女",
+    "Female"
+  ],
+  "队名": [
+    "隊名",
+    "Team name"
+  ],
+  "队员": [
+    "隊員",
+    "Team member"
+  ],
+  "手机": [
+    "手機",
+    "Mobile"
+  ],
+  "登录": [
+    "登錄",
+    "Login"
+  ],
+  "单位 / 事由": [
+    "單位 / 事由",
+    "Organization / reason"
+  ],
+  "有效期": [
+    "有效期",
+    "Valid until"
+  ],
+  "单位": [
+    "單位",
+    "Organization"
+  ],
+  "事由": [
+    "事由",
+    "Reason"
+  ],
+  "有效期至": [
+    "有效期至",
+    "Valid until"
+  ],
+  "创建特批非参赛账号": [
+    "創建特批非參賽帳號",
+    "Create approved guest account"
+  ],
+  "特批非参赛账号": [
+    "特批非參賽帳號",
+    "Approved guest accounts"
+  ],
+  "姓名 / 学号": [
+    "姓名 / 學號",
+    "Name / student ID"
+  ],
+  "参赛队伍": [
+    "參賽隊伍",
+    "Competition teams"
+  ],
+  "Excel 导入参赛队伍": [
+    "Excel 導入參賽隊伍",
+    "Import teams from Excel"
+  ],
+  "下载导入模板": [
+    "下載導入模板",
+    "Download import template"
+  ],
+  "上传并预览": [
+    "上傳並預覽",
+    "Upload and preview"
+  ],
+  "Excel 或 CSV 文件": [
+    "Excel 或 CSV 文件",
+    "Excel or CSV file"
+  ],
+  "确认导入": [
+    "確認導入",
+    "Confirm import"
+  ],
+  "返回重新上传": [
+    "返回重新上傳",
+    "Back to upload"
+  ],
+  "导入预览": [
+    "導入預覽",
+    "Import preview"
+  ],
+  "导入结果": [
+    "導入結果",
+    "Import result"
+  ],
+  "错误": [
+    "錯誤",
+    "Error"
+  ],
+  "新增": [
+    "新增",
+    "New"
+  ],
+  "更新": [
+    "更新",
+    "Update"
+  ],
+  "未命名队伍": [
+    "未命名隊伍",
+    "Unnamed team"
+  ],
+  "队长：": [
+    "隊長：",
+    "Captain:"
+  ],
+  "账号状态": [
+    "帳號狀態",
+    "Account status"
+  ],
+  "当前状态": [
+    "當前狀態",
+    "Current state"
+  ],
+  "特批开通登录（仅预约）": [
+    "特批開通登錄（僅預約）",
+    "Grant login (booking only)"
+  ],
+  "未读公告": [
+    "未讀公告",
+    "Unread announcements"
+  ],
+  "未读高危告警": [
+    "未讀高危告警",
+    "Unread high-risk alerts"
+  ],
+  "停用实验室": [
+    "停用實驗室",
+    "Disable lab"
+  ],
+  "是否启用": [
+    "是否啓用",
+    "Enabled"
+  ],
+  "开放开始": [
+    "開放開始",
+    "Opening time"
+  ],
+  "开放结束": [
+    "開放結束",
+    "Closing time"
+  ],
+  "实验室名称": [
+    "實驗室名稱",
+    "Lab name"
+  ],
+  "实验室联系电话": [
+    "實驗室聯繫電話",
+    "Lab contact number"
+  ],
+  "实验室默认联系人": [
+    "實驗室默認聯繫人",
+    "Default lab contact"
+  ],
+  "保存实验室": [
+    "保存實驗室",
+    "Save lab"
+  ],
+  "修改实验室": [
+    "修改實驗室",
+    "Edit lab"
+  ],
+  "添加实验室": [
+    "添加實驗室",
+    "Add lab"
+  ],
+  "是否主要工具": [
+    "是否主要工具",
+    "Major tool"
+  ],
+  "主要工具（计入库存卡片）": [
+    "主要工具（計入庫存卡片）",
+    "Major tool (included in inventory)"
+  ],
+  "添加": [
+    "添加",
+    "Add"
+  ],
+  "总数量须为非负整数。": [
+    "總數量須為非負整數。",
+    "Total quantity must be a nonnegative integer."
+  ],
+  "请填写工具名称。": [
+    "請填寫工具名稱。",
+    "Please enter a tool name."
+  ],
+  "已添加工具。": [
+    "已添加工具。",
+    "Tool added."
+  ],
+  "已保存工具信息。": [
+    "已保存工具信息。",
+    "Tool details saved."
+  ],
+  "已删除工具。": [
+    "已刪除工具。",
+    "Tool deleted."
+  ],
+  "工具不存在。": [
+    "工具不存在。",
+    "Tool not found."
+  ],
+  "该工具仍有未归还的借用记录，不能删除。": [
+    "該工具仍有未歸還的借用記錄，不能刪除。",
+    "This tool has outstanding loans and cannot be deleted."
+  ],
+  "总数量不能少于当前已借出数量。": [
+    "總數量不能少於當前已借出數量。",
+    "Total quantity cannot be less than the quantity currently borrowed."
+  ],
+  "筛选条件": [
+    "篩選條件",
+    "Filters"
+  ],
+  "待审核申请": [
+    "待審核申請",
+    "Pending applications"
+  ],
+  "未签到记录": [
+    "未簽到記錄",
+    "Missed check-in records"
+  ],
+  "累计次数": [
+    "累計次數",
+    "Total count"
+  ],
+  "累计成功次数": [
+    "累計成功次數",
+    "Successful logins"
+  ],
+  "设备 / 浏览器 / 系统": [
+    "設備 / 瀏覽器 / 系統",
+    "Device / browser / OS"
+  ],
+  "账号 / 姓名": [
+    "帳號 / 姓名",
+    "Account / name"
+  ],
+  "操作人": [
+    "操作人",
+    "Operator"
+  ],
+  "详情": [
+    "詳情",
+    "Details"
+  ],
+  "撤销": [
+    "撤銷",
+    "Undo"
+  ],
+  "不可撤销": [
+    "不可撤銷",
+    "Cannot undo"
+  ],
+  "类型": [
+    "類型",
+    "Type"
+  ],
+  "值": [
+    "值",
+    "Value"
+  ],
+  "原因": [
+    "原因",
+    "Reason"
+  ],
+  "到期": [
+    "到期",
+    "Expiry"
+  ],
+  "解除": [
+    "解除",
+    "Unblock"
+  ],
+  "拉黑": [
+    "拉黑",
+    "Block"
+  ],
+  "解除拉黑": [
+    "解除拉黑",
+    "Unblock"
+  ],
+  "加入黑名单": [
+    "加入黑名單",
+    "Add to blocklist"
+  ],
+  "安全事件": [
+    "安全事件",
+    "Security events"
+  ],
+  "事件记录": [
+    "事件記錄",
+    "Event log"
+  ],
+  "今日事件": [
+    "今日事件",
+    "Events today"
+  ],
+  "近 7 天事件": [
+    "近 7 天事件",
+    "Events in 7 days"
+  ],
+  "最新高危（列表内）": [
+    "最新高危（列表內）",
+    "Recent high-risk events shown"
+  ],
+  "生效中的拉黑": [
+    "生效中的拉黑",
+    "Active blocks"
+  ],
+  "今日分类": [
+    "今日分類",
+    "Today's categories"
+  ],
+  "近 7 天 Top IP": [
+    "近 7 天 Top IP",
+    "Top IPs in 7 days"
+  ],
+  "最新高危事件": [
+    "最新高危事件",
+    "Recent high-risk events"
+  ],
+  "筛选与取证": [
+    "篩選與取證",
+    "Filters and evidence export"
+  ],
+  "级别": [
+    "級別",
+    "Severity"
+  ],
+  "全部类型": [
+    "全部類型",
+    "All types"
+  ],
+  "国家": [
+    "國家",
+    "Country"
+  ],
+  "路径": [
+    "路徑",
+    "Path"
+  ],
+  "参数摘要": [
+    "參數摘要",
+    "Parameter summary"
+  ],
+  "今日暂无安全事件。": [
+    "今日暫無安全事件。",
+    "No security events today."
+  ],
+  "近 7 天暂无记录。": [
+    "近 7 天暫無記錄。",
+    "No records in the past 7 days."
+  ],
+  "暂无高危事件。": [
+    "暫無高危事件。",
+    "No high-risk events."
+  ],
+  "白名单": [
+    "白名單",
+    "Allowlist"
+  ],
+  "新建白名单": [
+    "新建白名單",
+    "Add to allowlist"
+  ],
+  "暴力破解": [
+    "暴力破解",
+    "Brute force"
+  ],
+  "高频爬取": [
+    "高頻爬取",
+    "High-frequency crawling"
+  ],
+  "路径扫描": [
+    "路徑掃描",
+    "Path scan"
+  ],
+  "注入特征": [
+    "注入特徵",
+    "Injection signature"
+  ],
+  "XSS 特征": [
+    "XSS 特徵",
+    "XSS signature"
+  ],
+  "路径穿越": [
+    "路徑穿越",
+    "Path traversal"
+  ],
+  "越权访问": [
+    "越權訪問",
+    "Unauthorized access"
+  ],
+  "CSRF 校验失败": [
+    "CSRF 校驗失敗",
+    "CSRF verification failed"
+  ],
+  "频率超限": [
+    "頻率超限",
+    "Rate limit exceeded"
+  ],
+  "蜜罐访问": [
+    "蜜罐訪問",
+    "Honeypot access"
+  ],
+  "主题": [
+    "主題",
+    "Subject"
+  ],
+  "收件人": [
+    "收件人",
+    "Recipient"
+  ],
+  "发送状态": [
+    "發送狀態",
+    "Delivery status"
+  ],
+  "本地存档": [
+    "本地存檔",
+    "Local archive"
+  ],
+  "已发送": [
+    "已發送",
+    "Sent"
+  ],
+  "正文": [
+    "正文",
+    "Message body"
+  ],
+  "使用次数": [
+    "使用次數",
+    "Uses"
+  ],
+  "使用时长": [
+    "使用時長",
+    "Duration"
+  ],
+  "使用时长（分钟）": [
+    "使用時長（分鐘）",
+    "Duration (minutes)"
+  ],
+  "按实验室": [
+    "按實驗室",
+    "By lab"
+  ],
+  "按成员": [
+    "按成員",
+    "By user"
+  ],
+  "周几": [
+    "周幾",
+    "Day of week"
+  ],
+  "每周": [
+    "每周",
+    "Weekly"
+  ],
+  "指定日期": [
+    "指定日期",
+    "Specific date"
+  ],
+  "值班周期": [
+    "值班週期",
+    "Duty cycle"
+  ],
+  "值班管理员": [
+    "值班管理員",
+    "Duty administrator"
+  ],
+  "值班时间": [
+    "值班時間",
+    "Duty time"
+  ],
+  "新建值班安排": [
+    "新建值班安排",
+    "Add duty shift"
+  ],
+  "添加值班安排": [
+    "添加值班安排",
+    "Add duty shift"
+  ],
+  "创建管理员": [
+    "創建管理員",
+    "Create administrator"
+  ],
+  "学号 / 账号": [
+    "學號 / 帳號",
+    "Student ID / account"
+  ],
+  "初始密码": [
+    "初始密碼",
+    "Initial password"
+  ],
+  "使用人：": [
+    "使用人：",
+    "Assigned user:"
+  ],
+  "系统生成强密码": [
+    "系統生成強密碼",
+    "Generate strong password"
+  ],
+  "保存修改": [
+    "保存修改",
+    "Save changes"
+  ],
+  "停用账号": [
+    "停用帳號",
+    "Disable account"
+  ],
+  "启用账号": [
+    "啓用帳號",
+    "Enable account"
+  ],
+  "新建账号": [
+    "新建帳號",
+    "New account"
+  ],
+  "添加账号": [
+    "添加帳號",
+    "Add account"
+  ],
+  "批量导入": [
+    "批量導入",
+    "Bulk import"
+  ],
+  "导入账号": [
+    "導入帳號",
+    "Import accounts"
+  ],
+  "个人信息": [
+    "個人信息",
+    "Personal information"
+  ],
+  "密码重置": [
+    "密碼重置",
+    "Password reset"
+  ],
+  "登录记录": [
+    "登錄記錄",
+    "Login log"
+  ],
+  "操作日志": [
+    "操作日誌",
+    "Activity log"
+  ],
+  "普通人员操作记录": [
+    "普通人員操作記錄",
+    "User activity log"
+  ],
+  "密码重置记录": [
+    "密碼重置記錄",
+    "Password reset records"
+  ],
+  "登录 IP": [
+    "登錄 IP",
+    "Login IP"
+  ],
+  "登录时间": [
+    "登錄時間",
+    "Login time"
+  ],
+  "使用时间": [
+    "使用時間",
+    "Usage time"
+  ],
+  "新建工具": [
+    "新建工具",
+    "Add tool"
+  ],
+  "清理条件": [
+    "清理條件",
+    "Cleanup filters"
+  ],
+  "返回列表": [
+    "返回列表",
+    "Back to list"
+  ],
+  "公告标题": [
+    "公告標題",
+    "Announcement title"
+  ],
+  "公告内容": [
+    "公告內容",
+    "Announcement content"
+  ],
+  "公告级别": [
+    "公告級別",
+    "Announcement priority"
+  ],
+  "是否置顶": [
+    "是否置頂",
+    "Pinned"
+  ],
+  "发布": [
+    "發佈",
+    "Publish"
+  ],
+  "取消置顶": [
+    "取消置頂",
+    "Unpin"
+  ],
+  "启用状态": [
+    "啓用狀態",
+    "Enabled state"
+  ],
+  "已修改": [
+    "已修改",
+    "Edited"
+  ],
+  "总计": [
+    "總計",
+    "Total"
+  ],
+  "记录": [
+    "記錄",
+    "Records"
+  ],
+  "条": [
+    "條",
+    "items"
+  ],
+  "人次": [
+    "人次",
+    "person-visits"
+  ],
+  "分钟": [
+    "分鐘",
+    "minutes"
+  ],
+  "小时": [
+    "小時",
+    "hours"
+  ],
+  "时间范围": [
+    "時間範圍",
+    "Time range"
+  ],
+  "开始时间": [
+    "開始時間",
+    "Start time"
+  ],
+  "结束时间": [
+    "結束時間",
+    "End time"
+  ],
+  "星期一": [
+    "星期一",
+    "Monday"
+  ],
+  "星期二": [
+    "星期二",
+    "Tuesday"
+  ],
+  "星期三": [
+    "星期三",
+    "Wednesday"
+  ],
+  "星期四": [
+    "星期四",
+    "Thursday"
+  ],
+  "星期五": [
+    "星期五",
+    "Friday"
+  ],
+  "星期六": [
+    "星期六",
+    "Saturday"
+  ],
+  "星期日": [
+    "星期日",
+    "Sunday"
+  ],
+  "去预约": [
+    "去預約",
+    "Book now"
+  ],
+  "请确认下面是你本次的预约，阅读并承诺安全要求后，点击“确认签到”。": [
+    "請確認下面是你本次的預約，閱讀並承諾安全要求後，點擊“確認簽到”。",
+    "Confirm the booking below, read and accept the safety pledge, then select Confirm check-in."
+  ],
+  "正在签到…": [
+    "正在簽到…",
+    "Checking in…"
+  ],
+  "本实验室要求位置验证：点击确认后浏览器会请求你的位置，请选择“允许”。": [
+    "本實驗室要求位置驗證：點擊確認後瀏覽器會請求你的位置，請選擇“允許”。",
+    "This lab requires location verification. When asked by your browser, choose Allow."
+  ],
+  "签到会记录时间": [
+    "簽到會記錄時間",
+    "Check-in records the time"
+  ],
+  "、你的位置": [
+    "、你的位置",
+    ", your location"
+  ],
+  "和你当前的网络地址。签到仅限在实验室现场、扫描门口的二维码完成。": [
+    "和你當前的網絡地址。簽到僅限在實驗室現場、掃描門口的二維碼完成。",
+    "and your current IP address. Check in only on site by scanning the code at the entrance."
+  ],
+  "操作太频繁": [
+    "操作太頻繁",
+    "Too many actions"
+  ],
+  "请求次数过多，请稍后再试。": [
+    "請求次數過多，請稍後再試。",
+    "Too many requests. Please try again later."
+  ],
+  "二维码无效": [
+    "二維碼無效",
+    "Invalid QR code"
+  ],
+  "这个二维码无效或已被更换，请联系实验室管理员重新获取并扫描最新的二维码。": [
+    "這個二維碼無效或已被更換，請聯繫實驗室管理員重新獲取並掃描最新的二維碼。",
+    "This code is invalid or has been replaced. Ask the lab administrator for the latest code."
+  ],
+  "无需签到": [
+    "無需簽到",
+    "No check-in needed"
+  ],
+  "管理员账号无需签到。预约队长请用自己的账号扫码。": [
+    "管理員帳號無需簽到。預約隊長請用自己的帳號掃碼。",
+    "Administrator accounts do not need to check in. Captains should scan using their own accounts."
+  ],
+  "登录已失效，请重新登录后再签到。": [
+    "登錄已失效，請重新登錄後再簽到。",
+    "Your login has expired. Log in again before checking in."
+  ],
+  "请先阅读并勾选“我已阅读并承诺遵守以上要求”，再签到。": [
+    "請先閱讀並勾選“我已閱讀並承諾遵守以上要求”，再簽到。",
+    "Read the safety requirements and select the agreement checkbox before checking in."
+  ],
+  "你点击的预约不是当前可签到的预约，请刷新页面后重试。": [
+    "你點擊的預約不是當前可簽到的預約，請刷新頁面後重試。",
+    "The selected booking is not currently eligible for check-in. Refresh and try again."
+  ],
+  "签到成功": [
+    "簽到成功",
+    "Check-in successful"
+  ],
+  "还没到签到时间": [
+    "還沒到簽到時間",
+    "Check-in is not open yet"
+  ],
+  "已过签到时间": [
+    "已過簽到時間",
+    "Check-in has closed"
+  ],
+  "扫错实验室了": [
+    "掃錯實驗室了",
+    "Wrong lab"
+  ],
+  "没有找到可签到的预约": [
+    "沒有找到可簽到的預約",
+    "No eligible booking found"
+  ],
+  "全部预约": [
+    "全部預約",
+    "All bookings"
+  ],
+  "只看未签到": [
+    "只看未簽到",
+    "Only missing check-ins"
+  ],
+  "已占用": [
+    "已佔用",
+    "Occupied"
+  ],
+  "（停用）": [
+    "（停用）",
+    "(disabled)"
+  ],
+  "我的预约 ·": [
+    "我的預約 ·",
+    "My booking ·"
+  ],
+  "我的预约 ": [
+    "我的預約 ",
+    "My booking "
+  ],
+  "至": [
+    "至",
+    "to"
+  ],
+  "已开启": [
+    "已開啓",
+    "On"
+  ],
+  "开关": [
+    "開關",
+    "Switch"
+  ],
+  "已开启的功能": [
+    "已開啓的功能",
+    "Enabled features"
+  ],
+  "已关闭的功能": [
+    "已關閉的功能",
+    "Disabled features"
+  ],
+  "队长登录": [
+    "隊長登錄",
+    "Captain login"
+  ],
+  "忘记密码自助重置": [
+    "忘記密碼自助重置",
+    "Self-service password reset"
+  ],
+  "新建测试预约": [
+    "新建測試預約",
+    "New test booking"
+  ],
+  "修改预约": [
+    "修改預約",
+    "Edit booking"
+  ],
+  "取消预约": [
+    "取消預約",
+    "Cancel booking"
+  ],
+  "我的预约 / 申请记录": [
+    "我的預約 / 申請記錄",
+    "My bookings / applications"
+  ],
+  "查看公告": [
+    "查看公告",
+    "View announcements"
+  ],
+  "工具归还": [
+    "工具歸還",
+    "Tool return"
+  ],
+  "队长/特批账号从登录页登录；关闭后已登录的队长也会被退出。": [
+    "隊長/特批帳號從登錄頁登錄；關閉後已登錄的隊長也會被退出。",
+    "Captains and approved accounts log in here. Disabling this also logs out current captains."
+  ],
+  "登录页的“忘记密码”，通过队员信息核验后重置密码。": [
+    "登錄頁的“忘記密碼”，通過隊員信息核驗後重置密碼。",
+    "Reset a password using teammate identity verification on the login page."
+  ],
+  "登录后主动修改密码（首次登录的强制改密不受影响）。": [
+    "登錄後主動修改密碼（首次登錄的強制改密不受影響）。",
+    "Change passwords after login; required first-login changes remain available."
+  ],
+  "提交新的实验室测试预约（含 API 创建预约、冲突检测）。": [
+    "提交新的實驗室測試預約（含 API 創建預約、衝突檢測）。",
+    "Submit new lab bookings, including API booking creation and conflict checks."
+  ],
+  "修改尚未开始的预约申请。": [
+    "修改尚未開始的預約申請。",
+    "Edit booking applications before they start."
+  ],
+  "取消自己的预约申请（含 API 取消）。": [
+    "取消自己的預約申請（含 API 取消）。",
+    "Cancel your own bookings, including through the API."
+  ],
+  "查看个人的预约与申请记录（含 API 查询自己的预约）。": [
+    "查看個人的預約與申請記錄（含 API 查詢自己的預約）。",
+    "View your own bookings and applications, including through the API."
+  ],
+  "查看实验室各时段占用情况。": [
+    "查看實驗室各時段佔用情況。",
+    "View lab occupancy by time slot."
+  ],
+  "扫描实验室二维码签到，以及工作台上的签到卡片。": [
+    "掃描實驗室二維碼簽到，以及工作台上的簽到卡片。",
+    "Scan lab QR codes and use check-in cards on the dashboard."
+  ],
+  "公告列表、公告详情和强制弹窗公告。": [
+    "公告列表、公告詳情和強制彈窗公告。",
+    "Announcement lists, details and required announcement popups."
+  ],
+  "查看自己的工具借用并登记新的借用。": [
+    "查看自己的工具借用並登記新的借用。",
+    "View your own tool loans and register new loans."
+  ],
+  "为借用中的工具办理归还。": [
+    "為借用中的工具辦理歸還。",
+    "Return tools from active loans."
+  ],
+  "127.0.0.1 等本机直连地址为默认白名单，无需删除。": [
+    "127.0.0.1 等本機直連地址為默認白名單，無需刪除。",
+    "Local addresses such as 127.0.0.1 are allowed by default and do not need removal."
+  ],
+  "不能停用总管理员。": [
+    "不能停用總管理員。",
+    "Super administrator accounts cannot be disabled."
+  ],
+  "不能删除唯一的总管理员。": [
+    "不能刪除唯一的總管理員。",
+    "The only super administrator cannot be deleted."
+  ],
+  "不能删除当前登录的总管理员账号。": [
+    "不能刪除當前登錄的總管理員帳號。",
+    "You cannot delete your current super administrator account."
+  ],
+  "不能删除当前登录账号。": [
+    "不能刪除當前登錄帳號。",
+    "You cannot delete the account you are logged in with."
+  ],
+  "不能拉黑自己当前的 IP 或本机直连地址。": [
+    "不能拉黑自己當前的 IP 或本機直連地址。",
+    "You cannot block your current IP or a local address."
+  ],
+  "不能拉黑自己当前的 IP，否则可能无法继续管理。": [
+    "不能拉黑自己當前的 IP，否則可能無法繼續管理。",
+    "You cannot block your current IP, as this could lock you out."
+  ],
+  "不能拉黑自己当前的设备。": [
+    "不能拉黑自己當前的設備。",
+    "You cannot block your current device."
+  ],
+  "不能拉黑自己当前的设备，否则可能无法继续管理。": [
+    "不能拉黑自己當前的設備，否則可能無法繼續管理。",
+    "You cannot block your current device, as this could lock you out."
+  ],
+  "事件不存在。": [
+    "事件不存在。",
+    "Event not found."
+  ],
+  "值班安排不存在。": [
+    "值班安排不存在。",
+    "Duty shift not found."
+  ],
+  "公告已删除。": [
+    "公告已刪除。",
+    "Announcement deleted."
+  ],
+  "公告已更新。": [
+    "公告已更新。",
+    "Announcement updated."
+  ],
+  "内容没有变化。": [
+    "內容沒有變化。",
+    "The content is unchanged."
+  ],
+  "到期时间格式无效。": [
+    "到期時間格式無效。",
+    "Invalid expiration time format."
+  ],
+  "只能为参赛或特批人员设置密码。": [
+    "只能為參賽或特批人員設置密碼。",
+    "Passwords can only be set here for captains or approved accounts."
+  ],
+  "只能为普通管理员重新生成密码。": [
+    "只能為普通管理員重新生成密碼。",
+    "Only regular administrator passwords can be regenerated here."
+  ],
+  "只能修改普通管理员。": [
+    "只能修改普通管理員。",
+    "Only regular administrators can be edited here."
+  ],
+  "只能停用或启用普通管理员。": [
+    "只能停用或啓用普通管理員。",
+    "Only regular administrators can be enabled or disabled here."
+  ],
+  "只能删除普通管理员。": [
+    "只能刪除普通管理員。",
+    "Only regular administrators can be deleted here."
+  ],
+  "只能审核待审核的预约。": [
+    "只能審核待審核的預約。",
+    "Only pending bookings can be reviewed."
+  ],
+  "只能查看普通管理员的密码。": [
+    "只能查看普通管理員的密碼。",
+    "Only regular administrator passwords can be viewed here."
+  ],
+  "只能编辑参赛或特批人员。": [
+    "只能編輯參賽或特批人員。",
+    "Only captains and approved accounts can be edited here."
+  ],
+  "密文无法解密（查看密钥可能已更换）。请重新生成密码。": [
+    "密文無法解密（查看密鑰可能已更換）。請重新生成密碼。",
+    "The encrypted password cannot be decrypted; its key may have changed. Regenerate the password."
+  ],
+  "已保存。": [
+    "已保存。",
+    "Saved."
+  ],
+  "已保存管理员资料。": [
+    "已保存管理員資料。",
+    "Administrator profile saved."
+  ],
+  "已创建特批非参赛账号，初始密码为学号，首次登录须改密。权限为仅预约。": [
+    "已創建特批非參賽帳號，初始密碼為學號，首次登錄須改密。權限為僅預約。",
+    "Approved guest account created with the student ID as its initial password. First-login password change is required. Access is limited to bookings."
+  ],
+  "已删除值班安排。": [
+    "已刪除值班安排。",
+    "Duty shift deleted."
+  ],
+  "已删除该管理员账号。": [
+    "已刪除該管理員帳號。",
+    "Administrator deleted."
+  ],
+  "已加入拉黑名单。": [
+    "已加入拉黑名單。",
+    "Added to the blocklist."
+  ],
+  "已加入白名单。自动拉黑将跳过该值。": [
+    "已加入白名單。自動拉黑將跳過該值。",
+    "Added to the allowlist. Automatic blocking will skip this entry."
+  ],
+  "已将密码重置为学号，该账号下次登录须修改密码。": [
+    "已將密碼重置為學號，該帳號下次登錄須修改密碼。",
+    "Password reset to the student ID. It must be changed at the next login."
+  ],
+  "已拉黑。": [
+    "已拉黑。",
+    "Blocked."
+  ],
+  "已更新值班安排。": [
+    "已更新值班安排。",
+    "Duty shift updated."
+  ],
+  "已添加值班安排。": [
+    "已添加值班安排。",
+    "Duty shift added."
+  ],
+  "已移出白名单。": [
+    "已移出白名單。",
+    "Removed from the allowlist."
+  ],
+  "已解除拉黑。": [
+    "已解除拉黑。",
+    "Block lifted."
+  ],
+  "已设置新的登录密码（不会在页面上再次显示）。": [
+    "已設置新的登錄密碼（不會在頁面上再次顯示）。",
+    "New login password set. It will not be displayed again."
+  ],
+  "拒绝已保存，但邮件发送失败，已记入发送记录。": [
+    "拒絕已保存，但郵件發送失敗，已記入發送記錄。",
+    "Rejection saved, but email delivery failed and was logged."
+  ],
+  "拒绝时请填写理由。": [
+    "拒絕時請填寫理由。",
+    "Enter a reason when rejecting an application."
+  ],
+  "日志不存在。": [
+    "日誌不存在。",
+    "Log entry not found."
+  ],
+  "未找到该队伍。": [
+    "未找到該隊伍。",
+    "Team not found."
+  ],
+  "没有可导出的账号。": [
+    "沒有可導出的帳號。",
+    "No accounts to export."
+  ],
+  "没有可确认的导入预览，请重新上传。": [
+    "沒有可確認的導入預覽，請重新上傳。",
+    "No import preview is available. Upload the file again."
+  ],
+  "清除失败，数据库已回滚，没有任何数据被修改。详情见服务器日志。": [
+    "清除失敗，數據庫已回滾，沒有任何數據被修改。詳情見服務器日誌。",
+    "Cleanup failed. The database was rolled back and no data was changed. See server logs."
+  ],
+  "管理员联系方式须为 11 位手机号。": [
+    "管理員聯繫方式須為 11 位手機號。",
+    "The administrator contact must be an 11-digit mobile number."
+  ],
+  "记录不存在。": [
+    "記錄不存在。",
+    "Record not found."
+  ],
+  "该事件没有可拉黑的 IP 或设备。": [
+    "該事件沒有可拉黑的 IP 或設備。",
+    "This event has no IP or device that can be blocked."
+  ],
+  "该值已在白名单中。": [
+    "該值已在白名單中。",
+    "This entry is already on the allowlist."
+  ],
+  "该学号不在此队名单中。": [
+    "該學號不在此隊名單中。",
+    "This student ID is not on the team's roster."
+  ],
+  "该学号已有登录账号。": [
+    "該學號已有登錄帳號。",
+    "This student ID already has an account."
+  ],
+  "该实验室仍有关联预约记录，不能删除。可先停用。": [
+    "該實驗室仍有關聯預約記錄，不能刪除。可先停用。",
+    "This lab has booking history and cannot be deleted. Disable it instead."
+  ],
+  "该实验室仍有工具借用记录，不能删除。可先停用。": [
+    "該實驗室仍有工具借用記錄，不能刪除。可先停用。",
+    "This lab has tool loan records and cannot be deleted. Disable it instead."
+  ],
+  "该实验室仍有待审核或已通过的预约，不能删除。可先停用。": [
+    "該實驗室仍有待審核或已通過的預約，不能刪除。可先停用。",
+    "This lab has pending or approved bookings and cannot be deleted. Disable it instead."
+  ],
+  "该操作已经撤销过。": [
+    "該操作已經撤銷過。",
+    "This action has already been undone."
+  ],
+  "该操作类型暂不支持撤销。": [
+    "該操作類型暫不支持撤銷。",
+    "This action cannot be undone."
+  ],
+  "该目标已在拉黑名单中。": [
+    "該目標已在拉黑名單中。",
+    "This target is already blocked."
+  ],
+  "该管理员仍有审核记录或值班安排，请先停用账号，而不是删除。": [
+    "該管理員仍有審核記錄或值班安排，請先停用帳號，而不是刪除。",
+    "This administrator has review records or duty shifts. Disable the account instead of deleting it."
+  ],
+  "该账号仍有关联预约记录，不能删除。": [
+    "該帳號仍有關聯預約記錄，不能刪除。",
+    "This account has associated bookings and cannot be deleted."
+  ],
+  "该账号仍有工具借用记录或值班安排，不能删除。可先停用。": [
+    "該帳號仍有工具借用記錄或值班安排，不能刪除。可先停用。",
+    "This account has tool loans or duty shifts and cannot be deleted. Disable it instead."
+  ],
+  "该账号还没有可查看的密文。请重新生成密码，或通过设置脚本写入后再查看。": [
+    "該帳號還沒有可查看的密文。請重新生成密碼，或通過設置腳本寫入後再查看。",
+    "This account has no viewable encrypted password. Regenerate or set a password first."
+  ],
+  "请填写姓名。": [
+    "請填寫姓名。",
+    "Please enter a name."
+  ],
+  "请填写拉黑原因。": [
+    "請填寫拉黑原因。",
+    "Please enter a reason for blocking."
+  ],
+  "请填写新密码，或选择重置为学号。": [
+    "請填寫新密碼，或選擇重置為學號。",
+    "Enter a new password or choose Reset to student ID."
+  ],
+  "请填写白名单类型和值。": [
+    "請填寫白名單類型和值。",
+    "Enter the allowlist type and value."
+  ],
+  "请填写要拉黑的 IP 或设备 ID。": [
+    "請填寫要拉黑的 IP 或設備 ID。",
+    "Enter an IP or device ID to block."
+  ],
+  "请选择拉黑类型：IP 或设备。": [
+    "請選擇拉黑類型：IP 或設備。",
+    "Select a block type: IP or device."
+  ],
+  "请选择要上传的 Excel 或 CSV 文件。": [
+    "請選擇要上傳的 Excel 或 CSV 文件。",
+    "Select an Excel or CSV file to upload."
+  ],
+  "请选择要导入的 CSV 或 Excel 文件。": [
+    "請選擇要導入的 CSV 或 Excel 文件。",
+    "Select a CSV or Excel file to import."
+  ],
+  "账号不存在。": [
+    "帳號不存在。",
+    "Account not found."
+  ],
+  "账号信息已更新。": [
+    "帳號信息已更新。",
+    "Account details updated."
+  ],
+  "需要确认后才能重置二维码。": [
+    "需要確認後才能重置二維碼。",
+    "Confirmation is required before resetting the QR code."
+  ],
+  "可签到": [
+    "可簽到",
+    "Ready for check-in"
+  ],
+  "已过期未签到": [
+    "已過期未簽到",
+    "Expired without check-in"
+  ],
+  "维护模式（网站升级中）": [
+    "維護模式（網站升級中）",
+    "Maintenance mode (site upgrade)"
+  ],
+  "← 功能开关": [
+    "← 功能開關",
+    "← Feature switches"
+  ],
+  "维护模式：已开启": [
+    "維護模式：已開啓",
+    "Maintenance mode: on"
+  ],
+  "维护模式：未开启": [
+    "維護模式：未開啓",
+    "Maintenance mode: off"
+  ],
+  "访问者目前无法使用网站。": [
+    "訪問者目前無法使用網站。",
+    "Visitors cannot currently use the site."
+  ],
+  "网站正常对外服务。": [
+    "網站正常對外服務。",
+    "The site is operating normally."
+  ],
+  "关闭维护模式，恢复访问": [
+    "關閉維護模式，恢復訪問",
+    "Disable maintenance and restore access"
+  ],
+  "再次确认：开启后除总管理员外所有人都无法访问网站，确定开启维护模式吗？": [
+    "再次確認：開啓後除總管理員外所有人都無法訪問網站，確定開啓維護模式嗎？",
+    "Enable maintenance mode? Everyone except super administrators will lose access."
+  ],
+  "我确认要开启维护模式：队长、普通管理员和未登录访问者将全部看到升级提示。": [
+    "我確認要開啓維護模式：隊長、普通管理員和未登錄訪問者將全部看到升級提示。",
+    "I confirm: captains, regular administrators and logged-out visitors will see the maintenance notice."
+  ],
+  "开启维护模式": [
+    "開啓維護模式",
+    "Enable maintenance mode"
+  ],
+  "提示文案": [
+    "提示文案",
+    "Visitor message"
+  ],
+  "访问者看到的文字（最多": [
+    "訪問者看到的文字（最多",
+    "Message for visitors (up to"
+  ],
+  "字）": [
+    "字）",
+    "characters)"
+  ],
+  "可随时修改，开启期间修改会立即生效。": [
+    "可隨時修改，開啓期間修改會立即生效。",
+    "You can edit this at any time. Changes take effect immediately, including during maintenance."
+  ],
+  "- 公告": [
+    "- 公告",
+    "- Announcements"
+  ],
+  "/ 应读": [
+    "/ 應讀",
+    "/ required readers"
+  ],
+  "127.0.0.1 / ::1 本机直连默认在白名单中，不会被自动拉黑。总管理员当前会话的 IP 和设备也不会被自动拉黑。": [
+    "127.0.0.1 / ::1 本機直連默認在白名單中，不會被自動拉黑。總管理員當前會話的 IP 和設備也不會被自動拉黑。",
+    "Local connections from 127.0.0.1 and ::1 are allowed by default. They and the current super administrator's IP and device are protected from automatic blocking."
+  ],
+  "IP / 国家": [
+    "IP / 國家",
+    "IP / country"
+  ],
+  "IP / 国家 / 设备": [
+    "IP / 國家 / 設備",
+    "IP / country / device"
+  ],
+  "IP 或设备 ID": [
+    "IP 或設備 ID",
+    "IP or device ID"
+  ],
+  "· 发布人": [
+    "· 發佈人",
+    "· Publisher"
+  ],
+  "← 返回": [
+    "← 返回",
+    "← Back"
+  ],
+  "。可选列：": [
+    "。可選列：",
+    ". Optional columns:"
+  ],
+  "一键清除个人信息": [
+    "一鍵清除個人信息",
+    "Erase personal information"
+  ],
+  "一键清除个人信息…": [
+    "一鍵清除個人信息…",
+    "Erase personal information…"
+  ],
+  "上次重置：": [
+    "上次重置：",
+    "Last reset:"
+  ],
+  "下载 PNG": [
+    "下載 PNG",
+    "Download PNG"
+  ],
+  "下载匿名统计 Excel": [
+    "下載匿名統計 Excel",
+    "Download anonymous statistics (Excel)"
+  ],
+  "下载含初始密码的 Excel": [
+    "下載含初始密碼的 Excel",
+    "Download accounts with initial passwords (Excel)"
+  ],
+  "不会自动刷新": [
+    "不會自動刷新",
+    "Does not refresh automatically"
+  ],
+  "个人信息已清除，数据库已整理（VACUUM）。清除前备份：": [
+    "個人信息已清除，數據庫已整理（VACUUM）。清除前備份：",
+    "Personal information erased and database compacted (VACUUM). Backup taken before erasure:"
+  ],
+  "为": [
+    "為",
+    "For"
+  ],
+  "为该队长添加队员（只需姓名和学号，队员无需登录账号）。": [
+    "為該隊長添加隊員（只需姓名和學號，隊員無需登錄帳號）。",
+    "Add team members for this captain. Only names and student IDs are needed; members do not need login accounts."
+  ],
+  "为队员特批开通登录": [
+    "為隊員特批開通登錄",
+    "Grant approved login access to a team member"
+  ],
+  "主要工具": [
+    "主要工具",
+    "Major tools"
+  ],
+  "二维码签到": [
+    "二維碼簽到",
+    "QR check-in"
+  ],
+  "二维码里的网址取决于你打开本页时用的地址（当前基础地址：": [
+    "二維碼里的網址取決於你打開本頁時用的地址（當前基礎地址：",
+    "The QR destination uses the address you used to open this page (current base URL:"
+  ],
+  "人数": [
+    "人數",
+    "People"
+  ],
+  "仅总管理员可创建、导入、重置和删除账号。生成或重置的密码只在本页显示一次，不会写入日志。": [
+    "僅總管理員可創建、導入、重置和刪除帳號。生成或重置的密碼只在本頁顯示一次，不會寫入日誌。",
+    "Only super administrators can create, import, reset or delete accounts. Generated and reset passwords are shown once and are never logged."
+  ],
+  "仅总管理员可用。比赛结束后使用：不可撤销，请先下载匿名统计。": [
+    "僅總管理員可用。比賽結束後使用：不可撤銷，請先下載匿名統計。",
+    "For super administrators only, after the competition. This is irreversible; download anonymous statistics first."
+  ],
+  "会保留": [
+    "會保留",
+    "Will be retained"
+  ],
+  "位置签到": [
+    "位置簽到",
+    "Location verification"
+  ],
+  "位置签到（可选）": [
+    "位置簽到（可選）",
+    "Location verification (optional)"
+  ],
+  "你好，": [
+    "你好，",
+    "Hello,"
+  ],
+  "使用当前位置": [
+    "使用當前位置",
+    "Use current location"
+  ],
+  "例如：扳手": [
+    "例如：扳手",
+    "Example: wrench"
+  ],
+  "全体成员可登录后预约实验室。账号由管理员添加或批量导入，不开放自助注册。": [
+    "全體成員可登錄後預約實驗室。帳號由管理員添加或批量導入，不開放自助註冊。",
+    "Members can book labs after logging in. Accounts are created or imported by administrators; self-registration is unavailable."
+  ],
+  "全部开启": [
+    "全部開啓",
+    "All enabled"
+  ],
+  "全部队长": [
+    "全部隊長",
+    "All captains"
+  ],
+  "公告上显示的发布人名称，最多 30 个字，可以改成协会或部门名称。真实账号仍会记录在后台。": [
+    "公告上顯示的發佈人名稱，最多 30 個字，可以改成協會或部門名稱。真實帳號仍會記錄在後台。",
+    "Display name of the publisher, up to 30 characters. You may use an association or department name; the actual account remains recorded for administration."
+  ],
+  "公告列表": [
+    "公告列表",
+    "Announcement list"
+  ],
+  "共": [
+    "共",
+    "Total:"
+  ],
+  "内容": [
+    "內容",
+    "Content"
+  ],
+  "分钟内最多": [
+    "分鐘內最多",
+    "minutes; maximum"
+  ],
+  "分钟起）扫码确认。": [
+    "分鐘起）掃碼確認。",
+    "minutes before the start) and scan to confirm."
+  ],
+  "分钟）。管理员登录页和 /health 保持可用，总管理员可照常登录并在此关闭。": [
+    "分鐘）。管理員登錄頁和 /health 保持可用，總管理員可照常登錄並在此關閉。",
+    "minutes). Administrator login and /health remain available. Super administrators can log in and disable maintenance here."
+  ],
+  "分页": [
+    "分頁",
+    "Pagination"
+  ],
+  "初始密码、队名、队员1姓名、队员1学号、队员2姓名、队员2学号": [
+    "初始密碼、隊名、隊員1姓名、隊員1學號、隊員2姓名、隊員2學號",
+    "Initial password, team name, member 1 name/ID, member 2 name/ID"
+  ],
+  "初始密码等于学号：": [
+    "初始密碼等於學號：",
+    "Initial password is the student ID:"
+  ],
+  "初始密码（可选）": [
+    "初始密碼（可選）",
+    "Initial password (optional)"
+  ],
+  "初始密码：": [
+    "初始密碼：",
+    "Initial password:"
+  ],
+  "删除这件工具": [
+    "刪除這件工具",
+    "Remove this tool"
+  ],
+  "到期时间（留空为永久）": [
+    "到期時間（留空為永久）",
+    "Expiration (blank for permanent)"
+  ],
+  "加入白名单": [
+    "加入白名單",
+    "Add to allowlist"
+  ],
+  "包含参赛队长、特批队员和特批非参赛账号的登录与操作记录。拉黑后，对应 IP 或设备将无法访问登录和业务页面。": [
+    "包含參賽隊長、特批隊員和特批非參賽帳號的登錄與操作記錄。拉黑後，對應 IP 或設備將無法訪問登錄和業務頁面。",
+    "Login and activity records for captains and approved accounts. Blocking an IP or device prevents access to login and application pages."
+  ],
+  "即将到来的预约": [
+    "即將到來的預約",
+    "Upcoming bookings"
+  ],
+  "参赛队长工作台": [
+    "參賽隊長工作台",
+    "Captain dashboard"
+  ],
+  "参赛队长留空则初始密码等于学号。管理员/总管理员留空则生成一次性密码（至少 12 位，含大小写和特殊符号，且不得与其他管理员密码相同）。管理员不能自行修改密码，只能由总管理员重置。生成的密码只显示一次，不写日志。": [
+    "參賽隊長留空則初始密碼等於學號。管理員/總管理員留空則生成一次性密碼（至少 12 位，含大小寫和特殊符號，且不得與其他管理員密碼相同）。管理員不能自行修改密碼，只能由總管理員重置。生成的密碼只顯示一次，不寫日誌。",
+    "Leave blank for a captain to use the student ID initially. For administrators, a unique one-time password of at least 12 characters with uppercase, lowercase and symbols is generated. Regular administrators cannot change their own passwords; a super administrator must reset them. Generated passwords are shown once and never logged."
+  ],
+  "发布人": [
+    "發佈人",
+    "Publisher"
+  ],
+  "发布时间": [
+    "發佈時間",
+    "Published at"
+  ],
+  "发送失败": [
+    "發送失敗",
+    "Delivery failed"
+  ],
+  "只做被动检测与记录，不会对外扫描或主动连接来源地址。地理位置仅来自 Cloudflare 请求头；如需查看更详细的 IP 资料，请自行打开 ipinfo.io 外链。": [
+    "只做被動檢測與記錄，不會對外掃描或主動連接來源地址。地理位置僅來自 Cloudflare 請求頭；如需查看更詳細的 IP 資料，請自行打開 ipinfo.io 外鏈。",
+    "Detection is passive only; the system does not scan or connect back to sources. Location comes only from trusted Cloudflare headers. Open the ipinfo.io links yourself for further IP details."
+  ],
+  "只看已签到": [
+    "只看已簽到",
+    "Checked-in bookings only"
+  ],
+  "可用实验室": [
+    "可用實驗室",
+    "Available labs"
+  ],
+  "可选": [
+    "可選",
+    "Optional"
+  ],
+  "同行人员：": [
+    "同行人員：",
+    "Companions:"
+  ],
+  "名队员）": [
+    "名隊員）",
+    "team members)"
+  ],
+  "否": [
+    "否",
+    "No"
+  ],
+  "在 ipinfo.io 查看": [
+    "在 ipinfo.io 查看",
+    "View on ipinfo.io"
+  ],
+  "在公告页置顶（二级可选；三级自动置顶）": [
+    "在公告頁置頂（二級可選；三級自動置頂）",
+    "Pin on the announcement page (optional for level 2; automatic for level 3)"
+  ],
+  "坐标：": [
+    "坐標：",
+    "Coordinates:"
+  ],
+  "失败次数过多（": [
+    "失敗次數過多（",
+    "Too many failed attempts ("
+  ],
+  "如 121.473701": [
+    "如 121.473701",
+    "For example, 121.473701"
+  ],
+  "如 31.230416": [
+    "如 31.230416",
+    "For example, 31.230416"
+  ],
+  "如需修改时段，请到“申请记录”中操作。": [
+    "如需修改時段，請到“申請記錄”中操作。",
+    "To change a time slot, use Applications."
+  ],
+  "姓名、学号（或账号）、角色": [
+    "姓名、學號（或帳號）、角色",
+    "Name, student ID (or account), role"
+  ],
+  "学号/账号": [
+    "學號/帳號",
+    "Student ID / account"
+  ],
+  "学号或关键词": [
+    "學號或關鍵詞",
+    "Student ID or keyword"
+  ],
+  "安全承诺：": [
+    "安全承諾：",
+    "Safety pledge:"
+  ],
+  "定位：距实验室约": [
+    "定位：距實驗室約",
+    "Location: distance from lab, about"
+  ],
+  "容量（人）": [
+    "容量（人）",
+    "Capacity (people)"
+  ],
+  "密码：": [
+    "密碼：",
+    "Password:"
+  ],
+  "导入": [
+    "導入",
+    "Import"
+  ],
+  "导入参赛队伍": [
+    "導入參賽隊伍",
+    "Import competition teams"
+  ],
+  "将为该管理员生成新的一次性密码并强制其下次登录修改，确定继续？": [
+    "將為該管理員生成新的一次性密碼並強制其下次登錄修改，確定繼續？",
+    "Generate a new one-time password for this administrator and require a change at the next login? Continue?"
+  ],
+  "将被清除": [
+    "將被清除",
+    "Will be erased"
+  ],
+  "尚未导入或创建参赛队伍。": [
+    "尚未導入或創建參賽隊伍。",
+    "No competition teams have been created or imported."
+  ],
+  "尚未添加工具。": [
+    "尚未添加工具。",
+    "No tools have been added."
+  ],
+  "尚未生成设备 ID": [
+    "尚未生成設備 ID",
+    "Device ID not generated yet"
+  ],
+  "工具名称": [
+    "工具名稱",
+    "Tool name"
+  ],
+  "已于": [
+    "已於",
+    "Completed at"
+  ],
+  "已发送（": [
+    "已發送（",
+    "Sent ("
+  ],
+  "已完成": [
+    "已完成",
+    "Completed"
+  ],
+  "已开通（": [
+    "已開通（",
+    "Access granted ("
+  ],
+  "已确认知晓（": [
+    "已確認知曉（",
+    "Acknowledged ("
+  ],
+  "已自动拉黑": [
+    "已自動拉黑",
+    "Automatically blocked"
+  ],
+  "已解除/过期": [
+    "已解除/過期",
+    "Lifted / expired"
+  ],
+  "已设坐标·未开启": [
+    "已設坐標·未開啓",
+    "Coordinates set · disabled"
+  ],
+  "已读 / 应读": [
+    "已讀 / 應讀",
+    "Read / required readers"
+  ],
+  "已跳过": [
+    "已跳過",
+    "Skipped"
+  ],
+  "已过期": [
+    "已過期",
+    "Expired"
+  ],
+  "开启 ·": [
+    "開啓 ·",
+    "Enabled ·"
+  ],
+  "开启位置签到（需先填写经纬度）": [
+    "開啓位置簽到（需先填寫經緯度）",
+    "Enable location verification (enter latitude and longitude first)"
+  ],
+  "开启后，队长只有在实验室附近才能签到。坐标可在实验室现场点“使用当前位置”获取，也可手动填写。": [
+    "開啓後，隊長只有在實驗室附近才能簽到。坐標可在實驗室現場點“使用當前位置”獲取，也可手動填寫。",
+    "When enabled, captains must be near the lab to check in. Use Current location while at the lab, or enter coordinates manually."
+  ],
+  "开启后，除总管理员外的所有访问者（未登录、队长、普通管理员）访问任何页面都只会看到下方的提示文案（HTTP 503，Retry-After": [
+    "開啓後，除總管理員外的所有訪問者（未登錄、隊長、普通管理員）訪問任何頁面都只會看到下方的提示文案（HTTP 503，Retry-After",
+    "When enabled, every visitor except super administrators sees the message below on application pages (HTTP 503, Retry-After:"
+  ],
+  "开通后该队员成为可登录账号，权限为仅预约（不能借用工具或管理队伍）。初始密码为学号。": [
+    "開通後該隊員成為可登錄帳號，權限為僅預約（不能借用工具或管理隊伍）。初始密碼為學號。",
+    "The member receives a booking-only account, without tool borrowing or team management. The initial password is the student ID."
+  ],
+  "当前没有生效的拉黑。": [
+    "當前沒有生效的拉黑。",
+    "No active blocks."
+  ],
+  "当前被借": [
+    "當前被借",
+    "Currently borrowed"
+  ],
+  "当前账号": [
+    "當前帳號",
+    "Current account"
+  ],
+  "待审核预约": [
+    "待審核預約",
+    "Pending bookings"
+  ],
+  "待扫描触发": [
+    "待掃描觸發",
+    "Waiting for a scan"
+  ],
+  "待队长确认": [
+    "待隊長確認",
+    "Awaiting captain acknowledgement"
+  ],
+  "快速设置预计归还时间": [
+    "快速設置預計歸還時間",
+    "Quick return time"
+  ],
+  "总管理员可以查看、修改、删除所有管理员发布的公告，并查看每条公告的阅读情况。": [
+    "總管理員可以查看、修改、刪除所有管理員發佈的公告，並查看每條公告的閱讀情況。",
+    "Super administrators can view, edit and delete all announcements and inspect read receipts."
+  ],
+  "总管理员密码": [
+    "總管理員密碼",
+    "Super administrator password"
+  ],
+  "成功导入": [
+    "成功導入",
+    "Successfully imported"
+  ],
+  "成员": [
+    "成員",
+    "Member"
+  ],
+  "我的测试预约": [
+    "我的測試預約",
+    "My test bookings"
+  ],
+  "手动添加": [
+    "手動添加",
+    "Add manually"
+  ],
+  "手动设置新密码": [
+    "手動設置新密碼",
+    "Set a new password manually"
+  ],
+  "打印": [
+    "打印",
+    "Print"
+  ],
+  "打印本页": [
+    "打印本頁",
+    "Print this page"
+  ],
+  "批量导入账号": [
+    "批量導入帳號",
+    "Bulk import accounts"
+  ],
+  "拉黑 IP / 设备": [
+    "拉黑 IP / 設備",
+    "Block IP / device"
+  ],
+  "拉黑 IP 24 小时": [
+    "拉黑 IP 24 小時",
+    "Block IP for 24 hours"
+  ],
+  "拉黑设备": [
+    "拉黑設備",
+    "Block device"
+  ],
+  "提醒情况": [
+    "提醒情況",
+    "Reminder status"
+  ],
+  "提醒等级": [
+    "提醒等級",
+    "Reminder level"
+  ],
+  "操作审计": [
+    "操作審計",
+    "Activity audit"
+  ],
+  "支持部分匹配": [
+    "支持部分匹配",
+    "Partial matches supported"
+  ],
+  "新增值班": [
+    "新增值班",
+    "Add duty shift"
+  ],
+  "新增值班安排": [
+    "新增值班安排",
+    "Add duty shift"
+  ],
+  "新增管理员时由系统自动生成不少于 16 位、含大小写字母、数字和符号的密码，并同时写入可查看密文（密钥在 data/pw_view_key）。请先保存当次显示的密码；之后总管理员仍可点击「查看密码」，每次查看都会记入审计日志。此处只管理普通管理员，不含总管理员。": [
+    "新增管理員時由系統自動生成不少於 16 位、含大小寫字母、數字和符號的密碼，並同時寫入可查看密文（密鑰在 data/pw_view_key）。請先保存當次顯示的密碼；之後總管理員仍可點擊「查看密碼」，每次查看都會記入審計日誌。此處只管理普通管理員，不含總管理員。",
+    "New administrator passwords contain at least 16 characters with uppercase, lowercase, digits and symbols. An encrypted copy is retained for authorized viewing, using the key in data/pw_view_key. Save the initial display; super administrators can later use View password, with every view audited. This page manages regular administrators only."
+  ],
+  "新队员姓名": [
+    "新隊員姓名",
+    "New member name"
+  ],
+  "无设备 ID": [
+    "無設備 ID",
+    "No device ID"
+  ],
+  "无邮箱": [
+    "無郵箱",
+    "No email address"
+  ],
+  "时长": [
+    "時長",
+    "Duration"
+  ],
+  "星期": [
+    "星期",
+    "Weekday"
+  ],
+  "是": [
+    "是",
+    "Yes"
+  ],
+  "暂无值班安排。": [
+    "暫無值班安排。",
+    "No duty shifts."
+  ],
+  "暂无即将到来的预约。": [
+    "暫無即將到來的預約。",
+    "No upcoming bookings."
+  ],
+  "暂无发送记录。": [
+    "暫無發送記錄。",
+    "No delivery records."
+  ],
+  "暂无安全事件。": [
+    "暫無安全事件。",
+    "No security events."
+  ],
+  "暂无实验室": [
+    "暫無實驗室",
+    "No labs"
+  ],
+  "暂无密文": [
+    "暫無密文",
+    "No encrypted copy"
+  ],
+  "暂无拉黑记录。": [
+    "暫無拉黑記錄。",
+    "No block records."
+  ],
+  "暂无操作日志。": [
+    "暫無操作日誌。",
+    "No activity logs."
+  ],
+  "暂无操作记录。": [
+    "暫無操作記錄。",
+    "No activity records."
+  ],
+  "暂无普通管理员。": [
+    "暫無普通管理員。",
+    "No regular administrators."
+  ],
+  "暂无未签到记录。": [
+    "暫無未簽到記錄。",
+    "No missed check-ins."
+  ],
+  "暂无特批非参赛账号。": [
+    "暫無特批非參賽帳號。",
+    "No approved guest accounts."
+  ],
+  "暂无登录记录。": [
+    "暫無登錄記錄。",
+    "No login records."
+  ],
+  "暂无记录": [
+    "暫無記錄",
+    "No records"
+  ],
+  "暂无账号": [
+    "暫無帳號",
+    "No accounts"
+  ],
+  "暂无队员。": [
+    "暫無隊員。",
+    "No team members."
+  ],
+  "暂无预约。": [
+    "暫無預約。",
+    "No bookings."
+  ],
+  "最近一次": [
+    "最近一次",
+    "Most recent"
+  ],
+  "最近修改": [
+    "最近修改",
+    "Last edited"
+  ],
+  "有效": [
+    "有效",
+    "Valid"
+  ],
+  "未知": [
+    "未知",
+    "Unknown"
+  ],
+  "未确认": [
+    "未確認",
+    "Not acknowledged"
+  ],
+  "未签到 = 预约已通过、结束时间已过、没有签到；已取消或驳回的不计。功能上线前已结束的预约不计入。累计达到": [
+    "未簽到 = 預約已通過、結束時間已過、沒有簽到；已取消或駁回的不計。功能上線前已結束的預約不計入。累計達到",
+    "A missed check-in is an approved booking that has ended without check-in. Cancelled, rejected and bookings completed before this feature launched are excluded. A mandatory reminder starts at"
+  ],
+  "未签到次数": [
+    "未簽到次數",
+    "Missed check-in count"
+  ],
+  "未签到较多（≥": [
+    "未簽到較多（≥",
+    "Frequent missed check-ins (≥"
+  ],
+  "未达提醒线": [
+    "未達提醒線",
+    "Below reminder threshold"
+  ],
+  "本次查看已记入审计日志。请妥善保管，不要将密码写入聊天或截图外传。": [
+    "本次查看已記入審計日誌。請妥善保管，不要將密碼寫入聊天或截圖外傳。",
+    "This password view has been audited. Keep it secure; do not share it in chat or screenshots."
+  ],
+  "来源 IP": [
+    "來源 IP",
+    "Source IP"
+  ],
+  "查看密码将记入审计日志，确定继续？": [
+    "查看密碼將記入審計日誌，確定繼續？",
+    "Viewing this password will be audited. Continue?"
+  ],
+  "查看管理员和总管理员的登录与操作日志。可撤销的操作提供「撤销」；不可撤销的会显示原因。撤销审核拒绝时，已发出的邮件无法撤回。撤销本身也会记入日志。": [
+    "查看管理員和總管理員的登錄與操作日誌。可撤銷的操作提供「撤銷」；不可撤銷的會顯示原因。撤銷審核拒絕時，已發出的郵件無法撤回。撤銷本身也會記入日誌。",
+    "Review administrator login and activity logs. Supported actions offer Undo; other actions explain why they cannot be undone. Undoing a rejection cannot recall emails already sent. Undo actions are also audited."
+  ],
+  "查询": [
+    "查詢",
+    "Search"
+  ],
+  "标题": [
+    "標題",
+    "Title"
+  ],
+  "次": [
+    "次",
+    "times"
+  ],
+  "次已提醒 ·": [
+    "次已提醒 ·",
+    "missed check-ins reminded ·"
+  ],
+  "次数": [
+    "次數",
+    "Count"
+  ],
+  "次起强制提醒队长，之后每多一次再提醒一次。": [
+    "次起強制提醒隊長，之後每多一次再提醒一次。",
+    "missed check-ins, followed by another reminder after every additional miss."
+  ],
+  "次）": [
+    "次）",
+    "times)"
+  ],
+  "次），暂时锁定，请稍后再试。": [
+    "次），暫時鎖定，請稍後再試。",
+    "attempts). Temporarily locked; please try again later."
+  ],
+  "次，": [
+    "次，",
+    "times,"
+  ],
+  "正在清除，请稍候…": [
+    "正在清除，請稍候…",
+    "Erasing, please wait…"
+  ],
+  "每个实验室有一张固定的签到二维码，": [
+    "每個實驗室有一張固定的簽到二維碼，",
+    "Each lab has a fixed check-in QR code."
+  ],
+  "每周星期": [
+    "每周星期",
+    "Every week on"
+  ],
+  "永久": [
+    "永久",
+    "Permanent"
+  ],
+  "永久清除所有个人信息": [
+    "永久清除所有個人信息",
+    "Permanently erase all personal information"
+  ],
+  "没有符合条件的人员。": [
+    "沒有符合條件的人員。",
+    "No matching people."
+  ],
+  "添加一名队员": [
+    "添加一名隊員",
+    "Add a team member"
+  ],
+  "清除个人信息": [
+    "清除個人信息",
+    "Erase personal information"
+  ],
+  "清除前会自动生成一份最终数据库备份（backups/app-before-wipe-时间.db）。": [
+    "清除前會自動生成一份最終數據庫備份（backups/app-before-wipe-時間.db）。",
+    "A final database backup is automatically created before erasure at backups/app-before-wipe-TIMESTAMP.db."
+  ],
+  "清除后无法再区分是谁预约的。强烈建议先下载匿名统计 Excel（不含姓名、学号、手机、邮箱、用途、定位）。": [
+    "清除後無法再區分是誰預約的。強烈建議先下載匿名統計 Excel（不含姓名、學號、手機、郵箱、用途、定位）。",
+    "Booking identities cannot be recovered after erasure. Download anonymous statistics first; names, IDs, phones, email addresses, purposes and location data are excluded."
+  ],
+  "生成账号和密码": [
+    "生成帳號和密碼",
+    "Create account and password"
+  ],
+  "生效中": [
+    "生效中",
+    "Active"
+  ],
+  "用途 / 同行人员": [
+    "用途 / 同行人員",
+    "Purpose / companions"
+  ],
+  "由总管理员维护。队长借用时从该清单下拉选择；「其他」可手填但不计入库存。库存占用按借用中（含逾期）记录自动统计。": [
+    "由總管理員維護。隊長借用時從該清單下拉選擇；「其他」可手填但不計入庫存。庫存佔用按借用中（含逾期）記錄自動統計。",
+    "Managed by super administrators. Captains choose from this catalog when borrowing. Other accepts uncatalogued tools and does not count toward inventory. Stock usage is based on active loans, including overdue loans."
+  ],
+  "由总管理员维护。队长在距测试开始不足 30 分钟需要取消时，将优先显示与该预约时段重叠的值班管理员。": [
+    "由總管理員維護。隊長在距測試開始不足 30 分鐘需要取消時，將優先顯示與該預約時段重疊的值班管理員。",
+    "Managed by super administrators. When a captain must cancel within 30 minutes of the start, duty administrators whose shifts overlap the booking are shown first."
+  ],
+  "登录密码": [
+    "登錄密碼",
+    "Login password"
+  ],
+  "确定删除该值班安排？": [
+    "確定刪除該值班安排？",
+    "Delete this duty shift?"
+  ],
+  "确定删除该实验室？": [
+    "確定刪除該實驗室？",
+    "Delete this lab?"
+  ],
+  "确定删除该工具？": [
+    "確定刪除該工具？",
+    "Delete this tool?"
+  ],
+  "确定删除该管理员账号？": [
+    "確定刪除該管理員帳號？",
+    "Delete this administrator account?"
+  ],
+  "确定删除该账号？": [
+    "確定刪除該帳號？",
+    "Delete this account?"
+  ],
+  "确定将该队长密码重置为学号？对方下次登录须修改密码。": [
+    "確定將該隊長密碼重置為學號？對方下次登錄須修改密碼。",
+    "Reset this captain's password to the student ID? They must change it at the next login."
+  ],
+  "确定拉黑该 IP？不会自动查询该地址，仅写入本系统黑名单。": [
+    "確定拉黑該 IP？不會自動查詢該地址，僅寫入本系統黑名單。",
+    "Block this IP? No automatic lookup will be performed; only this system's blocklist is updated."
+  ],
+  "确定拉黑该设备？": [
+    "確定拉黑該設備？",
+    "Block this device?"
+  ],
+  "确定撤销该操作？": [
+    "確定撤銷該操作？",
+    "Undo this action?"
+  ],
+  "确认导入有效行": [
+    "確認導入有效行",
+    "Confirm import of valid rows"
+  ],
+  "确认已知晓": [
+    "確認已知曉",
+    "Acknowledged"
+  ],
+  "社团实验室使用预约管理系统": [
+    "社團實驗室使用預約管理系統",
+    "Association Lab Booking System"
+  ],
+  "社团实验室预约": [
+    "社團實驗室預約",
+    "Association lab booking"
+  ],
+  "移除": [
+    "移除",
+    "Remove"
+  ],
+  "第": [
+    "第",
+    "Page"
+  ],
+  "第一步（建议）：先下载匿名统计": [
+    "第一步（建議）：先下載匿名統計",
+    "Step 1 (recommended): download anonymous statistics"
+  ],
+  "第二步：确认清除": [
+    "第二步：確認清除",
+    "Step 2: confirm erasure"
+  ],
+  "等级": [
+    "等級",
+    "Level"
+  ],
+  "签到半径（米）": [
+    "簽到半徑（米）",
+    "Check-in radius (m)"
+  ],
+  "管理": [
+    "管理",
+    "Manage"
+  ],
+  "管理后台 ·": [
+    "管理後台 ·",
+    "Admin console ·"
+  ],
+  "管理员发布的公告为一级：只在公告页显示，不会弹窗或发邮件。": [
+    "管理員發佈的公告為一級：只在公告頁顯示，不會彈窗或發郵件。",
+    "Regular administrators publish level 1 announcements, shown on the announcement page without popups or emails."
+  ],
+  "管理员联系方式（手机号）": [
+    "管理員聯繫方式（手機號）",
+    "Administrator mobile number"
+  ],
+  "米": [
+    "米",
+    "m"
+  ],
+  "米（误差": [
+    "米（誤差",
+    "m (accuracy:"
+  ],
+  "米）": [
+    "米）",
+    "m)"
+  ],
+  "系统账号数": [
+    "系統帳號數",
+    "System accounts"
+  ],
+  "累计": [
+    "累計",
+    "Total"
+  ],
+  "纬度": [
+    "緯度",
+    "Latitude"
+  ],
+  "经度": [
+    "經度",
+    "Longitude"
+  ],
+  "统计范围为已通过的预约。合计：": [
+    "統計範圍為已通過的預約。合計：",
+    "Statistics cover approved bookings. Total:"
+  ],
+  "维护模式 →": [
+    "維護模式 →",
+    "Maintenance mode →"
+  ],
+  "编辑人员": [
+    "編輯人員",
+    "Edit person"
+  ],
+  "编辑值班安排": [
+    "編輯值班安排",
+    "Edit duty shift"
+  ],
+  "编辑账号": [
+    "編輯帳號",
+    "Edit account"
+  ],
+  "编辑：": [
+    "編輯：",
+    "Edit:"
+  ],
+  "联系方式（手机）": [
+    "聯繫方式（手機）",
+    "Contact mobile number"
+  ],
+  "联系电话（手机号）": [
+    "聯繫電話（手機號）",
+    "Contact mobile number"
+  ],
+  "行": [
+    "行",
+    "rows"
+  ],
+  "要求重新确认：所有人会再次收到“我已知晓”弹窗（二级、三级）": [
+    "要求重新確認：所有人會再次收到“我已知曉”彈窗（二級、三級）",
+    "Require acknowledgement again: show the I understand popup to everyone again (levels 2 and 3)"
+  ],
+  "角色可填：总管理员 / 管理员 / 参赛队长（兼容：审核人员、干部、普通成员，或 superadmin / admin / officer / member）。参赛队长密码留空则默认为学号；管理员密码留空则自动生成符合规则且互不相同的密码。参赛队长首次登录须修改密码；管理员不能自行修改密码，只能由总管理员重置。": [
+    "角色可填：總管理員 / 管理員 / 參賽隊長（兼容：審核人員、幹部、普通成員，或 superadmin / admin / officer / member）。參賽隊長密碼留空則默認為學號；管理員密碼留空則自動生成符合規則且互不相同的密碼。參賽隊長首次登錄須修改密碼；管理員不能自行修改密碼，只能由總管理員重置。",
+    "Roles accept superadmin, admin, officer or member and their supported Chinese aliases. Blank captain passwords default to the student ID; blank administrator passwords generate compliant unique passwords. Captains must change their initial passwords. Regular administrators need a super administrator to reset theirs."
+  ],
+  "记录拒绝理由等系统邮件的发送结果。状态为「本地存档」表示未外发，邮件文件保存在项目 data/outbox/ 目录。": [
+    "記錄拒絕理由等系統郵件的發送結果。狀態為「本地存檔」表示未外發，郵件文件保存在項目 data/outbox/ 目錄。",
+    "Delivery results for rejection notices and other system emails. Local archive means no external delivery occurred; the message is saved in data/outbox/."
+  ],
+  "记录队长通过队伍信息自助重置密码的每次尝试（成功与失败）。失败原因统一记为信息不匹配或过于频繁，不区分具体字段。": [
+    "記錄隊長通過隊伍信息自助重置密碼的每次嘗試（成功與失敗）。失敗原因統一記為信息不匹配或過於頻繁，不區分具體字段。",
+    "Records all successful and failed captain password reset attempts. Failures report only mismatched information or excessive attempts, without identifying individual fields."
+  ],
+  "设置密码": [
+    "設置密碼",
+    "Set password"
+  ],
+  "该范围内暂无已通过预约。": [
+    "該範圍內暫無已通過預約。",
+    "No approved bookings in this range."
+  ],
+  "请上传 CSV 或 Excel（.xlsx）文件，首行为表头，需包含：": [
+    "請上傳 CSV 或 Excel（.xlsx）文件，首行為表頭，需包含：",
+    "Upload a CSV or Excel (.xlsx) file with headers in the first row, including:"
+  ],
+  "请使用模板列：队名、队长姓名/学号/手机/邮箱、队员N姓名/学号/手机。已存在的队长学号按「更新」处理，不会覆盖管理员账号。导入后先预览，确认再写入。": [
+    "請使用模板列：隊名、隊長姓名/學號/手機/郵箱、隊員N姓名/學號/手機。已存在的隊長學號按「更新」處理，不會覆蓋管理員帳號。導入後先預覽，確認再寫入。",
+    "Use template columns for team name, captain name/ID/mobile/email and member N name/ID/mobile. Existing captain IDs are updated; administrator accounts are never overwritten. Review the preview before confirming the import."
+  ],
+  "请先登录系统，并在预约时段内（开始前": [
+    "請先登錄系統，並在預約時段內（開始前",
+    "Log in first, then check in during the booking window (from"
+  ],
+  "请妥善保存自动生成或填写的初始密码，并告知对应成员。也可下载 Excel 副本。": [
+    "請妥善保存自動生成或填寫的初始密碼，並告知對應成員。也可下載 Excel 副本。",
+    "Store initial passwords securely and share them with the appropriate members. An Excel copy is also available."
+  ],
+  "请核对下列行。红色行为错误，不会写入；「更新」表示按学号覆盖已有队长资料和队员名单。": [
+    "請核對下列行。紅色行為錯誤，不會寫入；「更新」表示按學號覆蓋已有隊長資料和隊員名單。",
+    "Review these rows. Red rows have errors and will not be imported. Update replaces the captain profile and roster for that student ID."
+  ],
+  "请求": [
+    "請求",
+    "Request"
+  ],
+  "请立即复制并妥善保管。之后仍可点击「查看密码」，每次查看都会记入审计日志。": [
+    "請立即複製並妥善保管。之後仍可點擊「查看密碼」，每次查看都會記入審計日誌。",
+    "Copy and store the password securely now. You can later use View password; each view is audited."
+  ],
+  "请立即记录一次性密码": [
+    "請立即記錄一次性密碼",
+    "Save this one-time password now"
+  ],
+  "请立即记录初始密码": [
+    "請立即記錄初始密碼",
+    "Save this initial password now"
+  ],
+  "请输入：": [
+    "請輸入：",
+    "Please enter:"
+  ],
+  "较多": [
+    "較多",
+    "Frequent"
+  ],
+  "返回安全防护中心": [
+    "返回安全防護中心",
+    "Back to security center"
+  ],
+  "返回工具借用记录": [
+    "返回工具借用記錄",
+    "Back to tool loan records"
+  ],
+  "返回账号列表": [
+    "返回帳號列表",
+    "Back to accounts"
+  ],
+  "还没有公告。": [
+    "還沒有公告。",
+    "No announcements yet."
+  ],
+  "这条公告的等级由总管理员设定，你只能修改标题和内容。": [
+    "這條公告的等級由總管理員設定，你只能修改標題和內容。",
+    "The level was assigned by a super administrator. You may edit only the title and content."
+  ],
+  "这里只显示你自己发布的公告，其他管理员的公告不会出现在这里。": [
+    "這裡只顯示你自己發佈的公告，其他管理員的公告不會出現在這裡。",
+    "Only your own announcements are listed here; those published by other administrators are excluded."
+  ],
+  "选择文件": [
+    "選擇文件",
+    "Choose file"
+  ],
+  "逐项开启或关闭队长端（队长 / 特批账号）的功能。关闭后队长会看到“该功能已被管理员暂时关闭”，页面和接口在服务器端同时拦截；管理员和总管理员不受影响。每次切换都会记入管理员操作日志。": [
+    "逐項開啓或關閉隊長端（隊長 / 特批帳號）的功能。關閉後隊長會看到“該功能已被管理員暫時關閉”，頁面和接口在服務器端同時攔截；管理員和總管理員不受影響。每次切換都會記入管理員操作日誌。",
+    "Enable or disable features for captains and approved accounts. Disabled features show a notice and are blocked on both pages and server APIs. Administrators are unaffected. Every change is audited."
+  ],
+  "通过 Excel 导入或在线编辑参赛队伍。特批队员开通登录后权限为「仅预约」：可登录、提交/修改/取消自己的测试申请并查看申请记录，但不能登记工具借用或管理队伍名单。特批非参赛账号同样仅预约，并受有效期限制。": [
+    "通過 Excel 導入或在線編輯參賽隊伍。特批隊員開通登錄後權限為「僅預約」：可登錄、提交/修改/取消自己的測試申請並查看申請記錄，但不能登記工具借用或管理隊伍名單。特批非參賽帳號同樣僅預約，並受有效期限制。",
+    "Import teams from Excel or edit them online. Approved team members can log in, submit, edit and cancel their own bookings and view applications, but cannot borrow tools or manage rosters. Approved guest accounts have the same booking-only access and an expiration date."
+  ],
+  "邮件": [
+    "郵件",
+    "Email"
+  ],
+  "邮件：": [
+    "郵件：",
+    "Email:"
+  ],
+  "邮箱：": [
+    "郵箱：",
+    "Email:"
+  ],
+  "重新发送邮件：再给所有队长和特批账号发一次邮件（仅三级）": [
+    "重新發送郵件：再給所有隊長和特批帳號發一次郵件（僅三級）",
+    "Send another email to all captains and approved accounts (level 3 only)"
+  ],
+  "重新生成后旧密码立即失效，确定吗？": [
+    "重新生成後舊密碼立即失效，確定嗎？",
+    "Regenerating invalidates the old password immediately. Continue?"
+  ],
+  "重置为学号（下次登录须改密）": [
+    "重置為學號（下次登錄須改密）",
+    "Reset to student ID (change required at next login)"
+  ],
+  "重置二维码": [
+    "重置二維碼",
+    "Reset QR code"
+  ],
+  "重置密码为学号": [
+    "重置密碼為學號",
+    "Reset password to student ID"
+  ],
+  "重置并生成密码": [
+    "重置並生成密碼",
+    "Reset and generate password"
+  ],
+  "阅读情况 -": [
+    "閱讀情況 -",
+    "Read receipts -"
+  ],
+  "阅读时间": [
+    "閱讀時間",
+    "Read at"
+  ],
+  "队伍 / 队长": [
+    "隊伍 / 隊長",
+    "Team / captain"
+  ],
+  "队伍信息": [
+    "隊伍信息",
+    "Team details"
+  ],
+  "队伍信息（参赛队长）": [
+    "隊伍信息（參賽隊長）",
+    "Team details (captain)"
+  ],
+  "队员姓名": [
+    "隊員姓名",
+    "Member name"
+  ],
+  "队员学号": [
+    "隊員學號",
+    "Member student ID"
+  ],
+  "防护：不要拉黑你当前的 IP（": [
+    "防護：不要拉黑你當前的 IP（",
+    "Do not block your current IP ("
+  ],
+  "页（每页": [
+    "頁（每頁",
+    "pages (per page:"
+  ],
+  "项": [
+    "項",
+    "items"
+  ],
+  "项队长功能": [
+    "項隊長功能",
+    "captain features"
+  ],
+  "预约队长请用手机扫码签到": [
+    "預約隊長請用手機掃碼簽到",
+    "Captains: scan with your phone to check in"
+  ],
+  "驳回理由：": [
+    "駁回理由：",
+    "Rejection reason:"
+  ],
+  "（仅显示一次）：": [
+    "（僅顯示一次）：",
+    "(shown once):"
+  ],
+  "（保存在 backups/ 目录，仍含原始个人信息，确认不再需要后请人工销毁）。": [
+    "（保存在 backups/ 目錄，仍含原始個人信息，確認不再需要後請人工銷毀）。",
+    "(saved in backups/ and still containing personal information; destroy it manually when it is no longer needed)."
+  ],
+  "（学号": [
+    "（學號",
+    "(student ID:"
+  ],
+  "（应读 = 有效的队长和特批账号；每人只记第一次打开的时间）": [
+    "（應讀 = 有效的隊長和特批帳號；每人只記第一次打開的時間）",
+    "(Required readers are active captains and approved accounts. Only the first open time is recorded.)"
+  ],
+  "（永久）": [
+    "（永久）",
+    "(permanent)"
+  ],
+  "（自动生成）": [
+    "（自動生成）",
+    "(generated)"
+  ],
+  "（至": [
+    "（至",
+    "(until"
+  ],
+  "（队员列可按同样规则继续编号）。队员只需姓名和学号，无需登录账号。": [
+    "（隊員列可按同樣規則繼續編號）。隊員只需姓名和學號，無需登錄帳號。",
+    "(Member columns may continue with the same numbering pattern.) Members need only names and student IDs, not login accounts."
+  ],
+  "（首次登录须修改）": [
+    "（首次登錄須修改）",
+    "(change required at first login)"
+  ],
+  "）　手机：": [
+    "）　手機：",
+    ") Mobile:"
+  ],
+  "）开通": [
+    "）開通",
+    ") grant access"
+  ],
+  "）或当前设备（": [
+    "）或當前設備（",
+    ") or your current device ("
+  ],
+  "），否则可能无法继续使用管理后台。": [
+    "），否則可能無法繼續使用管理後台。",
+    "), as doing so could lock you out of administration."
+  ],
+  "）；外部链接更换后需重新打印。也可以由服务器设置 PUBLIC_BASE_URL 固定基础地址。": [
+    "）；外部鏈接更換後需重新打印。也可以由服務器設置 PUBLIC_BASE_URL 固定基礎地址。",
+    "). Reprint after the public address changes, or configure PUBLIC_BASE_URL on the server to keep a fixed base URL."
+  ],
+  "，可直接打印后贴在实验室门口。预约队长到场后用手机扫描该二维码并确认，才算签到成功。": [
+    "，可直接打印後貼在實驗室門口。預約隊長到場後用手機掃描該二維碼並確認，才算簽到成功。",
+    "Print and post it at the lab entrance. Captains must scan and confirm on arrival to complete check-in."
+  ],
+  "，第": [
+    "，第",
+    ", page"
+  ],
+  "确定重置「{name}」的签到二维码？重置后旧二维码立即失效，需要重新打印并张贴。": [
+    "確定重置「{name}」的簽到二維碼？重置後舊二維碼立即失效，需要重新打印並張貼。",
+    "Reset the check-in QR code for {name}? The old code will stop working immediately. Reprint and repost the new code."
+  ],
+  "确定关闭「{label}」吗？队长将立即无法使用该功能。": [
+    "確定關閉「{label}」嗎？隊長將立即無法使用該功能。",
+    "Disable {label}? Captains will immediately lose access to this feature."
+  ],
+  "拒绝{name}的申请": [
+    "拒絕{name}的申請",
+    "Reject {name}'s application"
+  ],
+  "编辑公告": [
+    "編輯公告",
+    "Edit announcement"
+  ],
+  "已填入当前位置（误差约 {meters} 米）。请确认后保存。": [
+    "已填入當前位置（誤差約 {meters} 米）。請確認後保存。",
+    "Current location entered (accuracy about {meters} m). Verify it before saving."
+  ],
+  "当前浏览器不支持定位，请手动填写。": [
+    "當前瀏覽器不支持定位，請手動填寫。",
+    "This browser does not support location. Enter coordinates manually."
+  ],
+  "位置权限被拒绝，请在浏览器设置中允许或手动填写。": [
+    "位置權限被拒絕，請在瀏覽器設置中允許或手動填寫。",
+    "Location permission denied. Allow access in browser settings or enter coordinates manually."
+  ],
+  "无法获取位置，请到室外或窗边重试，或手动填写。": [
+    "無法獲取位置，請到室外或窗邊重試，或手動填寫。",
+    "Unable to get location. Retry outside or near a window, or enter it manually."
+  ],
+  "JSON 请求体须为对象。": [
+    "JSON 請求體須為對象。",
+    "The JSON request body must be an object."
+  ],
+  "enabled 须为布尔值。": [
+    "enabled 須為布爾值。",
+    "Enabled must be a boolean."
+  ],
+  "exclude_id 无效。": [
+    "exclude_id 無效。",
+    "Invalid exclude_id."
+  ],
+  "{p0} · {p1} {p2}，签到时间 {p3}。": [
+    "{p0} · {p1} {p2}，簽到時間 {p3}。",
+    "{p0} · {p1} {p2}, checked in at {p3}."
+  ],
+  "{p0} 值班或可联系管理员：{p1}": [
+    "{p0} 值班或可聯繫管理員：{p1}",
+    "{p0} Duty or contact administrator: {p1}"
+  ],
+  "“{p0}”的数量须为正整数。": [
+    "“{p0}”的數量須為正整數。",
+    "The quantity for {p0} must be a positive integer."
+  ],
+  "「{p0}」已经是{p1}状态。": [
+    "「{p0}」已經是{p1}狀態。",
+    "{p0} is already {p1}."
+  ],
+  "上传的照片、导出的 Excel、导入预览文件": [
+    "上傳的照片、導出的 Excel、導入預覽文件",
+    "Uploaded photos, exported spreadsheets and import preview files"
+  ],
+  "不支持撤销该清单操作。": [
+    "不支持撤銷該清單操作。",
+    "This catalog action cannot be undone."
+  ],
+  "与已通过的预约时间冲突：{p0}。重叠不超过 30 分钟不算冲突。": [
+    "與已通過的預約時間衝突：{p0}。重疊不超過 30 分鐘不算衝突。",
+    "Conflicts with approved bookings: {p0}. Overlaps of up to 30 minutes are allowed."
+  ],
+  "你今天 {p0} 的预约签到时间已结束，不能再补签。如有疑问请联系实验室管理员。": [
+    "你今天 {p0} 的預約簽到時間已結束，不能再補簽。如有疑問請聯繫實驗室管理員。",
+    "Check-in for your {p0} booking today has closed. Contact the lab administrator if needed."
+  ],
+  "你今天在「{p0}」没有已通过的预约。请先在系统中预约并等待管理员审核通过。": [
+    "你今天在「{p0}」沒有已通過的預約。請先在系統中預約並等待管理員審核通過。",
+    "You have no approved booking at {p0} today. Submit a booking and wait for approval first."
+  ],
+  "你今天在本实验室的预约是 {p0}，请在 {p1} 之后再扫码签到。": [
+    "你今天在本實驗室的預約是 {p0}，請在 {p1} 之後再掃碼簽到。",
+    "Your booking here is {p0}. Please scan after {p1}."
+  ],
+  "你今天的预约在「{p0}」（{p1}），而这张二维码属于「{p2}」。请前往「{p3}」扫描门口的二维码。": [
+    "你今天的預約在「{p0}」（{p1}），而這張二維碼屬於「{p2}」。請前往「{p3}」掃描門口的二維碼。",
+    "Your booking is at {p0} ({p1}), but this code belongs to {p2}. Scan the code at {p3} instead."
+  ],
+  "你在 {p0} 已经完成本次预约的签到，无需重复操作。": [
+    "你在 {p0} 已經完成本次預約的簽到，無需重復操作。",
+    "You checked in at {p0}. No further action is needed."
+  ],
+  "使用人数不能超过实验室容量（{p0} 人）。": [
+    "使用人數不能超過實驗室容量（{p0} 人）。",
+    "The number of people must not exceed the lab capacity ({p0})."
+  ],
+  "值班结束时间必须晚于开始时间。": [
+    "值班結束時間必須晚於開始時間。",
+    "The duty shift end must be after its start."
+  ],
+  "公告内容和阅读次数（只保留匿名编号）、工具清单、值班安排、系统设置": [
+    "公告內容和閱讀次數（只保留匿名編號）、工具清單、值班安排、系統設置",
+    "Announcement content and anonymous read counts, tool catalog, duty roster and system settings"
+  ],
+  "其他人员“{p0}”的联系方式须为手机号或邮箱。": [
+    "其他人員“{p0}”的聯繫方式須為手機號或郵箱。",
+    "The contact for companion {p0} must be a mobile number or email."
+  ],
+  "内容不能超过 {p0} 个字。": [
+    "內容不能超過 {p0} 個字。",
+    "Content must not exceed {p0} characters."
+  ],
+  "参赛队长、特殊账号：姓名、学号、队伍、手机、邮箱、单位、特批原因 → 改为「已注销-0001」式匿名编号，账号停用且密码作废": [
+    "參賽隊長、特殊帳號：姓名、學號、隊伍、手機、郵箱、單位、特批原因 → 改為「已註銷-0001」式匿名編號，帳號停用且密碼作廢",
+    "Captains and approved accounts: replace names, IDs, teams, contacts, organizations and approval reasons with anonymous identifiers; disable the accounts and invalidate passwords"
+  ],
+  "发布人不能超过 {p0} 个字。": [
+    "發佈人不能超過 {p0} 個字。",
+    "Publisher name must not exceed {p0} characters."
+  ],
+  "同行人员、队员名单：全部删除": [
+    "同行人員、隊員名單：全部刪除",
+    "Companion records and team rosters: delete all"
+  ],
+  "姓名或学号/账号为空": [
+    "姓名或學號/帳號為空",
+    "Name or student ID/account is empty"
+  ],
+  "学号 {p0} 已是「{p1}」账号，不能作为队长导入。": [
+    "學號 {p0} 已是「{p1}」帳號，不能作為隊長導入。",
+    "Student ID {p0} belongs to a {p1} account and cannot be imported as a captain."
+  ],
+  "学号 {p0} 已是管理员账号，不能作为队长导入。": [
+    "學號 {p0} 已是管理員帳號，不能作為隊長導入。",
+    "Student ID {p0} is already an administrator and cannot be imported as a captain."
+  ],
+  "学号 {p0} 已被其他账号使用。": [
+    "學號 {p0} 已被其他帳號使用。",
+    "Student ID {p0} is already used by another account."
+  ],
+  "学号/账号 {p0} 已存在": [
+    "學號/帳號 {p0} 已存在",
+    "Student ID/account {p0} already exists"
+  ],
+  "实验室、预约的日期时间和状态、是否签到、人数、安全承诺时间戳（用于匿名统计）": [
+    "實驗室、預約的日期時間和狀態、是否簽到、人數、安全承諾時間戳（用於匿名統計）",
+    "Labs, booking dates/times and statuses, check-in flags, attendance counts and safety pledge timestamps for anonymous statistics"
+  ],
+  "实验室联系电话须为 11 位手机号。": [
+    "實驗室聯繫電話須為 11 位手機號。",
+    "The lab contact must be an 11-digit mobile number."
+  ],
+  "审核管理员": [
+    "審核管理員",
+    "Reviewing administrator"
+  ],
+  "容量须为大于 0 的整数。": [
+    "容量須為大於 0 的整數。",
+    "Capacity must be a positive integer."
+  ],
+  "导入完成：新增 {p0} 支队伍，更新 {p1} 支，跳过 {p2} 行。": [
+    "導入完成：新增 {p0} 支隊伍，更新 {p1} 支，跳過 {p2} 行。",
+    "Import complete: {p0} teams created, {p1} updated, {p2} rows skipped."
+  ],
+  "工具借用：队伍名、联系方式、借出和归还照片（文件一并删除）；自填的其他工具名称": [
+    "工具借用：隊伍名、聯繫方式、借出和歸還照片（文件一並刪除）；自填的其他工具名稱",
+    "Tool loans: team names, contact details, borrowing/return photos and their files, and custom tool names"
+  ],
+  "工具名称不能超过 80 字。": [
+    "工具名稱不能超過 80 字。",
+    "Tool names must not exceed 80 characters."
+  ],
+  "工具清单项已不存在。": [
+    "工具清單項已不存在。",
+    "The catalog item no longer exists."
+  ],
+  "已{p0}「{p1}」。": [
+    "已{p0}「{p1}」。",
+    "{p1}: {p0}."
+  ],
+  "已为 {p0} 开通登录（权限为仅预约，初始密码为学号，首次登录须改密）。": [
+    "已為 {p0} 開通登錄（權限為僅預約，初始密碼為學號，首次登錄須改密）。",
+    "Login enabled for {p0}, with booking-only access, student ID as the initial password, and a required first-login password change."
+  ],
+  "已删除实验室：{p0}。": [
+    "已刪除實驗室：{p0}。",
+    "Lab deleted: {p0}."
+  ],
+  "已删除账号：{p0}（{p1}）。": [
+    "已刪除帳號：{p0}（{p1}）。",
+    "Account deleted: {p0} ({p1})."
+  ],
+  "已发送（本地归档）": [
+    "已發送（本地歸檔）",
+    "Sent (local archive)"
+  ],
+  "已存在同名实验室。": [
+    "已存在同名實驗室。",
+    "A lab with this name already exists."
+  ],
+  "已存在同名工具。": [
+    "已存在同名工具。",
+    "A tool with this name already exists."
+  ],
+  "已存在同名工具，无法恢复删除。": [
+    "已存在同名工具，無法恢復刪除。",
+    "A tool with this name already exists; deletion cannot be undone."
+  ],
+  "已将 {p0}（{p1}）的密码重置为学号，该队长下次登录须修改密码。": [
+    "已將 {p0}（{p1}）的密碼重置為學號，該隊長下次登錄須修改密碼。",
+    "Password reset to the student ID for {p0} ({p1}). The captain must change it at the next login."
+  ],
+  "已恢复工具「{p0}」。": [
+    "已恢復工具「{p0}」。",
+    "Tool restored: {p0}."
+  ],
+  "已拒绝 {p0} 的预约。": [
+    "已拒絕 {p0} 的預約。",
+    "Rejected {p0}'s booking."
+  ],
+  "已撤销对「{p0}」的清单修改。": [
+    "已撤銷對「{p0}」的清單修改。",
+    "Catalog changes undone for {p0}."
+  ],
+  "已撤销新增工具「{p0}」。": [
+    "已撤銷新增工具「{p0}」。",
+    "Tool creation undone: {p0}."
+  ],
+  "已更新实验室：{p0}。": [
+    "已更新實驗室：{p0}。",
+    "Lab updated: {p0}."
+  ],
+  "已添加参赛队长：{p0}（{p1}）。初始密码等于学号，首次登录须修改。请立即抄录。": [
+    "已添加參賽隊長：{p0}（{p1}）。初始密碼等於學號，首次登錄須修改。請立即抄錄。",
+    "Captain added: {p0} ({p1}). The initial password is the student ID and must be changed at first login. Save it now."
+  ],
+  "已添加实验室：{p0}。": [
+    "已添加實驗室：{p0}。",
+    "Lab added: {p0}."
+  ],
+  "已通过 {p0} 的预约（{p1} {p2} {p3}）。": [
+    "已通過 {p0} 的預約（{p1} {p2} {p3}）。",
+    "Approved {p0}'s booking ({p1} {p2} {p3})."
+  ],
+  "已重新启用 {p0}（{p1}）。": [
+    "已重新啓用 {p0}（{p1}）。",
+    "Account re-enabled: {p0} ({p1})."
+  ],
+  "已重置「{p0}」的签到二维码，旧码立即失效，请重新打印张贴。": [
+    "已重置「{p0}」的簽到二維碼，舊碼立即失效，請重新打印張貼。",
+    "Check-in code reset for {p0}. The old code is invalid; print and post the new code."
+  ],
+  "开启位置签到前，请先填写实验室的经纬度（可点“使用当前位置”）。": [
+    "開啓位置簽到前，請先填寫實驗室的經緯度（可點“使用當前位置”）。",
+    "Enter the lab latitude and longitude before enabling location verification, or use Current location."
+  ],
+  "开放开始时间无效。": [
+    "開放開始時間無效。",
+    "Invalid opening time."
+  ],
+  "开放结束时间必须晚于开始时间。": [
+    "開放結束時間必須晚於開始時間。",
+    "Closing time must be after opening time."
+  ],
+  "开放结束时间无效。": [
+    "開放結束時間無效。",
+    "Invalid closing time."
+  ],
+  "当前状态为「{p0}」，无法撤销审核。": [
+    "當前狀態為「{p0}」，無法撤銷審核。",
+    "The current status is {p0}; the review cannot be undone."
+  ],
+  "待发送": [
+    "待發送",
+    "Pending delivery"
+  ],
+  "恢复后的总数量少于当前已借出数量，不能撤销。": [
+    "恢復後的總數量少於當前已借出數量，不能撤銷。",
+    "The restored stock would be below the borrowed quantity; this change cannot be undone."
+  ],
+  "成功导入 {p0} 个账号。请立即抄录或下载一次性密码，不会写入系统日志。": [
+    "成功導入 {p0} 個帳號。請立即抄錄或下載一次性密碼，不會寫入系統日誌。",
+    "Imported {p0} accounts. Save or download their one-time passwords now; they will not be logged."
+  ],
+  "所选同行队员无效。": [
+    "所選同行隊員無效。",
+    "Invalid selected companion."
+  ],
+  "所选工具不存在。": [
+    "所選工具不存在。",
+    "The selected tool does not exist."
+  ],
+  "指定的成员不存在。": [
+    "指定的成員不存在。",
+    "The specified member does not exist."
+  ],
+  "指定的用户不存在。": [
+    "指定的用戶不存在。",
+    "The specified user does not exist."
+  ],
+  "提示文案不能超过 {p0} 个字。": [
+    "提示文案不能超過 {p0} 個字。",
+    "The message must not exceed {p0} characters."
+  ],
+  "提示：仍有重叠的待审核预约（{p0}），通过那些预约时将被拒绝。": [
+    "提示：仍有重疊的待審核預約（{p0}），通過那些預約時將被拒絕。",
+    "Other pending bookings still overlap ({p0}); attempts to approve them will be rejected."
+  ],
+  "提示：该时段与其他待审核预约重叠超过 30 分钟（{p0}），审核时以先通过者为准。": [
+    "提示：該時段與其他待審核預約重疊超過 30 分鐘（{p0}），審核時以先通過者為準。",
+    "This slot overlaps other pending bookings by more than 30 minutes ({p0}). The first approval takes priority."
+  ],
+  "操作日志、黑白名单说明里出现过的姓名、学号、手机、邮箱：替换为「【已清除】」": [
+    "操作日誌、黑白名單說明裡出現過的姓名、學號、手機、郵箱：替換為「【已清除】」",
+    "Names, student IDs, phones and emails in audit logs and block/allowlist reasons are replaced with a cleared marker"
+  ],
+  "文件不存在。": [
+    "文件不存在。",
+    "File not found."
+  ],
+  "文本字段须为字符串。": [
+    "文本字段須為字符串。",
+    "Text fields must be strings."
+  ],
+  "新密码不能与其他账号的密码相同。": [
+    "新密碼不能與其他帳號的密碼相同。",
+    "The new password must differ from other accounts' passwords."
+  ],
+  "新密码不能为空。": [
+    "新密碼不能為空。",
+    "The new password cannot be empty."
+  ],
+  "新管理员密码（仅显示一次）": [
+    "新管理員密碼（僅顯示一次）",
+    "New administrator password (shown once)"
+  ],
+  "无效或缺失的 Bearer 令牌。": [
+    "無效或缺失的 Bearer 令牌。",
+    "Invalid or missing Bearer token."
+  ],
+  "无权查看该照片。": [
+    "無權查看該照片。",
+    "You do not have permission to view this photo."
+  ],
+  "日志中没有可恢复的修改前数据。": [
+    "日誌中沒有可恢復的修改前數據。",
+    "The log has no original data to restore."
+  ],
+  "日志中没有可恢复的工具数据。": [
+    "日誌中沒有可恢復的工具數據。",
+    "The log has no tool data to restore."
+  ],
+  "本次清除之前自动生成的备份文件（backups/ 目录，不会被删除；确认不再需要后请人工销毁）": [
+    "本次清除之前自動生成的備份文件（backups/ 目錄，不會被刪除；確認不再需要後請人工銷毀）",
+    "The backup created before erasure in backups/ is retained; destroy it manually when it is no longer needed"
+  ],
+  "标题不能超过 {p0} 个字。": [
+    "標題不能超過 {p0} 個字。",
+    "The title must not exceed {p0} characters."
+  ],
+  "没有读到有效的数据行。": [
+    "沒有讀到有效的數據行。",
+    "No valid data rows were found."
+  ],
+  "登录失败次数过多，请 {p0} 秒后再试。": [
+    "登錄失敗次數過多，請 {p0} 秒後再試。",
+    "Too many failed logins. Try again in {p0} seconds."
+  ],
+  "登录日志、密码重置日志、安全事件里的 IP、设备、浏览器、学号；操作日志中普通账号的 IP 和设备": [
+    "登錄日誌、密碼重置日誌、安全事件里的 IP、設備、瀏覽器、學號；操作日誌中普通帳號的 IP 和設備",
+    "IPs, devices, browsers and student IDs in login, reset and security logs; regular account IPs and devices in audit logs"
+  ],
+  "第 {p0} 名队员的姓名和学号须同时填写。": [
+    "第 {p0} 名隊員的姓名和學號須同時填寫。",
+    "Enter both the name and student ID for member {p0}."
+  ],
+  "第 {p0} 名队员的手机号格式不正确。": [
+    "第 {p0} 名隊員的手機號格式不正確。",
+    "Member {p0} has an invalid mobile number."
+  ],
+  "签到半径须是 5 到 1000 米之间的整数。": [
+    "簽到半徑須是 5 到 1000 米之間的整數。",
+    "Check-in radius must be an integer between 5 and 1000 meters."
+  ],
+  "管理员和总管理员账号（仍可登录）": [
+    "管理員和總管理員帳號（仍可登錄）",
+    "Administrator and super administrator accounts remain usable"
+  ],
+  "管理员密码必须包含大写字母。": [
+    "管理員密碼必須包含大寫字母。",
+    "Administrator passwords must contain an uppercase letter."
+  ],
+  "管理员密码必须包含小写字母。": [
+    "管理員密碼必須包含小寫字母。",
+    "Administrator passwords must contain a lowercase letter."
+  ],
+  "管理员密码必须包含至少一个特殊符号。": [
+    "管理員密碼必須包含至少一個特殊符號。",
+    "Administrator passwords must contain a special character."
+  ],
+  "管理员密码长度不能少于 12 位。": [
+    "管理員密碼長度不能少於 12 位。",
+    "Administrator passwords must contain at least 12 characters."
+  ],
+  "管理员密码（点击查看，本次已记入审计日志）": [
+    "管理員密碼（點擊查看，本次已記入審計日誌）",
+    "Administrator password (view audited)"
+  ],
+  "纬度和经度必须同时填写，并且是有效的数字。": [
+    "緯度和經度必須同時填寫，並且是有效的數字。",
+    "Enter valid numeric values for both latitude and longitude."
+  ],
+  "纬度须在 -90 到 90 之间。": [
+    "緯度須在 -90 到 90 之間。",
+    "Latitude must be between -90 and 90."
+  ],
+  "经度须在 -180 到 180 之间。": [
+    "經度須在 -180 到 180 之間。",
+    "Longitude must be between -180 and 180."
+  ],
+  "维护模式已经是{p0}状态。": [
+    "維護模式已經是{p0}狀態。",
+    "Maintenance mode is already {p0}."
+  ],
+  "联系方式须为 11 位手机号。": [
+    "聯繫方式須為 11 位手機號。",
+    "Contact must be an 11-digit mobile number."
+  ],
+  "角色无效。": [
+    "角色無效。",
+    "Invalid role."
+  ],
+  "角色无效：{p0}": [
+    "角色無效：{p0}",
+    "Invalid role: {p0}"
+  ],
+  "该学号/账号已存在。": [
+    "該學號/帳號已存在。",
+    "This student ID/account already exists."
+  ],
+  "该学号已存在。": [
+    "該學號已存在。",
+    "This student ID already exists."
+  ],
+  "该学号已被其他账号使用。": [
+    "該學號已被其他帳號使用。",
+    "This student ID is already used by another account."
+  ],
+  "该实验室仍有待审核或已通过的预约，不能删除。": [
+    "該實驗室仍有待審核或已通過的預約，不能刪除。",
+    "This lab has pending or approved bookings and cannot be deleted."
+  ],
+  "该密码与其他管理员的密码相同，请更换。": [
+    "該密碼與其他管理員的密碼相同，請更換。",
+    "This password is already used by another administrator. Choose another one."
+  ],
+  "该工具已不存在。": [
+    "該工具已不存在。",
+    "This tool no longer exists."
+  ],
+  "该工具已有借用记录，不能撤销新增。": [
+    "該工具已有借用記錄，不能撤銷新增。",
+    "This tool has loan records; its creation cannot be undone."
+  ],
+  "该账号当前已是启用状态。": [
+    "該帳號當前已是啓用狀態。",
+    "This account is already enabled."
+  ],
+  "该预约已有后续审核，不能撤销历史审核。": [
+    "該預約已有後續審核，不能撤銷歷史審核。",
+    "This booking has a newer review. The earlier review cannot be undone."
+  ],
+  "请填写事由。": [
+    "請填寫事由。",
+    "Please enter a reason."
+  ],
+  "请填写使用人姓名。": [
+    "請填寫使用人姓名。",
+    "Please enter the assigned user's name."
+  ],
+  "请填写借用时间和预计归还时间。": [
+    "請填寫借用時間和預計歸還時間。",
+    "Please enter borrowing and expected return times."
+  ],
+  "请填写值班起止时间。": [
+    "請填寫值班起止時間。",
+    "Please enter the duty shift start and end."
+  ],
+  "请填写公告内容。": [
+    "請填寫公告內容。",
+    "Please enter announcement content."
+  ],
+  "请填写公告标题。": [
+    "請填寫公告標題。",
+    "Please enter an announcement title."
+  ],
+  "请填写单位。": [
+    "請填寫單位。",
+    "Please enter an organization."
+  ],
+  "请填写发布人。": [
+    "請填寫發佈人。",
+    "Please enter a publisher name."
+  ],
+  "请填写姓名和学号/账号。": [
+    "請填寫姓名和學號/帳號。",
+    "Please enter a name and student ID/account."
+  ],
+  "请填写学号。": [
+    "請填寫學號。",
+    "Please enter a student ID."
+  ],
+  "请填写学号或账号。": [
+    "請填寫學號或帳號。",
+    "Please enter a student ID or account."
+  ],
+  "请填写完整的日期和起止时间。": [
+    "請填寫完整的日期和起止時間。",
+    "Please enter a date and both start and end times."
+  ],
+  "请填写实验室名称。": [
+    "請填寫實驗室名稱。",
+    "Please enter a lab name."
+  ],
+  "请填写有效期。": [
+    "請填寫有效期。",
+    "Please enter an expiration date."
+  ],
+  "请填写有效的开放时间（如 08:00）。": [
+    "請填寫有效的開放時間（如 08:00）。",
+    "Please enter valid opening hours, for example 08:00."
+  ],
+  "请填写有效的开放时间，且结束须晚于开始。": [
+    "請填寫有效的開放時間，且結束須晚於開始。",
+    "Enter valid opening hours, with closing time after opening time."
+  ],
+  "请填写有效的手机号作为联系方式。": [
+    "請填寫有效的手機號作為聯繫方式。",
+    "Please enter a valid mobile contact number."
+  ],
+  "请提供 start_date 和 end_date（YYYY-MM-DD）。": [
+    "請提供 start_date 和 end_date（YYYY-MM-DD）。",
+    "Provide start_date and end_date in YYYY-MM-DD format."
+  ],
+  "请至少选择或填写一件借用工具及数量。": [
+    "請至少選擇或填寫一件借用工具及數量。",
+    "Select or enter at least one tool and its quantity."
+  ],
+  "请选择值班日期。": [
+    "請選擇值班日期。",
+    "Please select a duty date."
+  ],
+  "请选择值班管理员。": [
+    "請選擇值班管理員。",
+    "Please select a duty administrator."
+  ],
+  "请选择工具，或选择「其他」后填写名称。": [
+    "請選擇工具，或選擇「其他」後填寫名稱。",
+    "Select a tool, or select Other and enter its name."
+  ],
+  "请选择星期。": [
+    "請選擇星期。",
+    "Please select a weekday."
+  ],
+  "请选择有效的公告等级。": [
+    "請選擇有效的公告等級。",
+    "Please select a valid announcement level."
+  ],
+  "请通过请求头 X-Student-Id 指定操作用户学号。": [
+    "請通過請求頭 X-Student-Id 指定操作用戶學號。",
+    "Specify the acting student's ID in the X-Student-Id header."
+  ],
+  "账号已不存在。": [
+    "帳號已不存在。",
+    "This account no longer exists."
+  ],
+  "跳过 {p0} 行，请查看下方说明。": [
+    "跳過 {p0} 行，請查看下方說明。",
+    "Skipped {p0} rows. See details below."
+  ],
+  "选择“其他”时，其他人员的姓名、学号和联系方式须全部填写。请填写 {p0}。": [
+    "選擇“其他”時，其他人員的姓名、學號和聯繫方式須全部填寫。請填寫 {p0}。",
+    "For Other companions, name, student ID and contact are all required. Complete {p0}."
+  ],
+  "选择“其他”时，请至少填写一名其他人员的姓名、学号和联系方式。": [
+    "選擇“其他”時，請至少填寫一名其他人員的姓名、學號和聯繫方式。",
+    "For Other, provide at least one companion's name, student ID and contact."
+  ],
+  "邮件记录和 outbox 里的邮件文件：全部删除；公告邮件的收件邮箱、未签到提醒的邮箱和 IP 清空": [
+    "郵件記錄和 outbox 里的郵件文件：全部刪除；公告郵件的收件郵箱、未簽到提醒的郵箱和 IP 清空",
+    "Delete mail logs and outbox files; clear recipients in announcement emails and email/IP fields in missed check-in reminders"
+  ],
+  "重新生成的管理员密码（仅显示一次）": [
+    "重新生成的管理員密碼（僅顯示一次）",
+    "Regenerated administrator password (shown once)"
+  ],
+  "队名不能为空。": [
+    "隊名不能為空。",
+    "Team name cannot be empty."
+  ],
+  "队员 {p0} 的手机号格式不正确。": [
+    "隊員 {p0} 的手機號格式不正確。",
+    "Team member {p0} has an invalid mobile number."
+  ],
+  "队员姓名和学号须同时填写。": [
+    "隊員姓名和學號須同時填寫。",
+    "Enter both member name and student ID."
+  ],
+  "队员学号不能与队长学号相同（{p0}）。": [
+    "隊員學號不能與隊長學號相同（{p0}）。",
+    "A member cannot share the captain's student ID ({p0})."
+  ],
+  "队员学号不能与队长相同（{p0}）。": [
+    "隊員學號不能與隊長相同（{p0}）。",
+    "A member cannot share the captain's student ID ({p0})."
+  ],
+  "队员学号不能重复。": [
+    "隊員學號不能重復。",
+    "Member student IDs must be unique."
+  ],
+  "队员学号重复：{p0}。": [
+    "隊員學號重復：{p0}。",
+    "Duplicate member student ID: {p0}."
+  ],
+  "队长姓名不能为空。": [
+    "隊長姓名不能為空。",
+    "Captain name cannot be empty."
+  ],
+  "队长学号不能为空。": [
+    "隊長學號不能為空。",
+    "Captain student ID cannot be empty."
+  ],
+  "队长手机号格式不正确。": [
+    "隊長手機號格式不正確。",
+    "Invalid captain mobile number."
+  ],
+  "队长登录：{p0}。": [
+    "隊長登錄：{p0}。",
+    "Captain login: {p0}."
+  ],
+  "队长邮箱格式不正确。": [
+    "隊長郵箱格式不正確。",
+    "Invalid captain email address."
+  ],
+  "需要干部或管理员权限。": [
+    "需要幹部或管理員權限。",
+    "Reviewer or administrator access is required."
+  ],
+  "需要总管理员权限。": [
+    "需要總管理員權限。",
+    "Super administrator access is required."
+  ],
+  "需要管理员权限。": [
+    "需要管理員權限。",
+    "Administrator access is required."
+  ],
+  "预约不存在。": [
+    "預約不存在。",
+    "Booking not found."
+  ],
+  "预约时间须在实验室开放时间内（{p0}–{p1}）。": [
+    "預約時間須在實驗室開放時間內（{p0}–{p1}）。",
+    "Bookings must be within lab opening hours ({p0}–{p1})."
+  ],
+  "预约申请：用途、队长手机和邮箱、驳回原因、签到 IP / 设备、签到经纬度、定位误差和距离": [
+    "預約申請：用途、隊長手機和郵箱、駁回原因、簽到 IP / 設備、簽到經緯度、定位誤差和距離",
+    "Bookings: purposes, captain contacts, rejection reasons, check-in IP/device, coordinates and location accuracy/distance"
+  ],
+  "预约记录已不存在。": [
+    "預約記錄已不存在。",
+    "The booking no longer exists."
+  ],
+  "预计归还时间必须晚于借用时间。": [
+    "預計歸還時間必須晚於借用時間。",
+    "Expected return time must be after borrowing time."
+  ],
+  "驳回时请填写理由。": [
+    "駁回時請填寫理由。",
+    "Enter a reason for rejection."
+  ],
+  "一级": [
+    "一級",
+    "Level 1"
+  ],
+  "二级": [
+    "二級",
+    "Level 2"
+  ],
+  "三级": [
+    "三級",
+    "Level 3"
+  ],
+  "实验室联系人": [
+    "實驗室聯繫人",
+    "Lab contact"
+  ],
+  "暂未配置可联系的管理员，请向总管理员咨询。": [
+    "暫未配置可聯繫的管理員，請向總管理員咨詢。",
+    "No administrator contact is configured. Ask the super administrator."
+  ],
+  "（未填写电话）": [
+    "（未填寫電話）",
+    "(no phone number)"
+  ],
+  "值班或可联系管理员：": [
+    "值班或可聯繫管理員：",
+    "Duty or contact administrator:"
+  ],
+  "删除管理员请在管理员管理中操作。": [
+    "刪除管理員請在管理員管理中操作。",
+    "Delete administrators from administrator management."
+  ],
+  "只在公告页显示，不提醒": [
+    "只在公告頁顯示，不提醒",
+    "Shown only on the announcement page, without reminders"
+  ],
+  "登录后强制弹出，需点击“我已知晓”": [
+    "登錄後強制彈出，需點擊“我已知曉”",
+    "Required popup after login; readers must select I understand"
+  ],
+  "最高级：强制弹出并置顶，同时发邮件给队长和特批账号": [
+    "最高級：強制彈出並置頂，同時發郵件給隊長和特批帳號",
+    "Highest priority: required popup and pinned announcement, plus email to captains and approved accounts"
+  ],
+  "已撤销审核并恢复为待审核。": [
+    "已撤銷審核並恢復為待審核。",
+    "Review undone; the booking is pending review again."
+  ],
+  " 若拒绝理由邮件已发出，无法撤回。": [
+    " 若拒絕理由郵件已發出，無法撤回。",
+    " Rejection emails already sent cannot be recalled."
+  ],
+  "编辑实验室": [
+    "編輯實驗室",
+    "Edit lab"
+  ],
+  "接口不存在。": [
+    "接口不存在。",
+    "API endpoint not found."
+  ],
+  "已添加账号：{p0}（{p1}），请立即抄录下方密码。": [
+    "已添加帳號：{p0}（{p1}），請立即抄錄下方密碼。",
+    "Account added: {p0} ({p1}). Save the password shown below now."
+  ],
+  "首次登录须修改。": [
+    "首次登錄須修改。",
+    "A password change is required at first login."
+  ],
+  "已重置 {p0}（{p1}）的密码，请立即抄录。": [
+    "已重置 {p0}（{p1}）的密碼，請立即抄錄。",
+    "Password reset for {p0} ({p1}). Save it now."
+  ],
+  "对方下次登录须修改。": [
+    "對方下次登錄須修改。",
+    "The user must change it at the next login."
+  ],
+  "已撤销审核并恢复为待审核。 若拒绝理由邮件已发出，无法撤回。": [
+    "已撤銷審核並恢復為待審核。 若拒絕理由郵件已發出，無法撤回。",
+    "Review undone; the booking is pending again. Rejection emails already sent cannot be recalled."
+  ],
+  "{p0}分钟": [
+    "{p0}分鐘",
+    "{p0} minutes"
+  ],
+  "{p0}小时": [
+    "{p0}小時",
+    "{p0} hours"
+  ],
+  "{p0}小时{p1}分钟": [
+    "{p0}小時{p1}分鐘",
+    "{p0} hours {p1} minutes"
+  ],
+  "公告已发布。": [
+    "公告已發佈。",
+    "Announcement published."
+  ],
+  "公告已发布。三级公告的邮件会由后台在一分钟内自动发送。": [
+    "公告已發佈。三級公告的郵件會由後台在一分鐘內自動發送。",
+    "Announcement published. Level 3 emails will be sent by the background worker within one minute."
+  ],
+  "已停用该管理员。": [
+    "已停用該管理員。",
+    "Administrator disabled."
+  ],
+  "已停用该账号。": [
+    "已停用該帳號。",
+    "Account disabled."
+  ],
+  "已启用该管理员。": [
+    "已啓用該管理員。",
+    "Administrator enabled."
+  ],
+  "已启用该账号。": [
+    "已啓用該帳號。",
+    "Account enabled."
+  ],
+  "已添加账号：{p0}（{p1}），请立即抄录下方密码。首次登录须修改。": [
+    "已添加帳號：{p0}（{p1}），請立即抄錄下方密碼。首次登錄須修改。",
+    "Account added: {p0} ({p1}). Save the password below; it must be changed at first login."
+  ],
+  "已重置 {p0}（{p1}）的密码，请立即抄录。对方下次登录须修改。": [
+    "已重置 {p0}（{p1}）的密碼，請立即抄錄。對方下次登錄須修改。",
+    "Password reset for {p0} ({p1}). Save it now; the user must change it at the next login."
+  ],
+  "文件为空。": [
+    "文件為空。",
+    "The file is empty."
+  ],
+  "无法解析 Excel 文件，请上传有效的 .xlsx 文件。": [
+    "無法解析 Excel 文件，請上傳有效的 .xlsx 文件。",
+    "Unable to read the Excel file. Upload a valid .xlsx file."
+  ],
+  "无法识别 CSV 编码，请使用 UTF-8 或 GBK。": [
+    "無法識別 CSV 編碼，請使用 UTF-8 或 GBK。",
+    "Unrecognized CSV encoding. Use UTF-8 or GBK."
+  ],
+  "缺少学号，无法生成默认密码。": [
+    "缺少學號，無法生成默認密碼。",
+    "A student ID is required to generate the default password."
+  ],
+  "缺少必要列：{p0}。": [
+    "缺少必要列：{p0}。",
+    "Missing required columns: {p0}."
+  ],
+  "自定义初始密码至少需要 8 位；参赛队长也可留空，默认等于学号。": [
+    "自定義初始密碼至少需要 8 位；參賽隊長也可留空，默認等於學號。",
+    "Custom initial passwords must contain at least 8 characters. Captains may leave it blank to use their student ID."
+  ],
+  "选择「其他」时请填写工具名称。": [
+    "選擇「其他」時請填寫工具名稱。",
+    "Enter a tool name when choosing Other."
+  ],
+  "本实验室要求位置验证，但没有收到你的位置。请允许浏览器获取位置信息后重试（手机需开启定位）。": [
+    "本實驗室要求位置驗證，但沒有收到你的位置。請允許瀏覽器獲取位置信息後重試（手機需開啓定位）。",
+    "This lab requires location verification, but no location was received. Allow browser location access and enable phone location services, then retry."
+  ],
+  "定位误差较大，请到窗边或门口重试（当前误差约 {p0} 米）。": [
+    "定位誤差較大，請到窗邊或門口重試（當前誤差約 {p0} 米）。",
+    "Location accuracy is insufficient (about {p0} m). Retry near a window or entrance."
+  ]
+}

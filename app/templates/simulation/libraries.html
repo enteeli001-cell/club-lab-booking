@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{ t("材料与截面库") }}{% endblock %}
+{% block content %}
+<div class="page-head"><div><h1>{{ t("材料与截面库") }}</h1><p class="muted">{{ t("模型只能引用预设；修改预设后，相关旧结果需要重新计算。演示竹材为等效参数，请按试验结果修订。") }}</p></div><a class="btn secondary" href="{{ url_for('simulation.index') }}">{{ t("返回模型列表") }}</a></div>
+{% set labels = {'elastic_modulus':'弹性模量 E (Pa)', 'shear_modulus':'剪切模量 G (Pa)', 'density':'密度 (kg/m³)', 'allowable_stress':'容许应力 (Pa)', 'area':'面积 A (m²)', 'iy':'惯性矩 Iy (m⁴)', 'iz':'惯性矩 Iz (m⁴)', 'wy':'截面模量 Wy (m³)', 'wz':'截面模量 Wz (m³)', 'torsion_j':'扭转常数 J (m⁴)'} %}
+{% for kind, title, items, fields in [('material','材料预设',materials,material_fields),('section','截面预设',sections,section_fields)] %}
+<h2>{{ t(title) }}</h2>
+{% for item in items + [none] %}<div class="card"><form method="post" action="{{ url_for('simulation.library_save',kind=kind,item_id=item.id if item else 0) }}">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<h3>{% if item %}#{{ item.id }} · {{ t(item.name) }}{% else %}{{ t("新增预设") }}{% endif %}</h3>
+<div class="sim-library-fields"><label>{{ t("名称") }}<input name="name" maxlength="80" required value="{{ item.name if item else '' }}"></label>
+{% for field in fields %}<label>{{ t(labels[field]) }}<input name="{{ field }}" type="number" step="any" min="{{ '0.000000000000000001' if kind == 'section' else '0.000000000001' }}" required value="{{ item[field] if item else '' }}"></label>{% endfor %}</div>
+<div class="actions"><label class="check-item"><input type="checkbox" name="enabled" value="1" {% if not item or item.enabled %}checked{% endif %}>{{ t("启用") }}</label><button>{{ t("保存预设") }}</button></div>
+</form></div>{% endfor %}{% endfor %}
+{% endblock %}
+{% block scripts %}<link rel="stylesheet" href="{{ asset_url('simulation.css') }}">{% endblock %}

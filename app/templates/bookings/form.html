@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}{{ t('修改测试预约') if editing else t('测试预约') }}{% endblock %}
+{% block content %}
+{% if not editing %}{% include "checkin/_cards.html" %}{% endif %}
+<div class="page-head">
+  <div>
+    <h1>{{ t('修改测试预约') if editing else t('测试预约') }}</h1>
+    <p class="muted">{% if editing %}{{ t("修改后将重新进入待审核状态。") }}{% else %}{{ t("填写时段与同行人员，提交后等待管理员审核。") }}{% endif %}</p>
+  </div>
+  <a class="btn secondary small" href="{{ url_for('records.index', tab='bookings') }}">{{ t("申请记录") }}</a>
+</div>
+<div class="card form-card">
+  {% if not labs %}
+  <p class="muted">{{ t("当前没有可用实验室，请联系管理员。") }}</p>
+  {% else %}
+  <form method="post" id="booking-form" data-max-minutes="60" data-busy="{{ t('正在保存…') if editing else t('正在提交…') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <section class="form-section">
+      <h2 class="form-section-title"><span>1</span>{{ t("时段") }}</h2>
+      <div class="field">
+        <label for="lab_id">{{ t("实验室") }}</label>
+        <select id="lab_id" name="lab_id" required>
+          {% if labs|length != 1 %}
+          <option value="">{{ t("请选择") }}</option>
+          {% endif %}
+          {% for lab in labs %}
+          <option value="{{ lab.id }}"
+                  data-open-start="{{ lab.open_start.strftime('%H:%M') }}"
+                  data-open-end="{{ lab.open_end.strftime('%H:%M') }}"
+                  {% if form.lab_id|string == lab.id|string %}selected{% endif %}>
+            {{ lab.name }}{{ t("（容量") }} {{ lab.capacity }} {{ t("人，开放") }} {{ lab.open_hours_label }}）
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="date">{{ t("日期") }} <span class="tz-badge">{{ t(tz_label) }}</span></label>
+          <input id="date" name="date" type="date" required value="{{ form.date }}" min="{{ form.date }}">
+        </div>
+        <div class="field">
+          <label for="start_time">{{ t("当天开始时间") }}</label>
+          <input id="start_time" name="start_time" type="time" required value="{{ form.start_time }}" step="60">
+        </div>
+        <div class="field">
+          <label for="end_time">{{ t("当天结束时间") }}</label>
+          <input id="end_time" name="end_time" type="time" required value="{{ form.end_time }}" step="60">
+        </div>
+      </div>
+      <div class="chip-row" role="group" aria-label="{{ t('快速设置时长') }}">
+        <span class="chip-label">{{ t("快速设置时长") }}</span>
+        <button type="button" class="chip" data-duration="30">{{ t("30 分钟") }}</button>
+        <button type="button" class="chip" data-duration="45">{{ t("45 分钟") }}</button>
+        <button type="button" class="chip" data-duration="60">{{ t("1 小时") }}</button>
+        <a class="chip chip-link" id="schedule-link" data-base="{{ url_for('bookings.schedule') }}" href="{{ url_for('bookings.schedule') }}" target="_blank" rel="noopener">{{ t("查看当天占用 ↗") }}</a>
+      </div>
+      <p class="hint" id="duration-hint" aria-live="polite">{{ t("单次时长不得超过 1 小时，且须在实验室开放时间内。不可预约已经过去的时间。与他人已通过预约重叠不超过 30 分钟不算冲突。") }}</p>
+    </section>
+
+    <section class="form-section">
+      <h2 class="form-section-title"><span>2</span>{{ t("联系方式与用途") }}</h2>
+      <div class="field-row">
+        <div class="field">
+          <label for="captain_phone">{{ t("队长本人联系方式（手机号）") }}</label>
+          <input id="captain_phone" name="captain_phone" type="tel" required inputmode="numeric" pattern="1[3-9][0-9]{9}" maxlength="11" autocomplete="tel" value="{{ form.captain_phone }}" placeholder="{{ t('11 位手机号') }}">
+        </div>
+        <div class="field">
+          <label for="captain_email">{{ t("队长邮箱") }}</label>
+          <input id="captain_email" name="captain_email" type="email" required maxlength="120" autocomplete="email" inputmode="email" value="{{ form.captain_email }}" placeholder="{{ t('用于接收审核结果') }}">
+        </div>
+      </div>
+      <div class="field">
+        <label for="purpose">{{ t("用途") }}</label>
+        <textarea id="purpose" name="purpose" maxlength="200" rows="3" required>{{ form.purpose }}</textarea>
+      </div>
+    </section>
+
+    <fieldset class="companions form-section">
+      <legend class="form-section-title"><span>3</span>{{ t("测试同行人员") }}</legend>
+      <p class="hint">{{ t("可多选本队队员。若有名单外人员，请勾选“其他”并填写其姓名、学号和联系方式（手机号或邮箱）。") }}<strong id="companion-count" class="companion-count"></strong></p>
+      {% if teammates %}
+      <div class="checkbox-list">
+        {% for m in teammates %}
+        <label class="check-item">
+          <input type="checkbox" name="companion_member" value="{{ m.id }}" {% if m.id|string in form.selected_members %}checked{% endif %}>
+          <span>{{ m.name }}<small>{{ m.student_id }}</small></span>
+        </label>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="muted">{{ t("当前队伍暂无队员名单，如需其他人同行请勾选“其他”。") }}</p>
+      {% endif %}
+      <label class="check-item check-other">
+        <input type="checkbox" name="include_other" id="include_other" value="on" {% if form.include_other %}checked{% endif %}>
+        <span>{{ t("其他") }}</span>
+      </label>
+      <div id="other-box" class="other-box" {% if not form.include_other %}hidden{% endif %}>
+        <p class="hint">{{ t("请填写其他人员信息，可添加多行，每项均必填。") }}</p>
+        <div id="other-rows">
+          {% for row in form.other_rows %}
+          <div class="field-row other-row">
+            <div class="field"><label>{{ t("姓名") }}</label><input name="other_name" type="text" value="{{ row.name }}"></div>
+            <div class="field"><label>{{ t("学号") }}</label><input name="other_student_id" type="text" autocapitalize="off" value="{{ row.student_id }}"></div>
+            <div class="field"><label>{{ t("联系方式（手机号或邮箱）") }}</label><input name="other_contact" type="text" value="{{ row.contact }}"></div>
+            <button type="button" class="row-remove js-remove-row" aria-label="{{ t('删除这一行') }}">{{ t("删除") }}</button>
+          </div>
+          {% endfor %}
+        </div>
+        <template id="other-row-template">
+          <div class="field-row other-row">
+            <div class="field"><label>{{ t("姓名") }}</label><input name="other_name" type="text"></div>
+            <div class="field"><label>{{ t("学号") }}</label><input name="other_student_id" type="text" autocapitalize="off"></div>
+            <div class="field"><label>{{ t("联系方式（手机号或邮箱）") }}</label><input name="other_contact" type="text"></div>
+            <button type="button" class="row-remove js-remove-row" aria-label="{{ t('删除这一行') }}">{{ t("删除") }}</button>
+          </div>
+        </template>
+        <button type="button" class="btn secondary small" id="add-other">{{ t("＋ 添加其他人员") }}</button>
+      </div>
+    </fieldset>
+
+    <div class="actions form-actions">
+      <button type="submit" class="btn-lg">{{ t('保存并重新提交审核') if editing else t('提交预约') }}</button>
+      <a class="btn secondary" href="{{ url_for('records.index', tab='bookings') if editing else url_for('bookings.my_bookings') }}">{{ t('返回申请记录') if editing else t('查看我的预约') }}</a>
+    </div>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}

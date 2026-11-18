@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}{{ t('编辑值班安排') if shift else t('新增值班安排') }}{% endblock %}
+{% block content %}
+<h1>{{ t('编辑值班安排') if shift else t('新增值班安排') }}</h1>
+<div class="card">
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field">
+      <label for="lab_id">{{ t("实验室") }}</label>
+      <select id="lab_id" name="lab_id" required>
+        <option value="">{{ t("请选择") }}</option>
+        {% for lab in labs %}
+        <option value="{{ lab.id }}" {% if form.lab_id == lab.id|string %}selected{% endif %}>{{ lab.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="field">
+      <label for="admin_id">{{ t("值班管理员") }}</label>
+      <select id="admin_id" name="admin_id" required>
+        <option value="">{{ t("请选择") }}</option>
+        {% for u in staff %}
+        <option value="{{ u.id }}" {% if form.admin_id == u.id|string %}selected{% endif %}>{{ u.name }}（{{ t(u.role_label) }}{% if u.contact_phone %} · {{ u.contact_phone }}{% endif %}）</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="field">
+      <label>{{ t("值班周期") }}</label>
+      <label class="check-item"><input type="radio" name="mode" value="date" {% if form.mode != 'week' %}checked{% endif %}> {{ t("指定日期") }}</label>
+      <label class="check-item"><input type="radio" name="mode" value="week" {% if form.mode == 'week' %}checked{% endif %}> {{ t("每周星期") }}</label>
+    </div>
+    <div class="field" id="date-field">
+      <label for="specific_date">{{ t("日期") }}</label>
+      <input id="specific_date" name="specific_date" type="date" value="{{ form.specific_date }}">
+    </div>
+    <div class="field" id="week-field">
+      <label for="weekday">{{ t("星期") }}</label>
+      <select id="weekday" name="weekday">
+        {% for label in weekday_labels %}
+        <option value="{{ loop.index0 }}" {% if form.weekday == loop.index0|string %}selected{% endif %}>{{ t(label) }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="start_time">{{ t("开始时间") }}</label>
+        <input id="start_time" name="start_time" type="time" required value="{{ form.start_time }}">
+      </div>
+      <div class="field">
+        <label for="end_time">{{ t("结束时间") }}</label>
+        <input id="end_time" name="end_time" type="time" required value="{{ form.end_time }}">
+      </div>
+    </div>
+    <div class="actions">
+      <button type="submit">{{ t("保存") }}</button>
+      <a class="btn secondary" href="{{ url_for('duties.list_duties') }}">{{ t("返回") }}</a>
+    </div>
+  </form>
+</div>
+<script>
+(function(){
+  function sync(){
+    var week = document.querySelector('input[name="mode"]:checked');
+    var isWeek = week && week.value === "week";
+    document.getElementById("date-field").style.display = isWeek ? "none" : "block";
+    document.getElementById("week-field").style.display = isWeek ? "block" : "none";
+    document.getElementById("specific_date").required = !isWeek;
+    document.getElementById("weekday").required = isWeek;
+  }
+  document.querySelectorAll('input[name="mode"]').forEach(function(r){ r.addEventListener("change", sync); });
+  sync();
+})();
+</script>
+{% endblock %}

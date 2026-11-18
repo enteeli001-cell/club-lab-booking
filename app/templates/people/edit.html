@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}{{ t("编辑人员") }}{% endblock %}
+{% block content %}
+<h1>{{ t("编辑：") }}{{ user.name }}（{{ t(user.role_label) }}）</h1>
+<div class="card">
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field-row">
+      <div class="field"><label>{{ t("姓名") }}</label><input name="name" required value="{{ user.name }}"></div>
+      <div class="field"><label>{{ t("学号") }}</label><input name="student_id" required value="{{ user.student_id }}"></div>
+      <div class="field"><label>{{ t("手机") }}</label><input name="phone" value="{{ user.last_phone or '' }}"></div>
+      <div class="field"><label>{{ t("邮箱") }}</label><input name="email" type="email" value="{{ user.last_email or '' }}"></div>
+    </div>
+    <p class="hint">{{ t("已验证邮箱：") }}{{ user.verified_email or '—' }} {% if user.email_verified %}<span class="badge approved">{{ t("邮箱已验证") }}</span>{% else %}<span class="badge pending">{{ t("邮箱未验证") }}</span>{% endif %}　{{ t("队长须本人在“个人信息”中通过验证码验证邮箱；这里修改的邮箱不会替代已验证邮箱。") }}</p>
+    {% if user.is_captain %}
+    <div class="field"><label>{{ t("队名") }}</label><input name="team_name" value="{{ user.team_name or '' }}"></div>
+    <fieldset class="companions">
+      <legend>{{ t("队员") }}</legend>
+      {% for m in user.teammates %}
+      <div class="field-row">
+        <div class="field"><label>{{ t("姓名") }}</label><input name="member_name" value="{{ m.name }}"></div>
+        <div class="field"><label>{{ t("学号") }}</label><input name="member_student_id" value="{{ m.student_id }}"></div>
+        <div class="field"><label>{{ t("手机") }}</label><input name="member_phone" value="{{ m.phone or '' }}"></div>
+      </div>
+      {% endfor %}
+      <div class="field-row">
+        <div class="field"><label>{{ t("新队员姓名") }}</label><input name="member_name"></div>
+        <div class="field"><label>{{ t("学号") }}</label><input name="member_student_id"></div>
+        <div class="field"><label>{{ t("手机") }}</label><input name="member_phone"></div>
+      </div>
+    </fieldset>
+    {% endif %}
+    {% if user.is_special_guest %}
+    <div class="field-row">
+      <div class="field"><label>{{ t("单位") }}</label><input name="organization" required value="{{ user.organization or '' }}"></div>
+      <div class="field"><label>{{ t("事由") }}</label><input name="special_reason" value="{{ user.special_reason or '' }}"></div>
+      <div class="field"><label>{{ t("有效期至") }}</label><input name="valid_until" type="date" value="{{ user.valid_until or '' }}"></div>
+    </div>
+    {% endif %}
+    <button type="submit">{{ t("保存资料") }}</button>
+    <a class="btn secondary" href="{{ url_for('people.index') }}">{{ t("返回") }}</a>
+  </form>
+</div>
+
+<div class="card">
+  <h2>{{ t("登录密码") }}</h2>
+  <form method="post" action="{{ url_for('people.set_password', user_id=user.id) }}" class="field-row">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="mode" value="manual">
+    <div class="field"><label for="manual_password">{{ t("手动设置新密码") }}</label>
+      <div class="pw-toggle-wrap">
+        <input id="manual_password" name="password" type="password" autocomplete="new-password">
+        <button type="button" class="pw-toggle" aria-controls="manual_password" aria-pressed="false" aria-label="{{ t('显示密码') }}">{{ t("显示") }}</button>
+      </div>
+    </div>
+    <button type="submit">{{ t("设置密码") }}</button>
+  </form>
+  <form method="post" action="{{ url_for('people.set_password', user_id=user.id) }}" style="margin-top:12px">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="mode" value="reset_sid">
+    <button type="submit" class="btn secondary">{{ t("重置为学号（下次登录须改密）") }}</button>
+  </form>
+</div>
+
+{% if user.is_captain %}
+<div class="card">
+  <h2>{{ t("为队员特批开通登录") }}</h2>
+  <p class="muted">{{ t("开通后该队员成为可登录账号，权限为仅预约（不能借用工具或管理队伍）。初始密码为学号。") }}</p>
+  {% for m in user.teammates %}
+  <form method="post" action="{{ url_for('people.grant_member_login') }}" class="inline" style="margin-right:8px">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="captain_id" value="{{ user.id }}">
+    <input type="hidden" name="student_id" value="{{ m.student_id }}">
+    <button class="btn small" type="submit">{{ t("为") }} {{ m.name }}（{{ m.student_id }}{{ t("）开通") }}</button>
+  </form>
+  {% else %}
+  <p class="muted">{{ t("暂无队员。") }}</p>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

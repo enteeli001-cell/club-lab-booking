@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}{{ t("普通登录人员操作详情") }}{% endblock %}
+{% block content %}
+<h1>{{ t("普通登录人员操作详情") }}</h1>
+<p class="muted">{{ t("包含参赛队长、特批队员和特批非参赛账号的登录与操作记录。拉黑后，对应 IP 或设备将无法访问登录和业务页面。") }}</p>
+<p class="reject-email-warning">{{ t("防护：不要拉黑你当前的 IP（") }}{{ current_ip or t('未知') }}{{ t("）或当前设备（") }}{{ current_device or t('尚未生成设备 ID') }}{{ t("），否则可能无法继续使用管理后台。") }}</p>
+
+<form class="card field-row" method="get">
+  <div class="field"><label>{{ t("账号") }}</label><input name="q" value="{{ q }}" placeholder="{{ t('学号或关键词') }}"></div>
+  <div class="field"><label>{{ t("IP") }}</label><input name="ip" value="{{ ip }}"></div>
+  <div class="field"><label>{{ t("开始日期") }}</label><input name="start" type="date" value="{{ start }}"></div>
+  <div class="field"><label>{{ t("结束日期") }}</label><input name="end" type="date" value="{{ end }}"></div>
+  <button type="submit">{{ t("筛选") }}</button>
+</form>
+
+<h2>{{ t("登录记录") }}</h2>
+<div class="card">
+  <table>
+    <thead><tr><th>{{ t("时间") }}</th><th>{{ t("账号") }}</th><th>{{ t("IP") }}</th><th>{{ t("设备 / 浏览器 / 系统") }}</th><th>{{ t("结果") }}</th><th>{{ t("累计成功次数") }}</th></tr></thead>
+    <tbody>
+    {% for log in logins %}
+      <tr>
+        <td>{{ log.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        <td>{{ log.student_id or '—' }}<div class="hint">{{ log.role|role_label }}</div></td>
+        <td>{{ log.ip or '—' }}</td>
+        <td>{{ log.device_id or '—' }}<div class="hint">{{ log.browser or '—' }} / {{ log.os_name or '—' }}</div></td>
+        <td>{% if log.success %}<span class="badge approved">{{ t("成功") }}</span>{% else %}<span class="badge rejected">{{ t("失败") }}</span>{% endif %}{% if log.reason %}<div class="hint">{{ log.reason }}</div>{% endif %}</td>
+        <td>{{ counts.get(log.student_id, 0) if log.student_id else '—' }}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="6" class="muted">{{ t("暂无登录记录。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<h2>{{ t("操作审计") }}</h2>
+<div class="card">
+  <table>
+    <thead><tr><th>{{ t("时间") }}</th><th>{{ t("账号") }}</th><th>{{ t("IP") }}</th><th>{{ t("操作") }}</th><th>{{ t("详情") }}</th></tr></thead>
+    <tbody>
+    {% for log in actions %}
+      <tr>
+        <td>{{ log.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        <td>{{ log.actor_student_id or '—' }}</td>
+        <td>{{ log.ip or '—' }}</td>
+        <td>{{ log.action }}</td>
+        <td>{{ log.summary }}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="5" class="muted">{{ t("暂无操作记录。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<h2>{{ t("拉黑 IP / 设备") }}</h2>
+<div class="card">
+  <form method="post" action="{{ url_for('activity.add_block') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field-row">
+      <div class="field">
+        <label>{{ t("类型") }}</label>
+        <select name="kind"><option value="ip">{{ t("IP") }}</option><option value="device">{{ t("设备") }}</option></select>
+      </div>
+      <div class="field"><label>{{ t("IP 或设备 ID") }}</label><input name="value" required></div>
+      <div class="field"><label>{{ t("原因") }}</label><input name="reason" required></div>
+      <div class="field"><label>{{ t("到期时间（留空为永久）") }}</label><input name="expires_at" type="datetime-local"></div>
+    </div>
+    <button type="submit">{{ t("拉黑") }}</button>
+  </form>
+</div>
+<div class="card">
+  <table>
+    <thead><tr><th>{{ t("类型") }}</th><th>{{ t("值") }}</th><th>{{ t("原因") }}</th><th>{{ t("到期") }}</th><th>{{ t("状态") }}</th><th>{{ t("操作") }}</th></tr></thead>
+    <tbody>
+    {% for b in blocks %}
+      <tr>
+        <td>{{ t('IP') if b.kind == 'ip' else t('设备') }}</td>
+        <td>{{ b.value }}</td>
+        <td>{{ b.reason or '—' }}</td>
+        <td>{{ b.expires_at.strftime('%Y-%m-%d %H:%M') if b.expires_at else t('永久') }}</td>
+        <td>{% if b.is_in_effect(now) %}<span class="badge rejected">{{ t("生效中") }}</span>{% else %}<span class="badge off">{{ t("已解除/过期") }}</span>{% endif %}</td>
+        <td>
+          {% if b.active %}
+          <form method="post" action="{{ url_for('activity.lift_block', block_id=b.id) }}" class="inline">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn small" type="submit">{{ t("解除拉黑") }}</button>
+          </form>
+          {% else %}—{% endif %}
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="6" class="muted">{{ t("暂无拉黑记录。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% block title %}{{ t("材料记录") }}{% endblock %}
+{% macro photo(name, alt) -%}
+{% if name %}<a href="{{ url_for('materials.media', filename=name) }}" target="_blank" rel="noopener"><img class="thumb" src="{{ url_for('materials.media', filename=name) }}" alt="{{ alt }}" width="64" height="64" loading="lazy" decoding="async"></a>{% else %}—{% endif %}
+{%- endmacro %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{{ t("材料领取与购买记录") }}</h1>
+    <p class="muted">{% if current_user.is_superadmin %}{{ t("记录由系统自动生成。总管理员可以修改、作废或删除记录，所有改动都会写入管理员操作日志。") }}{% else %}{{ t("记录由系统自动生成，管理员只能查看，不能修改。如需更正请联系总管理员。") }}{% endif %}</p>
+  </div>
+  <div class="actions">
+    <a class="btn secondary small" href="{{ url_for('materials.export') }}">{{ t("导出 Excel") }}</a>
+    {% if current_user.is_superadmin %}<a class="btn small" href="{{ url_for('materials.settings') }}">{{ t("材料设置") }}</a>{% endif %}
+  </div>
+</div>
+
+<div class="card inventory-card">
+  <div class="inventory-head"><h2>{{ t("当前库存") }}</h2></div>
+  {% if free_items or sale_items %}
+  <div class="inventory-grid">
+    {% for item in free_items %}
+    <div class="stock-item{% if not item.enabled %} is-off{% endif %}">
+      <div class="stock-name">{{ item.label }}</div>
+      <div class="stock-nums"><span>{{ t("免费领取") }} · {{ t("每队") }} {{ item.per_team_qty }}{{ item.unit }}</span><span class="stock-remain">{{ t("库存") }} {{ item.stock }}{{ item.unit }}</span></div>
+    </div>
+    {% endfor %}
+    {% for item in sale_items %}
+    <div class="stock-item{% if not item.enabled %} is-off{% endif %}">
+      <div class="stock-name">{{ item.label }}</div>
+      <div class="stock-nums"><span>{{ t("购买") }} · ¥{{ item.unit_price_label }}/{{ item.unit }}</span><span class="stock-remain">{{ t("库存") }} {{ item.stock }}{{ item.unit }}</span></div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="muted">{{ t("尚未设置材料。") }}{% if current_user.is_superadmin %}<a href="{{ url_for('materials.settings') }}">{{ t("去设置 →") }}</a>{% endif %}</p>
+  {% endif %}
+</div>
+
+<div class="tabs">
+  <a href="{{ url_for('materials.admin_records', tab='claims') }}" class="{{ 'active' if tab == 'claims' }}">{{ t("领取统计") }}</a>
+  <a href="{{ url_for('materials.admin_records', tab='purchases') }}" class="{{ 'active' if tab == 'purchases' }}">{{ t("购买记录") }}</a>
+  <a href="{{ url_for('materials.admin_records', tab='settle') }}" class="{{ 'active' if tab == 'settle' }}">{{ t("结算汇总") }}</a>
+</div>
+
+{% if tab == 'claims' %}
+<div class="summary-row">
+  <div class="summary-tile tone-ok"><span class="summary-num">{{ stats.claimed }}</span><span class="summary-lbl">{{ t("已领取队伍") }}</span></div>
+  <div class="summary-tile {{ 'tone-warn' if stats.unclaimed else 'tone-ok' }}"><span class="summary-num">{{ stats.unclaimed }}</span><span class="summary-lbl">{{ t("未领取队伍") }}</span></div>
+  <div class="summary-tile tone-info summary-next">
+    <span class="summary-lbl">{{ t("已发放合计") }}</span>
+    {% for row in stats.totals %}<span>{{ row.label }}：<b>{{ row.quantity }}</b> {{ row.unit }}</span>{% else %}<span class="muted">{{ t("暂无") }}</span>{% endfor %}
+  </div>
+</div>
+<div class="card">
+  <div class="table-scroll">
+  <table class="responsive-table">
+    <thead><tr><th>{{ t("队伍") }}</th><th>{{ t("队长") }}</th><th>{{ t("状态") }}</th><th>{{ t("领取材料") }}</th><th>{{ t("领取时间 / IP") }}</th><th>{{ t("照片") }}</th>{% if current_user.is_superadmin %}<th>{{ t("操作") }}</th>{% endif %}</tr></thead>
+    <tbody>
+    {% for row in stats.rows %}
+      {% set c = row.claim %}
+      <tr>
+        <td data-label="{{ t('队伍') }}">{{ row.user.team_name or '—' }}</td>
+        <td data-label="{{ t('队长') }}">{{ row.user.name }}<div class="hint">{{ row.user.student_id }}</div></td>
+        <td data-label="{{ t('状态') }}">{% if c %}<span class="badge approved">{{ t("已领取") }}</span>{% else %}<span class="badge pending">{{ t("未领取") }}</span>{% endif %}</td>
+        <td data-label="{{ t('领取材料') }}">{{ c.items_label if c else '—' }}{% if c and c.note %}<div class="hint">{{ t("备注：") }}{{ c.note }}</div>{% endif %}</td>
+        <td data-label="{{ t('领取时间 / IP') }}">{% if c %}{{ c.created_at.strftime('%Y-%m-%d %H:%M') }}<div class="hint">{{ c.ip or '—' }}</div>{% else %}—{% endif %}</td>
+        <td data-label="{{ t('照片') }}">{{ photo(c.photo if c else None, t('领取照片')) }}</td>
+        {% if current_user.is_superadmin %}<td data-label="{{ t('操作') }}">{% if c %}{% include "materials/_record_actions.html" with context %}{% else %}—{% endif %}</td>{% endif %}
+      </tr>
+    {% endfor %}
+    {% for c in stats.extra %}
+      <tr>
+        <td data-label="{{ t('队伍') }}">{{ c.team_name or '—' }}</td>
+        <td data-label="{{ t('队长') }}">{{ c.user.name }}<div class="hint">{{ c.user.student_id }} · {{ t("账号已停用") }}</div></td>
+        <td data-label="{{ t('状态') }}"><span class="badge approved">{{ t("已领取") }}</span></td>
+        <td data-label="{{ t('领取材料') }}">{{ c.items_label }}</td>
+        <td data-label="{{ t('领取时间 / IP') }}">{{ c.created_at.strftime('%Y-%m-%d %H:%M') }}<div class="hint">{{ c.ip or '—' }}</div></td>
+        <td data-label="{{ t('照片') }}">{{ photo(c.photo, t('领取照片')) }}</td>
+        {% if current_user.is_superadmin %}<td data-label="{{ t('操作') }}">{% include "materials/_record_actions.html" with context %}</td>{% endif %}
+      </tr>
+    {% endfor %}
+    {% if not stats.rows and not stats.extra %}<tr><td colspan="7" class="empty-cell muted">{{ t("还没有参赛队长账号。") }}</td></tr>{% endif %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% if voided_claims %}
+<h2>{{ t("已作废的领取记录") }}</h2>
+<div class="card">
+  <div class="table-scroll">
+  <table class="responsive-table">
+    <thead><tr><th>{{ t("队伍") }}</th><th>{{ t("队长") }}</th><th>{{ t("领取材料") }}</th><th>{{ t("领取时间") }}</th><th>{{ t("照片") }}</th>{% if current_user.is_superadmin %}<th>{{ t("操作") }}</th>{% endif %}</tr></thead>
+    <tbody>
+    {% for c in voided_claims %}
+      <tr>
+        <td data-label="{{ t('队伍') }}">{{ c.team_name or '—' }}</td>
+        <td data-label="{{ t('队长') }}">{{ c.user.name }}</td>
+        <td data-label="{{ t('领取材料') }}">{{ c.items_label }}{% if c.note %}<div class="hint">{{ t("备注：") }}{{ c.note }}</div>{% endif %}</td>
+        <td data-label="{{ t('领取时间') }}">{{ c.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+        <td data-label="{{ t('照片') }}">{{ photo(c.photo, t('领取照片')) }}</td>
+        {% if current_user.is_superadmin %}<td data-label="{{ t('操作') }}">{% include "materials/_record_actions.html" with context %}</td>{% endif %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endif %}
+
+{% elif tab == 'purchases' %}
+<div class="tabs sub-tabs">
+  {% for key, label in [('confirmed','已确认'),('unsettled','未结算'),('settled','已结算'),('voided','已作废'),('pending','待验证'),('cancelled','已取消'),('all','全部')] %}
+  <a href="{{ url_for('materials.admin_records', tab='purchases', status=key) }}" class="{{ 'active' if status == key }}">{{ t(label) }}</a>
+  {% endfor %}
+</div>
+<div class="card">
+  <div class="table-scroll">
+  <table class="responsive-table">
+    <thead><tr><th>{{ t("时间") }}</th><th>{{ t("队伍 / 队长") }}</th><th>{{ t("材料明细") }}</th><th>{{ t("合计(元)") }}</th><th>{{ t("状态") }}</th><th>{{ t("照片") }}</th><th>IP</th>{% if current_user.is_superadmin %}<th>{{ t("操作") }}</th>{% endif %}</tr></thead>
+    <tbody>
+    {% for p in purchases %}
+      {% set c = p %}
+      <tr>
+        <td data-label="{{ t('时间') }}">{{ (p.confirmed_at or p.created_at).strftime('%Y-%m-%d %H:%M') }}</td>
+        <td data-label="{{ t('队伍 / 队长') }}">{{ p.team_name or '—' }}<div class="hint">{{ p.user.name }} · {{ p.user.student_id }}</div></td>
+        <td data-label="{{ t('材料明细') }}">
+          {% for line in p.items %}<div>{{ line.label }} × {{ line.quantity }}{{ line.unit }} <span class="hint">@¥{{ line.unit_price_label }} = ¥{{ line.subtotal_label }}</span></div>{% endfor %}
+          {% if p.note %}<div class="hint">{{ t("备注：") }}{{ p.note }}</div>{% endif %}
+        </td>
+        <td data-label="{{ t('合计(元)') }}"><b>{{ p.total_label }}</b></td>
+        <td data-label="{{ t('状态') }}">
+          <span class="badge {{ {'confirmed':'approved','pending':'pending','voided':'rejected'}.get(p.status, 'cancelled') }}">{{ t(p.status_label) }}</span>
+          {% if p.status == 'confirmed' %}<span class="badge {{ 'on' if p.settled else 'pending' }}">{{ t("已结算") if p.settled else t("未结算") }}</span>{% endif %}
+        </td>
+        <td data-label="{{ t('照片') }}">{{ photo(p.photo, t('购买照片')) }}</td>
+        <td data-label="IP">{{ p.ip or '—' }}</td>
+        {% if current_user.is_superadmin %}<td data-label="{{ t('操作') }}">{% include "materials/_record_actions.html" with context %}</td>{% endif %}
+      </tr>
+    {% else %}
+      <tr><td colspan="8" class="empty-cell muted">{{ t("暂无购买记录。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+
+{% else %}
+<div class="summary-row">
+  <div class="summary-tile tone-info"><span class="summary-num">¥{{ grand_total }}</span><span class="summary-lbl">{{ t("购买总额") }}</span></div>
+  <div class="summary-tile tone-warn"><span class="summary-num">¥{{ grand_unsettled }}</span><span class="summary-lbl">{{ t("应付合计（未结算）") }}</span></div>
+</div>
+<div class="card">
+  <div class="table-scroll">
+  <table class="responsive-table">
+    <thead><tr><th>{{ t("队伍") }}</th><th>{{ t("队长") }}</th><th>{{ t("订单数") }}</th><th>{{ t("购买合计(元)") }}</th><th>{{ t("应付合计(元)") }}</th>{% if current_user.is_superadmin %}<th>{{ t("操作") }}</th>{% endif %}</tr></thead>
+    <tbody>
+    {% for r in teams %}
+      <tr>
+        <td data-label="{{ t('队伍') }}">{{ r.team_name or '—' }}</td>
+        <td data-label="{{ t('队长') }}">{{ r.user.name if r.user else '—' }}<div class="hint">{{ r.user.student_id if r.user else '' }}</div></td>
+        <td data-label="{{ t('订单数') }}">{{ r.count }}</td>
+        <td data-label="{{ t('购买合计(元)') }}">{{ r.total_cents|cents }}</td>
+        <td data-label="{{ t('应付合计(元)') }}"><b>{{ r.unsettled_cents|cents }}</b>{% if not r.unsettled_cents %} <span class="badge on">{{ t("已结清") }}</span>{% endif %}</td>
+        {% if current_user.is_superadmin %}<td data-label="{{ t('操作') }}">{% if r.unsettled_cents %}
+          <form method="post" action="{{ url_for('materials.team_settle', user_id=r.user_id) }}" class="inline" data-confirm="{{ t('确定将该队全部未结算购买标记为已结算吗？') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="btn small">{{ t("全部标记已结算") }}</button>
+          </form>{% else %}—{% endif %}</td>{% endif %}
+      </tr>
+    {% else %}
+      <tr><td colspan="6" class="empty-cell muted">{{ t("暂无已确认的购买。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+<h2>{{ t("按材料汇总") }}</h2>
+<div class="card">
+  <div class="table-scroll">
+  <table class="responsive-table">
+    <thead><tr><th>{{ t("材料") }}</th><th>{{ t("售出数量") }}</th><th>{{ t("金额(元)") }}</th></tr></thead>
+    <tbody>
+    {% for r in sold %}
+      <tr><td data-label="{{ t('材料') }}">{{ r.label }}</td><td data-label="{{ t('售出数量') }}">{{ r.quantity }} {{ r.unit }}</td><td data-label="{{ t('金额(元)') }}">{{ r.amount_cents|cents }}</td></tr>
+    {% else %}
+      <tr><td colspan="3" class="empty-cell muted">{{ t("暂无") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

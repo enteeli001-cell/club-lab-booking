@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ lab.name }} {{ t("签到二维码") }}</title>
+  <style>
+    @page { size: A4 portrait; margin: 14mm; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif; color: #111; background: #f3f3f3; }
+    .sheet { width: 210mm; min-height: 297mm; margin: 0 auto; background: #fff; padding: 22mm 18mm; text-align: center; display: flex; flex-direction: column; align-items: center; }
+    .sys { font-size: 16pt; color: #444; margin: 0 0 6mm; }
+    h1 { font-size: 40pt; margin: 0 0 10mm; line-height: 1.2; }
+    .qr { width: 150mm; height: 150mm; image-rendering: pixelated; }
+    .tip { font-size: 26pt; font-weight: 700; margin: 10mm 0 4mm; }
+    .sub { font-size: 14pt; color: #444; margin: 0 0 6mm; }
+    .url { font-size: 9pt; color: #777; word-break: break-all; margin-top: auto; }
+    .toolbar { text-align: center; padding: 12px; }
+    .toolbar button, .toolbar a { font-size: 15px; padding: 10px 22px; margin: 0 6px; border: 1px solid #235; background: #235; color: #fff; border-radius: 6px; text-decoration: none; cursor: pointer; }
+    .toolbar a { background: #fff; color: #235; }
+    @media print { body { background: #fff; } .toolbar { display: none; } .sheet { width: auto; min-height: 0; margin: 0; padding: 0; } }
+  </style>
+</head>
+<body>
+  <div class="toolbar"><button type="button" onclick="window.print()">{{ t("打印本页") }}</button><a href="{{ url_for('checkin.admin_codes') }}">{{ t("返回") }}</a></div>
+  <div class="sheet">
+    <p class="sys">{{ system_name }}</p>
+    <h1>{{ lab.name }}</h1>
+    <img class="qr" src="{{ url_for('checkin.qr_png', lab_id=lab.id) }}" alt="{{ lab.name }} {{ t('签到二维码') }}">
+    <p class="tip">{{ t("预约队长请用手机扫码签到") }}</p>
+    <p class="sub">{{ t("请先登录系统，并在预约时段内（开始前") }} {{ config.get('CHECKIN_EARLY_MINUTES', 15) }} {{ t("分钟起）扫码确认。") }}</p>
+    <p class="url">{{ url }}</p>
+  </div>
+</body>
+</html>

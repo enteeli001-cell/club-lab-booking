@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="{{ html_lang }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10264a">
+  <meta name="robots" content="noindex">
+  <title>{{ t("网站升级中") }} · {{ t(system_name) }}</title>
+  <link rel="icon" type="image/svg+xml" href="{{ asset_url('favicon.svg') }}">
+  <link rel="stylesheet" href="{{ asset_url('style.css') }}">
+</head>
+<body class="public-shell">
+  <div class="maint-language">{% with language_switch_as_group=true %}{% include "_lang_switch.html" %}{% endwith %}</div>
+  <main class="maint-page" id="main-content">
+    <div class="maint-box" role="status">
+      <span class="brand-mark" aria-hidden="true" style="color:#fff">构</span>
+      <h1>{{ t("网站升级中") }}</h1>
+      <p class="maint-msg">{{ t(message) if message == '网站正在升级，请稍后再访问' else message }}</p>
+      <p class="hint">{{ t(system_name) }}</p>
+    </div>
+  </main>
+</body>
+</html>

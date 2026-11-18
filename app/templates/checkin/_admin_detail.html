@@ -1,0 +1,6 @@
+{% if booking.checked_in_at or booking.pledge_accepted_at %}
+<div class="hint ck-admin-detail">
+  {% if booking.pledge_accepted_at %}{{ t("安全承诺：") }}{{ booking.pledge_accepted_at.strftime('%m-%d %H:%M') }}{% endif %}
+  {% if booking.checkin_distance_m is not none %}<br>{{ t("定位：距实验室约") }} {{ '%.0f'|format(booking.checkin_distance_m) }} {{ t("米（误差") }} {{ '%.0f'|format(booking.checkin_accuracy or 0) }} {{ t("米）") }}<br>{{ t("坐标：") }}{{ '%.5f'|format(booking.checkin_lat) }}, {{ '%.5f'|format(booking.checkin_lng) }}{% endif %}
+</div>
+{% endif %}

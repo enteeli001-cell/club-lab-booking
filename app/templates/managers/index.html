@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}{{ t("管理员管理") }}{% endblock %}
+{% block content %}
+<h1>{{ t("管理员管理") }}</h1>
+<p class="muted">{{ t("新增管理员时由系统自动生成不少于 16 位、含大小写字母、数字和符号的密码，并同时写入可查看密文（密钥在 data/pw_view_key）。请先保存当次显示的密码；之后总管理员仍可点击「查看密码」，每次查看都会记入审计日志。此处只管理普通管理员，不含总管理员。") }}</p>
+
+{% if issued %}
+<div class="issued-box" role="status">
+  <h2>{{ t(issued.title) }}</h2>
+  <p>{{ t("使用人：") }}{{ issued.user.name }}{{ t("（学号") }} {{ issued.user.student_id }}）</p>
+  <p class="issued-password">{{ issued.password }}</p>
+  <p class="bad-hint">{% if issued.revealed %}{{ t("本次查看已记入审计日志。请妥善保管，不要将密码写入聊天或截图外传。") }}{% else %}{{ t("请立即复制并妥善保管。之后仍可点击「查看密码」，每次查看都会记入审计日志。") }}{% endif %}</p>
+</div>
+{% endif %}
+
+<div class="card">
+  <h2>{{ t("新增管理员") }}</h2>
+  <form method="post" action="{{ url_for('managers.create_admin') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field-row">
+      <div class="field"><label>{{ t("使用人姓名") }}</label><input name="name" required></div>
+      <div class="field"><label>{{ t("学号") }}</label><input name="student_id" required></div>
+      <div class="field"><label>{{ t("联系方式（手机）") }}</label><input name="contact_phone" maxlength="11"></div>
+    </div>
+    <button type="submit">{{ t("生成账号和密码") }}</button>
+  </form>
+</div>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>{{ t("使用人 / 学号") }}</th><th>{{ t("联系方式") }}</th><th>{{ t("状态") }}</th><th>{{ t("资料") }}</th><th>{{ t("操作") }}</th></tr>
+    </thead>
+    <tbody>
+    {% for u in admins %}
+      <tr>
+        <td>{{ u.name }}<div class="hint">{{ u.student_id }}</div></td>
+        <td>{{ u.contact_phone or '—' }}</td>
+        <td>{% if u.enabled %}<span class="badge on">{{ t("启用") }}</span>{% else %}<span class="badge off">{{ t("停用") }}</span>{% endif %}</td>
+        <td>
+          <form method="post" action="{{ url_for('managers.update_admin', user_id=u.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="field-row">
+              <input name="name" value="{{ u.name }}" required style="width:7em">
+              <input name="student_id" value="{{ u.student_id }}" required style="width:7em">
+              <input name="contact_phone" value="{{ u.contact_phone or '' }}" placeholder="{{ t('手机') }}" style="width:8em">
+              <button class="btn small" type="submit">{{ t("保存") }}</button>
+            </div>
+          </form>
+        </td>
+        <td>
+          {% if u.has_password_cipher %}
+          <form method="post" action="{{ url_for('managers.reveal_password', user_id=u.id) }}" class="inline" data-confirm="{{ t('查看密码将记入审计日志，确定继续？') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn small secondary" type="submit">{{ t("查看密码") }}</button>
+          </form>
+          {% else %}
+          <span class="hint">{{ t("暂无密文") }}</span>
+          {% endif %}
+          <form method="post" action="{{ url_for('managers.regen_password', user_id=u.id) }}" class="inline" data-confirm="{{ t('重新生成后旧密码立即失效，确定吗？') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn small" type="submit">{{ t("重新生成密码") }}</button>
+          </form>
+          <form method="post" action="{{ url_for('managers.toggle_admin', user_id=u.id) }}" class="inline">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn small secondary" type="submit">{{ t('停用') if u.enabled else t('启用') }}</button>
+          </form>
+          <form method="post" action="{{ url_for('managers.delete_admin', user_id=u.id) }}" class="inline" data-confirm="{{ t('确定删除该管理员账号？') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn small danger" type="submit">{{ t("删除") }}</button>
+          </form>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="5" class="muted">{{ t("暂无普通管理员。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

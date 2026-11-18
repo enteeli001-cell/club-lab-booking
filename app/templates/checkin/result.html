@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ t(title) }} · {{ t("预约签到") }}{% endblock %}
+{% block content %}
+<div class="card checkin-result checkin-{{ kind }}">
+  <div class="checkin-icon" aria-hidden="true">{% if kind == 'success' %}✓{% elif kind == 'info' %}i{% elif kind == 'warn' %}…{% else %}!{% endif %}</div>
+  <h1>{{ t(title) }}</h1>
+  <p class="checkin-message">{{ t(message) }}</p>
+  {% if lab %}<p class="hint">{{ t("实验室：") }}{{ lab.name }}</p>{% endif %}
+  <p class="actions actions-center">
+    {% if current_user.is_authenticated and current_user.is_regular_user %}
+    {% if kind == 'error' and not booking %}<a class="btn" href="{{ url_for('bookings.create_booking') }}">{{ t("去预约") }}</a>{% endif %}
+    <a class="btn secondary" href="{{ url_for('records.index', tab='bookings') }}">{{ t("查看申请记录") }}</a>
+    <a class="btn secondary" href="{{ url_for('main.captain_home') }}">{{ t("返回工作台") }}</a>
+    {% elif current_user.is_authenticated %}
+    <a class="btn secondary" href="{{ url_for('main.index') }}">{{ t("返回工作台") }}</a>
+    {% endif %}
+  </p>
+</div>
+{% endblock %}

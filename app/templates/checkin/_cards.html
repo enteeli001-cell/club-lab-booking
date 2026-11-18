@@ -1,0 +1,56 @@
+{% set cards = checkin_cards(current_user) %}
+{% if cards %}
+<section class="checkin-pin" aria-label="{{ t('待签到预约') }}">
+  <div class="checkin-pin-head"><h2>{{ t("预约签到") }}</h2><span class="checkin-pin-tip">{{ t("到场后点“二维码签到”") }}</span></div>
+  <p class="hint">{{ t("到达实验室后，点下面的“二维码签到”：先确认安全承诺，再用手机相机扫描实验室门口的二维码即可签到（也可以直接用手机自带相机扫码，打开签到页面后确认）。签到窗口：开始前") }} {{ config.get("CHECKIN_EARLY_MINUTES", 15) }} {{ t("分钟至结束时间。") }}</p>
+  {% for item in cards %}
+  {% set b = item.booking %}
+  <div class="checkin-card checkin-{{ item.info.state }}">
+    <div>
+      <strong>{{ b.lab.name }}</strong>
+      <div>{{ b.date }} {{ b.time_range_label }}</div>
+    </div>
+    <div class="checkin-card-side">
+      <span class="badge {{ item.info.badge }}">{{ t(item.info.label) }}</span>
+      {% if item.info.state == 'open' %}
+      <button type="button" class="btn ck-open-btn" data-booking-id="{{ b.id }}" data-lab-name="{{ b.lab.name }}" data-geo="{{ 1 if b.lab.geo_active else 0 }}">{{ t("二维码签到") }}</button>
+      {% elif item.info.state == 'early' %}
+      <button type="button" class="btn secondary" disabled title="{{ t('签到开放后可用') }}">{{ t("二维码签到 ·") }} {{ item.info.opens }} {{ t("开放") }}</button>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% if cards|selectattr('info.state', 'equalto', 'open')|list %}
+<div id="ck-modal" class="modal ck-modal" role="dialog" aria-modal="true" aria-labelledby="ck-title" hidden>
+  <div class="modal-card ck-card">
+    <div id="ck-step-pledge">
+      <div class="hint ck-lab-line">{{ t("签到实验室：") }}<strong id="ck-lab"></strong></div>
+      {% include "checkin/_pledge.html" %}
+      <label class="ck-agree"><input type="checkbox" id="ck-pledge"> <span>{{ t(checkin_pledge_checkbox) }}</span></label>
+      <div class="actions ck-actions">
+        <button type="button" class="btn" id="ck-start" disabled>{{ t("开始扫码") }}</button>
+        <button type="button" class="btn secondary" id="ck-cancel">{{ t("取消") }}</button>
+      </div>
+    </div>
+    <div id="ck-step-scan" hidden>
+      <h2 id="ck-title">{{ t("扫描签到二维码") }}</h2>
+      <div class="ck-video-wrap"><video id="ck-video" muted playsinline hidden></video><div class="ck-reticle" aria-hidden="true"></div></div>
+      <p id="ck-status" class="ck-status" role="status" aria-live="polite"></p>
+      <p id="ck-geo" class="hint" hidden></p>
+      <div id="ck-fallback" class="ck-fallback" hidden>
+        <label class="btn secondary ck-file-btn">{{ t("拍照 / 选择二维码图片") }}<input type="file" id="ck-file" accept="image/*" capture="environment" hidden></label>
+      </div>
+      <p id="ck-result" class="ck-result" role="status" aria-live="polite" hidden></p>
+      <div class="actions ck-actions">
+        <button type="button" class="btn" id="ck-retry" hidden>{{ t("重新扫码") }}</button>
+        <button type="button" class="btn" id="ck-done" hidden>{{ t("完成") }}</button>
+        <button type="button" class="btn secondary" id="ck-close">{{ t("关闭") }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ asset_url('vendor/jsQR.js') }}"></script>
+<script src="{{ asset_url('checkin.js') }}"></script>
+{% endif %}
+{% endif %}

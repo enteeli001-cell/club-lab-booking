@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ t("导入预览") }}{% endblock %}
+{% block content %}
+<h1>{{ t("导入预览") }}</h1>
+<p class="muted">{{ t("请核对下列行。红色行为错误，不会写入；「更新」表示按学号覆盖已有队长资料和队员名单。") }}</p>
+<div class="card">
+  <table>
+    <thead><tr><th>{{ t("行") }}</th><th>{{ t("处理") }}</th><th>{{ t("队伍 / 队长") }}</th><th>{{ t("队员") }}</th><th>{{ t("说明") }}</th></tr></thead>
+    <tbody>
+    {% for row in rows %}
+      <tr class="{{ 'row-error' if row.action == 'error' else '' }}">
+        <td>{{ row.row }}</td>
+        <td>{% if row.action == 'create' %}<span class="badge approved">{{ t("新增") }}</span>{% elif row.action == 'update' %}<span class="badge pending">{{ t("更新") }}</span>{% else %}<span class="badge rejected">{{ t("错误") }}</span>{% endif %}</td>
+        <td>{{ row.team_name }} / {{ row.name }}（{{ row.student_id }}）<div class="hint">{{ row.phone }} {{ row.email }}</div></td>
+        <td>{% for m in row.members %}{{ m.name }}（{{ m.student_id }}）{% if not loop.last %}、{% endif %}{% endfor %}{% if not row.members %}—{% endif %}</td>
+        <td class="{{ 'bad-hint' if row.errors else '' }}">{% if row.errors %}{{ row.errors|map('t')|join('; ' if current_lang == 'en' else '；') }}{% else %}—{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <form method="post" action="{{ url_for('people.import_confirm') }}" class="actions">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button type="submit">{{ t("确认导入有效行") }}</button>
+    <a class="btn secondary" href="{{ url_for('people.import_teams') }}">{{ t("取消") }}</a>
+  </form>
+</div>
+{% endblock %}

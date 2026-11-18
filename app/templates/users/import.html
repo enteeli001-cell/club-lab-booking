@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ t("批量导入账号") }}{% endblock %}
+{% block content %}
+<h1>{{ t("批量导入账号") }}</h1>
+<div class="card">
+  <p>{{ t("请上传 CSV 或 Excel（.xlsx）文件，首行为表头，需包含：") }}<strong>{{ t("姓名、学号（或账号）、角色") }}</strong>{{ t("。可选列：") }}<strong>{{ t("初始密码、队名、队员1姓名、队员1学号、队员2姓名、队员2学号") }}</strong>{{ t("（队员列可按同样规则继续编号）。队员只需姓名和学号，无需登录账号。") }}</p>
+  <p class="muted">{{ t("角色可填：总管理员 / 管理员 / 参赛队长（兼容：审核人员、干部、普通成员，或 superadmin / admin / officer / member）。参赛队长密码留空则默认为学号；管理员密码留空则自动生成符合规则且互不相同的密码。参赛队长首次登录须修改密码；管理员不能自行修改密码，只能由总管理员重置。") }}</p>
+  <p><a class="btn secondary" href="{{ url_for('users.download_import_template') }}">{{ t("下载导入模板") }}</a></p>
+  <form method="post" enctype="multipart/form-data">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field">
+      <label for="file">{{ t("选择文件") }}</label>
+      <input id="file" name="file" type="file" accept=".csv,.xlsx,.xls" required>
+    </div>
+    <div class="actions">
+      <button type="submit">{{ t("导入") }}</button>
+      <a class="btn secondary" href="{{ url_for('users.list_users') }}">{{ t("返回列表") }}</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

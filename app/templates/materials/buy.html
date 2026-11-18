@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}{{ t("材料购买") }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{{ t("材料购买") }}</h1>
+    <p class="muted">{{ t("选择材料和数量后自动计算金额。确认并拍照提交后，系统会向你绑定的邮箱发送 6 位数字验证码（5 分钟内有效），输入验证码后购买才生效。费用在比赛后统一结算。") }}</p>
+  </div>
+  {% if feature_on('material_claim') %}<a class="btn secondary small" href="{{ url_for('materials.claim') }}">{{ t("材料领取") }}</a>{% endif %}
+</div>
+
+{% if pending %}
+<ul class="flash"><li class="warning" role="status">{{ t("你有一笔待验证的购买（合计") }} {{ pending.total_label }} {{ t("元）。") }} <a href="{{ url_for('materials.verify', purchase_id=pending.id) }}">{{ t("去输入验证码 →") }}</a></li></ul>
+{% endif %}
+
+{% if not email %}
+<ul class="flash"><li class="error" role="alert"><a href="{{ url_for('profile.setup') }}">{{ t("请先完善个人信息并验证邮箱后再使用系统。") }}</a></li></ul>
+{% endif %}
+
+<div class="card form-card">
+  {% if not items %}
+  <p class="muted">{{ t("目前没有可购买的材料。") }}</p>
+  {% else %}
+  <form method="post" enctype="multipart/form-data" id="buy-form" data-busy="{{ t('正在提交…') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <p class="hint">{{ t("数量可填 0.5、1/3 或 1 1/2，单价按 1 个单位计。金额按每项四舍五入到分。") }}</p>
+    <ul class="mat-pick" id="mat-pick">
+      {% for item in items %}
+      {% set limit = item.purchase_limit %}
+      <li class="mat-pick-row{% if limit <= 0 %} is-soldout{% endif %}" data-price="{{ item.unit_price_cents }}">
+        <div class="mat-pick-info">
+          <strong>{{ item.name }}</strong>{% if item.spec %}<span class="hint">{{ item.spec }}</span>{% endif %}
+          <span class="hint bad-hint js-qty-error" role="status" hidden></span>
+          <span class="mat-price">¥{{ item.unit_price_label }} / {{ item.unit }}</span>
+          <span class="hint">{% if item.stock <= 0 %}<b class="bad-hint">{{ t("已售罄") }}</b>{% else %}{{ t("库存") }} {{ item.stock }} {{ item.unit }}{% if item.max_per_purchase %} · {{ t("每次限购") }} {{ item.max_per_purchase }}{% endif %}{% endif %}</span>
+        </div>
+        <div class="mat-qty">
+          <button type="button" class="qty-btn" data-step="-1" aria-label="{{ t('减少') }}" {% if limit <= 0 %}disabled{% endif %}>−</button>
+          <input class="quantity-input" type="text" name="qty_{{ item.id }}" id="qty_{{ item.id }}" inputmode="text" maxlength="64" data-allow-zero="1" data-purchase-qty="1" data-max="{{ limit }}" title="{{ t(quantity_help()) }}" value="{{ qty.get(item.id) or 0 }}" aria-label="{{ item.name }} {{ t('数量') }}" {% if limit <= 0 %}disabled{% endif %}>
+          <button type="button" class="qty-btn" data-step="1" aria-label="{{ t('增加') }}" {% if limit <= 0 %}disabled{% endif %}>＋</button>
+        </div>
+        <div class="mat-sub" aria-live="polite">¥<span class="js-sub">0.00</span></div>
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="mat-total-bar" aria-live="polite">
+      <span>{{ t("合计") }}</span><strong>¥<span id="mat-total">0.00</span></strong>
+    </div>
+    <div class="field">
+      <label for="photo">{{ t("购买材料照片（必填，jpg/png/webp，不超过 5MB）") }}</label>
+      <input id="photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" capture="environment" required data-preview="buy-photo-preview">
+      <div class="photo-preview" id="buy-photo-preview" hidden></div>
+    </div>
+    {% if email %}<p class="hint">{{ t("验证码将发送到：") }}<b>{{ masked_email }}</b></p>{% endif %}
+    <label class="check-item"><input type="checkbox" name="confirm" value="1" required> {{ t("我已确认购买明细和金额，费用比赛后统一结算") }}</label>
+    <div class="actions form-actions">
+      <button type="submit" class="btn-lg" id="buy-submit" {% if not email %}disabled{% endif %}>{{ t("确认并发送验证码") }}</button>
+    </div>
+  </form>
+  {% endif %}
+</div>
+
+<h2>{{ t("我的购买记录") }}</h2>
+<p class="muted">{{ t("已确认合计") }} ¥{{ totals.total }} · {{ t("应付（未结算）") }} <b>¥{{ totals.unsettled }}</b></p>
+<div class="card">
+  <div class="table-scroll">
+  <table class="responsive-table">
+    <thead><tr><th>{{ t("时间") }}</th><th>{{ t("材料") }}</th><th>{{ t("合计(元)") }}</th><th>{{ t("状态") }}</th></tr></thead>
+    <tbody>
+    {% for p in purchases %}
+      <tr>
+        <td data-label="{{ t('时间') }}">{{ (p.confirmed_at or p.created_at).strftime('%Y-%m-%d %H:%M') }}</td>
+        <td data-label="{{ t('材料') }}">{{ p.items_label }}</td>
+        <td data-label="{{ t('合计(元)') }}">{{ p.total_label }}</td>
+        <td data-label="{{ t('状态') }}"><span class="badge {{ 'approved' if p.status == 'confirmed' else 'rejected' }}">{{ t(p.status_label) }}</span>{% if p.status == 'confirmed' %} <span class="badge {{ 'on' if p.settled else 'pending' }}">{{ t("已结算") if p.settled else t("未结算") }}</span>{% endif %}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="4" class="empty-cell muted">{{ t("暂无购买记录。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ asset_url('materials.js') }}"></script>{% endblock %}

@@ -1,0 +1,53 @@
+# Python / virtualenv
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Test / tooling artifacts
+.pytest_cache/
+.runtime-tests/
+.coverage
+htmlcov/
+.playwright-browsers/
+.preview-*/
+
+# Runtime data (database, secrets, tokens, uploads, logs, backups)
+data/
+logs/
+backups/
+instance/
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.log
+*.eml
+*.pid
+*.lock
+
+# Secrets / local config
+.env
+.env.*
+!.env.example
+secret_key
+api_token.txt
+admin_initial_password.txt
+pw_view_key
+mail_config
+test_accounts.txt
+tunnel_hosts
+*.pem
+*.key
+.deploy/
+
+# Binaries
+tools/
+
+.DS_Store

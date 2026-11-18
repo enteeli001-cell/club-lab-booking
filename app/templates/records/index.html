@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}{{ t("申请记录") }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{{ t("申请记录") }}</h1>
+    <p class="muted">{{ t("距开始超过 30 分钟可自行修改或取消；借用中的工具可在此办理归还。") }}</p>
+  </div>
+  <div class="page-head-actions">
+    <a class="btn small" href="{{ url_for('bookings.create_booking') }}">{{ t("＋ 测试预约") }}</a>
+    {% if current_user.can_borrow_tools %}<a class="btn small secondary" href="{{ url_for('tools.create_loan') }}">{{ t("＋ 工具借用") }}</a>{% endif %}
+  </div>
+</div>
+<div class="tabs" role="tablist">
+  <a href="{{ url_for('records.index', tab='bookings') }}" class="{{ 'active' if tab == 'bookings' }}"{% if tab == 'bookings' %} aria-current="page"{% endif %}>{{ t("测试申请记录") }}<span class="tab-count">{{ bookings|length }}</span></a>
+  <a href="{{ url_for('records.index', tab='tools') }}" class="{{ 'active' if tab == 'tools' }}"{% if tab == 'tools' %} aria-current="page"{% endif %}>{{ t("工具借用申请记录") }}<span class="tab-count">{{ loans|length }}</span></a>
+</div>
+
+{% if tab == 'bookings' %}
+{% include "checkin/_cards.html" %}
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>{{ t("实验室") }}</th>
+        <th>{{ t("时段") }}</th>
+        <th>{{ t("同行人员") }}</th>
+        <th>{{ t("联系方式") }}</th>
+        <th>{{ t("状态") }}</th>
+        <th>{{ t("签到") }}</th>
+        <th>{{ t("操作") }}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for b in bookings %}
+      <tr>
+        <td>{{ b.lab.name }}</td>
+        <td>{{ b.date }} {{ b.time_range_label }}</td>
+        <td>{{ b.companions_label }}</td>
+        <td>{{ b.captain_phone or '—' }}</td>
+        <td><span class="badge {{ b.status }}">{{ t(b.status_label) }}</span></td>
+        <td>{% set ci = b.checkin %}{% if ci %}<span class="badge {{ ci.badge }}">{{ t(ci.label) }}</span>{% else %}<span class="muted">—</span>{% endif %}</td>
+        <td>
+          {% if b.status in ('pending', 'approved') %}
+            {% if b.can_self_change() %}
+            <a class="btn small secondary" href="{{ url_for('bookings.edit_booking', booking_id=b.id) }}">{{ t("修改") }}</a>
+            <form class="inline" method="post" action="{{ url_for('bookings.cancel_booking', booking_id=b.id) }}" onsubmit="return confirm({{ t('确定取消该预约？')|tojson|forceescape }});" data-busy="{{ t('取消中…') }}">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <input type="hidden" name="next" value="{{ url_for('records.index', tab='bookings') }}">
+              <button class="btn small danger" type="submit">{{ t("取消") }}</button>
+            </form>
+            {% else %}
+            <button type="button" class="btn small secondary" disabled>{{ t("修改") }}</button>
+            <button type="button" class="btn small danger js-locked-cancel"
+                    data-notice="{{ t(booking_change_locked_notice) }}"
+                    data-contacts="{{ format_contacts_label(contacts_by_id.get(b.id, [])) }}">{{ t("取消") }}</button>
+            {% endif %}
+          {% else %}
+          <span class="muted">—</span>
+          {% endif %}
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="7" class="muted">{{ t("暂无测试申请记录。") }}<a href="{{ url_for('bookings.create_booking') }}">{{ t("去预约 →") }}</a></td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<p class="hint">{{ t("借用中的记录可在此办理归还；逾期亦视为借用中，需上传归还照片。") }}</p>
+{% include "tools/_table.html" %}
+{% endif %}
+
+<div id="lock-modal" class="modal" hidden>
+  <div class="modal-card" role="dialog" aria-labelledby="lock-title">
+    <h2 id="lock-title">{{ t("无法自行更改") }}</h2>
+    <p id="lock-notice" class="lock-notice"></p>
+    <div class="lock-contacts" id="lock-contacts"></div>
+    <div class="actions actions-end">
+      <button type="button" class="btn" id="lock-close">{{ t("我知道了") }}</button>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{ a.title }} {{ t("- 公告") }}{% endblock %}
+{% block content %}
+<p><a href="{{ url_for('announcements.list_announcements') }}">{{ t("← 返回公告列表") }}</a></p>
+<article class="card announce-item lv{{ a.level }}{% if a.pinned %} pinned{% endif %}">
+  <div class="announce-head">
+    <h1>{{ a.title }}</h1>
+    <div class="announce-tags">
+      {% if a.pinned %}<span class="badge pin">{{ t("置顶") }}</span>{% endif %}
+      <span class="badge lv{{ a.level }}">{{ t(a.level_label) }}</span>
+    </div>
+  </div>
+  <p class="announce-meta">{{ t("发布人：") }}{{ a.publisher_display }}{% if current_user.is_superadmin %} <span class="hint account-real">{{ t("实际账号：") }}{{ a.creator.name }}（{{ a.creator.student_id }}）</span>{% endif %} {{ t("· 发布时间：") }}{{ a.created_at|fmt_dt }}{% if a.is_edited %}<br>{{ t("最近修改：") }}{{ a.updater.name if a.updater else '—' }}{% if a.updater %}（{{ t(a.updater.role_label) }}）{% endif %} · {{ a.updated_at|fmt_dt }}{% endif %}</p>
+  <div class="announce-body">{{ a.body }}</div>
+  {% if can_manage %}
+  <div class="actions">
+    <a class="btn small secondary" href="{{ url_for('announcements.reads', announcement_id=a.id) }}">{{ t("阅读情况") }}</a>
+    <a class="btn small secondary" href="{{ url_for('announcements.edit', announcement_id=a.id) }}">{{ t("编辑") }}</a>
+    <form class="inline" method="post" action="{{ url_for('announcements.delete', announcement_id=a.id) }}" onsubmit="return confirm({{ t('确定删除这条公告？阅读记录也会一并删除。')|tojson|forceescape }});">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button class="btn small danger" type="submit">{{ t("删除") }}</button>
+    </form>
+  </div>
+  {% endif %}
+</article>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ t("访问已被禁止") }}{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>{{ t("访问已被禁止") }}</h1>
+  <p class="bad-hint">{{ t("当前 IP 或设备已被限制访问登录和业务页面。") }}</p>
+  {% if reason %}<p>{{ t("原因：") }}{{ reason }}</p>{% endif %}
+  {% if expires_at %}<p>{{ t("到期时间：") }}{{ expires_at }}</p>{% else %}<p>{{ t("该限制为永久，除非管理员解除。") }}</p>{% endif %}
+  <p class="muted">{{ t("如有疑问，请联系总管理员。") }}</p>
+</div>
+{% endblock %}

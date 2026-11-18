@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}{{ t("添加账号") }}{% endblock %}
+{% block content %}
+<h1>{{ t("添加账号") }}</h1>
+{% if generated %}
+<div class="password-once">
+  <strong>{{ t("请立即记录初始密码") }}</strong>{{ t("（仅显示一次）：") }}
+  <div>{{ generated.user.name }}（{{ generated.user.student_id }}）</div>
+  {% if generated.is_captain_default %}
+  <div>{{ t("初始密码等于学号：") }}<code>{{ generated.password }}</code>{{ t("（首次登录须修改）") }}</div>
+  {% else %}
+  <div>{{ t("初始密码：") }}<code>{{ generated.password }}</code></div>
+  {% endif %}
+</div>
+{% endif %}
+<div class="card">
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field">
+      <label for="name">{{ t("姓名") }}</label>
+      <input id="name" name="name" type="text" required value="{{ form.name }}">
+    </div>
+    <div class="field">
+      <label for="student_id">{{ t("学号 / 账号") }}</label>
+      <input id="student_id" name="student_id" type="text" inputmode="text" autocapitalize="off" spellcheck="false" required value="{{ form.student_id }}">
+    </div>
+    <div class="field">
+      <label for="role">{{ t("角色") }}</label>
+      <select id="role" name="role">
+        <option value="member" {% if form.role == 'member' %}selected{% endif %}>{{ t("参赛队长") }}</option>
+        <option value="admin" {% if form.role == 'admin' %}selected{% endif %}>{{ t("管理员") }}</option>
+        <option value="superadmin" {% if form.role == 'superadmin' %}selected{% endif %}>{{ t("总管理员") }}</option>
+      </select>
+    </div>
+    <div id="staff-fields" class="team-fields">
+      <div class="field">
+        <label for="contact_phone">{{ t("管理员联系方式（手机号）") }}</label>
+        <input id="contact_phone" name="contact_phone" type="tel" maxlength="11" value="{{ form.contact_phone if form.contact_phone is defined else '' }}">
+      </div>
+    </div>
+    <div class="field">
+      <label for="password">{{ t("初始密码（可选）") }}</label>
+      <div class="pw-toggle-wrap">
+        <input id="password" name="password" type="password" value="{{ form.password }}" autocomplete="new-password">
+        <button type="button" class="pw-toggle" aria-controls="password" aria-pressed="false" aria-label="{{ t('显示密码') }}">{{ t("显示") }}</button>
+      </div>
+      <div class="hint">{{ t("参赛队长留空则初始密码等于学号。管理员/总管理员留空则生成一次性密码（至少 12 位，含大小写和特殊符号，且不得与其他管理员密码相同）。管理员不能自行修改密码，只能由总管理员重置。生成的密码只显示一次，不写日志。") }}</div>
+    </div>
+
+    <div id="team-fields" class="team-fields">
+      <h2>{{ t("队伍信息（参赛队长）") }}</h2>
+      <div class="field">
+        <label for="team_name">{{ t("队名") }}</label>
+        <input id="team_name" name="team_name" type="text" value="{{ form.team_name if form.team_name is defined else '' }}">
+      </div>
+      <p class="hint">{{ t("为该队长添加队员（只需姓名和学号，队员无需登录账号）。") }}</p>
+      <div id="member-rows">
+        <div class="field-row member-row">
+          <div class="field"><label>{{ t("队员姓名") }}</label><input name="member_name" type="text"></div>
+          <div class="field"><label>{{ t("队员学号") }}</label><input name="member_student_id" type="text"></div>
+        </div>
+      </div>
+      <button type="button" class="btn secondary small" id="add-member" type="button">{{ t("添加一名队员") }}</button>
+    </div>
+    <div class="actions">
+      <button type="submit">{{ t("添加") }}</button>
+      <a class="btn secondary" href="{{ url_for('users.list_users') }}">{{ t("返回列表") }}</a>
+    </div>
+  </form>
+</div>
+<script>
+(function(){
+  var role = document.getElementById("role");
+  var box = document.getElementById("team-fields");
+  var rows = document.getElementById("member-rows");
+  var add = document.getElementById("add-member");
+  var staff = document.getElementById("staff-fields");
+  function sync(){
+    if(box) box.style.display = (role && role.value === "member") ? "block" : "none";
+    if(staff) staff.style.display = (role && role.value !== "member") ? "block" : "none";
+  }
+  if (role) role.addEventListener("change", sync);
+  sync();
+  if (add && rows) add.addEventListener("click", function(){
+    var div = document.createElement("div");
+    div.className = "field-row member-row";
+    div.innerHTML = '<div class="field"><label>队员姓名</label><input name="member_name" type="text"></div><div class="field"><label>队员学号</label><input name="member_student_id" type="text"></div>';
+    rows.appendChild(div);
+  });
+})();
+</script>
+{% endblock %}
+

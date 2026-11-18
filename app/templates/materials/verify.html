@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ t("输入验证码") }}{% endblock %}
+{% block content %}
+<h1>{{ t("确认购买：输入验证码") }}</h1>
+<div class="card form-card">
+  <p>{{ t("验证码已发送到") }} <b>{{ masked_email }}</b>{{ t("，5 分钟内有效。没收到请检查垃圾邮件。") }}</p>
+  <ul class="mat-lines">
+    {% for line in purchase.items %}<li><span>{{ line.label }} × {{ line.quantity }} {{ line.unit }}</span><b>¥{{ line.subtotal_label }}</b></li>{% endfor %}
+    <li class="mat-lines-total"><span>{{ t("合计") }}</span><b>¥{{ purchase.total_label }}</b></li>
+  </ul>
+  <p class="hint" id="code-timer" data-seconds="{{ seconds_left }}">{% if seconds_left > 0 %}{{ t("剩余有效时间：") }}<b class="js-left">{{ seconds_left // 60 }}:{{ '%02d' % (seconds_left % 60) }}</b>{% else %}<b class="bad-hint">{{ t("验证码已过期，请重新发送。") }}</b>{% endif %}</p>
+  <form method="post" data-busy="{{ t('正在提交…') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field">
+      <label for="code">{{ t("6 位数字验证码") }}</label>
+      <input id="code" name="code" class="code-input" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" minlength="6" autocomplete="one-time-code" required autofocus placeholder="••••••">
+      {% if attempts_left %}<p class="hint">{{ t("还可以尝试") }} {{ attempts_left }} {{ t("次") }}</p>{% endif %}
+    </div>
+    <div class="actions form-actions"><button type="submit" class="btn-lg">{{ t("确认购买") }}</button></div>
+  </form>
+  <div class="actions">
+    <form method="post" action="{{ url_for('materials.resend', purchase_id=purchase.id) }}" class="inline">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button type="submit" class="btn secondary" id="resend-btn" data-wait="{{ resend_wait }}" {% if resend_wait > 0 or sends_left <= 0 %}disabled{% endif %}>{{ t("重新发送验证码") }}{% if resend_wait > 0 %}（<span class="js-wait">{{ resend_wait }}</span>s）{% endif %}</button>
+    </form>
+    <form method="post" action="{{ url_for('materials.cancel_pending', purchase_id=purchase.id) }}" class="inline" data-confirm="{{ t('确定取消本次购买吗？') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button type="submit" class="btn secondary danger">{{ t("取消购买") }}</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ asset_url('materials.js') }}"></script>{% endblock %}

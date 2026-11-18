@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ t("线上模拟测试") }}{% endblock %}
+{% block content %}
+<div class="page-head"><div><h1>{{ t("线上模拟测试") }} <span class="badge pending">{{ t("内部测试") }}</span></h1>
+<p class="muted">{{ t("静力分析、轻量有限元与规则评价，仅总管理员可见。") }}</p></div>
+<div class="actions"><a class="btn secondary" href="{{ url_for('simulation.library') }}">{{ t("材料与截面库") }}</a>
+<form method="post" action="{{ url_for('simulation.new') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button>{{ t("新建模型") }}</button></form></div></div>
+<div class="card"><p>{{ t("采用 SI 单位：坐标 m、力 N、力矩 N·m、弹性模量和应力 Pa、密度 kg/m³。") }}</p>
+<p class="hint">{{ t("最多 180 个节点、600 根杆件；计算超时 8 秒，同一时间只运行一个计算。") }}</p></div>
+<div class="sim-model-grid">{% for model in models %}<article class="card sim-model-card">
+<span class="eyebrow">{% if model.seed_key %}{{ t("预置实例") }}{% else %}{{ t("自建模型") }}{% endif %} · #{{ model.id }}</span>
+<h2>{{ t(model.name) }}</h2><p class="muted">{{ t(model.description) }}</p>
+<div class="actions"><a class="btn" href="{{ url_for('simulation.editor', model_id=model.id) }}">{{ t("打开模型") }}</a>
+<form method="post" action="{{ url_for('simulation.copy_model', model_id=model.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="secondary">{{ t("复制模型") }}</button></form></div>
+</article>{% endfor %}</div>
+<div class="card"><h2>{{ t("导入模型") }}</h2><p class="hint">{{ t("先导出任一模型作为模板。Excel 包含五个工作表；CSV 用 table 列区分节点、杆件、支座、荷载和设置。材料及截面编号必须来自本系统。") }}</p>
+<form method="post" enctype="multipart/form-data" action="{{ url_for('simulation.import_file') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<div class="field-row"><div class="field"><label>{{ t("模型名称") }}<input name="name" maxlength="100"></label></div>
+<div class="field"><label>{{ t("模型文件（最大 1 MB）") }}<input type="file" name="file" accept=".xlsx,.csv" required></label></div></div><button>{{ t("导入为新模型") }}</button></form></div>
+{% endblock %}
+{% block scripts %}<link rel="stylesheet" href="{{ asset_url('simulation.css') }}">{% endblock %}

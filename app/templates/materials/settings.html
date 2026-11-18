@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}{{ t("材料设置") }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{{ t("材料设置") }}</h1>
+    <p class="muted">{{ t("由总管理员维护：免费领取材料（每队份数相同）和可购买材料（单价、库存、限购）。库存会在队长领取或购买确认时自动扣减；这里填写的是当前剩余库存。修改价格不影响已有记录。") }}</p>
+  </div>
+  <a class="btn secondary small" href="{{ url_for('materials.admin_records') }}">{{ t("材料记录") }}</a>
+</div>
+
+<p class="hint">{{ t(quantity_help()) }}</p>
+<section id="free">
+<h2>{{ t("免费领取材料") }} <small class="muted">{{ t("比赛前分发，每队一次") }}</small></h2>
+{% if free_locked %}<p class="hint">{{ t("已有队伍领取材料，免费清单已锁定，只能调整库存。") }}</p>{% endif %}
+<div class="card">
+  <form method="post" action="{{ url_for('materials.item_create', kind='free') }}" class="catalog-form">
+    <fieldset {% if free_locked %}disabled{% endif %} style="border:0;padding:0;margin:0;min-width:0">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field-row">
+      <div class="field"><label for="free_name">{{ t("材料名称") }}</label><input id="free_name" name="name" required maxlength="80" placeholder="{{ t('例如：竹皮') }}"></div>
+      <div class="field"><label for="free_spec">{{ t("型号 / 规格") }}</label><input id="free_spec" name="spec" maxlength="80" placeholder="{{ t('例如：1250×430×0.35mm') }}"></div>
+      <div class="field field-qty"><label for="free_unit">{{ t("单位") }}</label><input id="free_unit" name="unit" maxlength="16" value="{{ t('张') }}"></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label for="free_per">{{ t("每队份数") }}</label><input class="quantity-input" id="free_per" name="per_team_qty" type="text" data-max="100000" inputmode="text" data-exact-current="1" maxlength="64" title="{{ t(quantity_help()) }}" required value="1"></div>
+      <div class="field"><label for="free_stock">{{ t("库存") }}</label><input class="quantity-input" id="free_stock" name="stock" type="text" data-allow-zero="1" inputmode="text" data-exact-current="1" maxlength="64" title="{{ t(quantity_help()) }}" required value="0"></div>
+      <div class="field"><label class="check-item"><input type="checkbox" name="enabled" value="1" checked> {{ t("启用") }}</label></div>
+    </div>
+    <button type="submit">{{ t("添加免费材料") }}</button>
+    </fieldset>
+  </form>
+</div>
+{% set items = free_items %}{% set kind = 'free' %}{% include "materials/_item_table.html" %}
+</section>
+
+<section id="sale">
+<h2>{{ t("可购买材料") }} <small class="muted">{{ t("比赛后统一结算") }}</small></h2>
+<div class="card">
+  <form method="post" action="{{ url_for('materials.item_create', kind='sale') }}" class="catalog-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field-row">
+      <div class="field"><label for="sale_name">{{ t("材料名称") }}</label><input id="sale_name" name="name" required maxlength="80" placeholder="{{ t('例如：竹条') }}"></div>
+      <div class="field"><label for="sale_spec">{{ t("型号 / 规格") }}</label><input id="sale_spec" name="spec" maxlength="80" placeholder="{{ t('例如：2×2×900mm') }}"></div>
+      <div class="field field-qty"><label for="sale_unit">{{ t("单位") }}</label><input id="sale_unit" name="unit" maxlength="16" value="{{ t('根') }}"></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label for="sale_price">{{ t("单价（元）") }}</label><input id="sale_price" name="unit_price" type="number" min="0" step="0.01" required value="0.00"></div>
+      <div class="field"><label for="sale_stock">{{ t("库存") }}</label><input class="quantity-input" id="sale_stock" name="stock" type="text" data-allow-zero="1" inputmode="text" data-exact-current="1" maxlength="64" title="{{ t(quantity_help()) }}" required value="0"></div>
+      <div class="field"><label for="sale_max">{{ t("每次限购（可留空）") }}</label><input class="quantity-input" id="sale_max" name="max_per_purchase" type="text" data-max="100000" inputmode="text" data-exact-current="1" maxlength="64" title="{{ t(quantity_help()) }}" placeholder="{{ t('不限') }}"></div>
+      <div class="field"><label class="check-item"><input type="checkbox" name="enabled" value="1" checked> {{ t("启用") }}</label></div>
+    </div>
+    <button type="submit">{{ t("添加可购买材料") }}</button>
+  </form>
+</div>
+{% set items = sale_items %}{% set kind = 'sale' %}{% include "materials/_item_table.html" %}
+</section>
+{% endblock %}
+
+{% block scripts %}<script src="{{ asset_url('materials.js') }}"></script>{% endblock %}

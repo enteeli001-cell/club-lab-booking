@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}{{ t("实验室管理") }}{% endblock %}
+{% block content %}
+<h1>{{ t("实验室管理") }}</h1>
+<div class="actions" style="margin-bottom:16px">
+  <a class="btn" href="{{ url_for('labs.create_lab') }}">{{ t("新增实验室") }}</a>
+</div>
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>{{ t("名称") }}</th><th>{{ t("容量") }}</th><th>{{ t("开放时间") }}</th><th>{{ t("位置签到") }}</th><th>{{ t("默认联系人") }}</th><th>{{ t("状态") }}</th><th>{{ t("操作") }}</th></tr>
+    </thead>
+    <tbody>
+    {% for lab in labs %}
+      <tr>
+        <td>{{ lab.name }}</td>
+        <td>{{ lab.capacity }} {{ t("人") }}</td>
+        <td>{{ lab.open_hours_label }}</td>
+        <td>{% if lab.geo_active %}<span class="badge on">{{ t("开启 ·") }} {{ lab.geo_radius_m }} {{ t("米") }}</span>{% elif lab.geo_lat is not none %}<span class="badge off">{{ t("已设坐标·未开启") }}</span>{% else %}<span class="muted">—</span>{% endif %}</td>
+        <td>{{ lab.contact_name or '—' }}{% if lab.contact_phone %}（{{ lab.contact_phone }}）{% endif %}</td>
+        <td>
+          {% if lab.enabled %}<span class="badge on">{{ t("启用") }}</span>{% else %}<span class="badge off">{{ t("停用") }}</span>{% endif %}
+        </td>
+        <td>
+          <a class="btn small secondary" href="{{ url_for('labs.edit_lab', lab_id=lab.id) }}">{{ t("编辑") }}</a>
+          <form class="inline" method="post" action="{{ url_for('labs.delete_lab', lab_id=lab.id) }}" data-confirm="{{ t('确定删除该实验室？') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn small danger" type="submit">{{ t("删除") }}</button>
+          </form>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="7" class="muted">{{ t("暂无实验室") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

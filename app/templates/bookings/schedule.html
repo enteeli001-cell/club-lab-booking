@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}{{ t("占用视图") }}{% endblock %}
+{% block content %}
+<h1>{{ t("实验室占用视图") }}</h1>
+{% if not labs %}
+<div class="card"><p class="muted">{{ t("还没有实验室。") }}</p></div>
+{% else %}
+<div class="card">
+  <form class="filters" method="get">
+    <div class="field">
+      <label for="lab_id">{{ t("实验室") }}</label>
+      <select id="lab_id" name="lab_id">
+        {% for item in labs %}
+        <option value="{{ item.id }}" {% if lab.id == item.id %}selected{% endif %}>{{ item.name }}{% if not item.enabled %}{{ t("（停用）") }}{% endif %}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="field">
+      <label for="date">{{ t("日期") }}</label>
+      <input id="date" name="date" type="date" value="{{ selected.isoformat() }}">
+    </div>
+    <div class="field">
+      <label for="view">{{ t("视图") }}</label>
+      <select id="view" name="view">
+        <option value="day" {% if view == 'day' %}selected{% endif %}>{{ t("按日") }}</option>
+        <option value="week" {% if view == 'week' %}selected{% endif %}>{{ t("按周") }}</option>
+      </select>
+    </div>
+    {% if current_user.is_staff %}
+    <div class="field">
+      <label for="checkin">{{ t("签到") }}</label>
+      <select id="checkin" name="checkin">
+        <option value="">{{ t("全部预约") }}</option>
+        <option value="missing" {% if only_missing %}selected{% endif %}>{{ t("只看未签到") }}</option>
+      </select>
+    </div>
+    {% endif %}
+    <button type="submit">{{ t("查看") }}</button>
+  </form>
+  <p class="hint">
+    {{ lab.name }} {{ t("· 开放") }} {{ lab.open_hours_label }} ·
+    {% if view == 'week' %}{{ start_day }} {{ t("至") }} {{ end_day }}{% else %}{{ selected }}{% endif %}
+    · <a href="{{ url_for('bookings.schedule', lab_id=lab.id, date=prev_date, view=view, checkin='missing' if only_missing else None) }}">{{ t("上一") }}{{ t('周') if view == 'week' else t('天') }}</a>
+    · <a href="{{ url_for('bookings.schedule', lab_id=lab.id, date=next_date, view=view, checkin='missing' if only_missing else None) }}">{{ t("下一") }}{{ t('周') if view == 'week' else t('天') }}</a>
+  </p>
+</div>
+
+<div class="mobile-agenda">
+  {% for day in days %}
+  <section class="card agenda-day">
+    <h2>{{ calendar_day(day) }} · {{ weekday_label(day) }}</h2>
+    {% for b in bookings if b.date == day %}
+    <div class="agenda-item"><strong>{{ b.time_range_label }}</strong><span class="badge {{ b.status }}">{{ t(b.status_label) }}</span>{% if b.full %}<p>{% if b.mine and not current_user.is_staff %}{{ t("我的预约 ·") }} {% endif %}{{ b.name }} · {{ b.purpose }}</p>{% else %}<p class="muted">{{ t("已占用") }}</p>{% endif %}{% if current_user.is_staff and b.checkin %}<p><span class="badge {{ b.checkin.badge }}">{{ t(b.checkin.label) }}</span></p>{% endif %}</div>
+    {% else %}<p class="muted">{{ t("暂无预约，可在开放时间内提交测试申请。") }}</p>{% endfor %}
+  </section>
+  {% endfor %}
+</div>
+<div class="card desktop-schedule">
+  <table class="schedule">
+    <thead>
+      <tr>
+        <th class="slot">{{ t("时间") }}</th>
+        {% for day in days %}
+        <th>{{ day.strftime('%m-%d') }}<div class="muted">{{ weekday_label(day) }}</div></th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+    {% for slot in slots %}
+      <tr>
+        <td class="slot">{{ slot.strftime('%H:%M') }}</td>
+        {% for day in days %}
+        {% set items = grid.get((day.isoformat(), slot.strftime('%H:%M')), []) %}
+        <td>
+          {% for b in items %}
+          {% if b.full %}
+          <div class="cell {{ b.status }}{% if b.mine and not current_user.is_staff %} mine{% endif %}" title="{{ t('我的预约 ') if b.mine and not current_user.is_staff else '' }}{{ b.name }} {{ b.time_range_label }} {{ t(b.status_label) }} {{ b.purpose }}">
+            {% if b.mine and not current_user.is_staff %}<strong>{{ t("我的预约") }}</strong> {% endif %}{{ b.name }} {{ b.time_range_label }}
+          {% else %}
+          <div class="cell {{ b.status }}" title="{{ t('已占用') }} {{ b.time_range_label }} {{ t(b.status_label) }}">
+            {{ t("已占用") }} {{ b.time_range_label }}
+          {% endif %}
+            <span class="badge {{ b.status }}">{{ t(b.status_label) }}</span>
+            {% if current_user.is_staff and b.checkin %}<span class="badge {{ b.checkin.badge }}">{{ t(b.checkin.short) }}</span>{% endif %}
+          </div>
+          {% endfor %}
+        </td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% if not slots %}
+  <p class="muted">{{ t("该实验室开放时间无效，无法展示时段。") }}</p>
+  {% endif %}
+</div>
+{% endif %}
+{% endblock %}

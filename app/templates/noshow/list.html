@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ t("未签到统计") }}{% endblock %}
+{% block content %}
+<h1>{{ t("未签到统计") }}</h1>
+<div class="tabs">
+  <a href="{{ url_for('noshow.overview') }}" class="{{ 'active' if not only_high }}">{{ t("全部队长") }}</a>
+  <a href="{{ url_for('noshow.overview', view='high') }}" class="{{ 'active' if only_high }}">{{ t("未签到较多（≥") }}{{ limit }} {{ t("次）") }}</a>
+</div>
+<p class="hint">{{ t("未签到 = 预约已通过、结束时间已过、没有签到；已取消或驳回的不计。功能上线前已结束的预约不计入。累计达到") }} {{ limit }} {{ t("次起强制提醒队长，之后每多一次再提醒一次。") }}</p>
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>{{ t("队长") }}</th><th>{{ t("队伍") }}</th><th>{{ t("未签到次数") }}</th><th>{{ t("最近一次") }}</th><th>{{ t("提醒情况") }}</th></tr>
+    </thead>
+    <tbody>
+    {% for row in rows %}
+      <tr>
+        <td>{{ row.user.name }}<div class="hint">{{ row.user.student_id }}</div></td>
+        <td>{{ row.user.team_name or '—' }}</td>
+        <td>{{ row.count }}{% if row.high %} <span class="badge rejected">{{ t("较多") }}</span>{% endif %}</td>
+        <td>{{ row.last.date }} {{ row.last.time_range_label }}<div class="hint">{{ row.last.lab.name }}</div></td>
+        <td>
+          {% if row.alert %}
+            {{ t("第") }} {{ row.alert.level }} {{ t("次已提醒 ·") }}
+            {% if row.alert.acknowledged_at %}{{ t("已确认知晓（") }}{{ row.alert.acknowledged_at.strftime('%m-%d %H:%M') }}）{% else %}<span class="bad-hint" style="display:inline">{{ t("待队长确认") }}</span>{% endif %}
+            <div class="hint">{{ t("邮件：") }}{% if row.alert.email_status == 'no_email' %}{{ t("无邮箱") }}{% elif row.alert.email_status == 'failed' %}{{ t("发送失败") }}{% elif row.alert.email_status %}{{ t("已发送（") }}{{ row.alert.email_to }}）{% else %}—{% endif %}</div>
+          {% elif row.high %}
+            {{ t("待扫描触发") }}
+            {% if not row.has_email %}<div class="hint">{{ t("无邮箱") }}</div>{% endif %}
+          {% else %}
+            <span class="muted">{{ t("未达提醒线") }}</span>
+            {% if not row.has_email %}<div class="hint">{{ t("无邮箱") }}</div>{% endif %}
+          {% endif %}
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="5" class="muted">{{ t("暂无未签到记录。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

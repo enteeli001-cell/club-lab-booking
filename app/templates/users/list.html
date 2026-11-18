@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}{{ t("账号管理") }}{% endblock %}
+{% block content %}
+<h1>{{ t("账号管理") }}</h1>
+<p class="muted">{{ t("仅总管理员可创建、导入、重置和删除账号。生成或重置的密码只在本页显示一次，不会写入日志。") }}</p>
+{% if issued %}
+<div class="password-once">
+  <strong>{{ t("请立即记录一次性密码") }}</strong>{{ t("（仅显示一次）：") }}
+  <div>{{ issued.user.name }}（{{ issued.user.student_id }} · {{ t(issued.user.role_label) }}）</div>
+  <div>{{ t("密码：") }}<code>{{ issued.password }}</code></div>
+</div>
+{% endif %}
+<div class="actions" style="margin-bottom:16px">
+  <a class="btn" href="{{ url_for('users.create_user') }}">{{ t("手动添加") }}</a>
+  <a class="btn secondary" href="{{ url_for('users.import_users') }}">{{ t("批量导入") }}</a>
+</div>
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>{{ t("姓名") }}</th><th>{{ t("学号/账号") }}</th><th>{{ t("角色") }}</th><th>{{ t("队伍") }}</th><th>{{ t("联系方式") }}</th><th>{{ t("操作") }}</th></tr>
+    </thead>
+    <tbody>
+    {% for u in users %}
+      <tr>
+        <td>{{ u.name }}</td>
+        <td>{{ u.student_id }}</td>
+        <td>{{ t(u.role_label) }}</td>
+        <td>{% if u.is_captain %}{{ u.team_name or '—' }}{% if u.teammates %}（{{ u.teammates|length }} {{ t("名队员）") }}{% endif %}{% else %}—{% endif %}</td>
+        <td>{% if u.is_staff %}{{ u.contact_phone or '—' }}{% else %}{{ u.last_phone or '—' }}<div class="hint">{{ u.verified_email or u.last_email or '—' }} {% if u.email_verified %}<span class="badge approved">{{ t("邮箱已验证") }}</span>{% else %}<span class="badge pending">{{ t("邮箱未验证") }}</span>{% endif %}</div>{% endif %}</td>
+        <td>
+          <a class="btn small secondary" href="{{ url_for('users.edit_user', user_id=u.id) }}">{{ t("编辑") }}</a>
+          {% if u.is_captain %}
+          <form class="inline" method="post" action="{{ url_for('users.reset_password', user_id=u.id) }}" data-confirm="{{ t('确定将该队长密码重置为学号？对方下次登录须修改密码。') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn small secondary" type="submit">{{ t("重置密码为学号") }}</button>
+          </form>
+          {% elif u.is_staff %}
+          <form class="inline" method="post" action="{{ url_for('users.reset_password', user_id=u.id) }}" data-confirm="{{ t('将为该管理员生成新的一次性密码并强制其下次登录修改，确定继续？') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn small secondary" type="submit">{{ t("重置并生成密码") }}</button>
+          </form>
+          {% endif %}
+          {% if u.id != current_user.id %}
+          <form class="inline" method="post" action="{{ url_for('users.delete_user', user_id=u.id) }}" data-confirm="{{ t('确定删除该账号？') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn small danger" type="submit">{{ t("删除") }}</button>
+          </form>
+          {% else %}
+          <span class="muted">{{ t("当前账号") }}</span>
+          {% endif %}
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="6" class="muted">{{ t("暂无账号") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

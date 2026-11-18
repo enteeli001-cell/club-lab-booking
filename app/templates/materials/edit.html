@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}{{ t("修改材料记录") }}{% endblock %}
+{% block content %}
+<h1>{% if kind == 'claim' %}{{ t("修改领取记录") }}{% else %}{{ t("修改购买记录") }}{% endif %} #{{ record.id }}</h1>
+<p class="hint">{{ t(quantity_help()) }}</p>
+<div class="card form-card">
+  <p><strong>{{ t("队伍：") }}</strong>{{ record.team_name or '—' }} · <strong>{{ t("队长：") }}</strong>{{ record.user.name }}（{{ record.user.student_id }}）</p>
+  <p><strong>{{ t("时间：") }}</strong>{{ record.created_at.strftime('%Y-%m-%d %H:%M:%S') }} · <strong>{{ t("状态：") }}</strong>{{ t(record.status_label) }} · <strong>IP：</strong>{{ record.ip or '—' }}</p>
+  {% if record.photo %}<p><a href="{{ url_for('materials.media', filename=record.photo) }}" target="_blank" rel="noopener"><img class="thumb mat-photo" src="{{ url_for('materials.media', filename=record.photo) }}" alt="{{ t('照片') }}" width="120" height="120"></a></p>{% endif %}
+  {% set editable = record.status in ('active', 'confirmed') %}
+  <form method="post" data-busy="{{ t('正在保存…') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <p class="hint">{% if editable %}{{ t("修改数量时库存会按差额自动增减；数量改为 0 表示删除该项。") }}{% else %}{{ t("该记录已失效，只能修改备注。") }}{% endif %}</p>
+    <ul class="mat-lines">
+      {% for line in record.items %}
+      <li>
+        <span>{{ line.label }}{% if kind == 'purchase' %} <span class="hint">@¥{{ line.unit_price_label }}</span>{% endif %}</span>
+        {% if kind == 'purchase' %}<label>{{ t("单价（元）") }} <input name="price_{{ line.id }}" type="number" min="0" max="10000" step="0.01" value="{{ line.unit_price_label }}" {% if not editable %}disabled{% endif %}></label>{% endif %}
+        <label class="mat-edit-qty">{{ t("数量") }} <input class="quantity-input" name="qty_{{ line.id }}" type="text" data-max="100000" data-allow-zero="1" inputmode="text" data-exact-current="1" maxlength="64" title="{{ t(quantity_help()) }}" value="{{ line.quantity }}" {% if not editable %}disabled{% endif %}> {{ line.unit }}</label>
+      </li>
+      {% endfor %}
+      {% if kind == 'purchase' %}<li class="mat-lines-total"><span>{{ t("当前合计") }}</span><b>¥{{ record.total_label }}</b></li>{% endif %}
+    </ul>
+    <div class="field">
+      <label for="note">{{ t("备注（更正原因）") }}</label>
+      <input id="note" name="note" maxlength="200" value="{{ record.note or '' }}">
+    </div>
+    <div class="actions form-actions">
+      <button type="submit">{{ t("保存") }}</button>
+      <a class="btn secondary" href="{{ url_for('materials.admin_records', tab='claims' if kind == 'claim' else 'purchases') }}">{{ t("返回") }}</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+{% block scripts %}<script src="{{ asset_url('materials.js') }}"></script>{% endblock %}

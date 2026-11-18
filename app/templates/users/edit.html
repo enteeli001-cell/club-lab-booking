@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}{{ t("编辑账号") }}{% endblock %}
+{% block content %}
+<h1>{{ t("编辑账号") }}</h1>
+<div class="card">
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field">
+      <label>{{ t("学号 / 账号") }}</label>
+      <input type="text" value="{{ user.student_id }}" disabled>
+    </div>
+    <div class="field">
+      <label>{{ t("角色") }}</label>
+      <input type="text" value="{{ t(user.role_label) }}" disabled>
+    </div>
+    <div class="field">
+      <label for="name">{{ t("姓名") }}</label>
+      <input id="name" name="name" type="text" required value="{{ user.name }}">
+    </div>
+    {% if user.is_staff %}
+    <div class="field">
+      <label for="contact_phone">{{ t("管理员联系方式（手机号）") }}</label>
+      <input id="contact_phone" name="contact_phone" type="tel" maxlength="11" value="{{ user.contact_phone or '' }}">
+    </div>
+    {% endif %}
+    {% if user.is_captain %}
+    <h2>{{ t("队伍信息") }}</h2>
+    <div class="field">
+      <label for="team_name">{{ t("队名") }}</label>
+      <input id="team_name" name="team_name" type="text" value="{{ team_name }}">
+    </div>
+    <div id="member-rows">
+      {% for m in members %}
+      <div class="field-row member-row">
+        <div class="field"><label>{{ t("队员姓名") }}</label><input name="member_name" type="text" value="{{ m.name }}"></div>
+        <div class="field"><label>{{ t("队员学号") }}</label><input name="member_student_id" type="text" value="{{ m.student_id }}"></div>
+      </div>
+      {% endfor %}
+    </div>
+    <p><button type="button" class="btn secondary small" id="add-member">{{ t("添加一名队员") }}</button></p>
+    {% endif %}
+    <div class="actions">
+      <button type="submit">{{ t("保存") }}</button>
+      <a class="btn secondary" href="{{ url_for('users.list_users') }}">{{ t("返回列表") }}</a>
+    </div>
+  </form>
+</div>
+{% if user.is_captain %}
+<script>
+(function(){
+  var rows = document.getElementById("member-rows");
+  var add = document.getElementById("add-member");
+  if (add && rows) add.addEventListener("click", function(){
+    var div = document.createElement("div");
+    div.className = "field-row member-row";
+    div.innerHTML = '<div class="field"><label>队员姓名</label><input name="member_name" type="text"></div><div class="field"><label>队员学号</label><input name="member_student_id" type="text"></div>';
+    rows.appendChild(div);
+  });
+})();
+</script>
+{% endif %}
+{% endblock %}

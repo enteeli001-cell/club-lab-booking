@@ -1,0 +1,477 @@
+{
+  "pages": [
+    {
+      "role": "anon",
+      "path": "/login",
+      "label": "队长登录页",
+      "median_ms": 2.46,
+      "p95_ms": 3.06,
+      "queries": 1,
+      "html_bytes": 4086,
+      "wire_bytes": 2130,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "anon",
+      "path": "/admin/login",
+      "label": "管理员登录页",
+      "median_ms": 2.23,
+      "p95_ms": 2.46,
+      "queries": 1,
+      "html_bytes": 2509,
+      "wire_bytes": 1428,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "captain",
+      "path": "/captain",
+      "label": "队长首页",
+      "median_ms": 5.61,
+      "p95_ms": 6.15,
+      "queries": 9,
+      "html_bytes": 7335,
+      "wire_bytes": 2681,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "captain",
+      "path": "/bookings/new",
+      "label": "测试预约表单",
+      "median_ms": 4.68,
+      "p95_ms": 5.07,
+      "queries": 7,
+      "html_bytes": 11743,
+      "wire_bytes": 3485,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "captain",
+      "path": "/bookings",
+      "label": "我的预约",
+      "median_ms": 8.62,
+      "p95_ms": 9.33,
+      "queries": 8,
+      "html_bytes": 46353,
+      "wire_bytes": 3571,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "captain",
+      "path": "/records",
+      "label": "申请记录（测试）",
+      "median_ms": 13.34,
+      "p95_ms": 17.0,
+      "queries": 16,
+      "html_bytes": 56912,
+      "wire_bytes": 4226,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "captain",
+      "path": "/records?tab=tools",
+      "label": "申请记录（工具）",
+      "median_ms": 11.5,
+      "p95_ms": 13.85,
+      "queries": 14,
+      "html_bytes": 30550,
+      "wire_bytes": 3098,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "captain",
+      "path": "/tools",
+      "label": "我的工具借用",
+      "median_ms": 6.52,
+      "p95_ms": 8.48,
+      "queries": 8,
+      "html_bytes": 29613,
+      "wire_bytes": 2774,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "captain",
+      "path": "/tools/new",
+      "label": "工具借用登记",
+      "median_ms": 4.14,
+      "p95_ms": 4.69,
+      "queries": 5,
+      "html_bytes": 7889,
+      "wire_bytes": 2706,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "captain",
+      "path": "/schedule",
+      "label": "占用视图（日）",
+      "median_ms": 6.02,
+      "p95_ms": 6.35,
+      "queries": 8,
+      "html_bytes": 14530,
+      "wire_bytes": 2454,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "captain",
+      "path": "/schedule?view=week",
+      "label": "占用视图（周）",
+      "median_ms": 13.68,
+      "p95_ms": 14.41,
+      "queries": 8,
+      "html_bytes": 72653,
+      "wire_bytes": 4515,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "captain",
+      "path": "/password",
+      "label": "修改密码",
+      "median_ms": 2.87,
+      "p95_ms": 3.24,
+      "queries": 3,
+      "html_bytes": 5790,
+      "wire_bytes": 2080,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "admin",
+      "path": "/",
+      "label": "管理员首页",
+      "median_ms": 3.02,
+      "p95_ms": 3.22,
+      "queries": 4,
+      "html_bytes": 4216,
+      "wire_bytes": 1898,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "admin",
+      "path": "/review/",
+      "label": "申请审核（待审核）",
+      "median_ms": 93.72,
+      "p95_ms": 137.96,
+      "queries": 8,
+      "html_bytes": 941390,
+      "wire_bytes": 41583,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "admin",
+      "path": "/review/?status=all",
+      "label": "申请审核（全部）",
+      "median_ms": 216.89,
+      "p95_ms": 230.69,
+      "queries": 12,
+      "html_bytes": 2279994,
+      "wire_bytes": 107398,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "admin",
+      "path": "/tools/admin",
+      "label": "工具借用记录",
+      "median_ms": 62.04,
+      "p95_ms": 94.61,
+      "queries": 9,
+      "html_bytes": 958590,
+      "wire_bytes": 50797,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "admin",
+      "path": "/stats/",
+      "label": "使用统计",
+      "median_ms": 38.32,
+      "p95_ms": 56.62,
+      "queries": 9,
+      "html_bytes": 269721,
+      "wire_bytes": 19626,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "admin",
+      "path": "/noshows/",
+      "label": "未签到统计",
+      "median_ms": 4.53,
+      "p95_ms": 5.88,
+      "queries": 7,
+      "html_bytes": 3439,
+      "wire_bytes": 1754,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "admin",
+      "path": "/mail/",
+      "label": "邮件记录",
+      "median_ms": 4.98,
+      "p95_ms": 6.74,
+      "queries": 3,
+      "html_bytes": 49709,
+      "wire_bytes": 3265,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "admin",
+      "path": "/labs/",
+      "label": "实验室管理",
+      "median_ms": 2.85,
+      "p95_ms": 3.31,
+      "queries": 3,
+      "html_bytes": 5234,
+      "wire_bytes": 1831,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "admin",
+      "path": "/checkin-codes/",
+      "label": "签到二维码",
+      "median_ms": 2.78,
+      "p95_ms": 2.88,
+      "queries": 3,
+      "html_bytes": 4874,
+      "wire_bytes": 2077,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "super",
+      "path": "/",
+      "label": "总管理员首页",
+      "median_ms": 3.79,
+      "p95_ms": 4.05,
+      "queries": 6,
+      "html_bytes": 6646,
+      "wire_bytes": 2591,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "super",
+      "path": "/security/",
+      "label": "安全防护中心",
+      "median_ms": 14.02,
+      "p95_ms": 14.72,
+      "queries": 12,
+      "html_bytes": 243667,
+      "wire_bytes": 8771,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "super",
+      "path": "/people/",
+      "label": "人员信息管理",
+      "median_ms": 17.23,
+      "p95_ms": 25.7,
+      "queries": 6,
+      "html_bytes": 468134,
+      "wire_bytes": 12512,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "super",
+      "path": "/managers/",
+      "label": "管理员管理",
+      "median_ms": 3.54,
+      "p95_ms": 4.1,
+      "queries": 4,
+      "html_bytes": 11641,
+      "wire_bytes": 2580,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "super",
+      "path": "/activity/users",
+      "label": "普通人员操作详情",
+      "median_ms": 15.45,
+      "p95_ms": 22.29,
+      "queries": 7,
+      "html_bytes": 152286,
+      "wire_bytes": 11764,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "super",
+      "path": "/activity/admins",
+      "label": "管理员操作信息",
+      "median_ms": 11.92,
+      "p95_ms": 12.53,
+      "queries": 5,
+      "html_bytes": 167722,
+      "wire_bytes": 9227,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "super",
+      "path": "/users/",
+      "label": "账号管理",
+      "median_ms": 10.25,
+      "p95_ms": 10.91,
+      "queries": 5,
+      "html_bytes": 123008,
+      "wire_bytes": 4970,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "super",
+      "path": "/duties/",
+      "label": "值班安排",
+      "median_ms": 5.31,
+      "p95_ms": 5.57,
+      "queries": 10,
+      "html_bytes": 23587,
+      "wire_bytes": 2558,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    },
+    {
+      "role": "super",
+      "path": "/tools/catalog",
+      "label": "工具清单",
+      "median_ms": 3.98,
+      "p95_ms": 4.48,
+      "queries": 4,
+      "html_bytes": 9227,
+      "wire_bytes": 2390,
+      "content_encoding": "gzip",
+      "cache_control": "no-store"
+    }
+  ],
+  "assets": [
+    {
+      "url": "/static/app.js",
+      "status": 200,
+      "wire_bytes": 7299,
+      "content_encoding": "gzip",
+      "cache_control": "public, max-age=31536000, immutable",
+      "etag": true
+    },
+    {
+      "url": "/static/favicon.svg",
+      "status": 200,
+      "wire_bytes": 207,
+      "content_encoding": "gzip",
+      "cache_control": "public, max-age=31536000, immutable",
+      "etag": true
+    },
+    {
+      "url": "/static/style.css",
+      "status": 200,
+      "wire_bytes": 9625,
+      "content_encoding": "gzip",
+      "cache_control": "public, max-age=31536000, immutable",
+      "etag": true
+    },
+    {
+      "url": "/media/bench_photo_0.png",
+      "status": 200,
+      "wire_bytes": 300070,
+      "content_encoding": "",
+      "cache_control": "private, max-age=86400",
+      "etag": true
+    }
+  ],
+  "photo_requests_on_tools_tab": 41,
+  "photo_lazy": true,
+  "name_lookup_ms": 2.08,
+  "login_captain_ms": 97.65,
+  "login_admin_ms": 280.25,
+  "browser": [
+    {
+      "role": "anon",
+      "path": "/login",
+      "label": "队长登录页",
+      "load_ms": 161.6,
+      "requests": 3
+    },
+    {
+      "role": "captain",
+      "path": "/captain",
+      "label": "队长首页",
+      "load_ms": 165.3,
+      "requests": 3
+    },
+    {
+      "role": "captain",
+      "path": "/bookings/new",
+      "label": "测试预约表单",
+      "load_ms": 169.4,
+      "requests": 3
+    },
+    {
+      "role": "captain",
+      "path": "/records",
+      "label": "申请记录",
+      "load_ms": 190.0,
+      "requests": 3
+    },
+    {
+      "role": "captain",
+      "path": "/records?tab=tools",
+      "label": "申请记录（工具）",
+      "load_ms": 171.6,
+      "requests": 6
+    },
+    {
+      "role": "admin",
+      "path": "/",
+      "label": "管理员首页",
+      "load_ms": 162.6,
+      "requests": 3
+    },
+    {
+      "role": "admin",
+      "path": "/review/?status=all",
+      "label": "申请审核（全部）",
+      "load_ms": 2550.9,
+      "requests": 3
+    },
+    {
+      "role": "admin",
+      "path": "/tools/admin",
+      "label": "工具借用记录",
+      "load_ms": 743.7,
+      "requests": 13
+    },
+    {
+      "role": "super",
+      "path": "/",
+      "label": "总管理员首页",
+      "load_ms": 163.4,
+      "requests": 3
+    },
+    {
+      "role": "super",
+      "path": "/security/",
+      "label": "安全防护中心",
+      "load_ms": 258.9,
+      "requests": 3
+    }
+  ],
+  "measured_at": "2026-11-13T21:33:10",
+  "runs_per_page": 15
+}

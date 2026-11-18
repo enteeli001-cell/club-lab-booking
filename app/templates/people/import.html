@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ t("导入参赛队伍") }}{% endblock %}
+{% block content %}
+<h1>{{ t("导入参赛队伍") }}</h1>
+<p class="muted">{{ t("请使用模板列：队名、队长姓名/学号/手机/邮箱、队员N姓名/学号/手机。已存在的队长学号按「更新」处理，不会覆盖管理员账号。导入后先预览，确认再写入。") }}</p>
+<div class="card">
+  <p><a class="btn secondary" href="{{ url_for('people.download_template') }}">{{ t("下载导入模板") }}</a></p>
+  <form method="post" enctype="multipart/form-data">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field">
+      <label for="file">{{ t("Excel 或 CSV 文件") }}</label>
+      <input id="file" name="file" type="file" accept=".xlsx,.xls,.csv" required>
+    </div>
+    <button type="submit">{{ t("上传并预览") }}</button>
+    <a class="btn secondary" href="{{ url_for('people.index') }}">{{ t("返回") }}</a>
+  </form>
+</div>
+{% endblock %}

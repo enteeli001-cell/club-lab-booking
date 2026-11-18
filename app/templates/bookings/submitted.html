@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ t("预约已提交") }}{% endblock %}
+{% block content %}
+<div class="success-panel" id="booking-submitted">
+  <div class="success-badge" aria-hidden="true">✓</div>
+  <h1>{{ t(booking_submitted_title) }}</h1>
+  <p class="success-notice">{{ t(booking_submitted_notice) }}</p>
+  <dl class="detail-list">
+    <dt>{{ t("实验室") }}</dt><dd>{{ booking.lab.name }}</dd>
+    <dt>{{ t("时段") }}</dt><dd>{{ booking.date }} {{ booking.time_range_label }}</dd>
+    <dt>{{ t("同行人员") }}</dt><dd>{{ booking.companions_label }}</dd>
+    <dt>{{ t("联系方式") }}</dt><dd>{{ booking.captain_phone or '—' }}</dd>
+    <dt>{{ t("状态") }}</dt><dd><span class="badge pending">{{ t(booking.status_label) }}</span></dd>
+  </dl>
+  <p class="hint">{{ t("审核通过后，请在开始前") }} {{ config.get("CHECKIN_EARLY_MINUTES", 15) }} {{ t("分钟至结束前到场，扫描实验室门口的二维码签到。") }}</p>
+  <div class="actions actions-center">
+    <a class="btn" href="{{ url_for('records.index', tab='bookings') }}">{{ t("查看申请记录") }}</a>
+    <a class="btn secondary" href="{{ url_for('bookings.create_booking') }}">{{ t("再预约一个时段") }}</a>
+    <a class="btn secondary" href="{{ url_for('main.captain_home') }}">{{ t("返回工作台") }}</a>
+  </div>
+</div>
+{% endblock %}

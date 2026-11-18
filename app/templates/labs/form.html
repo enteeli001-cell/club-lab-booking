@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}{{ t('编辑实验室') if lab else t('新增实验室') }}{% endblock %}
+{% block content %}
+<h1>{{ t('编辑实验室') if lab else t('新增实验室') }}</h1>
+<div class="card">
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field">
+      <label for="name">{{ t("名称") }}</label>
+      <input id="name" name="name" type="text" required value="{{ form.name }}">
+    </div>
+    <div class="field">
+      <label for="capacity">{{ t("容量（人）") }}</label>
+      <input id="capacity" name="capacity" type="number" min="1" required value="{{ form.capacity }}">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="open_start">{{ t("开放开始") }}</label>
+        <input id="open_start" name="open_start" type="time" step="1800" required value="{{ form.open_start }}">
+      </div>
+      <div class="field">
+        <label for="open_end">{{ t("开放结束") }}</label>
+        <input id="open_end" name="open_end" type="time" step="1800" required value="{{ form.open_end }}">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="contact_name">{{ t("默认联系人") }}</label>
+        <input id="contact_name" name="contact_name" type="text" value="{{ form.contact_name }}">
+      </div>
+      <div class="field">
+        <label for="contact_phone">{{ t("联系电话（手机号）") }}</label>
+        <input id="contact_phone" name="contact_phone" type="tel" maxlength="11" value="{{ form.contact_phone }}">
+      </div>
+    </div>
+    <fieldset class="geo-fieldset">
+      <legend>{{ t("位置签到（可选）") }}</legend>
+      <p class="hint">{{ t("开启后，队长只有在实验室附近才能签到。坐标可在实验室现场点“使用当前位置”获取，也可手动填写。") }}</p>
+      <div class="field-row">
+        <div class="field"><label for="geo_lat">{{ t("纬度") }}</label><input id="geo_lat" name="geo_lat" type="text" inputmode="decimal" placeholder="{{ t('如 31.230416') }}" value="{{ form.geo_lat }}"></div>
+        <div class="field"><label for="geo_lng">{{ t("经度") }}</label><input id="geo_lng" name="geo_lng" type="text" inputmode="decimal" placeholder="{{ t('如 121.473701') }}" value="{{ form.geo_lng }}"></div>
+        <div class="field"><label for="geo_radius_m">{{ t("签到半径（米）") }}</label><input id="geo_radius_m" name="geo_radius_m" type="number" min="5" max="1000" value="{{ form.geo_radius_m }}"></div>
+      </div>
+      <div class="actions"><button type="button" class="btn secondary" id="geo-use-here" formnovalidate>{{ t("使用当前位置") }}</button><span class="hint" id="geo-here-msg" role="status"></span></div>
+      <div class="field"><label><input type="checkbox" name="geo_required" {% if form.geo_required %}checked{% endif %}> {{ t("开启位置签到（需先填写经纬度）") }}</label></div>
+    </fieldset>
+    <div class="field">
+      <label><input type="checkbox" name="enabled" {% if form.enabled %}checked{% endif %}> {{ t("启用") }}</label>
+    </div>
+    <div class="actions">
+      <button type="submit">{{ t("保存") }}</button>
+      <a class="btn secondary" href="{{ url_for('labs.list_labs') }}">{{ t("取消") }}</a>
+    </div>
+  </form>
+</div>
+<script>
+(function () {
+  var btn = document.getElementById("geo-use-here"), msg = document.getElementById("geo-here-msg");
+  if (!btn) return;
+  btn.addEventListener("click", function () {
+    if (!navigator.geolocation) { msg.textContent = {{ t("当前浏览器不支持定位，请手动填写。")|tojson }}; return; }
+    msg.textContent = {{ t("正在获取位置…")|tojson }};
+    navigator.geolocation.getCurrentPosition(function (p) {
+      document.getElementById("geo_lat").value = p.coords.latitude.toFixed(6);
+      document.getElementById("geo_lng").value = p.coords.longitude.toFixed(6);
+      msg.textContent = window.appTranslate("已填入当前位置（误差约 {meters} 米）。请确认后保存。", {meters:Math.round(p.coords.accuracy)});
+    }, function (err) {
+      msg.textContent = err && err.code === 1 ? {{ t("位置权限被拒绝，请在浏览器设置中允许或手动填写。")|tojson }} : {{ t("无法获取位置，请到室外或窗边重试，或手动填写。")|tojson }};
+    }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
+  });
+})();
+</script>
+{% endblock %}

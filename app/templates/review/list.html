@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block title %}{{ t("申请审核列表") }}{% endblock %}
+{% block content %}
+<h1>{{ t("申请审核列表") }}</h1>
+<p class="reject-email-warning" role="alert">{{ t(reject_email_warning) }}</p>
+<div class="tabs">
+  <a href="{{ url_for('review.list_reviews', status='pending') }}" class="{{ 'active' if status == 'pending' }}">{{ t("待审核") }}</a>
+  <a href="{{ url_for('review.list_reviews', status='approved') }}" class="{{ 'active' if status == 'approved' and not checkin }}">{{ t("已通过") }}</a>
+  <a href="{{ url_for('review.list_reviews', status='rejected') }}" class="{{ 'active' if status == 'rejected' }}">{{ t("已拒绝") }}</a>
+  <a href="{{ url_for('review.list_reviews', status='all') }}" class="{{ 'active' if status == 'all' and not checkin }}">{{ t("全部") }}</a>
+  <a href="{{ url_for('review.list_reviews', status='approved', checkin='missing') }}" class="{{ 'active' if checkin == 'missing' }}">{{ t("未签到") }}</a>
+</div>
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>{{ t("队长") }}</th>
+        <th>{{ t("队伍") }}</th>
+        <th>{{ t("时段") }}</th>
+        <th>{{ t("实验室") }}</th>
+        <th>{{ t("同行人员") }}</th>
+        <th>{{ t("联系方式") }}</th>
+        <th>{{ t("状态") }}</th>
+        <th>{{ t("签到") }}</th>
+        <th>{{ t("操作") }}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for booking in bookings %}
+      <tr>
+        <td>{{ booking.user.name }}<div class="hint">{{ booking.user.student_id }}</div></td>
+        <td>{{ booking.user.team_name or '—' }}</td>
+        <td>{{ booking.date }} {{ booking.time_range_label }}</td>
+        <td>{{ booking.lab.name }}</td>
+        <td>{{ booking.companions_label or '—' }}</td>
+        <td>
+          {{ booking.captain_phone or '—' }}
+          <div class="hint">{{ booking.captain_email or t('（未填邮箱）') }}</div>
+        </td>
+        <td>
+          <span class="badge {{ booking.status }}">{{ t(booking.status_label) }}</span>
+          {% if booking.id in pending_hints %}
+          <div class="bad-hint">{{ t("与其他待审核预约重叠超过 30 分钟") }}</div>
+          {% endif %}
+          {% if booking.reject_reason %}
+          <div class="hint">{{ t("理由：") }}{{ booking.reject_reason }}</div>
+          {% endif %}
+        </td>
+        <td>{% set ci = booking.checkin %}{% if ci %}<span class="badge {{ ci.badge }}">{{ t(ci.label) }}</span>{% else %}<span class="muted">—</span>{% endif %}{% if current_user.is_staff %}{% include "checkin/_admin_detail.html" %}{% endif %}</td>
+        <td>
+          {% if booking.status == 'pending' %}
+          <form method="post" action="{{ url_for('review.approve', booking_id=booking.id) }}" class="inline">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="btn small">{{ t("通过") }}</button>
+          </form>
+          <button type="button" class="btn small danger js-open-reject" data-action="{{ url_for('review.reject', booking_id=booking.id) }}" data-title="{{ t('拒绝{name}的申请', name=booking.user.name) }}">{{ t("拒绝") }}</button>
+          {% else %}
+          <span class="muted">—</span>
+          {% endif %}
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="9" class="muted">{{ t("暂无申请。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% from "_pagination.html" import pager %}
+{{ pager(pagination, 'review.list_reviews', page_args) }}
+
+<div id="reject-modal" class="modal" hidden>
+  <div class="modal-card reject-modal-card">
+    <p class="reject-email-warning" role="alert">{{ t(reject_email_warning) }}</p>
+    <h2 id="reject-title">{{ t("拒绝申请") }}</h2>
+    <form id="reject-form" method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="field">
+        <label for="reject-reason">{{ t("拒绝理由（必填）") }}</label>
+        <textarea id="reject-reason" name="reason" rows="4" required maxlength="200" placeholder="{{ t('请认真、文明填写拒绝理由') }}"></textarea>
+      </div>
+      <div class="actions">
+        <button type="submit" class="btn danger">{{ t("确认拒绝") }}</button>
+        <button type="button" class="btn secondary" id="reject-cancel">{{ t("取消") }}</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+(function(){
+  var modal = document.getElementById("reject-modal");
+  var form = document.getElementById("reject-form");
+  var title = document.getElementById("reject-title");
+  var reason = document.getElementById("reject-reason");
+  var cancel = document.getElementById("reject-cancel");
+  document.querySelectorAll(".js-open-reject").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      form.setAttribute("action", btn.getAttribute("data-action"));
+      title.textContent = btn.getAttribute("data-title") || {{ t("拒绝申请")|tojson }};
+      reason.value = "";
+      modal.hidden = false;
+      reason.focus();
+    });
+  });
+  if (cancel) cancel.addEventListener("click", function(){ modal.hidden = true; });
+  if (modal) modal.addEventListener("click", function(ev){ if (ev.target === modal) modal.hidden = true; });
+  if (reason) reason.addEventListener("input", function(){ reason.setCustomValidity(""); });
+  if (form) form.addEventListener("submit", function(ev){
+    if (!(reason.value || "").trim()) {
+      ev.preventDefault();
+      reason.setCustomValidity({{ t("拒绝时必须填写理由。")|tojson }});
+      reason.reportValidity();
+    } else {
+      reason.setCustomValidity("");
+    }
+  });
+})();
+</script>
+{% endblock %}

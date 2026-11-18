@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}{{ t("维护模式") }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>{{ t("维护模式（网站升级中）") }}</h1>
+    <p class="muted">{{ t("开启后，除总管理员外的所有访问者（未登录、队长、普通管理员）访问任何页面都只会看到下方的提示文案（HTTP 503，Retry-After") }} {{ retry_minutes }} {{ t("分钟）。管理员登录页和 /health 保持可用，总管理员可照常登录并在此关闭。") }}</p>
+  </div>
+  <a class="btn secondary" href="{{ url_for('toggles.features') }}">{{ t("← 功能开关") }}</a>
+</div>
+
+<div class="card narrow">
+  <h2>{{ t("当前状态") }}</h2>
+  <p class="maint-state">
+    {% if enabled %}<span class="badge rejected">{{ t("维护模式：已开启") }}</span><span class="bad-hint">{{ t("访问者目前无法使用网站。") }}</span>
+    {% else %}<span class="badge on">{{ t("维护模式：未开启") }}</span><span class="muted">{{ t("网站正常对外服务。") }}</span>{% endif %}
+  </p>
+  {% if enabled %}
+  <form method="post" action="{{ url_for('toggles.maintenance_state') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="enabled" value="0">
+    <button class="btn" type="submit">{{ t("关闭维护模式，恢复访问") }}</button>
+  </form>
+  {% else %}
+  <form method="post" action="{{ url_for('toggles.maintenance_state') }}" onsubmit="return confirm({{ t('再次确认：开启后除总管理员外所有人都无法访问网站，确定开启维护模式吗？')|tojson|forceescape }})">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="enabled" value="1">
+    <label class="maint-confirm"><input type="checkbox" name="confirm" value="yes" required><span>{{ t("我确认要开启维护模式：队长、普通管理员和未登录访问者将全部看到升级提示。") }}</span></label>
+    <button class="btn danger" type="submit">{{ t("开启维护模式") }}</button>
+  </form>
+  {% endif %}
+</div>
+
+<div class="card narrow">
+  <h2>{{ t("提示文案") }}</h2>
+  <form method="post" action="{{ url_for('toggles.maintenance_message') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field">
+      <label for="maint-message">{{ t("访问者看到的文字（最多") }} {{ message_max }} {{ t("字）") }}</label>
+      <textarea id="maint-message" name="message" rows="3" maxlength="{{ message_max }}" required>{{ message }}</textarea>
+      <p class="hint">{{ t("可随时修改，开启期间修改会立即生效。") }}</p>
+    </div>
+    <button type="submit">{{ t("保存文案") }}</button>
+  </form>
+</div>
+{% endblock %}

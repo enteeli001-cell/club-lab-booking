@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ t("签到二维码") }}{% endblock %}
+{% block content %}
+<h1>{{ t("签到二维码") }}</h1>
+<div class="card">
+  <p>{{ t("每个实验室有一张固定的签到二维码，") }}<strong>{{ t("不会自动刷新") }}</strong>{{ t("，可直接打印后贴在实验室门口。预约队长到场后用手机扫描该二维码并确认，才算签到成功。") }}</p>
+  <p class="hint">{{ t("二维码里的网址取决于你打开本页时用的地址（当前基础地址：") }}{{ base_url or t('未知') }}{{ t("）；外部链接更换后需重新打印。也可以由服务器设置 PUBLIC_BASE_URL 固定基础地址。") }}</p>
+</div>
+<div class="qr-grid">
+  {% for row in rows %}
+  {% set lab = row.lab %}
+  <div class="card qr-card">
+    <h2>{{ lab.name }}{% if not lab.enabled %} <span class="badge off">{{ t("停用") }}</span>{% endif %}</h2>
+    <img class="qr-img" src="{{ url_for('checkin.qr_png', lab_id=lab.id) }}" width="240" height="240" alt="{{ lab.name }} {{ t('签到二维码') }}">
+    <p class="hint qr-url"><code>{{ row.url }}</code></p>
+    {% if lab.checkin_token_updated_at %}<p class="hint">{{ t("上次重置：") }}{{ lab.checkin_token_updated_at.strftime('%Y-%m-%d %H:%M') }}</p>{% endif %}
+    <div class="actions">
+      <a class="btn small" href="{{ url_for('checkin.qr_png', lab_id=lab.id, download=1) }}">{{ t("下载 PNG") }}</a>
+      <a class="btn small secondary" href="{{ url_for('checkin.print_view', lab_id=lab.id) }}" target="_blank" rel="noopener">{{ t("打印") }}</a>
+      {% if current_user.is_superadmin %}
+      <form class="inline" method="post" action="{{ url_for('checkin.reset_code', lab_id=lab.id) }}" data-confirm="{{ t('确定重置「{name}」的签到二维码？重置后旧二维码立即失效，需要重新打印并张贴。', name=lab.name) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="confirm" value="yes">
+        <button class="btn small danger" type="submit">{{ t("重置二维码") }}</button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+  {% else %}
+  <div class="card"><p class="muted">{{ t("还没有实验室。") }}</p></div>
+  {% endfor %}
+</div>
+{% endblock %}

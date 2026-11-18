@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>管理后台</title>
+  <style>:root {
+  --bg:#f3f6fb; --card:#fff; --ink:#192c43; --muted:#5b6d82; --line:#dce5ef;
+  --brand:#225ed8; --brand-dark:#1849ad; --accent:#1c8c94;
+  --ok:#196c45; --ok-bg:#e7f5ed; --warn:#83520b; --warn-bg:#fff4dc;
+  --err:#ab2c32; --err-bg:#fff0ef; --pending:#83520b; --approved:#196c45;
+  --rejected:#ab2c32; --cancelled:#5b6d82;
+}
+*{box-sizing:border-box} html,body{margin:0;padding:0} html{scroll-padding-top:90px}
+body{font-family:"Noto Sans CJK SC","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;min-height:100vh;font-size:15px}
+[hidden]{display:none!important} a{color:var(--brand);text-decoration:none} a:hover{text-decoration:underline}
+:focus-visible{outline:3px solid #57a7ee;outline-offset:3px} button,input,select,textarea{font:inherit}
+.wrap{max-width:1440px;margin:auto;padding:0 36px;min-width:0} main.wrap{padding-top:30px;padding-bottom:64px}
+h1{font-size:28px;line-height:1.4;letter-spacing:-.03em;margin:0 0 24px} h2{font-size:19px;margin:24px 0 12px;line-height:1.5} p{margin:0 0 12px}.muted{color:var(--muted)}
+.skip-link{position:fixed;top:-100px;left:16px;z-index:100;background:#fff;padding:12px}.skip-link:focus{top:12px}
+/* Desktop navigation stays visible, horizontal, and in normal document flow.
+   These defaults also work when an older cached page has no app-shell body class. */
+.topbar { background: #122a4b; color: #fff; border-bottom: 1px solid #243b59; }
+.topbar-inner {
+  display: flex; flex-direction: row; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 10px 20px; min-height: 74px; padding-top: 14px; padding-bottom: 12px;
+}
+.brand { display: flex; align-items: center; gap: 12px; flex: 1 1 auto; min-width: 0; color: #fff; font-size: 16px; font-weight: 700; line-height: 1.5; }
+.brand:hover { color: #fff; text-decoration: none; }
+.brand small { display: block; color: #a8bbd7; font-size: 11px; font-weight: 400; letter-spacing: .1em; margin-top: 3px; }
+.brand-mark { display: grid; place-items: center; width: 36px; height: 38px; flex-shrink: 0; background: #2865d7; border: 1px solid #648bdd; border-radius: 9px; font-size: 20px; }
+.nav {
+  display: flex; flex-direction: row; flex-wrap: wrap; align-items: center;
+  order: 3; flex: 0 0 100%; gap: 4px 6px; min-width: 0; overflow: visible;
+}
+.nav a, .nav button.linkish {
+  display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto;
+  width: auto; min-height: 34px; padding: 6px 10px; border: 0; border-radius: 6px;
+  background: transparent; color: #c5d3e7; font-size: 13px; font-weight: 500; line-height: 1.5;
+  white-space: nowrap; text-align: left;
+}
+.nav form.inline { display: inline-flex; flex: 0 0 auto; margin: 0; }
+.nav a:hover, .nav button.linkish:hover { background: #203d61; color: #fff; text-decoration: none; }
+.nav a.active { background: #2865d7; color: #fff; font-weight: 700; }
+.userchip { order: 1; flex: 0 0 auto; padding: 0; border: 0; font-size: 12px; color: #bacce2; }
+.nav-toggle { display: none; }
+.app-shell main.wrap { width: 100%; margin-left: auto; margin-right: auto; }
+
+.page-context{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:26px;padding-bottom:16px;border-bottom:1px solid var(--line);letter-spacing:.08em}.page-context span:last-child{background:#e7edf7;color:#33567d;border-radius:6px;padding:3px 10px;letter-spacing:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;margin-bottom:20px;box-shadow:0 3px 10px #233e6104;min-width:0}.card>:first-child{margin-top:0}.card>:last-child{margin-bottom:0}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}.stat{background:#eef4fc;border:1px solid #dce8f8;border-radius:10px;padding:18px}.stat .num{font-size:30px;line-height:1.3;font-weight:750;color:var(--brand-dark)}.stat .lbl{font-size:13px;color:var(--muted);margin-top:6px}
+label{display:block;font-size:14px;font-weight:600;margin-bottom:7px}.field{margin-bottom:20px;min-width:0}.field-row{display:flex;gap:20px;flex-wrap:wrap}.field-row .field{flex:1;min-width:160px}
+input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select,textarea{width:100%;max-width:480px;min-height:46px;border:1px solid #bacbdd;border-radius:8px;padding:10px 12px;color:var(--ink);background:#fff;font-size:15px;line-height:1.5}
+input[type=checkbox],input[type=radio]{width:20px;height:20px;accent-color:var(--brand);flex-shrink:0}input[type=file]{padding:8px!important;line-height:1.5;max-width:100%}input::file-selector-button{border:0;border-radius:5px;background:#e9f0fc;color:#2456a9;padding:7px 10px;margin-right:10px;cursor:pointer}textarea{min-height:100px;resize:vertical}legend{padding:0 8px;font-weight:700}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px}.btn,button{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid transparent;border-radius:8px;padding:10px 18px;min-height:44px;font-weight:600;font-size:14px;line-height:1.5;cursor:pointer;background:var(--brand);color:#fff;text-decoration:none;vertical-align:middle}
+.btn:hover,button:hover{background:var(--brand-dark);color:#fff;text-decoration:none}.btn.secondary,button.secondary{background:#edf2fa;border-color:#d9e3f1;color:#304f74}.btn.secondary:hover,button.secondary:hover{background:#dee9f8}.btn.danger,button.danger{background:#b73537;color:#fff}.btn.danger:hover,button.danger:hover{background:#932c2e}.btn.small,button.small{padding:7px 12px;min-height:36px;font-size:13px}form.inline{display:inline}button[disabled],.btn[disabled],a.btn.disabled{opacity:.5;cursor:not-allowed;pointer-events:none}button.js-locked-cancel{pointer-events:auto;cursor:pointer;opacity:.9}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:4px;max-width:100%}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}th{font-size:12px;color:#536d8e;background:#f1f5fb;font-weight:650;white-space:nowrap}td{min-width:76px}td .btn,td button{margin:2px 0}tbody tr:last-child td{border-bottom:0}tbody tr:hover td{background:#f9fbff}td input,td select{min-width:90px}td form .field{margin-bottom:10px}
+.badge{display:inline-block;padding:3px 10px;border-radius:6px;font-size:12px;font-weight:650;white-space:nowrap}.badge.pending{background:var(--warn-bg);color:var(--warn)}.badge.approved,.badge.on,.badge.returned{background:var(--ok-bg);color:var(--ok)}.badge.rejected,.badge.overdue{background:var(--err-bg);color:var(--err)}.badge.cancelled,.badge.off{background:#edf0f4;color:var(--muted)}.badge.borrowing{background:#e9f0ff;color:#235aaf}
+.flash{list-style:none;padding:0;margin:0 0 20px}.flash li{padding:14px 16px;border-radius:8px;margin-bottom:10px;overflow-wrap:anywhere;border-left:4px solid}.flash .success{background:var(--ok-bg);color:var(--ok)}.flash .error{background:var(--err-bg);color:var(--err)}.flash .warning{background:var(--warn-bg);color:var(--warn)}
+.hint{font-size:12px;color:var(--muted);line-height:1.65;margin-top:6px;overflow-wrap:anywhere}.bad-hint{color:var(--err);font-weight:600;font-size:12px;margin-top:5px}.filters{display:flex;gap:16px;flex-wrap:wrap;align-items:end}.filters .field{margin:0}.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}.tabs a{padding:10px 16px;border-radius:8px;background:#e6ecf5;color:#415874;min-height:44px;font-size:14px}.tabs a.active{background:var(--brand);color:#fff}
+.welcome-banner{margin:0 0 28px}.welcome-banner h1{font-size:30px;margin-bottom:12px}.welcome-banner p{font-size:14px}.entry-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.entry-card{display:block;position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 24px;min-height:204px;color:inherit;box-shadow:0 3px 10px #233e6104;transition:transform .15s,border-color .15s}.entry-card:hover{border-color:#83a5e0;transform:translateY(-3px);color:var(--ink);text-decoration:none}.entry-kicker{font-size:12px;font-weight:600;color:var(--brand);margin-bottom:18px}.entry-kicker:before{content:"";display:inline-block;width:8px;height:8px;border:2px solid #5586d8;border-radius:2px;margin-right:8px}.entry-card h2{font-size:21px;margin:0 0 12px;line-height:1.5}.entry-card p{color:var(--muted);font-size:13px;line-height:1.8;margin:0}.entry-card-alt .entry-kicker{color:#18787e}.entry-grid-secondary{margin-top:20px}.entry-grid-secondary .entry-card{min-height:170px;padding:22px}.entry-grid-secondary .entry-card h2{font-size:18px}.security-entry{margin-top:20px;grid-template-columns:1fr}.security-entry .entry-card{min-height:0;background:#edf3fd;border-color:#cadbf4}.security-entry .entry-kicker{margin-bottom:8px}.security-entry .entry-card h2{font-size:19px}
+.login-layout{display:grid;grid-template-columns:minmax(0,1fr) 480px;align-items:center;gap:64px;max-width:1140px;margin:40px auto}.login-intro{padding:20px 0}.eyebrow{font-size:13px;color:var(--brand);font-weight:700;letter-spacing:.12em}.login-intro h2{font-size:40px;letter-spacing:-.04em;line-height:1.5;margin:24px 0}.login-intro>p{color:var(--muted);font-size:16px;line-height:2}.login-steps{display:flex;flex-direction:column;gap:16px;margin:32px 0}.login-steps span{display:flex;align-items:center;gap:15px;font-size:14px}.login-steps b{display:grid;place-items:center;width:33px;height:33px;background:#e4edfc;color:var(--brand);border-radius:8px;font-size:12px}.intro-note{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:12px}.login-box{max-width:520px;margin:36px auto;padding:32px}.login-layout .login-box{margin:0;width:100%}.login-title{font-size:23px;line-height:1.55;margin:0 0 24px;text-align:left}.login-subtitle{color:var(--muted)}.login-box input{max-width:none!important}.login-box .pw-toggle-wrap{max-width:none}.login-box .hint{line-height:1.8;margin-top:16px}.btn-captain{width:100%;font-size:16px;min-height:50px;background:#225ed8;margin-top:4px}.admin-login-link{display:block;text-align:center;margin-top:16px;min-height:44px;padding:10px;color:var(--muted);font-size:14px}.login-box button[type=submit]:not(.btn-captain){width:100%}
+.notice-box{background:#f2f6fd;border:1px solid #d9e5f8;border-left:3px solid #5b86cf;border-radius:8px;padding:16px 18px;margin:0 0 24px;color:#455c7a}.notice-box h2{font-size:14px;margin:0 0 8px;color:#2f4e7a}.notice-box ol{margin:0;padding-left:1.25em}.notice-box li{font-size:12px;line-height:1.8;margin:4px 0}
+.captain-greeting{margin-top:10px;border-radius:8px;padding:10px 12px;font-size:13px}.captain-greeting.ok{background:#edf4ff;border:1px solid #bdcff0;color:#254f8e}.captain-greeting.ok .hello{font-weight:700}.captain-greeting .self-hint{margin-top:4px;font-size:12px}.captain-greeting.err{background:var(--err-bg);color:var(--err)}
+.pw-toggle-wrap{display:flex;align-items:stretch;gap:8px;max-width:480px;min-width:0}.pw-toggle-wrap input{flex:1;min-width:0;max-width:none!important}.pw-toggle{background:#edf2fa;color:#304f74;border:1px solid #d9e3f1;flex:0 0 auto;padding:8px 12px;min-width:60px}.pw-toggle:hover,.pw-toggle[aria-pressed=true]{background:#dce7f8;color:#234773}.pw-rules-box{background:#f2f6fc;border:1px solid var(--line);border-radius:10px;padding:16px;max-width:480px;margin-bottom:20px}.pw-rules-box h2{font-size:15px;margin:0 0 8px}.pw-rules{list-style:none;padding:0;margin:0}.pw-rules li{display:flex;gap:10px;font-size:13px;margin-top:7px}.pw-rules .mark{width:16px;font-weight:700}.pw-rules li.ok{color:var(--ok)}.pw-rules li.bad{color:var(--muted)}.forgot-prompt,.password-once,.issued-box{background:var(--warn-bg);border:1px solid #e8c783;border-radius:10px;padding:18px;margin:20px 0}.issued-password{font-size:22px;font-family:ui-monospace,monospace;font-weight:700;overflow-wrap:anywhere;margin:10px 0}.team-fields{border-top:1px dashed var(--line);padding-top:18px;margin-top:18px}.companions{border:1px solid var(--line);border-radius:10px;padding:18px;margin:18px 0 24px;min-width:0}.companions>.muted{font-size:13px}.checkbox-list{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}.check-item{display:inline-flex;align-items:center;gap:10px;min-height:44px;background:#f1f5fc;border-radius:8px;padding:8px 12px;font-size:13px;margin:0}.other-box{padding-top:16px;border-top:1px dashed var(--line);margin-top:14px}.tool-row{border-bottom:1px dashed var(--line);padding-top:8px}.row-error{background:var(--err-bg)}
+.inventory-card{background:#eff6fd;border:1px solid #b4ccea}.inventory-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}.inventory-head h2{margin:0;font-size:20px}.inventory-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.stock-item{background:#fff;border:1px solid #d4e2f2;border-radius:10px;padding:16px}.stock-name{font-size:15px;font-weight:700;margin-bottom:10px}.stock-nums{display:flex;gap:8px 14px;flex-wrap:wrap;color:var(--muted);font-size:12px}.stock-remain{color:var(--ok);font-weight:700}.thumb{width:64px;height:64px;object-fit:cover;border:1px solid var(--line);border-radius:8px;vertical-align:middle}
+.success-panel{max-width:740px;margin:30px auto;padding:40px;background:#fff;border:1px solid #b9deca;border-top:4px solid #22835a;border-radius:16px;text-align:center}.success-badge{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--ok-bg);color:var(--ok);font-size:28px;margin:0 auto 20px}.success-panel h1{color:var(--ok);margin-bottom:18px}.success-notice{font-size:17px;line-height:1.9}.reject-email-warning{background:#fff3df;border:1px solid #e2b270;border-left:4px solid #c57715;color:#834315;font-weight:650;font-size:14px;padding:16px 18px;border-radius:8px;margin-bottom:20px}
+.modal{position:fixed;inset:0;background:#11253e80;display:flex;align-items:center;justify-content:center;padding:20px;z-index:50}.modal-card{background:#fff;border-radius:16px;max-width:560px;width:100%;padding:28px;border-top:4px solid #cc873b;box-shadow:0 20px 70px #10203840;max-height:calc(100dvh - 40px);overflow-y:auto}.modal-card h2{margin-top:0}.lock-contacts{background:#fff5e7;padding:14px;border-radius:8px;color:#844117;margin:16px 0;overflow-wrap:anywhere}
+.schedule{table-layout:fixed}.schedule th,.schedule td{font-size:12px;padding:6px;height:34px}.schedule .slot{width:65px;color:var(--muted)}.cell{min-height:26px;border-radius:4px;padding:4px;overflow:hidden;margin-bottom:3px}.cell.approved{background:#dff2e7}.cell.pending{background:#fff0cb}.cell a{color:inherit}.mobile-agenda{display:none}.agenda-day h2{font-size:16px}.agenda-item{padding:15px 0;border-top:1px solid var(--line)}.agenda-item .badge{float:right}.agenda-item p{margin:8px 0 0;font-size:13px;color:var(--muted)}
+.alert-dot{display:inline-grid;place-items:center;min-width:20px;height:20px;border-radius:20px;margin-left:6px;padding:0 5px;background:#ba3039;color:#fff;font-size:11px}.sev-high td,.sev-critical td{background:#fff2f0}.sev-critical td:first-child{border-left:3px solid #ab2c32}.security-counts{padding-left:20px;margin:0}.security-counts li{margin:8px 0}.path-cell{overflow-wrap:anywhere;font-size:12px}a.ext{font-size:12px;margin-left:6px}
+@media(min-width:1700px){.app-shell main.wrap{padding-left:56px;padding-right:56px}.entry-grid{gap:24px}}
+@media(max-width:1199px){.entry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.login-layout{grid-template-columns:minmax(0,1fr) 440px;gap:32px}.login-intro h2{font-size:32px}.wrap{padding-left:24px;padding-right:24px}}
+@media (max-width: 900px) {
+  .topbar { position: sticky; top: 0; z-index: 20; }
+  .topbar-inner { min-height: 72px; padding: 12px 20px; gap: 10px; }
+  .brand { flex: 1 1 0; font-size: 14px; }
+  .brand small { display: none; }
+  .brand-mark { width: 32px; height: 34px; font-size: 18px; }
+  .nav-toggle { display: inline-flex; order: 2; flex: 0 0 auto; min-height: 44px; padding: 8px 12px; border: 1px solid #5f7795; background: #203d61; }
+  .nav {
+    display: none; flex-direction: column; flex-wrap: nowrap; align-items: stretch;
+    width: 100%; max-height: 65dvh; padding-top: 10px; gap: 4px; border-top: 1px solid #344864;
+    overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin;
+  }
+  .nav.is-open { display: flex; }
+  .nav a, .nav button.linkish { width: 100%; min-height: 44px; justify-content: flex-start; font-size: 14px; }
+  .nav form.inline { display: flex; width: 100%; }
+  .userchip { display: none; }
+  .app-shell main.wrap { padding-top: 22px; }
+  .login-layout { gap: 24px; grid-template-columns: 1fr 1fr; margin: 24px auto; }
+  .login-box { padding: 24px; }
+  .login-intro h2 { font-size: 28px; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .inventory-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:700px){body{font-size:14px}.wrap{padding-left:16px;padding-right:16px}main.wrap{padding:22px 16px 44px}h1{font-size:23px;margin-bottom:20px}.page-context{font-size:11px;margin-bottom:20px;padding-bottom:12px}.public-shell .topbar-inner{min-height:68px}.public-shell .brand{font-size:14px}.login-layout{display:block;margin:0 auto;max-width:500px}.login-intro{padding:4px 2px 22px}.login-intro .eyebrow{font-size:11px}.login-intro h2{font-size:25px;line-height:1.4;margin:12px 0 0}.login-intro h2 br{display:none}.login-intro>p,.login-steps,.intro-note{display:none}.login-box{margin:12px auto;padding:24px 20px}.login-title{font-size:21px;margin-bottom:20px}.notice-box{padding:12px 14px;margin-bottom:20px}.card{padding:20px 16px;border-radius:12px}.welcome-banner h1{font-size:24px}.welcome-banner{margin-bottom:22px}.entry-grid,.entry-grid-secondary,.inventory-grid{grid-template-columns:1fr;gap:12px}.entry-card,.entry-grid-secondary .entry-card{min-height:0;padding:22px 20px}.entry-kicker{margin-bottom:10px}.entry-card h2{font-size:20px;margin-bottom:8px}.entry-grid-secondary{margin-top:14px}.security-entry{margin-top:14px}.field-row{display:block}.field-row .field{min-width:0}.field{margin-bottom:18px}input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select,textarea{max-width:none;font-size:16px;min-height:48px}.pw-toggle-wrap{max-width:none}.filters{display:grid;grid-template-columns:1fr;gap:14px}.filters .field{min-width:0}.filters button{width:100%}.btn,button,.btn.small,button.small{min-height:44px}.actions>*{flex:1 1 auto}.tabs{gap:6px}.tabs a{flex:1 1 auto;text-align:center;font-size:13px;padding:10px 12px}.check-item{min-height:48px}.companions{padding:16px 12px}.stats-row{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{padding:16px 12px}.stat .num{font-size:26px}.success-panel{margin:12px auto;padding:28px 20px}.success-notice{font-size:15px}.modal{padding:16px}.modal-card{padding:24px 20px;max-height:calc(100dvh - 32px)}
+/* Each original record keeps its controls and fields; no duplicate mobile forms. */
+.table-scroll:has(.responsive-table){overflow:visible}.responsive-table,.responsive-table tbody{display:block;min-width:0!important;width:100%}.responsive-table thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%)}.responsive-table tbody tr{display:block;border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin-bottom:14px;background:#fff}.responsive-table tbody tr:last-child{margin-bottom:0}.responsive-table td{display:block;min-width:0;width:100%;border:0!important;padding:10px 0!important;background:transparent!important;font-size:14px;box-shadow:none!important}.responsive-table td+td{border-top:1px solid #edf1f6!important}.responsive-table td:before{content:attr(data-label);display:block;font-size:11px;line-height:1.4;color:#657990;font-weight:650;margin-bottom:6px;letter-spacing:.03em}.responsive-table .empty-cell{padding:20px 0!important;text-align:center;color:var(--muted)}.responsive-table .empty-cell:before{display:none}.responsive-table td .btn,.responsive-table td button{margin:3px 4px 3px 0}.responsive-table td form{max-width:100%}.responsive-table td input,.responsive-table td select{min-width:0}.responsive-table tr.sev-critical{border-left:3px solid #ab2c32;background:#fff4f2}.responsive-table tr.sev-high{background:#fff8f6}.desktop-schedule{display:none}.mobile-agenda{display:block}.inventory-head{display:block}.inventory-head .actions{margin-top:12px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{.topbar,.skip-link,.actions{display:none!important}.app-shell main.wrap{margin:0;width:100%}.card{box-shadow:none;break-inside:avoid}.page-context{display:none}}
+</style>
+</head>
+<body class="app-shell">
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">构</span><span>社团实验室预约管理系统<small>实验室预约与工具管理</small></span></a>
+      
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false">菜单</button>
+      <nav class="nav" id="site-nav" aria-label="主要导航">
+        <a href="/">管理工作台</a>
+        
+        
+        
+        <a href="/tools/admin">工具借用记录</a>
+        
+        
+        <a href="/schedule">占用视图</a>
+        
+        <a href="/review/">申请审核列表</a>
+        <a href="/mail/">邮件记录</a>
+        
+        
+        <a href="/stats/">使用统计</a>
+        <a href="/audit/password-resets">密码重置日志</a>
+        
+        
+        <a href="/labs/">实验室管理</a>
+        
+        
+        <a href="/security/">安全防护中心<span class="alert-dot" aria-label="未读高危告警 1">1</span></a>
+        <a href="/people/">人员信息管理</a>
+        <a href="/managers/">管理员管理</a>
+        <a href="/activity/users">普通登录人员操作详情</a>
+        <a href="/activity/admins">管理员操作信息</a>
+        <a href="/users/">账号管理</a>
+        <a href="/duties/">值班安排</a>
+        <a href="/tools/catalog">工具清单</a>
+        
+        <a href="/password">修改密码</a>
+        <form class="inline" method="post" action="/logout">
+          <input type="hidden" name="csrf_token" value="">
+          <button class="linkish" type="submit">退出</button>
+        </form>
+      </nav>
+      <div class="userchip">总管理员 · 总管理员</div>
+      
+    </div>
+  </header>
+  <main class="wrap" id="main-content" tabindex="-1">
+    
+    <div class="page-context"><span>实验室协作平台</span><span>总管理员</span></div>
+    
+    
+      
+    
+    
+<div class="welcome-banner">
+  <h1>总管理员，欢迎你</h1>
+  <p class="muted">请从下方入口进入人员与审计、审核、工具记录或其他管理功能。</p>
+</div>
+
+<div class="entry-grid">
+  <a class="entry-card" href="/people/">
+    <div class="entry-kicker">总管理</div>
+    <h2>人员信息管理</h2>
+    <p>Excel 导入参赛队伍，在线编辑资料与密码，特批队员或非参赛账号开通登录，启用或停用账号。</p>
+  </a>
+  <a class="entry-card entry-card-alt" href="/managers/">
+    <div class="entry-kicker">总管理</div>
+    <h2>管理员管理</h2>
+    <p>新增管理员并一次性显示系统生成的高强度密码，维护使用人信息，停用或删除账号。</p>
+  </a>
+
+  <a class="entry-card" href="/activity/users">
+    <div class="entry-kicker">审计</div>
+    <h2>普通登录人员操作详情</h2>
+    <p>查看队长与特批账号的登录 IP、设备、时间和操作，并可拉黑或解除 IP 与设备。</p>
+  </a>
+  <a class="entry-card entry-card-alt" href="/activity/admins">
+    <div class="entry-kicker">审计</div>
+    <h2>管理员操作信息</h2>
+    <p>查看管理员与总管理员的登录和操作日志，撤销可回退的审核、停用或清单修改。</p>
+  </a>
+</div>
+<div class="entry-grid security-entry">
+  <a class="entry-card" href="/security/">
+    <div class="entry-kicker">安全</div>
+    <h2>安全防护中心<span class="alert-dot">1</span></h2>
+    <p>查看暴力破解、扫描、爬取和蜜罐等被动检测记录，按需拉黑或导出取证。系统不会主动探测来源。</p>
+  </a>
+</div>
+
+<div class="entry-grid entry-grid-secondary">
+  <a class="entry-card" href="/review/">
+    <div class="entry-kicker">审核</div>
+    <h2>申请审核列表</h2>
+    <p>查看全部测试申请，按状态筛选，通过或拒绝预约。当前待审核 1 条。</p>
+  </a>
+  <a class="entry-card entry-card-alt" href="/tools/admin">
+    <div class="entry-kicker">工具</div>
+    <h2>工具借用记录</h2>
+    <p>查看全部借用记录、主要工具库存，并可筛选借用中与逾期。</p>
+  </a>
+</div>
+<div class="entry-grid entry-grid-secondary">
+  
+  <a class="entry-card" href="/labs/">
+    <div class="entry-kicker">实验室</div>
+    <h2>实验室管理</h2>
+    <p>维护实验室开放时间、容量和联系方式。</p>
+  </a>
+  
+  
+  <a class="entry-card" href="/stats/">
+    <div class="entry-kicker">数据</div>
+    <h2>使用统计</h2>
+    <p>查看预约统计并导出 Excel。</p>
+  </a>
+  
+  
+  <a class="entry-card" href="/duties/">
+    <div class="entry-kicker">值班</div>
+    <h2>值班安排</h2>
+    <p>按实验室和日期安排值班管理员。</p>
+  </a>
+  <a class="entry-card" href="/tools/catalog">
+    <div class="entry-kicker">库存</div>
+    <h2>主要工具清单</h2>
+    <p>维护工具名称、总数量和是否计入主要库存。</p>
+  </a>
+  
+  
+  <a class="entry-card" href="/audit/password-resets">
+    <div class="entry-kicker">日志</div>
+    <h2>密码重置日志</h2>
+    <p>查看队长自助重置密码的尝试记录。</p>
+  </a>
+  <a class="entry-card" href="/mail/">
+    <div class="entry-kicker">邮件</div>
+    <h2>邮件发送记录</h2>
+    <p>查看拒绝通知的收件人、主题、时间与发送状态。</p>
+  </a>
+  
+</div>
+
+  </main>
+<script>
+(function(){
+  var key = "lab_device_id";
+  var m = document.cookie.match(/(?:^|; )lab_device_id=([^;]*)/);
+  if (!m || !m[1]) {
+    var bytes = new Uint8Array(16);
+    (window.crypto || window.msCrypto).getRandomValues(bytes);
+    var id = Array.from(bytes).map(function(b){ return ("0"+b.toString(16)).slice(-2); }).join("");
+    var cookie = key + "=" + id + ";path=/;max-age=31536000;SameSite=Lax";
+    if (window.location.protocol === "https:") cookie += ";Secure";
+    document.cookie = cookie;
+  }
+
+  var toggle = document.getElementById("nav-toggle");
+  var nav = document.getElementById("site-nav");
+  if (toggle && nav) {
+    var mobileNavigation = window.matchMedia("(max-width: 900px)");
+    function setNavigationOpen(open) {
+      nav.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.textContent = open ? "关闭菜单" : "菜单";
+    }
+    toggle.addEventListener("click", function(){
+      setNavigationOpen(!nav.classList.contains("is-open"));
+    });
+    nav.addEventListener("keydown", function(event){
+      if (event.key === "Escape" && mobileNavigation.matches && nav.classList.contains("is-open")) {
+        setNavigationOpen(false);
+        toggle.focus();
+      }
+    });
+    function resetNavigation() { setNavigationOpen(false); }
+    if (mobileNavigation.addEventListener) mobileNavigation.addEventListener("change", resetNavigation);
+    else mobileNavigation.addListener(resetNavigation);
+  }
+
+  document.querySelectorAll(".nav a").forEach(function(link){
+    if (link.pathname === location.pathname) {
+      link.classList.add("active");
+      link.setAttribute("aria-current", "page");
+    }
+  });
+  document.querySelectorAll("table:not(.schedule)").forEach(function(table){
+    var headers = Array.from(table.querySelectorAll("thead th")).map(function(th){return th.textContent.trim();});
+    table.classList.add("responsive-table");
+    table.querySelectorAll("tbody tr").forEach(function(row){
+      Array.from(row.cells).forEach(function(cell, index){
+        if (cell.colSpan > 1) cell.classList.add("empty-cell");
+        else cell.dataset.label = headers[index] || "";
+      });
+    });
+  });
+  document.querySelectorAll("table").forEach(function(table){
+    if (table.closest(".table-scroll")) return;
+    var wrap = document.createElement("div");
+    wrap.className = "table-scroll";
+    table.parentNode.insertBefore(wrap, table);
+    wrap.appendChild(table);
+  });
+
+  // Accessible modal focus, escape-to-close, and focus restoration for every dialog.
+  document.querySelectorAll(".modal").forEach(function(modal){
+    var dialog = modal.querySelector(".modal-card");
+    if (!dialog) return;
+    dialog.setAttribute("role", "dialog");
+    dialog.setAttribute("aria-modal", "true");
+    dialog.tabIndex = -1;
+    var heading = dialog.querySelector("h2");
+    if (heading && heading.id) dialog.setAttribute("aria-labelledby", heading.id);
+    var previous = null;
+    document.addEventListener("click", function(event){
+      if (modal.hidden) previous = event.target.closest("button, a, input") || document.activeElement;
+    }, true);
+    new MutationObserver(function(){
+      if (!modal.hidden) {
+        if (!previous) previous = document.activeElement;
+        (dialog.querySelector("textarea, input:not([type=hidden]), button") || dialog).focus();
+      } else if (previous && previous.isConnected) previous.focus();
+    }).observe(modal, {attributes:true, attributeFilter:["hidden"]});
+    modal.addEventListener("keydown", function(event){
+      if (event.key === "Escape") { modal.hidden = true; event.preventDefault(); }
+      if (event.key !== "Tab") return;
+      var items = Array.from(dialog.querySelectorAll("a[href], button, input:not([type=hidden]), textarea, select")).filter(function(el){return !el.disabled && el.getClientRects().length;});
+      var first = items[0], last = items[items.length-1];
+      if (!first) { event.preventDefault(); dialog.focus(); }
+      else if (event.shiftKey && document.activeElement === first) {event.preventDefault(); last.focus();}
+      else if (!event.shiftKey && document.activeElement === last) {event.preventDefault(); first.focus();}
+    });
+  });
+
+  var seq = 0;
+  function bindToggle(btn, input){
+    if (!btn || !input || btn.dataset.bound === "1") return;
+    btn.dataset.bound = "1";
+    if (!input.id) {
+      seq += 1;
+      input.id = "pw-input-" + seq;
+    }
+    btn.setAttribute("aria-controls", input.id);
+    btn.addEventListener("click", function(){
+      var show = input.type === "password";
+      input.type = show ? "text" : "password";
+      btn.textContent = show ? "隐藏" : "显示";
+      btn.setAttribute("aria-label", show ? "隐藏密码" : "显示密码");
+      btn.setAttribute("aria-pressed", show ? "true" : "false");
+    });
+  }
+
+  function enhancePasswordFields(root){
+    (root || document).querySelectorAll('input[type="password"]').forEach(function(input){
+      var existing = input.closest(".pw-toggle-wrap");
+      if (existing) {
+        bindToggle(existing.querySelector(".pw-toggle"), input);
+        return;
+      }
+      var wrap = document.createElement("div");
+      wrap.className = "pw-toggle-wrap";
+      input.parentNode.insertBefore(wrap, input);
+      wrap.appendChild(input);
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "pw-toggle";
+      btn.setAttribute("aria-pressed", "false");
+      btn.setAttribute("aria-label", "显示密码");
+      btn.textContent = "显示";
+      wrap.appendChild(btn);
+      bindToggle(btn, input);
+    });
+  }
+  enhancePasswordFields(document);
+})();
+</script>
+<script>document.addEventListener("submit",function(e){e.preventDefault();});document.addEventListener("click",function(e){var a=e.target.closest("a");if(a && a.getAttribute("href").startsWith("/"))e.preventDefault();});</script></body>
+</html>

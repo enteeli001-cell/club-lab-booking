@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}{{ t("人员信息管理") }}{% endblock %}
+{% block content %}
+<h1>{{ t("人员信息管理") }}</h1>
+<p class="muted">{{ t("通过 Excel 导入或在线编辑参赛队伍。特批队员开通登录后权限为「仅预约」：可登录、提交/修改/取消自己的测试申请并查看申请记录，但不能登记工具借用或管理队伍名单。特批非参赛账号同样仅预约，并受有效期限制。") }}</p>
+<p>
+  <a class="btn" href="{{ url_for('people.import_teams') }}">{{ t("Excel 导入参赛队伍") }}</a>
+  <a class="btn secondary" href="{{ url_for('people.download_template') }}">{{ t("下载导入模板") }}</a>
+</p>
+
+<h2>{{ t("参赛队伍") }}</h2>
+{% for captain in captains %}
+<div class="card">
+  <div class="inventory-head">
+    <h2>{{ captain.team_name or t('未命名队伍') }}</h2>
+    <div>
+      {% if captain.enabled %}<span class="badge on">{{ t("启用") }}</span>{% else %}<span class="badge off">{{ t("停用") }}</span>{% endif %}
+      <a class="btn small" href="{{ url_for('people.edit_person', user_id=captain.id) }}">{{ t("编辑") }}</a>
+      <form class="inline" method="post" action="{{ url_for('people.toggle_enabled', user_id=captain.id) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button class="btn small secondary" type="submit">{{ t('停用') if captain.enabled else t('启用') }}</button>
+      </form>
+    </div>
+  </div>
+  <p>{{ t("队长：") }}{{ captain.name }}（{{ captain.student_id }}{{ t("）　手机：") }}{{ captain.last_phone or '—' }}　{{ t("邮箱：") }}{{ captain.verified_email or captain.last_email or '—' }} {% if captain.email_verified %}<span class="badge approved">{{ t("邮箱已验证") }}</span>{% else %}<span class="badge pending">{{ t("邮箱未验证") }}</span>{% endif %}</p>
+  <table>
+    <thead><tr><th>{{ t("队员") }}</th><th>{{ t("学号") }}</th><th>{{ t("手机") }}</th><th>{{ t("登录") }}</th></tr></thead>
+    <tbody>
+    {% for m in captain.teammates %}
+      {% set acc = specials | selectattr('student_id', 'equalto', m.student_id) | list %}
+      <tr>
+        <td>{{ m.name }}</td>
+        <td>{{ m.student_id }}</td>
+        <td>{{ m.phone or '—' }}</td>
+        <td>
+          {% if acc %}
+            {{ t("已开通（") }}{{ acc[0].role_label }}，{{ t('启用') if acc[0].enabled else t('停用') }}）
+            <a href="{{ url_for('people.edit_person', user_id=acc[0].id) }}">{{ t("管理") }}</a>
+          {% else %}
+            <form class="inline" method="post" action="{{ url_for('people.grant_member_login') }}">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <input type="hidden" name="captain_id" value="{{ captain.id }}">
+              <input type="hidden" name="student_id" value="{{ m.student_id }}">
+              <button class="btn small" type="submit">{{ t("特批开通登录（仅预约）") }}</button>
+            </form>
+          {% endif %}
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="4" class="muted">{{ t("暂无队员。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<p class="muted">{{ t("尚未导入或创建参赛队伍。") }}</p>
+{% endfor %}
+
+<h2>{{ t("特批非参赛账号") }}</h2>
+<div class="card">
+  <form method="post" action="{{ url_for('people.create_special') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field-row">
+      <div class="field"><label>{{ t("姓名") }}</label><input name="name" required></div>
+      <div class="field"><label>{{ t("学号") }}</label><input name="student_id" required></div>
+      <div class="field"><label>{{ t("单位") }}</label><input name="organization" required></div>
+      <div class="field"><label>{{ t("事由") }}</label><input name="special_reason" required></div>
+      <div class="field"><label>{{ t("有效期至") }}</label><input name="valid_until" type="date" required></div>
+    </div>
+    <button type="submit">{{ t("创建特批非参赛账号") }}</button>
+  </form>
+</div>
+<div class="card">
+  <table>
+    <thead><tr><th>{{ t("姓名 / 学号") }}</th><th>{{ t("单位 / 事由") }}</th><th>{{ t("有效期") }}</th><th>{{ t("状态") }}</th><th>{{ t("操作") }}</th></tr></thead>
+    <tbody>
+    {% for u in specials if u.is_special_guest %}
+      <tr>
+        <td>{{ u.name }}<div class="hint">{{ u.student_id }}</div></td>
+        <td>{{ u.organization or '—' }}<div class="hint">{{ u.special_reason or '' }}</div></td>
+        <td>{{ u.valid_until or '—' }}</td>
+        <td>{% if not u.enabled %}<span class="badge off">{{ t("停用") }}</span>{% elif u.valid_until and u.valid_until < today %}<span class="badge overdue">{{ t("已过期") }}</span>{% else %}<span class="badge on">{{ t("有效") }}</span>{% endif %}</td>
+        <td>
+          <a class="btn small" href="{{ url_for('people.edit_person', user_id=u.id) }}">{{ t("编辑") }}</a>
+          <form class="inline" method="post" action="{{ url_for('people.toggle_enabled', user_id=u.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn small secondary" type="submit">{{ t('停用') if u.enabled else t('启用') }}</button>
+          </form>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="5" class="muted">{{ t("暂无特批非参赛账号。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

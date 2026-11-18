@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}{{ t("线上模拟测试") }} · {{ t(row.name) }}{% endblock %}
+{% block content %}
+<div class="page-head"><div><h1>{{ t("线上模拟测试") }} <span class="badge pending">{{ t("内部测试") }}</span></h1><p class="muted">{{ t(row.name) }}</p></div>
+<div class="actions"><a class="btn secondary small" href="{{ url_for('simulation.index') }}">{{ t("模型列表") }}</a><a class="btn secondary small" href="{{ url_for('simulation.library') }}">{{ t("材料与截面库") }}</a>
+<a class="btn secondary small" href="{{ url_for('simulation.export', model_id=row.id, file_format='xlsx') }}">{{ t("导出 Excel") }}</a><a class="btn secondary small" href="{{ url_for('simulation.export', model_id=row.id, file_format='csv') }}">{{ t("导出 CSV") }}</a></div></div>
+<div class="sim-notice">{{ t("采用 SI 单位：坐标 m、力 N、力矩 N·m、弹性模量和应力 Pa、密度 kg/m³。") }}<br><span class="hint">{{ t("小变形线弹性分析；刚接梁与铰接桁架分开建模。结果仅供内部比较，不能替代实物测试。") }}</span></div>
+<div class="card sim-view-card"><div class="sim-view-toolbar">
+<label>{{ t("显示") }} <select id="sim-mode"><option value="stress">{{ t("应力比云图") }}</option><option value="deformed">{{ t("变形图") }}</option><option value="original">{{ t("原始模型") }}</option></select></label>
+<label>{{ t("变形放大") }} <input id="sim-scale" type="number" min="0" max="1000000" value="50" step="any"></label>
+<button type="button" class="secondary small" id="sim-reset">{{ t("重置视角") }}</button>
+<span class="hint">{{ t("拖动旋转，滚轮或双指缩放") }}</span></div>
+<div id="sim-view" class="sim-view" aria-label="{{ t('模型三维预览') }}"><div class="sim-view-fallback" id="sim-webgl-error" hidden>{{ t("浏览器无法启用 WebGL，请使用支持三维显示的浏览器；表格和计算仍可使用。") }}</div></div>
+<div class="sim-legend"><span>{{ t("应力比") }}</span><span class="sim-gradient"></span><span>0 → 0.5 → 1 → &gt;1</span><span class="sim-worst-key"></span><span>{{ t("紫色高亮：最大应力杆件") }}</span></div>
+<p id="sim-picked" class="hint"></p></div>
+<div class="sim-actionbar"><button id="sim-save" type="button" class="secondary">{{ t("保存模型") }}</button><button id="sim-calculate" type="button">{{ t("保存并计算") }}</button><span id="sim-status" role="status" aria-live="polite"></span></div>
+<section id="sim-results" hidden>
+<div class="sim-summary" id="sim-summary"></div>
+<div class="sim-evaluation" id="sim-evaluation"></div>
+<p class="hint">{{ t("组合应力采用 |N|/A + |My|/Wy + |Mz|/Wz 的两端最大包络；轴力正号表示受拉。杆端力为局部坐标下的节点端力。") }}</p>
+<details class="card"><summary>{{ t("杆件结果") }}</summary><div class="table-scroll"><table id="sim-member-results" class="responsive-table"></table></div></details>
+<details class="card"><summary>{{ t("节点位移与支座反力") }}</summary><div class="table-scroll"><table id="sim-node-results" class="responsive-table"></table></div></details>
+</section>
+<form id="sim-model-form">
+<div class="card"><div class="field-row"><div class="field"><label>{{ t("模型名称") }}<input id="sim-name" required maxlength="100" value="{{ row.name }}"></label></div><div class="field"><label>{{ t("最大位移评价限值（m）") }}<input id="sim-limit" type="number" min="0.000000001" max="1" step="any" value="{{ bootstrap.model.displacement_limit }}" required></label></div></div>
+<label>{{ t("模型说明") }}<input id="sim-description" maxlength="500" value="{{ row.description }}"></label><p class="hint">{{ t("最多 180 个节点、600 根杆件；计算超时 8 秒，同一时间只运行一个计算。") }}</p></div>
+{% for key,label in [('nodes','节点坐标'),('members','杆件与预设'),('supports','支座约束'),('loads','节点荷载')] %}
+<details class="card sim-editor-section"><summary>{{ t(label) }} <span class="hint" id="sim-count-{{ key }}"></span></summary>
+<p class="hint">{% if key=='members' %}{{ t("梁为刚接；桁架只传递轴力，面外位移需自行约束。roll 为绕局部 x 轴的截面转角（度）。") }}{% elif key=='supports' %}{{ t("勾选表示该自由度固定，未勾选表示自由；仅支持零位移约束。") }}{% elif key=='loads' %}{{ t("荷载可包含三个方向的力和力矩；本版不自动添加自重。") }}{% endif %}</p>
+<div class="table-scroll"><table id="sim-table-{{ key }}" class="sim-input-table"></table></div><button type="button" class="secondary small sim-add" data-table="{{ key }}">{{ t("添加一行") }}</button>
+</details>{% endfor %}
+</form>
+<script type="application/json" id="sim-bootstrap">{{ bootstrap|tojson }}</script>
+{% set strings = ['节点编号','杆件编号','起点','终点','材料','截面','单元类型','梁','桁架','节点','删除','计算中…','已保存','计算完成','修改后请重新计算','模型数据无效，请检查输入。','请求失败，请刷新后重试。','旧结果已过期，请重新计算。','应力比','最大位移','用料质量','竖向荷重比','优点','缺点','改进建议','当前规则未发现此类问题。','最大应力杆件','计算耗时','峰值内存','模型三维预览','请先计算模型。'] %}
+<script type="application/json" id="sim-strings">{{ dict_from_translations(strings)|tojson }}</script>
+{% endblock %}
+{% block scripts %}<link rel="stylesheet" href="{{ asset_url('simulation.css') }}">
+<script type="importmap">{"imports":{"three":{{ asset_url('vendor/three/three.module.js')|tojson }}}}</script>
+<script type="module" src="{{ asset_url('simulation.js') }}"></script>{% endblock %}

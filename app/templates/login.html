@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}{{ t(system_name) }}{% endblock %}
+{% block content %}
+<div class="login-layout">
+  <section class="login-intro" aria-label="{{ t('平台介绍') }}">
+    <div class="eyebrow">{{ t('社团实验室 · 预约服务') }}</div>
+    <h2>{{ t('专注结构探索') }}<br>{{ t('有序开展每次测试') }}</h2>
+    <p>{{ t('预约时段、登记工具、跟进申请。') }}<br>{{ t('让实验室协作更清晰，让准备更从容。') }}</p>
+    <div class="login-steps"><span><b>01</b> {{ t('选择测试时段') }}</span><span><b>02</b> {{ t('完善同行信息') }}</span><span><b>03</b> {{ t('等待管理员审核') }}</span><span><b>04</b> {{ t('到场扫码签到') }}</span></div>
+    <div class="intro-note">{{ t('单次测试不超过 1 小时 · 预约开始前请确认审核状态') }}</div>
+  </section>
+<div class="login-box card">
+  {% include "_lang_switch.html" %}
+  <h1 class="login-title">{{ t(system_name) }}</h1>
+
+  {% if next_context %}
+  <p class="next-banner next-{{ next_context.kind }}" role="status">{{ t('登录后将自动返回') }}<strong>{{ t(next_context.label) }}</strong>{% if next_context.kind == 'checkin' %}{{ t('，首次登录需先修改初始密码，改完同样会回到签到页面') }}{% endif %}{{ t('。') }}</p>
+  {% endif %}
+
+  <aside class="notice-box" role="note" aria-label="{{ t(login_notice_title) }}">
+    <h2>{{ t(login_notice_title) }}</h2>
+    <ol>
+      {% for item in login_notices %}
+      <li>{{ t(item) }}</li>
+      {% endfor %}
+    </ol>
+  </aside>
+
+  <form method="post" id="captain-login-form" data-busy="{{ t('正在登录…') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    {% if next_url %}
+    <input type="hidden" name="next" value="{{ next_url }}">
+    {% endif %}
+    <div class="field">
+      <label for="student_id">{{ t('学号') }}</label>
+      <input id="student_id" name="student_id" type="text" inputmode="text" autocapitalize="off" autocorrect="off" spellcheck="false" required autofocus autocomplete="username"
+             enterkeyhint="next" placeholder="{{ t('请输入本人学号') }}" data-name-lookup="{{ url_for('auth.captain_name') }}"
+             aria-describedby="captain-greeting" value="{{ forgot_student_id or request.form.get('student_id', '') }}">
+      <div id="captain-greeting" class="captain-greeting" aria-live="polite" hidden></div>
+    </div>
+    <div class="field">
+      <label for="password">{{ t('密码') }}</label>
+      <div class="pw-toggle-wrap">
+        <input id="password" name="password" type="password" required autocomplete="current-password" enterkeyhint="go" placeholder="{{ t('初始密码为学号') }}">
+        <button type="button" class="pw-toggle" aria-controls="password" aria-pressed="false" aria-label="{{ t('显示密码') }}">{{ t('显示') }}</button>
+      </div>
+    </div>
+    <button class="btn-captain" type="submit">{{ t('参赛队长登录') }}</button>
+  </form>
+  {% if show_forgot_prompt %}
+  <div class="forgot-prompt" id="forgot-prompt" role="alert">
+    <p><strong>{{ t('是否忘记密码？') }}</strong></p>
+    <p>{{ t('该学号已连续多次输入错误。如确系本人，可通过队伍信息验证后重置密码。') }}</p>
+    <a class="btn" href="{{ url_for('auth.forgot_password', student_id=forgot_student_id, next=next_url) if next_url else url_for('auth.forgot_password', student_id=forgot_student_id) }}">{{ t('忘记密码') }}</a>
+  </div>
+  {% endif %}
+  {% include "_privacy_notice.html" %}
+  <a class="admin-login-link" href="{{ url_for('auth.admin_login') }}">{{ t('管理员登录') }}</a>
+  <p class="hint">{{ t('账号由管理员添加或批量导入，不开放自助注册。未指定密码的队长，初始密码等于学号，首次登录须修改。') }}</p>
+</div>
+</div>
+{% endblock %}

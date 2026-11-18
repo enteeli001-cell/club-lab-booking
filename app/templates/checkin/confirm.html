@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}{{ t("预约签到") }}{% endblock %}
+{% block content %}
+<div class="card checkin-result checkin-ready">
+  <div class="checkin-icon" aria-hidden="true">⌖</div>
+  <h1>{{ t("预约签到") }}</h1>
+  {% if error %}<p class="flash error ck-error" role="alert" style="list-style:none">{{ t(error) }}</p>{% endif %}
+  <p class="checkin-message">{{ t("请确认下面是你本次的预约，阅读并承诺安全要求后，点击“确认签到”。") }}</p>
+  <dl class="checkin-facts">
+    <dt>{{ t("实验室") }}</dt><dd>{{ lab.name }}</dd>
+    <dt>{{ t("日期") }}</dt><dd>{{ booking.date }}</dd>
+    <dt>{{ t("时段") }}</dt><dd>{{ booking.time_range_label }}</dd>
+    <dt>{{ t("用途") }}</dt><dd>{{ booking.purpose }}</dd>
+    <dt>{{ t("队长") }}</dt><dd>{{ booking.user.name }}</dd>
+  </dl>
+  <form method="post" id="ck-direct-form" action="{{ url_for('checkin.confirm', token=lab.checkin_token) }}" data-busy="{{ t('正在签到…') }}" data-geo="{{ 1 if lab.geo_active else 0 }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="booking_id" value="{{ booking.id }}">
+    <input type="hidden" name="lat" value=""><input type="hidden" name="lng" value=""><input type="hidden" name="accuracy" value="">
+    <div class="ck-pledge-box">{% include "checkin/_pledge.html" %}</div>
+    <label class="ck-agree"><input type="checkbox" name="pledge" value="1" id="ck-direct-pledge" required> <span>{{ t(checkin_pledge_checkbox) }}</span></label>
+    {% if lab.geo_active %}<p class="hint" id="ck-direct-geo">{{ t("本实验室要求位置验证：点击确认后浏览器会请求你的位置，请选择“允许”。") }}</p>{% endif %}
+    <button class="btn checkin-submit" id="ck-direct-submit" type="submit" disabled>{{ t("确认签到") }}</button>
+  </form>
+  <p class="hint">{{ t("签到会记录时间") }}{% if lab.geo_active %}{{ t("、你的位置") }}{% endif %}{{ t("和你当前的网络地址。签到仅限在实验室现场、扫描门口的二维码完成。") }}</p>
+</div>
+<script>
+(function () {
+  var form = document.getElementById("ck-direct-form"), box = document.getElementById("ck-direct-pledge");
+  var btn = document.getElementById("ck-direct-submit"), note = document.getElementById("ck-direct-geo");
+  if (!form || !box) return;
+  box.addEventListener("change", function () { btn.disabled = !box.checked; });
+  btn.disabled = !box.checked;
+  var geo = form.getAttribute("data-geo") === "1";
+  form.addEventListener("submit", function (ev) {
+    if (ev.defaultPrevented || !geo || form.elements.lat.value) return;
+    ev.preventDefault();
+    var label = btn.textContent;
+    function fail(msg) { form.dataset.submitting = ""; btn.classList.remove("is-busy"); btn.removeAttribute("aria-disabled"); btn.textContent = label; if (note) { note.textContent = msg; note.className = "ck-status ck-warn"; } }
+    if (!navigator.geolocation) { fail({{ t("当前浏览器不支持定位，无法在本实验室签到。")|tojson }}); return; }
+    btn.textContent = {{ t("正在获取位置…")|tojson }};
+    navigator.geolocation.getCurrentPosition(function (p) {
+      form.elements.lat.value = p.coords.latitude; form.elements.lng.value = p.coords.longitude; form.elements.accuracy.value = p.coords.accuracy;
+      form.submit();
+    }, function (err) {
+      fail(err && err.code === 1 ? {{ t("位置权限被拒绝，本实验室要求位置验证。请在浏览器设置里允许位置后重试。")|tojson }} : {{ t("无法获取位置（可到窗边或门口重试）。")|tojson }});
+    }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
+  });
+})();
+</script>
+{% endblock %}

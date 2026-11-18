@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}{{ t('编辑公告') if a else t('发布公告') }}{% endblock %}
+{% block content %}
+<h1>{{ t('编辑公告') if a else t('发布公告') }}</h1>
+<div class="card">
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field">
+      <label for="publisher_name">{{ t("发布人") }}</label>
+      <input id="publisher_name" name="publisher_name" type="text" maxlength="30" required value="{{ form.publisher_name }}">
+      <p class="hint">{{ t("公告上显示的发布人名称，最多 30 个字，可以改成协会或部门名称。真实账号仍会记录在后台。") }}</p>
+    </div>
+    <div class="field">
+      <label for="title">{{ t("标题") }}</label>
+      <input id="title" name="title" type="text" maxlength="100" required value="{{ form.title }}">
+    </div>
+    <div class="field">
+      <label for="body">{{ t("内容") }}</label>
+      <textarea id="body" name="body" rows="9" maxlength="5000" required>{{ form.body }}</textarea>
+    </div>
+    {% if current_user.is_superadmin %}
+    <div class="field">
+      <label>{{ t("提醒等级") }}</label>
+      {% for value, label in levels.items() %}
+      <label class="check-item"><input type="radio" name="level" value="{{ value }}" {% if form.level == value|string %}checked{% endif %}> <strong>{{ t(label) }}</strong>：{{ t(level_hints[value]) }}</label>
+      {% endfor %}
+    </div>
+    <div class="field" id="pin-field">
+      <label class="check-item"><input type="checkbox" name="pinned" value="1" {% if form.pinned %}checked{% endif %}> {{ t("在公告页置顶（二级可选；三级自动置顶）") }}</label>
+    </div>
+    {% if a %}
+    <div class="field" id="reack-field">
+      <label class="check-item"><input type="checkbox" name="reack" value="1"> {{ t("要求重新确认：所有人会再次收到“我已知晓”弹窗（二级、三级）") }}</label>
+    </div>
+    <div class="field" id="resend-field">
+      <label class="check-item"><input type="checkbox" name="resend" value="1"> {{ t("重新发送邮件：再给所有队长和特批账号发一次邮件（仅三级）") }}</label>
+    </div>
+    {% endif %}
+    {% else %}
+    <p class="hint">{{ t("管理员发布的公告为一级：只在公告页显示，不会弹窗或发邮件。") }}{% if a and a.level > 1 %}{{ t("这条公告的等级由总管理员设定，你只能修改标题和内容。") }}{% endif %}</p>
+    {% endif %}
+    <div class="actions">
+      <button type="submit">{{ t('保存修改') if a else t('发布') }}</button>
+      <a class="btn secondary" href="{{ url_for('announcements.detail', announcement_id=a.id) if a else url_for('announcements.list_announcements') }}">{{ t("取消") }}</a>
+    </div>
+  </form>
+</div>
+{% if current_user.is_superadmin %}
+<script>
+(function(){
+  var radios = document.querySelectorAll('input[name="level"]');
+  function sync(){
+    var checked = document.querySelector('input[name="level"]:checked');
+    var level = checked ? parseInt(checked.value, 10) : 1;
+    var pin = document.getElementById("pin-field"), reack = document.getElementById("reack-field"), resend = document.getElementById("resend-field");
+    var pinBox = pin && pin.querySelector("input");
+    if (pin) { pin.style.display = level === 2 ? "" : "none"; }
+    if (pinBox && level !== 2) { pinBox.checked = level === 3; }
+    if (reack) reack.style.display = level >= 2 ? "" : "none";
+    if (resend) resend.style.display = level === 3 ? "" : "none";
+  }
+  radios.forEach(function(r){ r.addEventListener("change", sync); });
+  sync();
+})();
+</script>
+{% endif %}
+{% endblock %}

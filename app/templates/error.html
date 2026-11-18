@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ t("提示") }}{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>{{ t("无法继续") }}</h1>
+  <p>{{ t(message) }}</p>
+  <p><a class="btn secondary" href="{{ url_for('main.index') }}">{{ t("返回首页") }}</a></p>
+</div>
+{% endblock %}

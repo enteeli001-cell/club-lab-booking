@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ t("社团实验室预约") }}{% endblock %}
+{% block content %}
+<div class="login-box card">
+  <h1>{{ t("社团实验室使用预约管理系统") }}</h1>
+  <p class="muted">{{ t("全体成员可登录后预约实验室。账号由管理员添加或批量导入，不开放自助注册。") }}</p>
+  <p><a class="btn" href="{{ url_for('auth.login') }}">{{ t("登录") }}</a></p>
+</div>
+{% endblock %}

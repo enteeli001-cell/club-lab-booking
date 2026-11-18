@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}{{ t('管理员登录') }} · {{ t(system_name) }}{% endblock %}
+{% block content %}
+<div class="login-box card login-box-admin">
+  {% include "_lang_switch.html" %}
+  <div class="login-badge">{{ t('管理员入口') }}</div>
+  <h1 class="login-title">{{ t(system_name) }}</h1>
+  <p class="login-subtitle">{{ t('管理员登录') }}</p>
+  <p class="hint">{{ t('总管理员与管理员均使用此入口，只需输入由总管理员下发的密码，无需学号。系统不提供忘记密码自助找回，如遗失请联系总管理员重置。') }}</p>
+  {% if lock_remaining %}
+  <div class="forgot-prompt" id="lock-remaining" data-seconds="{{ lock_remaining }}">
+    <p><strong>{{ t('该 IP 已被暂时冻结') }}</strong></p>
+    <p>{{ t('剩余冻结时间：') }}<span class="lock-seconds">{{ lock_remaining }}</span>{{ t(' 秒。冻结期间无法通过管理员入口登录，参赛队长入口不受影响。') }}</p>
+  </div>
+  {% endif %}
+  <form method="post" data-busy="{{ t('正在验证…') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    {% if request.args.get('next') %}
+    <input type="hidden" name="next" value="{{ request.args.get('next') }}">
+    {% endif %}
+    <div class="field">
+      <label for="password">{{ t('密码') }}</label>
+      <div class="pw-toggle-wrap">
+        <input id="password" name="password" type="password" required autofocus autocomplete="current-password"{% if lock_remaining %} disabled{% endif %}>
+        <button type="button" class="pw-toggle" aria-controls="password" aria-pressed="false" aria-label="{{ t('显示密码') }}">{{ t('显示') }}</button>
+      </div>
+    </div>
+    <button type="submit" class="btn-block"{% if lock_remaining %} disabled{% endif %}>{{ t('进入管理后台') }}</button>
+  </form>
+  {% include "_privacy_notice.html" %}
+  <a class="admin-login-link" href="{{ url_for('auth.login') }}">{{ t('返回参赛队长登录') }}</a>
+</div>
+{% if lock_remaining %}
+<script>
+(function(){
+  var box = document.getElementById("lock-remaining");
+  if (!box) return;
+  var span = box.querySelector(".lock-seconds");
+  var left = parseInt(box.getAttribute("data-seconds"), 10) || 0;
+  var timer = setInterval(function(){
+    left = Math.max(0, left - 1);
+    if (span) span.textContent = String(left);
+    if (left <= 0) clearInterval(timer);
+  }, 1000);
+})();
+</script>
+{% endif %}
+{% endblock %}

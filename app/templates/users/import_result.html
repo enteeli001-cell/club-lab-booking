@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}{{ t("导入结果") }}{% endblock %}
+{% block content %}
+<h1>{{ t("导入结果") }}</h1>
+{% if created %}
+<div class="card">
+  <h2>{{ t("成功导入") }}</h2>
+  <p class="hint">{{ t("请妥善保存自动生成或填写的初始密码，并告知对应成员。也可下载 Excel 副本。") }}</p>
+  <form method="post" action="{{ url_for('users.download_import_passwords') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    {% for item in created %}
+      <input type="hidden" name="name" value="{{ item.user.name }}">
+      <input type="hidden" name="student_id" value="{{ item.user.student_id }}">
+      <input type="hidden" name="role_label" value="{{ t(item.user.role_label) }}">
+      <input type="hidden" name="password" value="{{ item.password }}">
+    {% endfor %}
+    <button class="btn secondary" type="submit">{{ t("下载含初始密码的 Excel") }}</button>
+  </form>
+  <table>
+    <thead><tr><th>{{ t("行") }}</th><th>{{ t("姓名") }}</th><th>{{ t("学号") }}</th><th>{{ t("角色") }}</th><th>{{ t("初始密码") }}</th></tr></thead>
+    <tbody>
+    {% for item in created %}
+      <tr>
+        <td>{{ item.row }}</td>
+        <td>{{ item.user.name }}</td>
+        <td>{{ item.user.student_id }}</td>
+        <td>{{ t(item.user.role_label) }}</td>
+        <td><code>{{ item.password }}</code>{% if item.auto %} <span class="muted">{{ t("（自动生成）") }}</span>{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% if skipped %}
+<div class="card">
+  <h2>{{ t("已跳过") }}</h2>
+  <table>
+    <thead><tr><th>{{ t("行") }}</th><th>{{ t("原因") }}</th></tr></thead>
+    <tbody>
+    {% for item in skipped %}
+      <tr><td>{{ item.row }}</td><td>{{ t(item.reason) }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+<p><a class="btn secondary" href="{{ url_for('users.list_users') }}">{{ t("返回账号列表") }}</a></p>
+{% endblock %}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="{{ html_lang }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10264a">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="app-timezone" content="{{ tz_name }}">
+  <meta name="app-today" content="{{ app_today }}">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="auto-refresh-seconds" content="{{ auto_refresh_seconds|default(0) }}">
+  <meta name="request-method" content="{{ request.method }}">
+  <title>{% block title %}{{ t(system_name) }}{% endblock %}</title>
+  <link rel="icon" type="image/svg+xml" href="{{ asset_url('favicon.svg') }}">
+  <link rel="stylesheet" href="{{ asset_url('style.css') }}">
+</head>
+{%- set forced_change = current_user.is_authenticated and current_user.must_change_password and current_user.role != 'admin' -%}
+{%- set forced_profile = current_user.is_authenticated and not forced_change and profile_required(current_user) -%}
+<body class="{{ 'app-shell' if current_user.is_authenticated else 'public-shell' }}{% if current_user.is_authenticated and current_user.is_regular_user %} role-captain{% elif current_user.is_authenticated %} role-staff{% endif %}">
+  <a class="skip-link" href="#main-content">{{ t('跳到主要内容') }}</a>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="{{ url_for('main.index') }}"><span class="brand-mark" aria-hidden="true">构</span><span class="brand-text">{{ t(system_name) }}<small>{{ t('实验室预约与工具管理') }}</small></span></a>
+      {% if current_user.is_authenticated %}
+      <div class="userchip"><span class="userchip-avatar" aria-hidden="true">{{ (current_user.name or '?')[:1] }}</span><span class="userchip-name">{{ current_user.name }}</span><span class="userchip-role">{{ t(current_user.role_label) }}</span></div>
+      <div class="header-language">{% include "_lang_switch.html" %}</div>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false"><span class="nav-toggle-icon" aria-hidden="true"></span><span class="nav-toggle-label">{{ t("菜单") }}</span></button>
+      <nav class="nav" id="site-nav" aria-label="{{ t('主要导航') }}">
+        {% if forced_change %}
+        <a href="{{ url_for('auth.change_password', next=request.args.get('next')) if request.args.get('next') else url_for('auth.change_password') }}">{{ t("修改初始密码") }}</a>
+        {% elif forced_profile %}
+        <a href="{{ url_for('profile.setup') }}">{{ t("完善个人信息") }}</a>
+        {% else %}
+        {% if current_user.is_staff %}<a href="{{ url_for('main.index') }}">{{ t("管理工作台") }}</a>{% endif %}
+        {% if current_user.is_regular_user %}
+        <a href="{{ url_for('main.captain_home') }}">{{ t("工作台") }}</a>
+        {% endif %}
+        {% if not feature_on('announcements') %}<span class="nav-off" title="{{ t('该功能已被管理员暂时关闭') }}" aria-disabled="true">{{ t("公告") }}</span>{% else %}
+        <a href="{{ url_for('announcements.list_announcements') }}">{{ t("公告") }}{% if announcement_unread %}<span class="alert-dot" aria-label="{{ t('未读公告') }} {{ announcement_unread }}">{{ announcement_unread }}</span>{% endif %}</a>{% endif %}
+        {% if current_user.can_book %}
+        {% if feature_on('booking_create') %}<a href="{{ url_for('bookings.create_booking') }}">{{ t("测试预约") }}</a>{% else %}<span class="nav-off" title="{{ t('该功能已被管理员暂时关闭') }}" aria-disabled="true">{{ t("测试预约") }}</span>{% endif %}
+        {% if feature_on('records') %}<a href="{{ url_for('bookings.my_bookings') }}">{{ t("我的预约") }}</a>{% else %}<span class="nav-off" title="{{ t('该功能已被管理员暂时关闭') }}" aria-disabled="true">{{ t("我的预约") }}</span>{% endif %}
+        {% endif %}
+        {% if current_user.can_borrow_tools %}
+        {% if feature_on('tool_borrow') %}<a href="{{ url_for('tools.my_loans') }}">{{ t("工具借用") }}</a>{% else %}<span class="nav-off" title="{{ t('该功能已被管理员暂时关闭') }}" aria-disabled="true">{{ t("工具借用") }}</span>{% endif %}
+        {% if feature_on('material_claim') %}<a href="{{ url_for('materials.claim') }}">{{ t("材料领取") }}</a>{% else %}<span class="nav-off" title="{{ t('该功能已被管理员暂时关闭') }}" aria-disabled="true">{{ t("材料领取") }}</span>{% endif %}
+        {% if feature_on('material_purchase') %}<a href="{{ url_for('materials.buy') }}">{{ t("材料购买") }}</a>{% else %}<span class="nav-off" title="{{ t('该功能已被管理员暂时关闭') }}" aria-disabled="true">{{ t("材料购买") }}</span>{% endif %}
+        {% elif current_user.is_staff %}
+        <a href="{{ url_for('tools.admin_loans') }}">{{ t("工具借用记录") }}</a>
+        <a href="{{ url_for('materials.admin_records') }}">{{ t("材料记录") }}</a>
+        <a href="{{ url_for('profile.people') }}">{{ t("人员联系方式") }}</a>
+        {% endif %}
+        {% if current_user.is_regular_user %}
+        {% if feature_on('records') %}<a href="{{ url_for('records.index') }}">{{ t("申请记录") }}</a>{% else %}<span class="nav-off" title="{{ t('该功能已被管理员暂时关闭') }}" aria-disabled="true">{{ t("申请记录") }}</span>{% endif %}
+        {% endif %}
+        {% if feature_on('schedule') %}<a href="{{ url_for('bookings.schedule') }}">{{ t("占用视图") }}</a>{% else %}<span class="nav-off" title="{{ t('该功能已被管理员暂时关闭') }}" aria-disabled="true">{{ t("占用视图") }}</span>{% endif %}
+        {% if current_user.can_review %}
+        <span class="nav-sep" aria-hidden="true"></span>
+        <a href="{{ url_for('review.list_reviews') }}">{{ t("申请审核列表") }}</a>
+        <a href="{{ url_for('mail.list_logs') }}">{{ t("邮件记录") }}</a>
+        {% endif %}
+        {% if current_user.can_view_stats %}
+        <a href="{{ url_for('stats.index') }}">{{ t("使用统计") }}</a>
+        <a href="{{ url_for('noshow.overview') }}">{{ t("未签到统计") }}</a>
+        <a href="{{ url_for('audit.password_resets') }}">{{ t("密码重置日志") }}</a>
+        {% endif %}
+        {% if current_user.can_manage_labs %}
+        <span class="nav-sep" aria-hidden="true"></span>
+        <a href="{{ url_for('labs.list_labs') }}">{{ t("实验室管理") }}</a>
+        <a href="{{ url_for('checkin.admin_codes') }}">{{ t("签到二维码") }}</a>
+        {% endif %}
+        {% if current_user.can_manage_accounts %}
+        <span class="nav-sep" aria-hidden="true"></span>
+        <a href="{{ url_for('security.dashboard') }}">{{ t("安全防护中心") }}{% if unread_high_alerts %}<span class="alert-dot" aria-label="{{ t('未读高危告警') }} {{ unread_high_alerts }}">{{ unread_high_alerts }}</span>{% endif %}</a>
+        <a href="{{ url_for('people.index') }}">{{ t("人员信息管理") }}</a>
+        <a href="{{ url_for('managers.index') }}">{{ t("管理员管理") }}</a>
+        <a href="{{ url_for('toggles.features') }}">{{ t("功能开关") }}</a>
+        <a href="{{ url_for('toggles.maintenance') }}">{{ t("维护模式") }}{% if maintenance_on %}<span class="alert-dot" aria-label="{{ t('维护模式已开启') }}">{{ t("开") }}</span>{% endif %}</a>
+        <a href="{{ url_for('activity.users') }}">{{ t("普通登录人员操作详情") }}</a>
+        <a href="{{ url_for('activity.admins') }}">{{ t("管理员操作信息") }}</a>
+        <a href="{{ url_for('users.list_users') }}">{{ t("账号管理") }}</a>
+        <a href="{{ url_for('duties.list_duties') }}">{{ t("值班安排") }}</a>
+        <a href="{{ url_for('tools.catalog') }}">{{ t("工具清单") }}</a>
+        <a href="{{ url_for('materials.settings') }}">{{ t("材料设置") }}</a>
+        <a href="{{ url_for('simulation.index') }}">{{ t("线上模拟测试") }}</a>
+        {% endif %}
+        {% if current_user.is_regular_user %}<a href="{{ url_for('profile.setup') }}">{{ t("个人信息") }}</a>{% endif %}
+        {% if current_user.role != 'admin' %}
+        {% if feature_on('change_password') %}<a href="{{ url_for('auth.change_password') }}">{{ t("修改密码") }}</a>{% else %}<span class="nav-off" title="{{ t('该功能已被管理员暂时关闭') }}" aria-disabled="true">{{ t("修改密码") }}</span>{% endif %}
+        {% endif %}
+        {% endif %}
+        <form class="inline nav-logout" method="post" action="{{ url_for('auth.logout') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button class="linkish" type="submit">{{ t("退出") }}</button>
+        </form>
+      </nav>
+      {% endif %}
+    </div>
+  </header>
+  {% if maintenance_on and current_user.is_authenticated and current_user.is_superadmin %}
+  <div class="maint-banner" role="alert">
+    <div class="wrap"><strong>{{ t("维护模式已开启") }}</strong><span>{{ t("除总管理员外，所有访问者目前只能看到“网站升级中”的提示（HTTP 503）。") }}</span><a href="{{ url_for('toggles.maintenance') }}">{{ t("去关闭 →") }}</a></div>
+  </div>
+  {% endif %}
+  {% if noshow_alert %}
+  <div class="noshow-overlay" id="noshow-overlay" role="alertdialog" aria-modal="true" aria-labelledby="noshow-title">
+    <div class="noshow-card">
+      <h2 id="noshow-title">{{ t("未签到提醒") }}</h2>
+      <p class="noshow-count">{{ t("你已累计") }} <strong>{{ noshow_alert.count }}</strong> {{ t("次预约后未扫码签到。") }}</p>
+      {% if noshow_alert.details %}
+      <p class="hint">{{ t("最近的未签到记录：") }}</p>
+      <ul class="noshow-list">{% for line in noshow_alert.details %}<li>{{ line }}</li>{% endfor %}</ul>
+      {% endif %}
+      <p class="noshow-warn">{{ t(noshow_alert.warning) }}</p>
+      <form method="post" action="{{ url_for('noshow.acknowledge') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="next" value="{{ request.full_path.rstrip('?') }}">
+        <button class="btn" type="submit">{{ t("我已知晓") }}</button>
+      </form>
+    </div>
+  </div>
+  {% elif announcement_popups %}
+  <div class="noshow-overlay announce-overlay" id="announce-overlay" role="alertdialog" aria-modal="true" aria-labelledby="announce-title">
+    <div class="noshow-card announce-card">
+      <h2 id="announce-title">{{ t("系统公告") }}{% if announcement_popups|length > 1 %}{{ t("（共") }} {{ announcement_popups|length }} {{ t("条）") }}{% endif %}</h2>
+      <div class="announce-scroll">
+        {% for p in announcement_popups %}
+        <article class="announce-pop lv{{ p.level }}">
+          <h3><span class="badge lv{{ p.level }}">{{ t(p.level_label) }}{{ t("公告") }}</span> {{ p.title }}</h3>
+          <p class="hint">{{ p.publisher_display }} · {{ (p.updated_at or p.created_at)|fmt_dt }}{% if p.updated_at %}{{ t("（已修改）") }}{% endif %}</p>
+          <div class="announce-body">{{ p.body }}</div>
+        </article>
+        {% endfor %}
+      </div>
+      <form method="post" action="{{ url_for('announcements.acknowledge') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="next" value="{{ request.full_path.rstrip('?') }}">
+        {% for p in announcement_popups %}<input type="hidden" name="items" value="{{ p.id }}:{{ p.ack_revision }}">{% endfor %}
+        <button class="btn" type="submit">{{ t("我已知晓") }}</button>
+      </form>
+    </div>
+  </div>
+  {% endif %}
+  <main class="wrap" id="main-content" tabindex="-1">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <ul class="flash" role="status" aria-live="polite">
+        {% for category, message in messages %}
+        <li class="{{ category }}">{{ t(message) }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer"><p class="tz-note">{{ t('页面所有时间均为') }}{{ t(tz_label) }}</p></footer>
+{% if i18n_js %}<script>window.APP_I18N = {{ i18n_js|tojson }};</script>{% endif %}
+<script src="{{ asset_url('app.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}{{ t("清除个人信息") }}{% endblock %}
+{% block content %}
+<div class="page-head"><div>
+  <h1>{{ t("一键清除个人信息") }}</h1>
+  <p class="muted">{{ t("仅总管理员可用。比赛结束后使用：不可撤销，请先下载匿名统计。") }}</p>
+</div><div class="page-head-actions"><a class="btn secondary" href="{{ url_for('security.dashboard') }}">{{ t("返回安全防护中心") }}</a></div></div>
+
+{% if done is defined and done %}
+<div class="card wipe-done" role="status">
+  <h2>{{ t("已完成") }}</h2>
+  <p>{{ t("个人信息已清除，数据库已整理（VACUUM）。清除前备份：") }}<code>{{ backup }}</code>{{ t("（保存在 backups/ 目录，仍含原始个人信息，确认不再需要后请人工销毁）。") }}</p>
+  <ul>{% for k, v in done.items() %}<li>{{ t(k) }}：{{ v }}</li>{% endfor %}</ul>
+</div>
+{% else %}
+<div class="grid-2">
+  <div class="card wipe-list">
+    <h2>{{ t("将被清除") }}</h2>
+    <ul>{% for item in deleted %}<li>{{ t(item) }}</li>{% endfor %}</ul>
+  </div>
+  <div class="card wipe-list wipe-kept">
+    <h2>{{ t("会保留") }}</h2>
+    <ul>{% for item in kept %}<li>{{ t(item) }}</li>{% endfor %}</ul>
+  </div>
+</div>
+
+<div class="card wipe-reminder" role="note">
+  <h2>{{ t("第一步（建议）：先下载匿名统计") }}</h2>
+  <p>{{ t("清除后无法再区分是谁预约的。强烈建议先下载匿名统计 Excel（不含姓名、学号、手机、邮箱、用途、定位）。") }}</p>
+  <p><a class="btn secondary" href="{{ url_for('security.wipe_stats_xlsx') }}">{{ t("下载匿名统计 Excel") }}</a></p>
+</div>
+
+<div class="card wipe-danger">
+  <h2>{{ t("第二步：确认清除") }}</h2>
+  {% if locked %}<p class="flash error" role="alert">{{ t("失败次数过多（") }}{{ window_minutes }} {{ t("分钟内最多") }} {{ max_attempts }} {{ t("次），暂时锁定，请稍后再试。") }}</p>{% endif %}
+  <p>{{ t("清除前会自动生成一份最终数据库备份（backups/app-before-wipe-时间.db）。") }}</p>
+  <form method="post" action="{{ url_for('security.wipe_run') }}" autocomplete="off" data-busy="{{ t('正在清除，请稍候…') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field">
+      <label for="wipe-phrase">{{ t("请输入：") }}<strong class="wipe-phrase">{{ phrase }}</strong></label>
+      <input id="wipe-phrase" name="phrase" type="text" required autocomplete="off" placeholder="{{ phrase }}">
+    </div>
+    <div class="field">
+      <label for="wipe-password">{{ t("总管理员密码") }}</label>
+      <input id="wipe-password" name="password" type="password" required autocomplete="current-password">
+    </div>
+    <button class="btn danger" type="submit" {% if locked %}disabled{% endif %}>{{ t("永久清除所有个人信息") }}</button>
+  </form>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}{{ t("公告") }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div><h1>{{ t("公告") }}</h1><p class="muted">{{ t("置顶的公告在前，其余按发布时间从新到旧排列。") }}</p></div>
+  {% if current_user.is_staff %}
+  <div class="page-head-actions">
+    <a class="btn" href="{{ url_for('announcements.create') }}">{{ t("发布公告") }}</a>
+    <a class="btn secondary" href="{{ url_for('announcements.manage') }}">{{ t('公告管理') if current_user.is_superadmin else t('我的公告') }}</a>
+  </div>
+  {% endif %}
+</div>
+{% for a in items %}
+<article class="card announce-item lv{{ a.level }}{% if a.pinned %} pinned{% endif %}">
+  <div class="announce-head">
+    <h2><a href="{{ url_for('announcements.detail', announcement_id=a.id) }}">{{ a.title }}</a></h2>
+    <div class="announce-tags">
+      {% if a.pinned %}<span class="badge pin">{{ t("置顶") }}</span>{% endif %}
+      <span class="badge lv{{ a.level }}">{{ t(a.level_label) }}</span>
+      {% if a.id not in read_ids %}<span class="badge unread">{{ t("未读") }}</span>{% endif %}
+    </div>
+  </div>
+  <p class="announce-meta">{{ t("发布人：") }}{{ a.publisher_display }} · {{ a.created_at|fmt_dt }}{% if a.is_edited %}<br>{{ t("最近修改：") }}{{ a.updater.name if a.updater else '—' }}{% if a.updater %}（{{ t(a.updater.role_label) }}）{% endif %} · {{ a.updated_at|fmt_dt }}{% endif %}</p>
+  <p class="announce-excerpt">{{ a.body|truncate(120, True, '…') }}</p>
+  <div class="actions"><a class="btn small secondary" href="{{ url_for('announcements.detail', announcement_id=a.id) }}">{{ t("查看详情") }}</a></div>
+</article>
+{% else %}
+<div class="card"><p class="muted">{{ t("暂无公告。") }}</p></div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}{{ t("阅读情况 -") }} {{ a.title }}{% endblock %}
+{% block content %}
+<p><a href="{{ url_for('announcements.manage') }}">{{ t("← 返回") }}{{ t('公告管理') if current_user.is_superadmin else t('我的公告') }}</a></p>
+<div class="page-head">
+  <div>
+    <h1>{{ t("阅读情况") }}</h1>
+    <p class="muted"><a href="{{ url_for('announcements.detail', announcement_id=a.id) }}">{{ a.title }}</a> · <span class="badge lv{{ a.level }}">{{ t(a.level_label) }}</span> {{ t("· 发布人") }} {{ a.publisher_display }}</p>
+  </div>
+</div>
+<div class="card">
+  <p class="reads-summary">{{ t("已读") }} <strong>{{ report.read_count }}</strong> {{ t("/ 应读") }} <strong>{{ report.total }}</strong> {{ t("人") }} <span class="hint">{{ t("（应读 = 有效的队长和特批账号；每人只记第一次打开的时间）") }}</span></p>
+  <div class="tabs">
+    <a href="{{ url_for('announcements.reads', announcement_id=a.id, show='all') }}" class="{{ 'active' if show == 'all' }}">{{ t("全部") }} {{ report.total }}</a>
+    <a href="{{ url_for('announcements.reads', announcement_id=a.id, show='read') }}" class="{{ 'active' if show == 'read' }}">{{ t("已读") }} {{ report.read_count }}</a>
+    <a href="{{ url_for('announcements.reads', announcement_id=a.id, show='unread') }}" class="{{ 'active' if show == 'unread' }}">{{ t("未读") }} {{ report.total - report.read_count }}</a>
+  </div>
+  <table>
+    <thead><tr><th>{{ t("姓名") }}</th><th>{{ t("学号") }}</th><th>{{ t("角色") }}</th><th>{{ t("阅读时间") }}</th>{% if a.level >= 2 %}<th>{{ t("确认已知晓") }}</th>{% endif %}{% if a.level == 3 %}<th>{{ t("邮件") }}</th>{% endif %}</tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr>
+        <td data-label="{{ t('姓名') }}">{{ r.user.name }}</td>
+        <td data-label="{{ t('学号') }}">{{ r.user.student_id }}</td>
+        <td data-label="{{ t('角色') }}">{{ t(r.user.role_label) }}</td>
+        <td data-label="{{ t('阅读时间') }}">{% if r.read_at %}{{ r.read_at|fmt_dt }}{% else %}<span class="muted">{{ t("未读") }}</span>{% endif %}</td>
+        {% if a.level >= 2 %}<td data-label="{{ t('确认已知晓') }}">{% if r.ack %}{{ r.ack.acked_at|fmt_dt }}{% else %}<span class="muted">{{ t("未确认") }}</span>{% endif %}</td>{% endif %}
+        {% if a.level == 3 %}<td data-label="{{ t('邮件') }}"><span class="badge {{ 'off' if r.mail and r.mail.status == 'no_email' else ('rejected' if r.mail and r.mail.status == 'failed' else 'on') }}">{{ r.mail_label }}</span></td>{% endif %}
+      </tr>
+    {% else %}
+      <tr><td colspan="6" class="muted">{{ t("没有符合条件的人员。") }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
