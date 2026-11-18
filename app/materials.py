@@ -207,6 +207,7 @@ def resend_wait_seconds(purchase: MaterialPurchase) -> int:
 
 def issue_code(purchase: MaterialPurchase):
     """Create a new code, store only its digest, e-mail it. Returns the MailLog row."""
+    from app.i18n import t
     from app.mailer import send_mail
 
     code = vc.generate_code()
@@ -217,21 +218,38 @@ def issue_code(purchase: MaterialPurchase):
     purchase.code_send_count = int(purchase.code_send_count or 0) + 1
     purchase.code_attempts = 0
     db.session.commit()
-    lines = [f"  {line.label} × {line.quantity}{line.unit}  单价 {line.unit_price_label} 元  小计 {line.subtotal_label} 元" for line in purchase.items]
-    body_template = (
-        f"{purchase.user.name} 同学：\n\n"
-        f"你正在社团实验室预约管理系统购买材料，验证码为：{{code}}\n"
-        f"验证码 {CODE_TTL_SECONDS // 60} 分钟内有效，请勿告诉他人。\n\n"
-        "购买明细：\n" + "\n".join(lines) + "\n"
-        f"合计：{format_cents(purchase.total_cents)} 元（比赛后统一结算）\n\n"
-        "如果不是你本人操作，请忽略本邮件并联系管理员。\n"
+    line_source = "{label} × {qty}{unit}  单价 {price} 元  小计 {sub} 元"
+    lines = [
+        t(line_source, label=line.label, qty=line.quantity, unit=line.unit or "", price=line.unit_price_label, sub=line.subtotal_label)
+        for line in purchase.items
+    ]
+    plain = t(
+        "{name} 同学：\n\n"
+        "你正在社团实验室预约管理系统购买材料，验证码为：{code}\n"
+        "验证码 {minutes} 分钟内有效，请勿告诉他人。\n\n"
+        "购买明细：\n{lines}\n"
+        "合计：{total} 元（比赛后统一结算）\n\n"
+        "如果不是你本人操作，请忽略本邮件并联系管理员。\n",
+        name=purchase.user.name,
+        code=code,
+        minutes=CODE_TTL_SECONDS // 60,
+        lines="\n".join(lines),
+        total=format_cents(purchase.total_cents),
     )
-    return send_mail(
-        purchase.email_to or "",
-        CODE_MAIL_SUBJECT,
-        body_template.replace("{code}", code),
-        log_body=body_template.replace("{code}", "******"),
+    redacted = t(
+        "{name} 同学：\n\n"
+        "你正在社团实验室预约管理系统购买材料，验证码为：{code}\n"
+        "验证码 {minutes} 分钟内有效，请勿告诉他人。\n\n"
+        "购买明细：\n{lines}\n"
+        "合计：{total} 元（比赛后统一结算）\n\n"
+        "如果不是你本人操作，请忽略本邮件并联系管理员。\n",
+        name=purchase.user.name,
+        code="******",
+        minutes=CODE_TTL_SECONDS // 60,
+        lines="\n".join(lines),
+        total=format_cents(purchase.total_cents),
     )
+    return send_mail(purchase.email_to or "", t(CODE_MAIL_SUBJECT), plain, log_body=redacted)
 
 
 def cancel_other_pending(user_id: int, keep_id: int | None = None) -> int:

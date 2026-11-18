@@ -84,13 +84,19 @@ def _detail_lines(bookings, limit=5) -> list[str]:
 
 
 def alert_email_body(user, count: int, bookings) -> str:
+    from app.i18n import t
+
     details = "\n".join(f"  - {line}" for line in _detail_lines(bookings))
-    return (
-        f"{user.name}，你好：\n\n"
-        f"你已通过审核的实验室预约，累计 {count} 次没有扫码签到。最近的记录：\n{details}\n\n"
-        f"{NO_SHOW_WARNING}\n"
-        f"到达实验室后，请用手机扫描实验室门口的二维码完成签到。\n"
-        f"（此邮件由系统自动发送）\n"
+    return t(
+        "{name}，你好：\n\n"
+        "你已通过审核的实验室预约，累计 {count} 次没有扫码签到。最近的记录：\n{details}\n\n"
+        "{warning}\n"
+        "到达实验室后，请用手机扫描实验室门口的二维码完成签到。\n"
+        "（此邮件由系统自动发送）\n",
+        name=user.name,
+        count=count,
+        details=details,
+        warning=t(NO_SHOW_WARNING),
     )
 
 
@@ -125,9 +131,11 @@ def scan_noshow_alerts(now: datetime | None = None) -> dict:
         else:
             alert.email_to = email
             try:
+                from app.i18n import t
+
                 log = send_mail(
                     email,
-                    "【社团实验室预约管理系统】未签到提醒",
+                    t("【社团实验室预约管理系统】未签到提醒"),
                     alert_email_body(user, count, bookings),
                 )
                 alert.email_status = log.status

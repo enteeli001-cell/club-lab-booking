@@ -96,6 +96,8 @@ def _limiter_allows(user_id: int) -> bool:
 
 
 def _issue_code(row: EmailVerification):
+    from app.i18n import t
+
     code = vc.generate_code()
     now = local_now()
     row.code_hash = vc.code_digest(PURPOSE, row.id, code, row.email.lower())
@@ -104,13 +106,19 @@ def _issue_code(row: EmailVerification):
     row.send_count = int(row.send_count or 0) + 1
     row.attempts = 0
     db.session.commit()
-    template = (
-        f"{current_user.name} 同学：\n\n"
+    source = (
+        "{name} 同学：\n\n"
         "你正在社团实验室预约管理系统绑定邮箱，验证码为：{code}\n"
-        f"验证码 {vc.CODE_TTL_SECONDS // 60} 分钟内有效，请勿告诉他人。\n\n"
+        "验证码 {minutes} 分钟内有效，请勿告诉他人。\n\n"
         "如果不是你本人操作，请忽略本邮件。\n"
     )
-    return send_mail(row.email, CODE_MAIL_SUBJECT, template.replace("{code}", code), log_body=template.replace("{code}", "******"))
+    minutes = vc.CODE_TTL_SECONDS // 60
+    return send_mail(
+        row.email,
+        t(CODE_MAIL_SUBJECT),
+        t(source, name=current_user.name, code=code, minutes=minutes),
+        log_body=t(source, name=current_user.name, code="******", minutes=minutes),
+    )
 
 
 def _finish(next_url):

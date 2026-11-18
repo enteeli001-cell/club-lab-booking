@@ -1,0 +1,619 @@
+{
+  "参赛队长登录": {
+    "zh-Hant": "參賽隊長登入",
+    "en": "Captain login",
+    "ja": "チームリーダーログイン",
+    "ko": "팀장 로그인",
+    "es": "Inicio de sesión del capitán",
+    "fr": "Connexion du capitaine",
+    "de": "Anmeldung für Teamkapitäne"
+  },
+  "新的模拟模型": {
+    "zh-Hant": "新的模擬模型",
+    "en": "New simulation model"
+  },
+  "副本": {
+    "zh-Hant": "副本",
+    "en": "Copy"
+  },
+  "导入的模拟模型": {
+    "zh-Hant": "匯入的模擬模型",
+    "en": "Imported simulation model"
+  },
+  "预设已保存，引用该预设的旧结果需要重新计算。": {
+    "zh-Hant": "預設已儲存，引用該預設的舊結果需要重新計算。",
+    "en": "Preset saved. Older results that use it need to be recalculated."
+  },
+  "个人信息已全部清除。队长账号已停用并匿名化；清除前的数据库备份：": {
+    "zh-Hant": "個人資訊已全部清除。隊長帳號已停用並匿名化；清除前的資料庫備份：",
+    "en": "All personal information has been erased. Captain accounts were disabled and anonymized. Database backup before erasure: "
+  },
+  "线上模拟测试": {
+    "zh-Hant": "線上模擬測試",
+    "en": "Online simulation"
+  },
+  "静力分析、轻量有限元与规则评价，仅总管理员可见。": {
+    "zh-Hant": "靜力分析、輕量有限元與規則評價，僅總管理員可見。",
+    "en": "Static analysis, a lightweight finite-element check and rule scoring, visible only to the super admin."
+  },
+  "队长须本人在“个人信息”中通过验证码验证邮箱；这里修改的邮箱不会替代已验证邮箱。": {
+    "zh-Hant": "隊長須本人在「個人資訊」中透過驗證碼驗證郵箱；這裡修改的郵箱不會取代已驗證郵箱。",
+    "en": "Captains must verify their own email with a code under Profile. Changing the email here does not replace a verified address."
+  },
+  "内部测试": {
+    "zh-Hant": "內部測試",
+    "en": "Internal test"
+  },
+  "材料与截面库": {
+    "zh-Hant": "材料與截面庫",
+    "en": "Material and section library"
+  },
+  "新建模型": {
+    "zh-Hant": "新增模型",
+    "en": "New model"
+  },
+  "采用 SI 单位：坐标 m、力 N、力矩 N·m、弹性模量和应力 Pa、密度 kg/m³。": {
+    "zh-Hant": "採用 SI 單位：座標 m、力 N、力矩 N·m、彈性模量和應力 Pa、密度 kg/m³。",
+    "en": "SI units: coordinates in m, force in N, moment in N·m, modulus and stress in Pa, density in kg/m³."
+  },
+  "最多 180 个节点、600 根杆件；计算超时 8 秒，同一时间只运行一个计算。": {
+    "zh-Hant": "最多 180 個節點、600 根桿件；計算逾時 8 秒，同一時間只執行一個計算。",
+    "en": "At most 180 nodes and 600 members. A calculation times out after 8 seconds, and only one runs at a time."
+  },
+  "预置实例": {
+    "zh-Hant": "預置實例",
+    "en": "Built-in examples"
+  },
+  "自建模型": {
+    "zh-Hant": "自建模型",
+    "en": "Your models"
+  },
+  "打开模型": {
+    "zh-Hant": "開啟模型",
+    "en": "Open model"
+  },
+  "复制模型": {
+    "zh-Hant": "複製模型",
+    "en": "Duplicate model"
+  },
+  "导入模型": {
+    "zh-Hant": "匯入模型",
+    "en": "Import model"
+  },
+  "先导出任一模型作为模板。Excel 包含五个工作表；CSV 用 table 列区分节点、杆件、支座、荷载和设置。材料及截面编号必须来自本系统。": {
+    "zh-Hant": "先匯出任一模型作為範本。Excel 包含五個工作表；CSV 用 table 欄區分節點、桿件、支座、荷載和設定。材料及截面編號必須來自本系統。",
+    "en": "Export any model to use as a template. Excel has five sheets. CSV uses a table column for nodes, members, supports, loads and settings. Material and section IDs must come from this system."
+  },
+  "模型名称": {
+    "zh-Hant": "模型名稱",
+    "en": "Model name"
+  },
+  "模型文件（最大 1 MB）": {
+    "zh-Hant": "模型檔案（最大 1 MB）",
+    "en": "Model file (max 1 MB)"
+  },
+  "导入为新模型": {
+    "zh-Hant": "匯入為新模型",
+    "en": "Import as a new model"
+  },
+  "模型只能引用预设；修改预设后，相关旧结果需要重新计算。演示竹材为等效参数，请按试验结果修订。": {
+    "zh-Hant": "模型只能引用預設；修改預設後，相關舊結果需要重新計算。示範竹材為等效參數，請按試驗結果修訂。",
+    "en": "Models can only reference presets. After a preset changes, related older results must be recalculated. The sample bamboo values are equivalent parameters; revise them from test results."
+  },
+  "返回模型列表": {
+    "zh-Hant": "返回模型列表",
+    "en": "Back to models"
+  },
+  "新增预设": {
+    "zh-Hant": "新增預設",
+    "en": "Add preset"
+  },
+  "保存预设": {
+    "zh-Hant": "儲存預設",
+    "en": "Save preset"
+  },
+  "模型列表": {
+    "zh-Hant": "模型列表",
+    "en": "Models"
+  },
+  "导出 CSV": {
+    "zh-Hant": "匯出 CSV",
+    "en": "Export CSV"
+  },
+  "小变形线弹性分析；刚接梁与铰接桁架分开建模。结果仅供内部比较，不能替代实物测试。": {
+    "zh-Hant": "小變形線彈性分析；剛接梁與鉸接桁架分開建模。結果僅供內部比較，不能替代實物測試。",
+    "en": "Small-displacement linear-elastic analysis. Model rigid frames and pin-jointed trusses separately. Results are for internal comparison and do not replace physical tests."
+  },
+  "应力比云图": {
+    "zh-Hant": "應力比雲圖",
+    "en": "Stress-ratio view"
+  },
+  "变形图": {
+    "zh-Hant": "變形圖",
+    "en": "Deflected shape"
+  },
+  "原始模型": {
+    "zh-Hant": "原始模型",
+    "en": "Original model"
+  },
+  "变形放大": {
+    "zh-Hant": "變形放大",
+    "en": "Deflection scale"
+  },
+  "重置视角": {
+    "zh-Hant": "重設視角",
+    "en": "Reset view"
+  },
+  "拖动旋转，滚轮或双指缩放": {
+    "zh-Hant": "拖動旋轉，滾輪或雙指縮放",
+    "en": "Drag to rotate; scroll or pinch to zoom"
+  },
+  "模型三维预览": {
+    "zh-Hant": "模型三維預覽",
+    "en": "3D model preview"
+  },
+  "浏览器无法启用 WebGL，请使用支持三维显示的浏览器；表格和计算仍可使用。": {
+    "zh-Hant": "瀏覽器無法啟用 WebGL，請使用支援三維顯示的瀏覽器；表格和計算仍可使用。",
+    "en": "This browser cannot enable WebGL. Use a browser with 3D support. Tables and calculations still work."
+  },
+  "应力比": {
+    "zh-Hant": "應力比",
+    "en": "Stress ratio"
+  },
+  "紫色高亮：最大应力杆件": {
+    "zh-Hant": "紫色醒目提示：最大應力桿件",
+    "en": "Highlighted in purple: the member with the highest stress"
+  },
+  "保存模型": {
+    "zh-Hant": "儲存模型",
+    "en": "Save model"
+  },
+  "保存并计算": {
+    "zh-Hant": "儲存並計算",
+    "en": "Save and solve"
+  },
+  "组合应力采用 |N|/A + |My|/Wy + |Mz|/Wz 的两端最大包络；轴力正号表示受拉。杆端力为局部坐标下的节点端力。": {
+    "zh-Hant": "組合應力採用 |N|/A + |My|/Wy + |Mz|/Wz 的兩端最大包絡；軸力正號表示受拉。桿端力為局部座標下的節點端力。",
+    "en": "Combined stress uses the larger end envelope of |N|/A + |My|/Wy + |Mz|/Wz. Positive axial force is tension. Member-end forces are nodal forces in local coordinates."
+  },
+  "杆件结果": {
+    "zh-Hant": "桿件結果",
+    "en": "Member results"
+  },
+  "节点位移与支座反力": {
+    "zh-Hant": "節點位移與支座反力",
+    "en": "Joint displacements and support reactions"
+  },
+  "最大位移评价限值（m）": {
+    "zh-Hant": "最大位移評價限值（m）",
+    "en": "Displacement limit used for scoring (m)"
+  },
+  "模型说明": {
+    "zh-Hant": "模型說明",
+    "en": "Model notes"
+  },
+  "梁为刚接；桁架只传递轴力，面外位移需自行约束。roll 为绕局部 x 轴的截面转角（度）。": {
+    "zh-Hant": "梁為剛接；桁架只傳遞軸力，面外位移需自行約束。roll 為繞局部 x 軸的截面轉角（度）。",
+    "en": "Beams are rigidly connected. Trusses carry axial force only; restrain out-of-plane displacement yourself. roll is the section rotation about the local x axis, in degrees."
+  },
+  "勾选表示该自由度固定，未勾选表示自由；仅支持零位移约束。": {
+    "zh-Hant": "勾選表示該自由度固定，未勾選表示自由；僅支援零位移約束。",
+    "en": "A checked box fixes that degree of freedom; unchecked means free. Only zero-displacement supports are available."
+  },
+  "荷载可包含三个方向的力和力矩；本版不自动添加自重。": {
+    "zh-Hant": "荷載可包含三個方向的力和力矩；本版不自動添加自重。",
+    "en": "Loads may include forces and moments in three directions. This version does not add self-weight."
+  },
+  "添加一行": {
+    "zh-Hant": "新增一行",
+    "en": "Add a row"
+  },
+  "【社团实验室预约管理系统】预约即将开始，请扫码签到": {
+    "zh-Hant": "【社團實驗室預約管理系統】預約即將開始，請掃碼簽到",
+    "en": "[Club Lab Booking System] Your booking starts soon. Please check in with the QR code"
+  },
+  "【社团实验室预约管理系统】测试申请未通过审核": {
+    "zh-Hant": "【社團實驗室預約管理系統】測試申請未通過審核",
+    "en": "[Club Lab Booking System] Your test booking was not approved"
+  },
+  "【社团实验室预约管理系统】未签到提醒": {
+    "zh-Hant": "【社團實驗室預約管理系統】未簽到提醒",
+    "en": "[Club Lab Booking System] Missed check-in reminder"
+  },
+  "材料购买验证码": {
+    "zh-Hant": "材料購買驗證碼",
+    "en": "Material purchase verification code"
+  },
+  "邮箱验证码": {
+    "zh-Hant": "郵箱驗證碼",
+    "en": "Email verification code"
+  },
+  "【社团实验室预约管理系统】": {
+    "zh-Hant": "【社團實驗室預約管理系統】",
+    "en": "[Club Lab Booking System] "
+  },
+  "【更新】": {
+    "zh-Hant": "【更新】",
+    "en": "[Updated] "
+  },
+  "重要公告：": {
+    "zh-Hant": "重要公告：",
+    "en": "Important announcement: "
+  },
+  "{label} × {qty}{unit}  单价 {price} 元  小计 {sub} 元": {
+    "zh-Hant": "{label} × {qty}{unit}  單價 {price} 元  小計 {sub} 元",
+    "en": "{label} × {qty}{unit}  unit price {price} yuan  subtotal {sub} yuan"
+  },
+  "{name}，你好：\n\n你预约的实验室测试即将开始：\n实验室：{lab}\n日期时段：{when}\n\n签到方式：到达实验室后，请用手机扫描实验室门口的二维码，登录后点击“确认签到”。只有扫码才能完成签到，不能在网页上直接签到。\n签到窗口：{opens}（开始前 {window} 分钟）至 {end}（结束时间）。\n\n实验室规则提醒：{rules}\n\n如果无法到场，请提前在“申请记录”中取消预约。\n（此邮件由系统自动发送）\n": {
+    "zh-Hant": "{name}，你好：\n\n你預約的實驗室測試即將開始：\n實驗室：{lab}\n日期時段：{when}\n\n簽到方式：到達實驗室後，請用手機掃描實驗室門口的二維碼，登入後點擊「確認簽到」。只有掃碼才能完成簽到，不能在網頁上直接簽到。\n簽到窗口：{opens}（開始前 {window} 分鐘）至 {end}（結束時間）。\n\n實驗室規則提醒：{rules}\n\n如果無法到場，請提前在「申請記錄」中取消預約。\n（此郵件由系統自動發送）\n",
+    "en": "Hello {name},\n\nYour lab test is about to start.\nLab: {lab}\nDate and time: {when}\n\nHow to check in: when you arrive, scan the QR code at the lab door with your phone, log in, and tap “Confirm check-in”. Scanning the code is the only way to check in.\nCheck-in window: {opens} ({window} minutes before the start) until {end} (the end time).\n\nLab rules: {rules}\n\nIf you cannot attend, cancel the booking in advance under your records.\n(This message was sent automatically.)\n"
+  },
+  "{name}，你好：\n\n你提交的测试申请未通过审核。\n实验室：{lab}\n时段：{when}\n拒绝理由：{reason}\n\n如有疑问请联系管理员。\n（此邮件由系统自动发送）\n": {
+    "zh-Hant": "{name}，你好：\n\n你提交的測試申請未通過審核。\n實驗室：{lab}\n時段：{when}\n拒絕理由：{reason}\n\n如有疑問請聯絡管理員。\n（此郵件由系統自動發送）\n",
+    "en": "Hello {name},\n\nYour test booking was not approved.\nLab: {lab}\nTime: {when}\nReason: {reason}\n\nContact an administrator if you have questions.\n(This message was sent automatically.)\n"
+  },
+  "{name}，你好：\n\n你已通过审核的实验室预约，累计 {count} 次没有扫码签到。最近的记录：\n{details}\n\n{warning}\n到达实验室后，请用手机扫描实验室门口的二维码完成签到。\n（此邮件由系统自动发送）\n": {
+    "zh-Hant": "{name}，你好：\n\n你已通過審核的實驗室預約，累計 {count} 次沒有掃碼簽到。最近的記錄：\n{details}\n\n{warning}\n到達實驗室後，請用手機掃描實驗室門口的二維碼完成簽到。\n（此郵件由系統自動發送）\n",
+    "en": "Hello {name},\n\nYou have {count} approved lab bookings with no QR check-in. Recent records:\n{details}\n\n{warning}\nWhen you arrive, scan the QR code at the lab door to check in.\n(This message was sent automatically.)\n"
+  },
+  "{name} 同学：\n\n你正在社团实验室预约管理系统购买材料，验证码为：{code}\n验证码 {minutes} 分钟内有效，请勿告诉他人。\n\n购买明细：\n{lines}\n合计：{total} 元（比赛后统一结算）\n\n如果不是你本人操作，请忽略本邮件并联系管理员。\n": {
+    "zh-Hant": "{name} 同學：\n\n你正在社團實驗室預約管理系統購買材料，驗證碼為：{code}\n驗證碼 {minutes} 分鐘內有效，請勿告訴他人。\n\n購買明細：\n{lines}\n合計：{total} 元（比賽後統一結算）\n\n如果不是你本人操作，請忽略本郵件並聯絡管理員。\n",
+    "en": "Hello {name},\n\nYou are buying materials in the Club Lab Booking System. Your verification code is: {code}\nThe code is valid for {minutes} minutes. Do not share it.\n\nItems:\n{lines}\nTotal: {total} yuan (settled after the competition)\n\nIf you did not do this, ignore this message and contact an administrator.\n"
+  },
+  "{name} 同学：\n\n你正在社团实验室预约管理系统绑定邮箱，验证码为：{code}\n验证码 {minutes} 分钟内有效，请勿告诉他人。\n\n如果不是你本人操作，请忽略本邮件。\n": {
+    "zh-Hant": "{name} 同學：\n\n你正在社團實驗室預約管理系統綁定郵箱，驗證碼為：{code}\n驗證碼 {minutes} 分鐘內有效，請勿告訴他人。\n\n如果不是你本人操作，請忽略本郵件。\n",
+    "en": "Hello {name},\n\nYou are verifying an email address for the Club Lab Booking System. Your code is: {code}\nThe code is valid for {minutes} minutes. Do not share it.\n\nIf you did not do this, ignore this message.\n"
+  },
+  "{name}，你好：\n\n系统发布了一条三级（最高级）公告：\n\n标题：{title}\n发布人：{who}\n时间：{stamp}\n\n{body}\n\n请登录系统，在“公告”页查看，并在弹窗中点击“我已知晓”。\n（此邮件由系统自动发送）\n": {
+    "zh-Hant": "{name}，你好：\n\n系統發布了一條三級（最高級）公告：\n\n標題：{title}\n發布人：{who}\n時間：{stamp}\n\n{body}\n\n請登入系統，在「公告」頁查看，並在彈窗中點擊「我已知曉」。\n（此郵件由系統自動發送）\n",
+    "en": "Hello {name},\n\nA level-3 (highest) announcement was published:\n\nTitle: {title}\nPublisher: {who}\nTime: {stamp}\n\n{body}\n\nLog in, open Announcements, and tap “I understand” in the dialog.\n(This message was sent automatically.)\n"
+  },
+  "节点坐标": {
+    "zh-Hant": "節點座標",
+    "en": "Node coordinates"
+  },
+  "杆件与预设": {
+    "zh-Hant": "桿件與預設",
+    "en": "Members and presets"
+  },
+  "支座约束": {
+    "zh-Hant": "支座約束",
+    "en": "Supports"
+  },
+  "节点荷载": {
+    "zh-Hant": "節點荷載",
+    "en": "Joint loads"
+  },
+  "弹性模量 E (Pa)": {
+    "zh-Hant": "彈性模量 E (Pa)",
+    "en": "Elastic modulus E (Pa)"
+  },
+  "剪切模量 G (Pa)": {
+    "zh-Hant": "剪切模量 G (Pa)",
+    "en": "Shear modulus G (Pa)"
+  },
+  "密度 (kg/m³)": {
+    "zh-Hant": "密度 (kg/m³)",
+    "en": "Density (kg/m³)"
+  },
+  "容许应力 (Pa)": {
+    "zh-Hant": "容許應力 (Pa)",
+    "en": "Allowable stress (Pa)"
+  },
+  "面积 A (m²)": {
+    "zh-Hant": "面積 A (m²)",
+    "en": "Area A (m²)"
+  },
+  "惯性矩 Iy (m⁴)": {
+    "zh-Hant": "慣性矩 Iy (m⁴)",
+    "en": "Moment of inertia Iy (m⁴)"
+  },
+  "惯性矩 Iz (m⁴)": {
+    "zh-Hant": "慣性矩 Iz (m⁴)",
+    "en": "Moment of inertia Iz (m⁴)"
+  },
+  "截面模量 Wy (m³)": {
+    "zh-Hant": "截面模量 Wy (m³)",
+    "en": "Section modulus Wy (m³)"
+  },
+  "截面模量 Wz (m³)": {
+    "zh-Hant": "截面模量 Wz (m³)",
+    "en": "Section modulus Wz (m³)"
+  },
+  "扭转常数 J (m⁴)": {
+    "zh-Hant": "扭轉常數 J (m⁴)",
+    "en": "Torsion constant J (m⁴)"
+  },
+  "材料预设": {
+    "zh-Hant": "材料預設",
+    "en": "Material presets"
+  },
+  "截面预设": {
+    "zh-Hant": "截面預設",
+    "en": "Section presets"
+  },
+  "节点编号": {
+    "zh-Hant": "節點編號",
+    "en": "Node ID"
+  },
+  "杆件编号": {
+    "zh-Hant": "桿件編號",
+    "en": "Member ID"
+  },
+  "起点": {
+    "zh-Hant": "起點",
+    "en": "Start"
+  },
+  "终点": {
+    "zh-Hant": "終點",
+    "en": "End"
+  },
+  "截面": {
+    "zh-Hant": "截面",
+    "en": "Section"
+  },
+  "单元类型": {
+    "zh-Hant": "單元類型",
+    "en": "Element type"
+  },
+  "梁": {
+    "zh-Hant": "梁",
+    "en": "Beam"
+  },
+  "桁架": {
+    "zh-Hant": "桁架",
+    "en": "Truss"
+  },
+  "节点": {
+    "zh-Hant": "節點",
+    "en": "Node"
+  },
+  "计算中…": {
+    "zh-Hant": "計算中…",
+    "en": "Calculating…"
+  },
+  "已保存": {
+    "zh-Hant": "已儲存",
+    "en": "Saved"
+  },
+  "计算完成": {
+    "zh-Hant": "計算完成",
+    "en": "Calculation complete"
+  },
+  "修改后请重新计算": {
+    "zh-Hant": "修改後請重新計算",
+    "en": "Recalculate after editing"
+  },
+  "模型数据无效，请检查输入。": {
+    "zh-Hant": "模型資料無效，請檢查輸入。",
+    "en": "The model data is invalid. Check the inputs."
+  },
+  "请求失败，请刷新后重试。": {
+    "zh-Hant": "請求失敗，請重新整理後再試。",
+    "en": "The request failed. Refresh and try again."
+  },
+  "旧结果已过期，请重新计算。": {
+    "zh-Hant": "舊結果已過期，請重新計算。",
+    "en": "The previous result is out of date. Calculate again."
+  },
+  "最大位移": {
+    "zh-Hant": "最大位移",
+    "en": "Maximum displacement"
+  },
+  "用料质量": {
+    "zh-Hant": "用料質量",
+    "en": "Material mass"
+  },
+  "竖向荷重比": {
+    "zh-Hant": "豎向荷重比",
+    "en": "Vertical load ratio"
+  },
+  "优点": {
+    "zh-Hant": "優點",
+    "en": "Strengths"
+  },
+  "缺点": {
+    "zh-Hant": "缺點",
+    "en": "Weaknesses"
+  },
+  "改进建议": {
+    "zh-Hant": "改進建議",
+    "en": "Suggestions"
+  },
+  "当前规则未发现此类问题。": {
+    "zh-Hant": "當前規則未發現此類問題。",
+    "en": "The current rules found no issues of this kind."
+  },
+  "最大应力杆件": {
+    "zh-Hant": "最大應力桿件",
+    "en": "Highest-stress member"
+  },
+  "计算耗时": {
+    "zh-Hant": "計算耗時",
+    "en": "Calculation time"
+  },
+  "峰值内存": {
+    "zh-Hant": "峰值記憶體",
+    "en": "Peak memory"
+  },
+  "请先计算模型。": {
+    "zh-Hant": "請先計算模型。",
+    "en": "Calculate the model first."
+  },
+  "结构在当前线性模型下可稳定求解。": {
+    "zh-Hant": "結構在當前線性模型下可穩定求解。",
+    "en": "The structure can be solved stably with the current linear model."
+  },
+  "全部杆件的组合应力比不超过 1。": {
+    "zh-Hant": "全部桿件的組合應力比不超過 1。",
+    "en": "Every member's combined stress ratio is within 1."
+  },
+  "有 {count} 根杆件超出容许应力，最大应力比为 {ratio}。": {
+    "zh-Hant": "有 {count} 根桿件超出容許應力，最大應力比為 {ratio}。",
+    "en": "{count} members exceed the allowable stress. The highest stress ratio is {ratio}."
+  },
+  "优先检查高亮杆件的截面、材料与荷载路径，调整后重新计算。": {
+    "zh-Hant": "優先檢查醒目提示桿件的截面、材料與荷載路徑，調整後重新計算。",
+    "en": "Check the highlighted members' sections, materials and load paths first, then calculate again."
+  },
+  "最大位移未超过设定的评价限值。": {
+    "zh-Hant": "最大位移未超過設定的評價限值。",
+    "en": "The maximum displacement is within the scoring limit."
+  },
+  "最大位移 {value} mm，超过评价限值 {limit} mm。": {
+    "zh-Hant": "最大位移 {value} mm，超過評價限值 {limit} mm。",
+    "en": "Maximum displacement is {value} mm, above the {limit} mm limit."
+  },
+  "增加有效支撑或提高受弯方向刚度，同时检查变形是否已超出小变形假设。": {
+    "zh-Hant": "增加有效支撐或提高受彎方向剛度，同時檢查變形是否已超出小變形假設。",
+    "en": "Add bracing or increase bending stiffness, and check whether the deflection still fits the small-displacement assumption."
+  },
+  "有 {count} 根低应力比杆件，可能存在用料优化空间。": {
+    "zh-Hant": "有 {count} 根低應力比桿件，可能存在用料優化空間。",
+    "en": "{count} members have a low stress ratio, so there may be room to use less material."
+  },
+  "低应力不代表可以删除；保留稳定支撑，逐根减小截面并重新计算。": {
+    "zh-Hant": "低應力不代表可以刪除；保留穩定支撐，逐根減小截面並重新計算。",
+    "en": "Low stress does not mean a member can be removed. Keep the bracing, reduce one section at a time, and calculate again."
+  },
+  "有 {count} 根受压杆件需要进一步检查屈曲。": {
+    "zh-Hant": "有 {count} 根受壓桿件需要進一步檢查屈曲。",
+    "en": "{count} compression members need a further buckling check."
+  },
+  "欧拉屈曲仅为两端铰支的筛查估计，请另行核实有效长度与节点连接。": {
+    "zh-Hant": "歐拉屈曲僅為兩端鉸支的篩查估計，請另行核實有效長度與節點連接。",
+    "en": "The Euler check assumes pinned ends. Verify the effective length and joint fixity separately."
+  },
+  "总用料质量 {mass} kg，竖向荷重比 {ratio}；该比值对应当前输入荷载，不是极限承载力。": {
+    "zh-Hant": "總用料質量 {mass} kg，豎向荷重比 {ratio}；該比值對應當前輸入荷載，不是極限承載力。",
+    "en": "Total material mass is {mass} kg and the vertical load ratio is {ratio}. That ratio matches the loads you entered; it is not an ultimate capacity."
+  },
+  "本版不考虑连接破坏、材料各向异性、扭转应力及二阶效应，内部结果不能替代实物测试。": {
+    "zh-Hant": "本版不考慮連接破壞、材料各向異性、扭轉應力及二階效應，內部結果不能替代實物測試。",
+    "en": "This version ignores connection failure, anisotropy, torsional stress and second-order effects. Internal results do not replace a physical test."
+  },
+  "导入文件过大，最大 1 MB。": {
+    "zh-Hant": "匯入檔案過大，最大 1 MB。",
+    "en": "The import file is too large. The maximum is 1 MB."
+  },
+  "模型数据过大。": {
+    "zh-Hant": "模型資料過大。",
+    "en": "The model data is too large."
+  },
+  "模型格式无效，请检查表格数据。": {
+    "zh-Hant": "模型格式無效，請檢查表格資料。",
+    "en": "The model format is invalid. Check the table data."
+  },
+  "模型已被修改，请刷新页面后重试。": {
+    "zh-Hant": "模型已被修改，請重新整理頁面後再試。",
+    "en": "The model was changed. Refresh the page and try again."
+  },
+  "名称或说明为空或超过长度限制。": {
+    "zh-Hant": "名稱或說明為空或超過長度限制。",
+    "en": "The name or notes are empty or too long."
+  },
+  "请选择 Excel 或 CSV 文件。": {
+    "zh-Hant": "請選擇 Excel 或 CSV 檔案。",
+    "en": "Choose an Excel or CSV file."
+  },
+  "导入失败，请使用导出模板并检查文件格式、表头及行数。": {
+    "zh-Hant": "匯入失敗，請使用匯出範本並檢查檔案格式、表頭及行數。",
+    "en": "Import failed. Use an exported template and check the format, headers and row counts."
+  },
+  "已有模拟正在计算，请稍后再试。": {
+    "zh-Hant": "已有模擬正在計算，請稍後再試。",
+    "en": "Another simulation is already running. Try again shortly."
+  },
+  "计算超时已终止，请缩小模型后重试。": {
+    "zh-Hant": "計算逾時已終止，請縮小模型後再試。",
+    "en": "The calculation timed out and was stopped. Use a smaller model and try again."
+  },
+  "计算进程已终止，请缩小模型或检查运行环境。": {
+    "zh-Hant": "計算進程已終止，請縮小模型或檢查執行環境。",
+    "en": "The calculation process was stopped. Use a smaller model or check the runtime environment."
+  },
+  "计算失败，请检查模型数据及单位。": {
+    "zh-Hant": "計算失敗，請檢查模型資料及單位。",
+    "en": "The calculation failed. Check the model data and units."
+  },
+  "数值超出允许范围或不是有限数值。": {
+    "zh-Hant": "數值超出允許範圍或不是有限數值。",
+    "en": "A value is outside the allowed range or is not finite."
+  },
+  "模型超过规模限制：最多 180 个节点、600 根杆件。": {
+    "zh-Hant": "模型超過規模限制：最多 180 個節點、600 根桿件。",
+    "en": "The model is too large: at most 180 nodes and 600 members."
+  },
+  "节点或杆件编号重复。": {
+    "zh-Hant": "節點或桿件編號重複。",
+    "en": "A node or member ID is duplicated."
+  },
+  "杆件端点不存在或长度为零。": {
+    "zh-Hant": "桿件端點不存在或長度為零。",
+    "en": "A member endpoint is missing or the length is zero."
+  },
+  "同一节点对存在重复杆件，请合并或调整截面。": {
+    "zh-Hant": "同一節點對存在重複桿件，請合併或調整截面。",
+    "en": "Two members connect the same nodes. Merge them or change the section."
+  },
+  "模型只能引用已启用的材料和截面预设。": {
+    "zh-Hant": "模型只能引用已啟用的材料和截面預設。",
+    "en": "A model can only use enabled material and section presets."
+  },
+  "存在未连接杆件的孤立节点。": {
+    "zh-Hant": "存在未連接桿件的孤立節點。",
+    "en": "A node is not connected to any member."
+  },
+  "支座或荷载节点不存在或重复。": {
+    "zh-Hant": "支座或荷載節點不存在或重複。",
+    "en": "A support or load refers to a missing or duplicate node."
+  },
+  "截面参数过小，请检查 SI 单位。": {
+    "zh-Hant": "截面參數過小，請檢查 SI 單位。",
+    "en": "A section property is too small. Check the SI units."
+  },
+  "模型几何可变或约束不足（刚度矩阵奇异或接近奇异）。请检查支座、断开的结构及桁架面外约束。": {
+    "zh-Hant": "模型幾何可變或約束不足（剛度矩陣奇異或接近奇異）。請檢查支座、斷開的結構及桁架面外約束。",
+    "en": "The model is unstable or under-restrained (the stiffness matrix is singular or nearly singular). Check supports, disconnected parts and out-of-plane truss restraints."
+  },
+  "荷载作用于无刚度自由度，桁架节点不能承受节点力矩。": {
+    "zh-Hant": "荷載作用於無剛度自由度，桁架節點不能承受節點力矩。",
+    "en": "A load acts on a degree of freedom with no stiffness. Truss joints cannot take joint moments."
+  },
+  "计算资源不足，请缩小模型或检查科学计算依赖。": {
+    "zh-Hant": "計算資源不足，請縮小模型或檢查科學計算依賴。",
+    "en": "Not enough resources to calculate. Use a smaller model or check the scientific libraries."
+  },
+  "简支梁：跨中集中荷载": {
+    "zh-Hant": "簡支梁：跨中集中荷載",
+    "en": "Simply supported beam: midspan point load"
+  },
+  "3 节点、2 梁单元；用于 PL³/48EI 校验。": {
+    "zh-Hant": "3 節點、2 梁單元；用於 PL³/48EI 校驗。",
+    "en": "3 nodes and 2 beam elements, for a PL³/48EI check."
+  },
+  "平面桁架桥": {
+    "zh-Hant": "平面桁架橋",
+    "en": "Plane truss bridge"
+  },
+  "9 节点 Warren 桁架；面外位移已约束。": {
+    "zh-Hant": "9 節點 Warren 桁架；面外位移已約束。",
+    "en": "A 9-node Warren truss with out-of-plane displacement restrained."
+  },
+  "空间四棱锥塔架": {
+    "zh-Hant": "空間四棱錐塔架",
+    "en": "Space pyramid tower"
+  },
+  "5 节点、10 梁单元；底座固定，顶部复合荷载。": {
+    "zh-Hant": "5 節點、10 梁單元；底座固定，頂部複合荷載。",
+    "en": "5 nodes and 10 beam elements. The base is fixed and the top has combined loads."
+  },
+  "多层空间框架": {
+    "zh-Hant": "多層空間框架",
+    "en": "Multi-storey space frame"
+  },
+  "80 节点、325 梁单元；五层带斜撑空间框架。": {
+    "zh-Hant": "80 節點、325 梁單元；五層帶斜撐空間框架。",
+    "en": "80 nodes and 325 beam elements: a five-storey braced space frame."
+  }
+}

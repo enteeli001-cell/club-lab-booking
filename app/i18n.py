@@ -1,8 +1,11 @@
 """Site-wide explicit interface translations, selected by the lang cookie.
 
+Source strings in code and templates are Simplified Chinese. English is the
+default for new visitors, mail sent outside a request, and missing translations.
+Users can switch language; the choice is stored in the lang cookie.
+
 Translate only system-owned strings. User names, announcements, lab/tool names,
 rejection reasons and other stored user content must never be passed to t().
-Missing catalog entries deliberately fall back to the source text.
 """
 
 import re
@@ -13,10 +16,30 @@ from string import Formatter
 
 from flask import has_request_context, request, url_for
 
-DEFAULT_LANG = "zh-Hans"
-LANGUAGES = (("zh-Hans", "简体中文"), ("zh-Hant", "繁體中文"), ("en", "English"))
+DEFAULT_LANG = "en"
+SOURCE_LANG = "zh-Hans"
+LANGUAGES = (
+    ("en", "English"),
+    ("zh-Hans", "简体中文"),
+    ("zh-Hant", "繁體中文"),
+    ("ja", "日本語"),
+    ("ko", "한국어"),
+    ("es", "Español"),
+    ("fr", "Français"),
+    ("de", "Deutsch"),
+)
 LANG_CODES = tuple(code for code, _label in LANGUAGES)
-HTML_LANG = {"zh-Hans": "zh-CN", "zh-Hant": "zh-Hant", "en": "en"}
+HTML_LANG = {
+    "en": "en",
+    "zh-Hans": "zh-CN",
+    "zh-Hant": "zh-Hant",
+    "ja": "ja",
+    "ko": "ko",
+    "es": "es",
+    "fr": "fr",
+    "de": "de",
+}
+EXTRA_LANGS = ("ja", "ko", "es", "fr", "de")
 LANG_COOKIE = "lang"
 LANG_COOKIE_MAX_AGE = 365 * 24 * 3600
 
@@ -106,6 +129,34 @@ for _source, _pair in json.loads(Path(__file__).with_name("i18n_catalog.json").r
 for _source, _pair in json.loads(Path(__file__).with_name("i18n_materials.json").read_text(encoding="utf-8")).items():
     CATALOG.setdefault(_source, tuple(_pair))
 
+
+def _as_lang_map(value) -> dict:
+    if isinstance(value, dict):
+        return {key: text for key, text in value.items() if isinstance(text, str) and text}
+    hant, english = value
+    return {"zh-Hant": hant, "en": english}
+
+
+for _source, _pair in list(CATALOG.items()):
+    CATALOG[_source] = _as_lang_map(_pair)
+
+
+def _overlay_catalog(filename: str) -> None:
+    path = Path(__file__).with_name(filename)
+    if not path.exists():
+        return
+    for source, mapping in json.loads(path.read_text(encoding="utf-8")).items():
+        entry = CATALOG.setdefault(source, {})
+        if not isinstance(entry, dict):
+            entry = _as_lang_map(entry)
+            CATALOG[source] = entry
+        for lang, text in _as_lang_map(mapping).items():
+            entry.setdefault(lang, text)
+
+
+_overlay_catalog("i18n_extra.json")
+_overlay_catalog("i18n_locales.json")
+
 # (pattern on the source text, 繁體 template, English template)
 PATTERNS = (
     (re.compile(r"^登录失败次数过多，请 (\d+) 秒后再试。$"), "登入失敗次數過多，請 {0} 秒後再試。", "Too many failed logins, please try again in {0} seconds."),
@@ -184,6 +235,45 @@ JS_KEYS += ("已填入当前位置（误差约 {meters} 米）。请确认后保
 JS_KEYS += ("验证码已过期，请重新发送。", "数量格式无效，请填写大于 0 的小数或分数，如 0.5、1/3、1 1/2。", "数量超过允许上限。")
 
 
+def _normalize_patterns() -> None:
+    global PATTERNS
+    normalized = []
+    for item in PATTERNS:
+        if len(item) == 3 and not isinstance(item[1], dict):
+            regex, hant, english = item
+            normalized.append((regex, {"zh-Hant": hant, "en": english}))
+        else:
+            normalized.append(item)
+    path = Path(__file__).with_name("i18n_patterns.json")
+    overlay = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    for regex, mapping in normalized:
+        for lang, text in overlay.get(regex.pattern, {}).items():
+            if isinstance(text, str) and text:
+                mapping.setdefault(lang, text)
+    PATTERNS = tuple(normalized)
+
+
+_normalize_patterns()
+
+STATE_WORDS = {
+    "zh-Hant": {"开启": "開啟", "关闭": "關閉"},
+    "en": {"开启": "enabled", "关闭": "disabled"},
+    "ja": {"开启": "有効", "关闭": "無効"},
+    "ko": {"开启": "사용", "关闭": "사용 중지"},
+    "es": {"开启": "activada", "关闭": "desactivada"},
+    "fr": {"开启": "activée", "关闭": "désactivée"},
+    "de": {"开启": "aktiviert", "关闭": "deaktiviert"},
+}
+WEEKDAYS = {
+    "en": ("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"),
+    "es": ("lun", "mar", "mié", "jue", "vie", "sáb", "dom"),
+    "fr": ("lun", "mar", "mer", "jeu", "ven", "sam", "dim"),
+    "de": ("Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"),
+    "ja": ("月", "火", "水", "木", "金", "土", "日"),
+    "ko": ("월", "화", "수", "목", "금", "토", "일"),
+}
+
+
 def current_lang() -> str:
     if not has_request_context():
         return DEFAULT_LANG
@@ -194,17 +284,35 @@ def current_lang() -> str:
     return chosen if chosen in LANG_CODES else DEFAULT_LANG
 
 
-def t(text, **values):
-    """Translate a Simplified Chinese source string for the current request (falls back to itself)."""
-    lang = current_lang()
+def _apply(template: str, args=(), values=None):
+    if values:
+        return template.format(**values)
+    if args:
+        return template.format(*args)
+    return template
+
+
+def _pick(translations, lang: str):
+    if not isinstance(translations, dict):
+        return None
+    text = translations.get(lang)
+    if text:
+        return text
+    if lang not in (SOURCE_LANG, "en"):
+        return translations.get("en") or None
+    return None
+
+
+def translate(text, lang: str, values=None):
+    """Translate one Simplified Chinese source string into lang."""
+    values = values or {}
     if not isinstance(text, str):
         return text
-    if lang == DEFAULT_LANG:
-        return text.format(**values) if values else text
-    index = 0 if lang == "zh-Hant" else 1
-    hit = CATALOG.get(text)
-    if hit is not None:
-        return hit[index].format(**values) if values else hit[index]
+    if lang == SOURCE_LANG:
+        return _apply(text, values=values)
+    chosen = _pick(CATALOG.get(text), lang)
+    if chosen is not None:
+        return _apply(chosen, values=values)
     for source, pattern, translations in _FORMAT_MESSAGES:
         match = pattern.fullmatch(text)
         if not match:
@@ -213,18 +321,30 @@ def t(text, **values):
         for field, kind in _FORMAT_ENUM_FIELDS.get(source, {}).items():
             if kind == "state":
                 state = fields[field]
-                fields[field] = ({"开启": "開啟", "关闭": "關閉"} if lang == "zh-Hant"
-                                 else {"开启": "enabled", "关闭": "disabled"}).get(state, state)
+                fields[field] = STATE_WORDS.get(lang, STATE_WORDS["en"]).get(state, state)
             elif kind == "interface_list":
-                fields[field] = (", " if lang == "en" else "、").join(t(part) for part in fields[field].split("、"))
+                separator = "、" if lang in ("zh-Hans", "zh-Hant", "ja") else ", "
+                fields[field] = separator.join(translate(part, lang) for part in fields[field].split("、"))
             else:
-                fields[field] = t(fields[field])
-        return translations[index].format(**fields)
-    for pattern, hant, english in PATTERNS:
+                fields[field] = translate(fields[field], lang)
+        chosen = _pick(translations, lang)
+        if chosen is not None:
+            return chosen.format(**fields)
+    for pattern, translations in PATTERNS:
         match = pattern.match(text)
-        if match:
-            return (hant, english)[index].format(*match.groups())
-    return text.format(**values) if values else text
+        if not match:
+            continue
+        chosen = _pick(translations, lang)
+        if chosen is not None:
+            return chosen.format(*match.groups())
+    if lang != "en":
+        return translate(text, "en", values)
+    return _apply(text, values=values)
+
+
+def t(text, **values):
+    """Translate a Simplified Chinese source string for the active language."""
+    return translate(text, current_lang(), values)
 
 
 def language_url(code):
@@ -236,14 +356,14 @@ def language_url(code):
 
 
 def js_catalog() -> dict:
-    """source -> translation for app.js; empty in the default language."""
-    if current_lang() == DEFAULT_LANG:
+    """source -> translation for app.js. Simplified Chinese keeps the source strings."""
+    if current_lang() == SOURCE_LANG:
         return {}
     return {key: t(key) for key in JS_KEYS}
 
 
 def html_lang() -> str:
-    return HTML_LANG[current_lang()]
+    return HTML_LANG.get(current_lang(), current_lang())
 
 
 def remember_choice(response):
@@ -258,19 +378,59 @@ def remember_choice(response):
     return response
 
 
+def cjk_punctuation(lang: str | None = None) -> bool:
+    return (lang or current_lang()) in {"zh-Hans", "zh-Hant"}
+
+
 def weekday_label(day):
-    if current_lang() == "en":
-        return ("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")[day.weekday()]
-    return "星期" + ("一", "二", "三", "四", "五", "六", "日")[day.weekday()]
+    lang = current_lang()
+    if lang in {"zh-Hans", "zh-Hant"}:
+        return "星期" + ("一", "二", "三", "四", "五", "六", "日")[day.weekday()]
+    return WEEKDAYS.get(lang, WEEKDAYS["en"])[day.weekday()]
 
 
 def calendar_day(day):
-    return day.strftime("%m-%d") if current_lang() == "en" else day.strftime("%m月%d日")
+    lang = current_lang()
+    if lang == "ko":
+        return f"{day.month}월 {day.day}일"
+    if lang == "de":
+        return day.strftime("%d.%m.")
+    if lang in {"es", "fr"}:
+        return day.strftime("%d/%m")
+    if lang in {"zh-Hans", "zh-Hant", "ja"}:
+        return day.strftime("%m月%d日")
+    return day.strftime("%m-%d")
 
 
 def duration_label(minutes):
     """Present numeric durations without changing exported or stored records."""
     hours, remaining = divmod(int(minutes), 60)
-    if current_lang() == "en":
-        return " ".join(part for part in (f"{hours}h" if hours else "", f"{remaining}m" if remaining or not hours else "") if part)
-    return (f"{hours}小時" if hours and current_lang() == "zh-Hant" else f"{hours}小时" if hours else "") + (f"{remaining}分鐘" if current_lang() == "zh-Hant" and (remaining or not hours) else f"{remaining}分钟" if remaining or not hours else "")
+    lang = current_lang()
+    if lang == "zh-Hans":
+        return (f"{hours}小时" if hours else "") + (f"{remaining}分钟" if remaining or not hours else "")
+    if lang == "zh-Hant":
+        return (f"{hours}小時" if hours else "") + (f"{remaining}分鐘" if remaining or not hours else "")
+    if lang == "ja":
+        return (f"{hours}時間" if hours else "") + (f"{remaining}分" if remaining or not hours else "")
+    if lang == "ko":
+        parts = []
+        if hours:
+            parts.append(f"{hours}시간")
+        if remaining or not hours:
+            parts.append(f"{remaining}분")
+        return " ".join(parts)
+    if lang == "de":
+        parts = []
+        if hours:
+            parts.append(f"{hours} Std.")
+        if remaining or not hours:
+            parts.append(f"{remaining} Min.")
+        return " ".join(parts)
+    if lang in {"es", "fr"}:
+        parts = []
+        if hours:
+            parts.append(f"{hours} h")
+        if remaining or not hours:
+            parts.append(f"{remaining} min")
+        return " ".join(parts)
+    return " ".join(part for part in (f"{hours}h" if hours else "", f"{remaining}m" if remaining or not hours else "") if part)

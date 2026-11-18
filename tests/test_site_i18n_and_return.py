@@ -185,7 +185,7 @@ def test_announcement_title_and_body_stay_original(app,client,seed):
 
 def test_unknown_language_defaults_and_query_overrides_cookie(client,seed):
     login(client,'2021001');client.set_cookie('lang','unknown')
-    assert '<html lang="zh-CN">' in client.get('/captain').get_data(as_text=True)
+    assert '<html lang="en">' in client.get('/captain').get_data(as_text=True)
     client.set_cookie('lang','en')
     assert '<html lang="zh-Hant">' in client.get('/captain?lang=zh-Hant').get_data(as_text=True)
     assert '<html lang="zh-Hant">' in client.get('/records').get_data(as_text=True)

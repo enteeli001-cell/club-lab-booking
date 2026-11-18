@@ -13,7 +13,7 @@
         <td>{% if row.action == 'create' %}<span class="badge approved">{{ t("新增") }}</span>{% elif row.action == 'update' %}<span class="badge pending">{{ t("更新") }}</span>{% else %}<span class="badge rejected">{{ t("错误") }}</span>{% endif %}</td>
         <td>{{ row.team_name }} / {{ row.name }}（{{ row.student_id }}）<div class="hint">{{ row.phone }} {{ row.email }}</div></td>
         <td>{% for m in row.members %}{{ m.name }}（{{ m.student_id }}）{% if not loop.last %}、{% endif %}{% endfor %}{% if not row.members %}—{% endif %}</td>
-        <td class="{{ 'bad-hint' if row.errors else '' }}">{% if row.errors %}{{ row.errors|map('t')|join('; ' if current_lang == 'en' else '；') }}{% else %}—{% endif %}</td>
+        <td class="{{ 'bad-hint' if row.errors else '' }}">{% if row.errors %}{{ row.errors|map('t')|join('; ' if current_lang not in ('zh-Hans', 'zh-Hant') else '；') }}{% else %}—{% endif %}</td>
       </tr>
     {% endfor %}
     </tbody>

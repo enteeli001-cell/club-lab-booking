@@ -54,11 +54,11 @@ def test_second_no_show_does_not_alert_third_does_and_sends_mail(app, seed, cloc
         alert = NoShowAlert.query.one()
         assert alert.level == 3 and alert.acknowledged_at is None
         assert alert.email_status == "local" and alert.email_to == "captain@example.com"
-        mails = MailLog.query.filter(MailLog.subject.like("%未签到提醒%")).all()
-        assert len(mails) == 1 and "累计 3 次" in mails[0].body
+        mails = MailLog.query.filter(MailLog.subject.like("%Missed check-in reminder%")).all()
+        assert len(mails) == 1 and "3" in mails[0].body and "QR" in mails[0].body
         # Idempotent: scanning again does nothing, no second mail.
         assert scan_noshow_alerts(NOW) == {"alerts": 0}
-        assert MailLog.query.filter(MailLog.subject.like("%未签到提醒%")).count() == 1
+        assert MailLog.query.filter(MailLog.subject.like("%Missed check-in reminder%")).count() == 1
 
 
 def test_forced_overlay_until_acknowledged_then_fourth_alerts_again(app, client, seed, clock):
@@ -174,7 +174,7 @@ def test_reminder_sent_once_within_window_only(app, seed, clock):
         mails = MailLog.query.filter(MailLog.booking_id == inside_id).all()
         assert len(mails) == 1 and mails[0].status == "local"
         body = mails[0].body
-        assert "创新实验室" in body and "扫描实验室门口的二维码" in body and "签到窗口" in body and "实验室规则提醒" in body
+        assert "创新实验室" in body and "How to check in" in body and "Check-in window" in body and "Lab rules" in body
         # Once only.
         assert send_start_reminders(now)["sent"] == 0
         assert send_start_reminders(now + timedelta(minutes=5))["sent"] == 0
@@ -225,7 +225,7 @@ def test_reschedule_clears_reminder_and_reminds_again(app, client, seed, clock):
     clock(later)
     with app.app_context():
         assert send_start_reminders(later)["sent"] == 1
-        assert MailLog.query.filter(MailLog.booking_id == bid, MailLog.subject.like("%即将开始%")).count() == 2
+        assert MailLog.query.filter(MailLog.booking_id == bid, MailLog.subject.like("%starts soon%")).count() == 2
 
 
 def test_failed_mail_retries_at_most_twice(app, seed, clock, monkeypatch):

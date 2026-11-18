@@ -415,13 +415,15 @@ def find_duty_shifts(lab_id: int, booking_date: date, start: time, end: time, *,
 
 def find_booking_contacts(booking, *, shifts=None) -> list[dict]:
     """Lookup order: overlapping duty admin, then reviewer, then lab default contact."""
+    from app.i18n import t
+
     contacts = []
     shifts = find_duty_shifts(booking.lab_id, booking.date, booking.start_time, booking.end_time, candidates=shifts)
     for shift in shifts:
         admin = shift.admin
         contacts.append(
             {
-                "name": admin.name if admin else "值班管理员",
+                "name": admin.name if admin else t("值班管理员"),
                 "phone": (admin.contact_phone if admin else None) or "",
                 "source": "duty",
                 "source_label": "值班管理员",
@@ -443,7 +445,7 @@ def find_booking_contacts(booking, *, shifts=None) -> list[dict]:
     if lab is not None and (lab.contact_name or lab.contact_phone):
         return [
             {
-                "name": lab.contact_name or "实验室联系人",
+                "name": lab.contact_name or t("实验室联系人"),
                 "phone": lab.contact_phone or "",
                 "source": "lab",
                 "source_label": "实验室默认联系人",
@@ -460,7 +462,7 @@ def format_contacts_label(contacts: list[dict]) -> str:
     for item in contacts:
         phone = item.get("phone") or t("（未填写电话）")
         parts.append(f"{item['name']}（{t(item['source_label'])}）{phone}")
-    return ("; " if current_lang() == "en" else "；").join(parts)
+    return ("; " if current_lang() not in {"zh-Hans", "zh-Hant"} else "；").join(parts)
 
 def find_conflicts(lab_id: int, booking_date: date, start: time, end: time, exclude_id: int | None = None):
     from app.models import Booking

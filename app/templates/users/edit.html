@@ -53,7 +53,7 @@
   if (add && rows) add.addEventListener("click", function(){
     var div = document.createElement("div");
     div.className = "field-row member-row";
-    div.innerHTML = '<div class="field"><label>队员姓名</label><input name="member_name" type="text"></div><div class="field"><label>队员学号</label><input name="member_student_id" type="text"></div>';
+    div.innerHTML = '<div class="field"><label>' + {{ t("队员姓名")|tojson }} + '</label><input name="member_name" type="text"></div><div class="field"><label>' + {{ t("队员学号")|tojson }} + '</label><input name="member_student_id" type="text"></div>';
     rows.appendChild(div);
   });
 })();

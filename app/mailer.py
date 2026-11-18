@@ -467,20 +467,26 @@ def send_mail(recipient: str, subject: str, body: str, *, booking_id: int | None
 
 
 def send_reject_notice(booking, reason: str) -> Any:
+    from app.i18n import t
+
     recipient = (booking.captain_email or "").strip()
-    subject = "【社团实验室预约管理系统】测试申请未通过审核"
+    subject = t("【社团实验室预约管理系统】测试申请未通过审核")
     day = booking.date.isoformat() if booking.date else ""
     slot = booking.time_range_label if hasattr(booking, "time_range_label") else ""
     lab = booking.lab.name if booking.lab else ""
-    name = booking.user.name if booking.user else "队长"
-    body = (
-        f"{name}，你好：\n\n"
-        f"你提交的测试申请未通过审核。\n"
-        f"实验室：{lab}\n"
-        f"时段：{day} {slot}\n"
-        f"拒绝理由：{reason}\n\n"
-        f"如有疑问请联系管理员。\n"
-        f"（此邮件由系统自动发送）\n"
+    name = booking.user.name if booking.user else t("队长")
+    body = t(
+        "{name}，你好：\n\n"
+        "你提交的测试申请未通过审核。\n"
+        "实验室：{lab}\n"
+        "时段：{when}\n"
+        "拒绝理由：{reason}\n\n"
+        "如有疑问请联系管理员。\n"
+        "（此邮件由系统自动发送）\n",
+        name=name,
+        lab=lab,
+        when=f"{day} {slot}".strip(),
+        reason=reason,
     )
     return send_mail(recipient, subject, body, booking_id=booking.id)
 
